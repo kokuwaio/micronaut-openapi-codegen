@@ -1,0 +1,17 @@
+micronaut:
+  http:
+    client:
+      logger-name: codegen.TestClient
+      read-timeout: 10m
+    services: {}
+  security:
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: pleaseChangeThisSecretForANewOne
+              jws-algorithm: HS256
+jackson:
+  serialization:
+    indentOutput: true

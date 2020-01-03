@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<withJansi>true</withJansi>
+		<encoder>
+			<pattern>%cyan(%d{HH:mm:ss.SSS}) %gray(%-10.10thread) %highlight(%-5level) %magenta(%60logger{60}) %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="codegen" level="INFO" />
+	<logger name="io.micronaut.context.env.DefaultEnvironment" level="WARN" />
+	<logger name="io.micronaut.retry.intercept.RecoveryInterceptor" level="OFF" />
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>

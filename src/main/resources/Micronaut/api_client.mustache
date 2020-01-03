@@ -1,0 +1,20 @@
+package {{package}};
+{{#modelPackage}}
+
+import {{modelPackage}}.*;{{/modelPackage}}
+
+{{>generated}}
+@io.micronaut.http.client.annotation.Client(id = "{{clientId}}")
+public interface {{classname}}Client extends {{classname}} {
+{{#operations}}{{#operation}}
+
+{{#vendorExtensions.has401}}
+	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
+	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+	{{>returnType}} {{nickname}}(
+			@javax.annotation.Nullable
+			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
+			String authorization{{#hasParams}},
+{{>apiParams}}{{/hasParams}});
+{{/vendorExtensions.has401}}{{/operation}}}{{/operations}}

@@ -1,0 +1,9 @@
+micronaut:
+  http:
+    client:
+      logger-name: codegen.TestClient
+      read-timeout: 10m
+    services: {}
+jackson:
+  serialization:
+    indentOutput: true

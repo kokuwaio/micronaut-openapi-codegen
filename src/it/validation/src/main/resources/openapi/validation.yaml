@@ -1,0 +1,56 @@
+openapi: 3.0.2
+info:
+  title: Test Spec
+  version: '0.6'
+servers:
+- url: http://localhost:8080
+paths:
+  /body:
+    post:
+      description: 'validate body'
+      operationId: body
+      tags:
+      - validation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model'
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: BadRequest.
+  /param/query:
+    get:
+      description: 'validate query param'
+      operationId: queryParam
+      parameters:
+      - name: modelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 2
+      tags:
+      - validation
+      responses:
+        200:
+          description: Ok.
+        404:
+          description: NotFound.
+components:
+  schemas:
+    Model:
+      type: object
+      required:
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 5

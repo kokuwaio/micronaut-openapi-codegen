@@ -1,0 +1,80 @@
+{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY, property = "{{{discriminatorName}}}", visible = true)
+@com.fasterxml.jackson.annotation.JsonSubTypes({
+	{{#discriminator.mappedModels}}
+	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"),
+	{{/discriminator.mappedModels}}
+})
+{{/discriminator}}@io.micronaut.core.annotation.Introspected
+public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}} {
+
+{{#vars}}{{#description}}	/** {{description}} */
+{{/description}}{{#validation}}{{#required}}	@javax.validation.constraints.NotNull
+{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
+{{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})
+{{/minimum}}{{#maximum}}	@javax.validation.constraints.Max({{maximum}})
+{{/maximum}}{{#minLength}}{{^maxLength}}	@javax.validation.constraints.Size(min = {{minLength}})
+{{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}	@javax.validation.constraints.Size(max = {{maxLength}})
+{{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}	@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
+{{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}	@javax.validation.constraints.Size(min = {{minItems}})
+{{/maxItems}}{{/minItems}}{{^minItems}}{{#maxItems}}	@javax.validation.constraints.Size(max = {{maxItems}})
+{{/maxItems}}{{/minItems}}{{#minItems}}{{#maxItems}}	@javax.validation.constraints.Size(min = {{minItems}}, max = {{maxItems}})
+{{/maxItems}}{{/minItems}}{{/validation}}	@com.fasterxml.jackson.annotation.JsonProperty("{{baseName}}")
+	private {{{datatypeWithEnum}}} {{name}}{{#defaultValue}}{{^isContainer}} = {{{.}}}{{/isContainer}}{{#isContainer}}{{#required}} = {{{.}}}{{/required}}{{/isContainer}}{{/defaultValue}};
+
+{{/vars}}
+	// methods
+
+	@Override
+	public boolean equals(Object object) {
+		if (object == this) {
+			return true;
+		}
+		if (object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		{{classname}} other = ({{classname}}) object;
+		return {{^vars}}super.equals(object);{{/vars}}{{#vars}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}.equals({{name}}, other.{{name}}){{#hasMore}}
+				&& {{/hasMore}}{{^hasMore}}{{#parent}}
+				&& super.equals(object){{/parent}};{{/hasMore}}{{/vars}}
+	}
+
+	@Override
+	public int hashCode() {
+		return java.util.Objects.hash({{#vars}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#hasMore}}, {{/hasMore}}{{^hasMore}}{{#parent}}, super.hashCode(){{/parent}}{{/hasMore}}{{/vars}});
+	}
+
+	@Override
+	public String toString() {
+		return new StringBuilder()
+				.append("{{classname}}["){{#parent}}
+				.append("super").append(super.toString()){{/parent}}
+		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{#hasMore}}.append(","){{/hasMore}}
+		{{/vars}}		.append("]")
+				.toString();
+	}
+
+	// fluent
+	{{#vars}}
+
+	public {{classname}} {{name}}({{{datatypeWithEnum}}} {{name}}) {
+		this.{{name}} = {{name}};
+		return this;
+	}
+
+	public {{{datatypeWithEnum}}} {{name}}() {
+		return {{name}};
+	}
+	{{/vars}}
+
+	// getter/setter
+	{{#vars}}
+
+	public {{{datatypeWithEnum}}} {{getter}}() {
+		return {{name}};
+	}
+
+	public {{classname}} {{setter}}({{{datatypeWithEnum}}} {{name}}) {
+		this.{{name}} = {{name}};
+		return this;
+	}{{/vars}}
+}

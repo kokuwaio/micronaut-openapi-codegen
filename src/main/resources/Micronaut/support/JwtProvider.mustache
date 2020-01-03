@@ -1,0 +1,26 @@
+package {{testPackage}};
+
+import javax.inject.Singleton;
+
+import io.micronaut.context.annotation.Requires;
+import io.micronaut.security.token.jwt.signature.SignatureGeneratorConfiguration;
+
+{{>generated}}
+@Requires(beans = SignatureGeneratorConfiguration.class)
+@Singleton
+public class JwtProvider {
+
+	private final SignatureGeneratorConfiguration signature;
+
+	public JwtProvider(SignatureGeneratorConfiguration signature) {
+		this.signature = signature;
+	}
+
+	public JwtBuilder builder() {
+		return new JwtBuilder(signature);
+	}
+
+	public String bearer(String subject, String... roles) {
+		return new JwtBuilder(signature).subject(subject).roles(roles).toBearer();
+	}
+}
