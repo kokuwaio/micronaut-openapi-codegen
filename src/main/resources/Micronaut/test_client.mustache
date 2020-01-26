@@ -2,7 +2,7 @@ package {{package}};
 
 /** Test client for {@link {{classname}}}. **/
 {{>generated}}
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${test.clientId:/}")
 public interface {{classname}}TestClient extends {{classname}} {
 {{#operations}}{{#operation}}
 
