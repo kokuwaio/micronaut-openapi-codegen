@@ -24,6 +24,12 @@ paths:
           type: array
           items:
             type: string
+      - name: c
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
       tags:
       - query
       responses:
@@ -46,3 +52,5 @@ components:
           type: array
           items:
             type: string
+        d:
+          type: number
