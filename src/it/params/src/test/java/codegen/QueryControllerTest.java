@@ -1,9 +1,13 @@
+
 package codegen;
 
 import static codegen.HttpResponseAssertions.assert200;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,6 +34,30 @@ class QueryControllerTest implements QueryApiTestSpec {
 				() -> assertLists(List.of(), List.of("3")),
 				() -> assertLists(List.of("1", "2"), List.of("3", "4")),
 				() -> assertLists(null, null));
+	}
+
+	@Test
+	@Override
+	public void getTypeDate200() {
+		var expected = LocalDate.of(2015, 5, 28);
+		var actual = client.getTypeDate(expected);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@Override
+	public void getTypeDateTime200() {
+		var expected = OffsetDateTime.of(2015, 5, 28, 12, 34, 56, 0, ZoneOffset.UTC);
+		var actual = client.getTypeDateTime(expected);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@Override
+	public void getTypeNumber200() {
+		var expected = 3.12313346D;
+		var actual = client.getTypeNumber(expected);
+		assertEquals(expected, actual);
 	}
 
 	void assertLists(List<String> a, List<String> b) {

@@ -86,3 +86,11 @@ components:
         name:
           type: string
           maxLength: 36
+        date:
+          type: string
+          format: date
+        timestamp:
+          type: string
+          format: date-time
+        number:
+          type: number
