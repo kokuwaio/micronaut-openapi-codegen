@@ -3,6 +3,8 @@ package org.openapitools.codegen.languages;
 import java.io.File;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,7 +92,9 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 
 		// add custom type mappings
 
-		typeMapping.put("DateTime", "java.time.OffsetDateTime");
+		typeMapping.put("date", LocalDate.class.getName());
+		typeMapping.put("DateTime", OffsetDateTime.class.getName());
+		typeMapping.put("BigDecimal", Double.class.getName());
 	}
 
 	@Override

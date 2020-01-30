@@ -5,9 +5,8 @@ info:
 servers:
 - url: http://localhost:8080
 paths:
-  /query:
+  /query/multimple-lists:
     get:
-      description: 'Get'
       operationId: getMultipleLists
       parameters:
       - name: a
@@ -33,6 +32,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Model'
+  /query/type/date:
+    get:
+      operationId: getTypeDate
+      parameters:
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+                format: date
+  /query/type/date-time:
+    get:
+      operationId: getTypeDateTime
+      parameters:
+      - name: date-time
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+                format: date-time
+  /query/type/number:
+    get:
+      operationId: getTypeNumber
+      parameters:
+      - name: number
+        in: query
+        required: false
+        schema:
+          type: number
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: number
 components:
   schemas:
     Model:
