@@ -10,7 +10,7 @@ public interface {{classname}}TestClient extends {{classname}} {
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
-	{{>returnType}} {{nickname}}(
+	{{#vendorExtensions.x-genericReturnType}}{{vendorExtensions.x-genericReturnType}}<{{/vendorExtensions.x-genericReturnType}}{{>returnType}}{{#vendorExtensions.x-genericReturnType}}>{{/vendorExtensions.x-genericReturnType}} {{nickname}}(
 			@javax.annotation.Nullable
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			String authorization{{#hasParams}},

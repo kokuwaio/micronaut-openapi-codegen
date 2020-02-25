@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>@project.groupId@</groupId>
+		<artifactId>@project.artifactId@-it</artifactId>
+		<version>LOCAL-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>@project.artifactId@-it-reactive</artifactId>
+	<version>LOCAL-SNAPSHOT</version>
+
+	<dependencies>
+
+		<!-- micronaut -->
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-server-netty</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<configuration>
+					<inputSpec>${project.basedir}/src/main/resources/openapi/reactive.yaml</inputSpec>
+					<modelPackage>codegen.model</modelPackage>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -14,5 +14,5 @@ public interface {{classname}} {
 {{/summary}}	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
 	@io.micronaut.http.annotation.Consumes({{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}}){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}}){{/hasProduces}}
-	{{>returnType}} {{nickname}}({{#hasParams}}
+{{#vendorExtensions.x-genericReturnType}}{{vendorExtensions.x-genericReturnType}}<{{/vendorExtensions.x-genericReturnType}}{{>returnType}}{{#vendorExtensions.x-genericReturnType}}>{{/vendorExtensions.x-genericReturnType}} {{nickname}}({{#hasParams}}
 {{>apiParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{/operation}}}{{/operations}}
