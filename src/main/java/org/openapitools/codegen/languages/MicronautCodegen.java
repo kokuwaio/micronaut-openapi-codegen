@@ -27,7 +27,6 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 	private boolean generateApiTests = true;
 
 	public MicronautCodegen() {
-
 		cliOptions.add(CliOption.newBoolean(VALIDATION, "Whether to generate validation annotations of not.", true));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 

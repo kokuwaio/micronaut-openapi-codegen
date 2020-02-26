@@ -24,6 +24,7 @@ paths:
     post:
       description: 'Create model'
       operationId: create
+      x-genericReturnType: io.reactivex.Single
       tags:
       - model
       requestBody:
@@ -53,6 +54,7 @@ paths:
     get:
       description: 'Get model'
       operationId: findById
+      x-genericReturnType: io.reactivex.Single
       tags:
       - model
       responses:
@@ -67,6 +69,7 @@ paths:
     delete:
       description: 'Delete model'
       operationId: delete
+      x-genericReturnType: io.reactivex.Single
       tags:
       - model
       responses:

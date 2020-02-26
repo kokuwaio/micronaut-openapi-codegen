@@ -13,6 +13,7 @@ import codegen.model.ModelStore;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
+import io.reactivex.Single;
 
 @Controller
 class ModelController implements ModelApi {
@@ -21,31 +22,31 @@ class ModelController implements ModelApi {
 	ModelStore store;
 
 	@Override
-	public io.reactivex.Single<HttpResponse<List<Model>>> findAll() {
-		return io.reactivex.Single.just(HttpResponse.ok(store.stream().collect(Collectors.toList())));
+	public Single<HttpResponse<List<Model>>> findAll() {
+		return Single.just(HttpResponse.ok(store.stream().collect(Collectors.toList())));
 	}
 
 	@Override
-	public HttpResponse<Model> findById(Integer modelId) {
-		return find(modelId).map(HttpResponse::ok).orElseGet(HttpResponse::notFound);
+	public Single<HttpResponse<Model>> findById(Integer modelId) {
+		return Single.just(find(modelId).map(HttpResponse::ok).orElseGet(HttpResponse::notFound));
 	}
 
 	@Override
-	public HttpResponse<?> create(Model model) {
+	public Single<HttpResponse<?>> create(Model model) {
 		if (model.getId() != null) {
 			if (find(model.getId()).isPresent()) {
-				return HttpResponse.status(HttpStatus.CONFLICT, "dupplicate id");
+				return Single.just(HttpResponse.status(HttpStatus.CONFLICT, "dupplicate id"));
 			}
 		} else {
 			model.setId(IntStream.range(0, Integer.MAX_VALUE).filter(id -> find(id).isEmpty()).findFirst().getAsInt());
 		}
 		store.add(model);
-		return HttpResponse.created(URI.create("/model/" + model.getId()));
+		return Single.just(HttpResponse.created(URI.create("/model/" + model.getId())));
 	}
 
 	@Override
-	public HttpResponse<?> delete(Integer modelId) {
-		return store.remove(modelId) ? HttpResponse.noContent() : HttpResponse.notFound();
+	public Single<HttpResponse<?>> delete(Integer modelId) {
+		return store.remove(modelId) ? Single.just(HttpResponse.noContent()) : Single.just(HttpResponse.notFound());
 	}
 
 	private Optional<Model> find(Integer modelId) {

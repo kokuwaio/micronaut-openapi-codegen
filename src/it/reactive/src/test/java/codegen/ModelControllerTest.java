@@ -48,21 +48,21 @@ class ModelControllerTest implements ModelApiTestSpec {
 	@Override
 	public void findById200() {
 		var expected = store.add(new Model().id(1).name(UUID.randomUUID().toString()));
-		var actual = assert200(() -> client.findById(1)).getBody().get();
+		var actual = assert200(() -> client.findById(1).blockingGet()).getBody().get();
 		assertEquals(expected, actual, "response body");
 	}
 
 	@Test
 	@Override
 	public void findById404() {
-		assert404(() -> client.findById(-1));
+		assert404(() -> client.findById(-1).blockingGet());
 	}
 
 	@Test
 	@Override
 	public void create201() {
 		var model = new Model().id(1).name(UUID.randomUUID().toString());
-		var response = assert201(() -> client.create(model));
+		var response = assert201(() -> client.create(model).blockingGet());
 		assertEquals("1", getLocationHeaderValue(response, "/model/([0-9]*)"));
 		assertEquals(Set.of(model), store.stream().collect(Collectors.toSet()), "response body");
 	}
@@ -71,20 +71,20 @@ class ModelControllerTest implements ModelApiTestSpec {
 	@Override
 	public void create409() {
 		var model = store.add(new Model().id(1).name(UUID.randomUUID().toString()));
-		assert409(() -> client.create(model));
+		assert409(() -> client.create(model).blockingGet());
 	}
 
 	@Test
 	@Override
 	public void delete204() {
 		var model = store.add(new Model().id(1).name(UUID.randomUUID().toString()));
-		assert204(() -> client.delete(model.getId()));
+		assert204(() -> client.delete(model.getId()).blockingGet());
 		assertEquals(0, store.stream().count(), "model not deleted");
 	}
 
 	@Test
 	@Override
 	public void delete404() {
-		assert404(() -> client.delete(-1));
+		assert404(() -> client.delete(-1).blockingGet());
 	}
 }
