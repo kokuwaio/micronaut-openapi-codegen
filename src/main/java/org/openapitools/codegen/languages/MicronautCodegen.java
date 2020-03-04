@@ -18,20 +18,23 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.servers.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MicronautCodegen extends AbstractJavaCodegen {
 
 	public static final String CLIENT_ID = "clientId";
 	public static final String VALIDATION = "validation";
+	public static final String GENERATE_RX_JAVA_APU = "generateRxJavaApi";
 
 	private boolean generateApiTests = true;
 
 	public MicronautCodegen() {
 		cliOptions.add(CliOption.newBoolean(VALIDATION, "Whether to generate validation annotations of not.", true));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
+		cliOptions.add(CliOption.newBoolean(GENERATE_RX_JAVA_APU, "Whether to generate rxJava APIs along with non-reactive APIs"));
 
 		// there is no documentation template yet
-
 		apiDocTemplateFiles.remove("api_doc.mustache");
 		apiTestTemplateFiles.remove("api_test.mustache");
 		modelDocTemplateFiles.remove("model_doc.mustache");
@@ -87,6 +90,14 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 			apiTestTemplateFiles.put("test.mustache", "Spec.java");
 			apiTestTemplateFiles.put("test_client.mustache", "Client.java");
 			addSupportingFile(testFolder, "HttpResponseAssertions");
+
+			if (additionalProperties.containsKey(GENERATE_RX_JAVA_APU)) {
+				apiTestTemplateFiles.put("rx_test_client.mustache", "ClientRx.java");
+			}
+		}
+
+		if (additionalProperties.containsKey(GENERATE_RX_JAVA_APU)) {
+			apiTemplateFiles.put("rxJavaApi.mustache", "Rx.java");
 		}
 
 		// add custom type mappings

@@ -25,7 +25,7 @@ import io.micronaut.test.annotation.MicronautTest;
 class ModelControllerTest implements ModelApiTestSpec {
 
 	@Inject
-	ModelApiTestClient client;
+	ModelApiTestClientRx client;
 	@Inject
 	ModelStore store;
 

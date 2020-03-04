@@ -30,6 +30,9 @@
 				<configuration>
 					<inputSpec>${project.basedir}/src/main/resources/openapi/reactive.yaml</inputSpec>
 					<modelPackage>codegen.model</modelPackage>
+					<configOptions>
+					    <generateRxJavaApi>true</generateRxJavaApi>
+					</configOptions>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -16,7 +16,7 @@ import io.micronaut.http.annotation.Controller;
 import io.reactivex.Single;
 
 @Controller
-class ModelController implements ModelApi {
+class ModelController implements ModelApiRx {
 
 	@Inject
 	ModelStore store;

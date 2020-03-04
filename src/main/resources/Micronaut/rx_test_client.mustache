@@ -3,14 +3,14 @@ package {{package}};
 /** Test client for {@link {{classname}}}. **/
 {{>generated}}
 @io.micronaut.http.client.annotation.Client("${test.clientId:/}")
-public interface {{classname}}TestClient extends {{classname}} {
+public interface {{classname}}TestClientRx extends {{classname}}Rx {
 {{#operations}}{{#operation}}
 
 {{#vendorExtensions.has401}}
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
-	{{>returnType}} {{nickname}}(
+	{{>rxReturnType}} {{nickname}}(
 			@javax.annotation.Nullable
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			String authorization{{#hasParams}},
