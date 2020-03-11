@@ -1,4 +1,3 @@
-
 package codegen;
 
 import static codegen.HttpResponseAssertions.assert200;
@@ -29,7 +28,6 @@ class QueryControllerTest implements QueryApiTestSpec {
 				() -> assertLists(List.of(), List.of()),
 				() -> assertLists(List.of("1"), null),
 				() -> assertLists(List.of("1", "2"), null),
-				() -> assertLists(List.of("1,2"), null),
 				() -> assertLists(null, List.of("3")),
 				() -> assertLists(List.of(), List.of("3")),
 				() -> assertLists(List.of("1", "2"), List.of("3", "4")),
@@ -40,7 +38,7 @@ class QueryControllerTest implements QueryApiTestSpec {
 	@Override
 	public void getTypeDate200() {
 		var expected = LocalDate.of(2015, 5, 28);
-		var actual = client.getTypeDate(expected);
+		var actual = client.getTypeDate(expected).body().getDate();
 		assertEquals(expected, actual);
 	}
 
@@ -48,7 +46,7 @@ class QueryControllerTest implements QueryApiTestSpec {
 	@Override
 	public void getTypeDateTime200() {
 		var expected = OffsetDateTime.of(2015, 5, 28, 12, 34, 56, 0, ZoneOffset.UTC);
-		var actual = client.getTypeDateTime(expected);
+		var actual = client.getTypeDateTime(expected).body().getDateTime();
 		assertEquals(expected, actual);
 	}
 
@@ -56,13 +54,13 @@ class QueryControllerTest implements QueryApiTestSpec {
 	@Override
 	public void getTypeNumber200() {
 		var expected = 3.12313346D;
-		var actual = client.getTypeNumber(expected);
+		var actual = client.getTypeNumber(expected).body().getNumber();
 		assertEquals(expected, actual);
 	}
 
 	void assertLists(List<String> a, List<String> b) {
 		var expected = new Model().a(a == null || a.isEmpty() ? null : a).b(b == null || b.isEmpty() ? null : b);
-		var actual = assert200(() -> client.getMultipleLists(a, b)).getBody().get();
+		var actual = assert200(() -> client.getMultipleLists(a, b)).body();
 		assertEquals(expected, actual);
 	}
 }

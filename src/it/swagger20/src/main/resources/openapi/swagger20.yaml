@@ -1,0 +1,25 @@
+swagger: 2.0
+info:
+  version: 1
+  title: Swagger 2.0
+basePath: /rest
+tags:
+paths:
+  /:
+    get:
+      tags:
+      - Foo
+      operationId: get
+      responses:
+        200:
+          description: Get something.
+          schema:
+            $ref: '#/definitions/Model'
+definitions:
+  Model:
+    type: object
+    properties:
+      a:
+        type: string
+      b:
+        type: string

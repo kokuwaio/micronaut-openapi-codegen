@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.openapitools.codegen.CliOption;
@@ -102,6 +103,11 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 
 		var operation = super.fromOperation(path, httpMethod, source, servers);
 		var extensions = operation.vendorExtensions;
+
+		// remove media type */*
+
+		Optional.ofNullable(operation.produces).ifPresent(p -> p.removeIf(m -> "*/*".equals(m.get("mediaType"))));
+		Optional.ofNullable(operation.consumes).ifPresent(c -> c.removeIf(m -> "*/*".equals(m.get("mediaType"))));
 
 		// store method and status for micronaut
 

@@ -5,7 +5,7 @@ info:
 servers:
 - url: http://localhost:8080
 paths:
-  /query/multimple-lists:
+  /query/multiple-lists:
     get:
       operationId: getMultipleLists
       parameters:
@@ -50,8 +50,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                format: date
+                $ref: '#/components/schemas/Model'
   /query/type/date-time:
     get:
       operationId: getTypeDateTime
@@ -70,8 +69,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                format: date-time
+                $ref: '#/components/schemas/Model'
   /query/type/number:
     get:
       operationId: getTypeNumber
@@ -89,12 +87,20 @@ paths:
           content:
             application/json:
               schema:
-                type: number
+                $ref: '#/components/schemas/Model'
 components:
   schemas:
     Model:
       type: object
       properties:
+        number: 
+          type: number
+        date:
+          type: string
+          format: date
+        dateTime:
+          type: string
+          format: date-time
         a:
           type: array
           items:
