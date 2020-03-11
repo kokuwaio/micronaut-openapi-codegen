@@ -10,16 +10,14 @@ public interface {{classname}}TestClient { {{#operations}}{{#operation}}
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
-	{{>returnType}} {{nickname}}({{#vendorExtensions.has401}}
+	{{>returnType}} {{nickname}}({{#hasParams}}
+{{>testParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{#vendorExtensions.has401}}
+
+	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
+	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+	{{>returnType}} {{nickname}}(
 			@javax.annotation.Nullable
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
-			String authorization{{#hasParams}},{{/hasParams}}{{/vendorExtensions.has401}}{{#hasParams}}
-{{#allParams}}			@javax.annotation.Nullable
-{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isContainer}}(value = "{{baseName}}"){{/isContainer}}
-{{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
-{{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}")
-{{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}{{#isDateTime}}			@io.micronaut.core.convert.format.Format("uuuu-MM-dd'T'HH:mm:ss[.SSS][xxx][xx][X]")
-{{/isDateTime}}{{#isDate}}			@io.micronaut.core.convert.format.Format("uuuu-MM-dd")
-{{/isDate}}			{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} {{paramName}}{{#hasMore}},
-{{/hasMore}}{{/allParams}}{{/hasParams}});{{/operation}}}{{/operations}}
+			String authorization{{#hasParams}},
+{{>testParams}}{{/hasParams}});{{/vendorExtensions.has401}}{{/operation}}}{{/operations}}

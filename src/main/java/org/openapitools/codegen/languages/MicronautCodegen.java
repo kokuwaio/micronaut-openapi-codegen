@@ -1,19 +1,23 @@
 package org.openapitools.codegen.languages;
 
 import java.io.File;
+import java.net.URI;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.SupportingFile;
+import org.openapitools.codegen.utils.ModelUtils;
 
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
@@ -40,8 +44,25 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 
 		// parent flags
 
-		additionalProperties.put(FULL_JAVA_UTIL, true);
+		dateLibrary = "do not trigger date type selection";
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
+
+		// add custom type mappings
+
+		typeMapping.put("date", LocalDate.class.getName());
+		typeMapping.put("DateTime", OffsetDateTime.class.getName());
+		typeMapping.put("array", List.class.getName());
+		typeMapping.put("map", Map.class.getName());
+		typeMapping.put("boolean", Boolean.class.getName());
+		typeMapping.put("string", String.class.getName());
+		typeMapping.put("int", Integer.class.getName());
+		typeMapping.put("Integer", Integer.class.getName());
+		typeMapping.put("long", Long.class.getName());
+		typeMapping.put("float", Float.class.getName());
+		typeMapping.put("number", Double.class.getName());
+		typeMapping.put("BigDecimal", Double.class.getName());
+		typeMapping.put("UUID", UUID.class.getName());
+		typeMapping.put("URI", URI.class.getName());
 	}
 
 	@Override
@@ -90,12 +111,6 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 			apiTestTemplateFiles.put("test_client.mustache", "Client.java");
 			addSupportingFile(testFolder, "HttpResponseAssertions");
 		}
-
-		// add custom type mappings
-
-		typeMapping.put("date", LocalDate.class.getName());
-		typeMapping.put("DateTime", OffsetDateTime.class.getName());
-		typeMapping.put("BigDecimal", Double.class.getName());
 	}
 
 	@Override
@@ -148,6 +163,17 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 			return Instant.class.getName();
 		}
 		return super.getSchemaType(s);
+	}
+
+	@Override
+	public String toDefaultValue(Schema schema) {
+		if (ModelUtils.isArraySchema(schema)) {
+			return "new " + instantiationTypes.get("array") + "<>()";
+		}
+		if (ModelUtils.isMapSchema(schema)) {
+			return "new " + instantiationTypes.get("map") + "<>()";
+		}
+		return super.toDefaultValue(schema);
 	}
 
 	// internal

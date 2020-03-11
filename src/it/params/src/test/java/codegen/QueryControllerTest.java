@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -55,6 +56,14 @@ class QueryControllerTest implements QueryApiTestSpec {
 	public void getTypeNumber200() {
 		var expected = 3.12313346D;
 		var actual = client.getTypeNumber(expected).body().getNumber();
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@Override
+	public void getUuid200() {
+		var expected = UUID.randomUUID();
+		var actual = client.getUuid(expected).body().getUuid();
 		assertEquals(expected, actual);
 	}
 

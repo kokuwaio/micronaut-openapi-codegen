@@ -1,0 +1,38 @@
+openapi: 3.0.2
+info:
+  title: Test Spec
+  version: '0'
+paths: {}
+components:
+  schemas:
+    Model:
+      type: object
+      required:
+      - array
+      - map
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        map:
+          type: string
+          additionalProperties:
+            type: string
+        array:
+          type: array
+          items:
+            type: string
+        date:
+          type: string
+          format: date
+        date-time:
+          type: string
+          format: date-time
+        number:
+          type: number
+        number-float:
+          type: number
+          format: float
+        number-double:
+          type: number
+          format: double

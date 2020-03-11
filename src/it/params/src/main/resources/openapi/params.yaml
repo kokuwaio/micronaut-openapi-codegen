@@ -88,6 +88,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Model'
+  /query/type/uuid:
+    get:
+      operationId: getUuid
+      parameters:
+      - name: number
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
 components:
   schemas:
     Model:
@@ -95,6 +114,9 @@ components:
       properties:
         number: 
           type: number
+        uuid:
+          type: string
+          format: uuid
         date:
           type: string
           format: date

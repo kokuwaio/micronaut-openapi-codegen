@@ -3,6 +3,7 @@ package codegen;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
@@ -30,5 +31,10 @@ class QueryController implements QueryApi {
 	@Override
 	public HttpResponse<Model> getTypeNumber(Double number) {
 		return HttpResponse.ok(new Model().number(number));
+	}
+
+	@Override
+	public HttpResponse<Model> getUuid(UUID uuid) {
+		return HttpResponse.ok(new Model().uuid(uuid));
 	}
 }
