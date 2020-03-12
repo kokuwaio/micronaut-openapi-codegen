@@ -5,7 +5,12 @@ import java.net.URI;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.Period;
+import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +24,8 @@ import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.utils.ModelUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
@@ -28,7 +35,18 @@ import io.swagger.v3.oas.models.servers.Server;
 public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidationFeatures {
 
 	public static final String CLIENT_ID = "clientId";
+	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
+			"temporal-amount", TemporalAmount.class,
+			"period", Period.class,
+			"duration", Duration.class,
+			"instant", Instant.class,
+			"local-date-time", LocalDateTime.class,
+			"offset-date-time", OffsetDateTime.class,
+			"zoned-date-time", ZonedDateTime.class,
+			"local-time", LocalTime.class,
+			"offset-time", OffsetTime.class);
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
 	private boolean generateApiTests = true;
 	private boolean useBeanValidation = true;
 
@@ -159,17 +177,14 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 	}
 
 	@Override
-	public String getSchemaType(Schema s) {
-		if (s instanceof StringSchema && "temporal".equals(s.getFormat())) {
-			return TemporalAmount.class.getName();
+	public String getSchemaType(Schema schema) {
+		var format = schema.getFormat();
+		if (schema instanceof StringSchema && format != null && CUSTOM_FORMATS.containsKey(format)) {
+			var type = CUSTOM_FORMATS.get(format).getName();
+			LOGGER.warn("Use custom format {} with type {}.", format, type);
+			return type;
 		}
-		if (s instanceof StringSchema && "duration".equals(s.getFormat())) {
-			return Duration.class.getName();
-		}
-		if (s instanceof StringSchema && "instant".equals(s.getFormat())) {
-			return Instant.class.getName();
-		}
-		return super.getSchemaType(s);
+		return super.getSchemaType(schema);
 	}
 
 	@Override

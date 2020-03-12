@@ -29,7 +29,7 @@ mvn versions:update-properties -DgenerateBackupPoms=false
 
 Run:
 ```
-mvn release:prepare release:perform release:clean
+mvn release:prepare release:perform release:clean -B
 ```
 
 ## Open Topics
