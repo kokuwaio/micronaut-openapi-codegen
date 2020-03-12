@@ -66,6 +66,7 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 		// parent flags
 
 		dateLibrary = "do not trigger date type selection";
+		additionalProperties.put(USE_BEANVALIDATION, true);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
