@@ -34,7 +34,7 @@
 				<configuration>
 					<inputSpec>${project.basedir}/src/main/resources/openapi/validation.yaml</inputSpec>
 					<configOptions>
-						<validation>true</validation>
+						<useBeanValidation>true</useBeanValidation>
 					</configOptions>
 				</configuration>
 			</plugin>

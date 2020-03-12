@@ -181,7 +181,7 @@
 					<skipValidateSpec>false</skipValidateSpec>
 					<apiPackage>codegen</apiPackage>
 					<configOptions>
-						<validation>false</validation>
+						<useBeanValidation>false</useBeanValidation>
 					</configOptions>
 				</configuration>
 			</plugin>

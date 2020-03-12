@@ -17,6 +17,7 @@ import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.SupportingFile;
+import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.utils.ModelUtils;
 
 import io.swagger.v3.oas.models.Operation;
@@ -24,16 +25,16 @@ import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.servers.Server;
 
-public class MicronautCodegen extends AbstractJavaCodegen {
+public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidationFeatures {
 
 	public static final String CLIENT_ID = "clientId";
-	public static final String VALIDATION = "validation";
 
 	private boolean generateApiTests = true;
+	private boolean useBeanValidation = true;
 
 	public MicronautCodegen() {
 
-		cliOptions.add(CliOption.newBoolean(VALIDATION, "Whether to generate validation annotations of not.", true));
+		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -111,6 +112,12 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 			apiTestTemplateFiles.put("test_client.mustache", "Client.java");
 			addSupportingFile(testFolder, "HttpResponseAssertions");
 		}
+
+		// process flags
+
+		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
+			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
+		}
 	}
 
 	@Override
@@ -174,6 +181,13 @@ public class MicronautCodegen extends AbstractJavaCodegen {
 			return "new " + instantiationTypes.get("map") + "<>()";
 		}
 		return super.toDefaultValue(schema);
+	}
+
+	// setter
+
+	@Override
+	public void setUseBeanValidation(boolean useBeanValidation) {
+		this.useBeanValidation = useBeanValidation;
 	}
 
 	// internal

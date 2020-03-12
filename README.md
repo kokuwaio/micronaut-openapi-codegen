@@ -9,7 +9,7 @@
 ### Config options
 
  * clientId: id for generated clients (if no client id is provided no interface will be generated)
- * validation: generate validation annotations
+ * useBeanValidation: generate validation annotations
 
 ## Build & Release
 

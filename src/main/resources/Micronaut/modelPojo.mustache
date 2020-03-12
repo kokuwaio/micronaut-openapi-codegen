@@ -8,7 +8,7 @@
 public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}} {
 
 {{#vars}}{{#description}}	/** {{description}} */
-{{/description}}{{#validation}}{{#required}}	@javax.validation.constraints.NotNull
+{{/description}}{{#useBeanValidation}}{{#required}}	@javax.validation.constraints.NotNull
 {{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})
 {{/minimum}}{{#maximum}}	@javax.validation.constraints.Max({{maximum}})
@@ -18,7 +18,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 {{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}	@javax.validation.constraints.Size(min = {{minItems}})
 {{/maxItems}}{{/minItems}}{{^minItems}}{{#maxItems}}	@javax.validation.constraints.Size(max = {{maxItems}})
 {{/maxItems}}{{/minItems}}{{#minItems}}{{#maxItems}}	@javax.validation.constraints.Size(min = {{minItems}}, max = {{maxItems}})
-{{/maxItems}}{{/minItems}}{{/validation}}	@com.fasterxml.jackson.annotation.JsonProperty("{{baseName}}")
+{{/maxItems}}{{/minItems}}{{/useBeanValidation}}	@com.fasterxml.jackson.annotation.JsonProperty("{{baseName}}")
 	private {{{datatypeWithEnum}}} {{name}}{{#defaultValue}}{{^isContainer}} = {{{.}}}{{/isContainer}}{{#isContainer}}{{#required}} = {{{.}}}{{/required}}{{/isContainer}}{{/defaultValue}};
 
 {{/vars}}
