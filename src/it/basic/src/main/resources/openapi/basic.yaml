@@ -79,6 +79,8 @@ components:
       type: object
       required:
       - name
+      - array
+      - map
       properties:
         id:
           type: integer
@@ -94,3 +96,11 @@ components:
           format: date-time
         number:
           type: number
+        array:
+          type: array
+          items:
+            type: string
+        map:
+          type: string
+          additionalProperties:
+            type: string

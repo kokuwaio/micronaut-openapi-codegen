@@ -12,6 +12,8 @@ import java.time.OffsetTime;
 import java.time.Period;
 import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAmount;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -82,6 +84,8 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 		typeMapping.put("BigDecimal", Double.class.getName());
 		typeMapping.put("UUID", UUID.class.getName());
 		typeMapping.put("URI", URI.class.getName());
+		instantiationTypes.put("array", ArrayList.class.getName());
+		instantiationTypes.put("map", HashMap.class.getName());
 	}
 
 	@Override
