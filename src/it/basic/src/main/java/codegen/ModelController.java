@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
 
 import javax.inject.Inject;
 
+import codegen.model.InheritanceModel1;
+import codegen.model.InheritanceModel2;
+import codegen.model.InlineResponse200;
 import codegen.model.Model;
 import codegen.model.ModelStore;
 import io.micronaut.http.HttpResponse;
@@ -50,5 +53,10 @@ class ModelController implements ModelApi {
 
 	private Optional<Model> find(Integer modelId) {
 		return store.stream().filter(model -> model.getId() == modelId).findAny();
+	}
+
+	@Override
+	public HttpResponse<InlineResponse200> getInheritance() {
+		return HttpResponse.ok(new InlineResponse200().list(List.of(new InheritanceModel1(), new InheritanceModel2())));
 	}
 }

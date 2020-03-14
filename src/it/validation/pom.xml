@@ -9,7 +9,6 @@
 	</parent>
 
 	<artifactId>@project.artifactId@-it-validation</artifactId>
-	<version>LOCAL-SNAPSHOT</version>
 
 	<dependencies>
 
@@ -17,11 +16,6 @@
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-server-netty</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>
@@ -32,7 +26,6 @@
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<configuration>
-					<inputSpec>${project.basedir}/src/main/resources/openapi/validation.yaml</inputSpec>
 					<configOptions>
 						<useBeanValidation>true</useBeanValidation>
 					</configOptions>
@@ -40,4 +33,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

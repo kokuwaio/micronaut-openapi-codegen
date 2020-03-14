@@ -22,6 +22,7 @@
 		<!-- ===================================================================== -->
 
 		<version.org.apache.maven.plugins.compiler>@version.org.apache.maven.plugins.compiler@</version.org.apache.maven.plugins.compiler>
+		<version.org.apache.maven.plugins.resources>@version.org.apache.maven.plugins.resources@</version.org.apache.maven.plugins.resources>
 		<version.org.apache.maven.plugins.surefire>@version.org.apache.maven.plugins.surefire@</version.org.apache.maven.plugins.surefire>
 		<version.org.codehaus.mojo.build-helper>@version.org.codehaus.mojo.build-helper@</version.org.codehaus.mojo.build-helper>
 
@@ -63,8 +64,22 @@
 
 		<!-- micronaut -->
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-server-netty</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http-client</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- logging -->
@@ -109,6 +124,11 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.resources}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${version.org.apache.maven.plugins.surefire}</version>
 				</plugin>
@@ -121,18 +141,6 @@
 					<groupId>org.openapitools</groupId>
 					<artifactId>openapi-generator-maven-plugin</artifactId>
 					<version>${version.org.openapitools}</version>
-					<configuration>
-						<strictSpec>true</strictSpec>
-						<output>${project.build.directory}</output>
-						<generateApiTests>true</generateApiTests>
-					</configuration>
-					<dependencies>
-						<dependency>
-							<groupId>@project.groupId@</groupId>
-							<artifactId>@project.artifactId@</artifactId>
-							<version>@project.version@</version>
-						</dependency>
-					</dependencies>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -176,15 +184,25 @@
 					</execution>
 				</executions>
 				<configuration>
-					<generatorName>micronaut</generatorName>
-					<strictSpec>true</strictSpec>
 					<skipValidateSpec>false</skipValidateSpec>
+					<strictSpec>true</strictSpec>
+					<generatorName>micronaut</generatorName>
+					<inputSpec>${project.basedir}/src/main/resources/openapi/spec.yaml</inputSpec>
+					<output>${project.build.directory}</output>
 					<apiPackage>codegen</apiPackage>
 					<configOptions>
 						<useBeanValidation>false</useBeanValidation>
 					</configOptions>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>@project.groupId@</groupId>
+						<artifactId>@project.artifactId@</artifactId>
+						<version>@project.version@</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

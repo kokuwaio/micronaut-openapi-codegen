@@ -68,6 +68,14 @@ public class HttpResponseAssertions {
 		return assertStatus(executeable, HttpStatus.NO_CONTENT, message);
 	}
 
+	public static <T> HttpResponse<T> assert300(Supplier<HttpResponse<T>> executeable) {
+		return assertStatus(executeable, HttpStatus.MULTIPLE_CHOICES);
+	}
+
+	public static <T> HttpResponse<T> assert300(Supplier<HttpResponse<T>> executeable, String message) {
+		return assertStatus(executeable, HttpStatus.MULTIPLE_CHOICES, message);
+	}
+
 	public static <T> HttpResponse<T> assert400(Supplier<HttpResponse<T>> executeable) {
 		return assertStatus(executeable, HttpStatus.BAD_REQUEST);
 	}

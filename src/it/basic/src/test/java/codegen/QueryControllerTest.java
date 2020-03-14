@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
+import codegen.model.QueryModel;
 import io.micronaut.test.annotation.MicronautTest;
 
 @MicronautTest
@@ -68,7 +69,7 @@ class QueryControllerTest implements QueryApiTestSpec {
 	}
 
 	void assertLists(List<String> a, List<String> b) {
-		var expected = new Model().a(a == null || a.isEmpty() ? null : a).b(b == null || b.isEmpty() ? null : b);
+		var expected = new QueryModel().a(a == null || a.isEmpty() ? null : a).b(b == null || b.isEmpty() ? null : b);
 		var actual = assert200(() -> client.getMultipleLists(a, b)).body();
 		assertEquals(expected, actual);
 	}

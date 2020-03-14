@@ -9,6 +9,7 @@
 	</appender>
 
 	<logger name="codegen" level="INFO" />
+	<logger name="io.micronaut.http" level="INFO" />
 	<logger name="io.micronaut.context.env.DefaultEnvironment" level="WARN" />
 	<logger name="io.micronaut.retry.intercept.RecoveryInterceptor" level="OFF" />
 

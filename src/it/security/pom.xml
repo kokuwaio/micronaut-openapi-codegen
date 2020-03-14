@@ -9,7 +9,6 @@
 	</parent>
 
 	<artifactId>@project.artifactId@-it-security</artifactId>
-	<version>LOCAL-SNAPSHOT</version>
 
 	<dependencies>
 
@@ -18,23 +17,7 @@
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-security-jwt</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-server-netty</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.openapitools</groupId>
-				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<configuration>
-					<inputSpec>${project.basedir}/src/main/resources/openapi/security.yaml</inputSpec>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

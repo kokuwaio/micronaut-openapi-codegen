@@ -9,18 +9,6 @@
 	</parent>
 
 	<artifactId>@project.artifactId@-it-basic</artifactId>
-	<version>LOCAL-SNAPSHOT</version>
-
-	<dependencies>
-
-		<!-- micronaut -->
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-server-netty</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-	</dependencies>
 
 	<build>
 		<plugins>
@@ -28,10 +16,10 @@
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<configuration>
-					<inputSpec>${project.basedir}/src/main/resources/openapi/basic.yaml</inputSpec>
 					<modelPackage>codegen.model</modelPackage>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

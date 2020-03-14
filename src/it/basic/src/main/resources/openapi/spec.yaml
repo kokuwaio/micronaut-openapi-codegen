@@ -1,0 +1,432 @@
+openapi: 3.0.2
+info:
+  title: Test Spec
+  version: '0.6'
+servers:
+- url: http://localhost:8080
+paths:
+  /response/void:
+    get:
+      operationId: voidNormal
+      tags:
+      - response
+      responses:
+        204:
+          description: Ok.
+  /response/void-notfound:
+    get:
+      operationId: voidNotFound
+      parameters:
+      - name: found
+        in: query
+        required: true
+        schema:
+          type: boolean
+      tags:
+      - response
+      responses:
+        204:
+          description: Ok.
+        404:
+          description: Ok.
+  /response/single:
+    get:
+      operationId: single
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+  /response/optional:
+    get:
+      operationId: optional
+      tags:
+      - response
+      parameters:
+      - name: found
+        in: query
+        required: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+        404:
+          description: Ok.
+  /response/header:
+    get:
+      operationId: header
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          headers:
+            foo:
+              schema:
+                type: number
+  /response/array:
+    get:
+      operationId: array
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /response/array-notfound:
+    get:
+      operationId: arrayNotFound
+      parameters:
+      - name: found
+        in: query
+        required: true
+        schema:
+          type: boolean
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        404:
+          description: Ok.
+  /response/multiple:
+    get:
+      operationId: multiple
+      parameters:
+      - name: redirect
+        in: query
+        required: true
+        schema:
+          type: boolean
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: number
+  /response/multiple-notfound:
+    get:
+      operationId: multipleNotFound
+      parameters:
+      - name: redirect
+        in: query
+        required: true
+        schema:
+          type: boolean
+      - name: found
+        in: query
+        required: true
+        schema:
+          type: boolean
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: number
+        404:
+          description: Ok.
+  /model:
+    get:
+      description: 'Get list of models'
+      operationId: findAll
+      tags:
+      - model
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Model'
+    post:
+      description: 'Create model'
+      operationId: create
+      tags:
+      - model
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model'
+      responses:
+        201:
+          description: Created.
+          headers:
+            Location:
+              description: URL to the resource
+              schema:
+                type: string
+                format: uri
+        409:
+          description: Conflict.
+  /model/{modelId}:
+    parameters:
+    - name: modelId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+    get:
+      description: 'Get model'
+      operationId: findById
+      tags:
+      - model
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: NotFound.
+    delete:
+      description: 'Delete model'
+      operationId: delete
+      tags:
+      - model
+      responses:
+        204:
+          description: Deleted.
+        404:
+          description: NotFound.
+  /model/inheritance:
+    get:
+      operationId: getInheritance
+      tags:
+      - model
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - list
+                properties:
+                  list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InheritanceModel'
+  /query/multiple-lists:
+    get:
+      operationId: getMultipleLists
+      parameters:
+      - name: a
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: b
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryModel'
+  /query/type/date:
+    get:
+      operationId: getTypeDate
+      parameters:
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryModel'
+  /query/type/date-time:
+    get:
+      operationId: getTypeDateTime
+      parameters:
+      - name: date-time
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryModel'
+  /query/type/number:
+    get:
+      operationId: getTypeNumber
+      parameters:
+      - name: number
+        in: query
+        required: false
+        schema:
+          type: number
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryModel'
+  /query/type/uuid:
+    get:
+      operationId: getUuid
+      parameters:
+      - name: number
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      tags:
+      - query
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryModel'
+components:
+  schemas:
+    Model:
+      type: object
+      required:
+      - name
+      - array
+      - map
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 36
+        date:
+          type: string
+          format: date
+        timestamp:
+          type: string
+          format: date-time
+        number:
+          type: number
+        array:
+          type: array
+          items:
+            type: string
+        map:
+          type: string
+          additionalProperties:
+            type: string
+    InheritanceModel:
+      discriminator:
+        propertyName: type
+        mapping:
+          InheritanceModel1: '#/components/schemas/InheritanceModel1'
+          InheritanceModel2: '#/components/schemas/InheritanceModel2'
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    InheritanceModel1:
+      allOf:
+      - $ref: '#/components/schemas/InheritanceModel'
+      - properties:
+          a:
+            type: string
+    InheritanceModel2:
+      allOf:
+      - $ref: '#/components/schemas/InheritanceModel'
+      - properties:
+          b:
+            type: string
+    QueryModel:
+      type: object
+      properties:
+        number: 
+          type: number
+        uuid:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date
+        dateTime:
+          type: string
+          format: date-time
+        a:
+          type: array
+          items:
+            type: string
+        b:
+          type: array
+          items:
+            type: string

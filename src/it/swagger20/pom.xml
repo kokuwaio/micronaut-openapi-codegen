@@ -9,28 +9,5 @@
 	</parent>
 
 	<artifactId>@project.artifactId@-it-swagger20</artifactId>
-	<version>LOCAL-SNAPSHOT</version>
 
-	<dependencies>
-
-		<!-- micronaut -->
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-server-netty</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.openapitools</groupId>
-				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<configuration>
-					<inputSpec>${project.basedir}/src/main/resources/openapi/swagger20.yaml</inputSpec>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

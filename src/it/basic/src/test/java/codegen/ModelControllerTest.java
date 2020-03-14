@@ -8,6 +8,7 @@ import static codegen.HttpResponseAssertions.assert409;
 import static codegen.HttpResponseAssertions.getLocationHeaderValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,6 +18,8 @@ import javax.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import codegen.model.InheritanceModel1;
+import codegen.model.InheritanceModel2;
 import codegen.model.Model;
 import codegen.model.ModelStore;
 import io.micronaut.test.annotation.MicronautTest;
@@ -86,5 +89,13 @@ class ModelControllerTest implements ModelApiTestSpec {
 	@Override
 	public void delete404() {
 		assert404(() -> client.delete(-1));
+	}
+
+	@Test
+	@Override
+	public void getInheritance200() {
+		var expected = List.of(new InheritanceModel1(), new InheritanceModel2());
+		var actual = assert200(() -> client.getInheritance()).body().list();
+		assertEquals(expected, actual, "response body");
 	}
 }
