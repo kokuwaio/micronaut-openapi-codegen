@@ -1,1 +1,1 @@
-io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}>
+{{#vendorExtensions.generic}}io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}>{{/vendorExtensions.generic}}{{^vendorExtensions.generic}}{{^returnType}}void{{/returnType}}{{#returnType}}{{#vendorExtensions.has404}}java.util.Optional<{{{returnType}}}>{{/vendorExtensions.has404}}{{^vendorExtensions.has404}}{{{returnType}}}{{/vendorExtensions.has404}}{{/returnType}}{{/vendorExtensions.generic}}

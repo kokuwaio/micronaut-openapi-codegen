@@ -25,16 +25,19 @@ import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
+import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.micronaut.http.HttpStatus;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.servers.Server;
 
-public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidationFeatures {
+public class MicronautCodegen extends AbstractJavaCodegen
+		implements BeanValidationFeatures, UseGenericResponseFeatures {
 
 	public static final String CLIENT_ID = "clientId";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
@@ -51,10 +54,12 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
 	private boolean generateApiTests = true;
 	private boolean useBeanValidation = true;
+	private boolean useGenericResponse = true;
 
 	public MicronautCodegen() {
 
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
+		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -66,7 +71,8 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 		// parent flags
 
 		dateLibrary = "do not trigger date type selection";
-		additionalProperties.put(USE_BEANVALIDATION, true);
+		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
+		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -141,6 +147,9 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
 			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
 		}
+		if (additionalProperties.containsKey(USE_GENERIC_RESPONSE)) {
+			useGenericResponse = convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE);
+		}
 	}
 
 	@Override
@@ -148,6 +157,7 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 
 		var operation = super.fromOperation(path, httpMethod, source, servers);
 		var extensions = operation.vendorExtensions;
+		var response = operation.responses.iterator().next();
 
 		// remove media type */*
 
@@ -157,6 +167,8 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 		// store method and status for micronaut
 
 		extensions.put("httpMethod", httpMethod.toUpperCase().charAt(0) + httpMethod.substring(1).toLowerCase());
+		extensions.put("generic", useGenericResponse || response.hasHeaders);
+		extensions.put("status", HttpStatus.valueOf(Integer.valueOf(response.code)).name());
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
 
 		// add wildcard for lists for clients (api client & test client)
@@ -208,6 +220,11 @@ public class MicronautCodegen extends AbstractJavaCodegen implements BeanValidat
 	@Override
 	public void setUseBeanValidation(boolean useBeanValidation) {
 		this.useBeanValidation = useBeanValidation;
+	}
+
+	@Override
+	public void setUseGenericResponse(boolean useGenericResponse) {
+		this.useGenericResponse = useGenericResponse;
 	}
 
 	// internal

@@ -10,6 +10,7 @@
 
  * clientId: id for generated clients (if no client id is provided no interface will be generated)
  * useBeanValidation: generate validation annotations
+ * useGenericResponse: return generic container or specifc model (e.g. `Model` vs. `HttpResponse<Model>`)
 
 ## Build & Release
 
