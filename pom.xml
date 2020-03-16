@@ -4,7 +4,7 @@
 
 	<groupId>dev.sschnabe.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>0.5.1-SNAPSHOT</version>
+	<version>0.6.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>OpenApi codegen for Micronaut</name>

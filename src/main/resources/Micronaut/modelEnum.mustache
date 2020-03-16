@@ -1,7 +1,9 @@
 public enum {{{classname}}} {
-{{#allowableValues}}{{#enumVars}}
-	{{{name}}}({{{value}}}){{^-last}},
+
+{{#allowableValues}}{{#enumVars}}	{{{name}}}({{{value}}}){{^-last}},
 {{/-last}}{{#-last}};{{/-last}}{{/enumVars}}{{/allowableValues}}
+{{#allowableValues}}{{#enumVars}}
+	public static final String {{{name}}}_VALUE = {{{value}}};{{/enumVars}}{{/allowableValues}}
 
 	private final String value;
 
@@ -10,12 +12,15 @@ public enum {{{classname}}} {
 	}
 
 	@com.fasterxml.jackson.annotation.JsonCreator
-	public static {{{classname}}} fromString(String value) {
+	public static ModelEnum fromString(String value) {
+		return toOptional(value).orElseThrow(() -> new IllegalArgumentException("Unknown value '" + value + "'."));
+	}
+
+	public static java.util.Optional<ModelEnum> toOptional(String value) {
 		return java.util.Arrays
 				.stream(values())
 				.filter(f -> f.value.equals(value))
-				.findAny()
-				.orElseThrow(() -> new IllegalArgumentException("Unknown value '" + value + "'."));
+				.findAny();
 	}
 
 	@com.fasterxml.jackson.annotation.JsonValue

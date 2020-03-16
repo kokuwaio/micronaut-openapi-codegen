@@ -10,6 +10,16 @@
 
 	<artifactId>@project.artifactId@-it-custom-types</artifactId>
 
+	<dependencies>
+
+		<!-- micronaut -->
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -27,6 +37,9 @@
 						<instantiationType>map=java.util.Hashtable</instantiationType>
 						<instantiationType>array=java.util.HashSet</instantiationType>
 					</instantiationTypes>
+					<configOptions>
+						<introspected>false</introspected>
+					</configOptions>
 				</configuration>
 			</plugin>
 		</plugins>

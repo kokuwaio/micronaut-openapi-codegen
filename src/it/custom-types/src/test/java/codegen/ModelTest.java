@@ -1,6 +1,7 @@
 package codegen;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Instant;
@@ -11,6 +12,8 @@ import java.util.Hashtable;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
+import io.micronaut.core.annotation.Introspected;
 
 class ModelTest {
 
@@ -30,5 +33,10 @@ class ModelTest {
 	void instantiationTypes() {
 		assertTrue(new Model().getArray() instanceof HashSet, "array");
 		assertTrue(new Model().getMap() instanceof Hashtable, "map");
+	}
+
+	@Test
+	void introspected() {
+		assertNull(Model.class.getAnnotation(Introspected.class), "no annotation found");
 	}
 }

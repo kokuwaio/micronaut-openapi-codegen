@@ -355,6 +355,11 @@ paths:
                 $ref: '#/components/schemas/QueryModel'
 components:
   schemas:
+    ModelEnum:
+      type: string
+      enum:
+      - one
+      - two
     Model:
       type: object
       required:

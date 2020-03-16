@@ -40,6 +40,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		implements BeanValidationFeatures, UseGenericResponseFeatures {
 
 	public static final String CLIENT_ID = "clientId";
+	public static final String INTROSPECTED = "introspected";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
 			"period", Period.class,
@@ -53,6 +54,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
 	private boolean generateApiTests = true;
+	private boolean introspected = true;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 
@@ -60,6 +62,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
+		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -71,6 +74,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// parent flags
 
 		dateLibrary = "do not trigger date type selection";
+		additionalProperties.put(INTROSPECTED, introspected);
 		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
@@ -144,6 +148,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// process flags
 
+		if (additionalProperties.containsKey(INTROSPECTED)) {
+			introspected = convertPropertyToBooleanAndWriteBack(INTROSPECTED);
+		}
 		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
 			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
 		}
