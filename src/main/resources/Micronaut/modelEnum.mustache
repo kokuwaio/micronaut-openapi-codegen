@@ -12,11 +12,11 @@ public enum {{{classname}}} {
 	}
 
 	@com.fasterxml.jackson.annotation.JsonCreator
-	public static ModelEnum fromString(String value) {
+	public static {{{classname}}} fromString(String value) {
 		return toOptional(value).orElseThrow(() -> new IllegalArgumentException("Unknown value '" + value + "'."));
 	}
 
-	public static java.util.Optional<ModelEnum> toOptional(String value) {
+	public static java.util.Optional<{{{classname}}}> toOptional(String value) {
 		return java.util.Arrays
 				.stream(values())
 				.filter(f -> f.value.equals(value))
