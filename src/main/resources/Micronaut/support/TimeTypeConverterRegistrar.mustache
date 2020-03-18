@@ -1,0 +1,67 @@
+package {{invokerPackage}};
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.Temporal;
+import java.util.Optional;
+
+import javax.inject.Singleton;
+
+import io.micronaut.context.annotation.BootstrapContextCompatible;
+import io.micronaut.core.convert.ConversionContext;
+import io.micronaut.core.convert.ConversionService;
+import io.micronaut.core.convert.TypeConverterRegistrar;
+
+@Singleton
+@BootstrapContextCompatible
+public class TimeTypeConverterRegistrar implements TypeConverterRegistrar {
+
+	@Override
+	public void register(ConversionService<?> conversionService) {
+
+		conversionService.addConverter(String.class, ZonedDateTime.class,
+				(object, type, context) -> parse(object, context));
+
+		conversionService.addConverter(String.class, OffsetDateTime.class,
+				(object, type, context) -> parse(object, context).map(ZonedDateTime::toOffsetDateTime));
+
+		conversionService.addConverter(String.class, Instant.class,
+				(object, type, context) -> parse(object, context).map(ZonedDateTime::toInstant));
+
+		conversionService.addConverter(String.class, LocalDateTime.class,
+				(object, type, context) -> parse(object, context).map(ZonedDateTime::toLocalDateTime));
+
+		conversionService.addConverter(String.class, LocalDate.class,
+				(object, type, context) -> {
+					try {
+						return object == null ? Optional.empty() : Optional.of(LocalDate.parse(object));
+					} catch (DateTimeParseException e) {
+						context.reject(object, e);
+						return Optional.empty();
+					}
+				});
+
+		conversionService.addConverter(Temporal.class, String.class, Temporal::toString);
+	}
+
+	private Optional<ZonedDateTime> parse(String object, ConversionContext context) {
+		if (object == null) {
+			return null;
+		}
+		try {
+			return Optional.of(ZonedDateTime.parse(object));
+		} catch (DateTimeParseException e) {
+			try {
+				return Optional.of(LocalDateTime.parse(object).atZone(ZoneOffset.UTC));
+			} catch (DateTimeParseException e1) {
+				context.reject(object, e);
+				return Optional.empty();
+			}
+		}
+	}
+}

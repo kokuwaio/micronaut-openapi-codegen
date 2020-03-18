@@ -10,6 +10,7 @@
 
  * clientId: id for generated clients (if no client id is provided no interface will be generated)
  * introspected: generate validation annotations (default `true`)
+ * dateTimeRelaxed: add type registrar for releaxed time converter (default `true`)
  * useBeanValidation: generate validation annotations (default `true`)
  * useGenericResponse: return generic container or specifc model, e.g. `Model` vs. `HttpResponse<Model>` default `true`
 

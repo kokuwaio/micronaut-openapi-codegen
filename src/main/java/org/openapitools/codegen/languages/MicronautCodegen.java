@@ -41,6 +41,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	public static final String CLIENT_ID = "clientId";
 	public static final String INTROSPECTED = "introspected";
+	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
 			"period", Period.class,
@@ -54,6 +55,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
 	private boolean generateApiTests = true;
+	private boolean dateTimeRelaxed = true;
 	private boolean introspected = true;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
@@ -63,6 +65,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
+		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -75,6 +78,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		dateLibrary = "do not trigger date type selection";
 		additionalProperties.put(INTROSPECTED, introspected);
+		additionalProperties.put(DATETIME_RELAXED, dateTimeRelaxed);
 		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
@@ -122,6 +126,24 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		super.processOpts();
 
+		// process flags
+
+		if (additionalProperties.containsKey(INTROSPECTED)) {
+			introspected = convertPropertyToBooleanAndWriteBack(INTROSPECTED);
+		}
+		if (additionalProperties.containsKey(DATETIME_RELAXED)) {
+			dateTimeRelaxed = convertPropertyToBooleanAndWriteBack(DATETIME_RELAXED);
+		}
+		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
+			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
+		}
+		if (additionalProperties.containsKey(USE_GENERIC_RESPONSE)) {
+			useGenericResponse = convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE);
+		}
+		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
+			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
+		}
+
 		// we do not generate projects, only api, set source and test folder
 
 		projectFolder = "generated-sources";
@@ -137,25 +159,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(CLIENT_ID)) {
 			apiTemplateFiles.put("api_client.mustache", "Client.java");
 		}
-		if (additionalProperties.get(CodegenConstants.GENERATE_API_TESTS) != null) {
-			generateApiTests = (Boolean) additionalProperties.get(CodegenConstants.GENERATE_API_TESTS);
-		}
 		if (generateApiTests) {
 			apiTestTemplateFiles.put("test.mustache", "Spec.java");
 			apiTestTemplateFiles.put("test_client.mustache", "Client.java");
-			addSupportingFile(testFolder, "HttpResponseAssertions");
+			addSupportingFile(testFolder, testPackage, "HttpResponseAssertions");
 		}
-
-		// process flags
-
-		if (additionalProperties.containsKey(INTROSPECTED)) {
-			introspected = convertPropertyToBooleanAndWriteBack(INTROSPECTED);
-		}
-		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
-			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
-		}
-		if (additionalProperties.containsKey(USE_GENERIC_RESPONSE)) {
-			useGenericResponse = convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE);
+		if (dateTimeRelaxed && !openAPI.getPaths().isEmpty()) {
+			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
 	}
 
@@ -193,8 +203,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		var hasSecurityJwt = (boolean) operation.vendorExtensions.getOrDefault("has401", false);
 		if (generateApiTests && hasSecurityJwt) {
-			addSupportingFile(testFolder, "JwtProvider");
-			addSupportingFile(testFolder, "JwtBuilder");
+			addSupportingFile(testFolder, testPackage, "JwtProvider");
+			addSupportingFile(testFolder, testPackage, "JwtBuilder");
 		}
 
 		return operation;
@@ -236,9 +246,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	// internal
 
-	void addSupportingFile(String folder, String file) {
+	void addSupportingFile(String folder, String packageString, String file) {
 		String templateFile = "support/" + file + ".mustache";
-		String destinationFilename = folder + "/" + testPackage.toString().replace(".", "/") + "/" + file + ".java";
+		String destinationFilename = folder + "/" + packageString.replace(".", "/") + "/" + file + ".java";
 		SupportingFile supportingFile = new SupportingFile(templateFile, destinationFilename);
 		if (!supportingFiles.contains(supportingFile)) {
 			supportingFiles.add(supportingFile);

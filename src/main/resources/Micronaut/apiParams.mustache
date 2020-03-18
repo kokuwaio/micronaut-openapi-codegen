@@ -15,7 +15,5 @@
 {{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}{{#isDateTime}}			@io.micronaut.core.convert.format.Format("uuuu-MM-dd'T'HH:mm:ss[.SSS][xxx][xx][X]")
-{{/isDateTime}}{{#isDate}}			@io.micronaut.core.convert.format.Format("uuuu-MM-dd")
-{{/isDate}}			{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} {{paramName}}{{#hasMore}},
+{{/isHeaderParam}}			{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} {{paramName}}{{#hasMore}},
 {{/hasMore}}{{/allParams}}
