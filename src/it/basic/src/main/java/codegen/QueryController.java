@@ -1,7 +1,7 @@
 package codegen;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +25,7 @@ class QueryController implements QueryApi {
 	}
 
 	@Override
-	public HttpResponse<QueryModel> getTypeDateTime(OffsetDateTime dateTime) {
+	public HttpResponse<QueryModel> getTypeDateTime(Instant dateTime) {
 		return HttpResponse.ok(new QueryModel().dateTime(dateTime));
 	}
 

@@ -28,7 +28,7 @@
 				<configuration>
 					<typeMappings>
 						<typeMapping>date=java.util.Date</typeMapping>
-						<typeMapping>DateTime=java.time.Instant</typeMapping>
+						<typeMapping>DateTime=java.time.ZonedDateTime</typeMapping>
 						<typeMapping>UUID=String</typeMapping>
 						<typeMapping>array=java.util.Set</typeMapping>
 						<typeMapping>map=java.util.Dictionary</typeMapping>
@@ -40,6 +40,7 @@
 					<configOptions>
 						<introspected>false</introspected>
 					</configOptions>
+					<generateSupportingFiles>false</generateSupportingFiles>
 				</configuration>
 			</plugin>
 		</plugins>

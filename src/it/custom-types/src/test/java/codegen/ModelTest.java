@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.HashSet;
@@ -20,7 +20,7 @@ class ModelTest {
 	@Test
 	void typeMappings() throws ReflectiveOperationException {
 		assertEquals(Date.class, Model.class.getDeclaredField("date").getType(), "date");
-		assertEquals(Instant.class, Model.class.getDeclaredField("dateTime").getType(), "dateTime");
+		assertEquals(ZonedDateTime.class, Model.class.getDeclaredField("dateTime").getType(), "dateTime");
 		assertEquals(String.class, Model.class.getDeclaredField("uuid").getType(), "uuid");
 		assertEquals(Set.class, Model.class.getDeclaredField("array").getType(), "array");
 		assertEquals(Dictionary.class, Model.class.getDeclaredField("map").getType(), "map");

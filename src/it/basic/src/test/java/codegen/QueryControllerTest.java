@@ -4,12 +4,13 @@ import static codegen.HttpResponseAssertions.assert200;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
+import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -67,33 +68,19 @@ class QueryControllerTest implements QueryApiTestSpec {
 	@Test
 	@Override
 	public void getTypeDateTime200() {
+		var now = Instant.now().with(ChronoField.NANO_OF_SECOND, 123456);
+		assertAll(
+				() -> assertEquals(now, client.getTypeDateTime(now).body().getDateTime(), "declarative"),
+				() -> assertDateTime(now, now, "raw-instant"),
+				() -> assertDateTime(now, now.atOffset(ZoneOffset.ofHoursMinutes(5, 30)), "raw-offset"),
+				() -> assertDateTime(now, now.atZone(ZoneId.of("Europe/Berlin")), "raw-zoned"),
+				() -> assertDateTime(now, LocalDateTime.ofInstant(now, ZoneOffset.UTC), "raw-local"));
+	}
 
-		// declarative
-
-		var expected = OffsetDateTime.of(2015, 5, 28, 12, 34, 56, 0, ZoneOffset.UTC);
-		var actual = client.getTypeDateTime(expected).body().getDateTime();
-		assertEquals(expected, actual, "declarative");
-
-		// raw - from instant
-
-		var string = "2009-12-31T14:26:53.456789Z";
-		var uri = UriBuilder.of("/query/type/date-time").queryParam("date-time", string).build().toString();
-		var model = rawClient.toBlocking().retrieve(uri, Map.class);
-		assertEquals(string, model.get("dateTime"), "raw-instant");
-
-		// raw - from local
-
-		var local = LocalDateTime.now(ZoneOffset.UTC).withNano(123456);
-		uri = UriBuilder.of("/query/type/date-time").queryParam("date-time", local.toString()).build().toString();
-		model = rawClient.toBlocking().retrieve(uri, Map.class);
-		assertEquals(local.atOffset(ZoneOffset.UTC).toString(), model.get("dateTime"), "raw-local");
-
-		// raw - from zoned
-
-		var zoned = ZonedDateTime.now(ZoneId.of("Europe/Berlin")).withNano(123456);
-		uri = UriBuilder.of("/query/type/date-time").queryParam("date-time", zoned.toString()).build().toString();
-		model = rawClient.toBlocking().retrieve(uri, Map.class);
-		assertEquals(zoned.toOffsetDateTime().toString(), model.get("dateTime"), "raw-zoned");
+	private void assertDateTime(Instant expected, Temporal value, String message) {
+		var uri = UriBuilder.of("/query/type/date-time").queryParam("date-time", value.toString()).build().toString();
+		var actual = rawClient.toBlocking().retrieve(uri, Map.class).get("dateTime");
+		assertEquals(expected.toString(), actual, message);
 	}
 
 	@Test

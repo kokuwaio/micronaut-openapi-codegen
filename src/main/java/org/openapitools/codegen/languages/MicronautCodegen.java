@@ -86,7 +86,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// add custom type mappings
 
 		typeMapping.put("date", LocalDate.class.getName());
-		typeMapping.put("DateTime", OffsetDateTime.class.getName());
+		typeMapping.put("DateTime", Instant.class.getName());
 		typeMapping.put("array", List.class.getName());
 		typeMapping.put("map", Map.class.getName());
 		typeMapping.put("boolean", Boolean.class.getName());
