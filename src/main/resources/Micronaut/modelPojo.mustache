@@ -9,7 +9,8 @@
 public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}} {
 
 {{#vars}}{{#description}}	/** {{description}} */
-{{/description}}{{#useBeanValidation}}{{#required}}	@javax.validation.constraints.NotNull
+{{/description}}{{#useBeanValidation}}{{#isContainer}}	@javax.validation.Valid
+{{/isContainer}}{{#required}}	@javax.validation.constraints.NotNull
 {{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})
 {{/minimum}}{{#maximum}}	@javax.validation.constraints.Max({{maximum}})

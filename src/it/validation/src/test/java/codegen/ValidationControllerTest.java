@@ -3,6 +3,8 @@ package codegen;
 import static codegen.HttpResponseAssertions.assert200;
 import static codegen.HttpResponseAssertions.assert400;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,19 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	public void body400() {
 		assert400(() -> client.body(new Model()));
 		assert400(() -> client.body(new Model().name("abcdef")));
+	}
+
+	@Test
+	@Override
+	public void bodyWithCollection204() {
+		assert200(() -> client.bodyWithCollection(new ModelWithCollection()));
+		assert200(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(new Model().name("test")))));
+	}
+
+	@Test
+	@Override
+	public void bodyWithCollection400() {
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(new Model()))));
 	}
 
 	@Test

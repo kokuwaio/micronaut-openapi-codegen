@@ -21,6 +21,22 @@ paths:
           description: Ok.
         400:
           description: BadRequest.
+  /bodyWithCollection:
+    post:
+      description: 'validate body'
+      operationId: bodyWithCollection
+      tags:
+      - validation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelWithCollection'
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: BadRequest.
   /param/query:
     get:
       description: 'validate query param'
@@ -54,3 +70,12 @@ components:
         name:
           type: string
           maxLength: 5
+    ModelWithCollection:
+      type: object
+      required:
+      - list
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
