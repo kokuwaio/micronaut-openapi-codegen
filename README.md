@@ -12,7 +12,8 @@
  * introspected: generate validation annotations (default `true`)
  * dateTimeRelaxed: add type registrar for releaxed time converter (default `true`)
  * useBeanValidation: generate validation annotations (default `true`)
- * useGenericResponse: return generic container or specifc model, e.g. `Model` vs. `HttpResponse<Model>` default `true`
+ * useGenericResponse: return generic container or specifc model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
+ * jacksonDatabindNullable: add container `JacksonNullable` to model objects that are nullable(default `false`)
 
 ### Not supported
 

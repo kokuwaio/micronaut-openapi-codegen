@@ -44,6 +44,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String CLIENT_ID = "clientId";
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
+	public static final String JACKSON_DATABIND_NULLABLE = "jacksonDatabindNullable";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
 			"period", Period.class,
@@ -61,6 +62,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean introspected = true;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
+	private boolean jacksonDatabindNullable = false;
 
 	public MicronautCodegen() {
 
@@ -68,6 +70,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
+		cliOptions.add(CliOption.newBoolean(JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -83,6 +86,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(DATETIME_RELAXED, dateTimeRelaxed);
 		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
+		additionalProperties.put(JACKSON_DATABIND_NULLABLE, jacksonDatabindNullable);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -141,6 +145,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(USE_GENERIC_RESPONSE)) {
 			useGenericResponse = convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE);
+		}
+		if (additionalProperties.containsKey(JACKSON_DATABIND_NULLABLE)) {
+			jacksonDatabindNullable = convertPropertyToBooleanAndWriteBack(JACKSON_DATABIND_NULLABLE);
 		}
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);

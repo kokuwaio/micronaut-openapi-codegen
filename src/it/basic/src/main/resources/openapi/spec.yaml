@@ -403,6 +403,9 @@ components:
           type: string
           additionalProperties:
             type: string
+        nullable:
+          type: string
+          nullable: true
         modelEnumeration:
           $ref: '#/components/schemas/StringEnumeration'
         embeddedEnumeration:
@@ -423,6 +426,10 @@ components:
           - foo
           - bar
           default: bar
+        defaultNullable:
+          type: string
+          default: defaultNullableValue
+          nullable: true
     InheritanceModel:
       discriminator:
         propertyName: type
