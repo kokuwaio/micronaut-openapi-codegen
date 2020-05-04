@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -15,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import codegen.model.Model.DefaultEnumeration;
+import codegen.model.Model.EmbeddedEnumeration;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.test.annotation.MicronautTest;
 
@@ -47,25 +52,79 @@ class ModelTest {
 	}
 
 	@Test
-	@DisplayName("enum: constants")
-	void enumConstants() {
-		assertEquals(ModelEnum.ONE.getValue(), ModelEnum.ONE_VALUE);
-		assertEquals(ModelEnum.TWO.getValue(), ModelEnum.TWO_VALUE);
+	@DisplayName("model enum: constants")
+	void modelEnumConstants() {
+		assertEquals(StringEnumeration.ONE.getValue(), StringEnumeration.ONE_VALUE);
+		assertEquals(StringEnumeration.TWO.getValue(), StringEnumeration.TWO_VALUE);
 	}
 
 	@Test
-	@DisplayName("enum: creator")
-	void enumCreator() {
-		assertEquals(ModelEnum.ONE, ModelEnum.fromString(ModelEnum.ONE_VALUE));
-		assertEquals(ModelEnum.TWO, ModelEnum.fromString(ModelEnum.TWO_VALUE));
-		assertThrows(IllegalArgumentException.class, () -> ModelEnum.valueOf("meh"));
+	@DisplayName("model enum: creator")
+	void modelEnumCreator() {
+		assertEquals(StringEnumeration.ONE, StringEnumeration.toEnum(StringEnumeration.ONE_VALUE));
+		assertEquals(StringEnumeration.TWO, StringEnumeration.toEnum(StringEnumeration.TWO_VALUE));
+		assertThrows(IllegalArgumentException.class, () -> StringEnumeration.valueOf("meh"));
 	}
 
 	@Test
-	@DisplayName("enum: optional")
-	void enumOptional() {
-		assertEquals(Optional.of(ModelEnum.ONE), ModelEnum.toOptional(ModelEnum.ONE_VALUE));
-		assertEquals(Optional.of(ModelEnum.TWO), ModelEnum.toOptional(ModelEnum.TWO_VALUE));
-		assertEquals(Optional.empty(), ModelEnum.toOptional("meh"));
+	@DisplayName("model enum: optional")
+	void modelEnumOptional() {
+		assertEquals(Optional.of(StringEnumeration.ONE), StringEnumeration.toOptional(StringEnumeration.ONE_VALUE));
+		assertEquals(Optional.of(StringEnumeration.TWO), StringEnumeration.toOptional(StringEnumeration.TWO_VALUE));
+		assertEquals(Optional.empty(), StringEnumeration.toOptional("meh"));
+	}
+
+	@Test
+	@DisplayName("embedded enum: constants")
+	void embeddedEnumConstants() {
+		assertEquals(EmbeddedEnumeration.FIRST.getValue(), EmbeddedEnumeration.FIRST_VALUE);
+		assertEquals(EmbeddedEnumeration.SECOND.getValue(), EmbeddedEnumeration.SECOND_VALUE);
+	}
+
+	@Test
+	@DisplayName("embedded enum: creator")
+	void embeddedEnumCreator() {
+		assertEquals(EmbeddedEnumeration.FIRST, EmbeddedEnumeration.toEnum(EmbeddedEnumeration.FIRST_VALUE));
+		assertEquals(EmbeddedEnumeration.SECOND, EmbeddedEnumeration.toEnum(EmbeddedEnumeration.SECOND_VALUE));
+		assertThrows(IllegalArgumentException.class, () -> EmbeddedEnumeration.valueOf("meh"));
+	}
+
+	@Test
+	@DisplayName("embedded enum: optional")
+	void embeddedEnumOptional() {
+		assertEquals(Optional.of(EmbeddedEnumeration.FIRST), EmbeddedEnumeration.toOptional(EmbeddedEnumeration.FIRST_VALUE));
+		assertEquals(Optional.of(EmbeddedEnumeration.SECOND), EmbeddedEnumeration.toOptional(EmbeddedEnumeration.SECOND_VALUE));
+		assertEquals(Optional.empty(), EmbeddedEnumeration.toOptional("meh"));
+	}
+
+	@Test
+	@DisplayName("model enum: integer")
+	void modelEnumInteger() {
+		assertEquals(Integer.MAX_VALUE, IntegerEnumeration.NUMBER_2147483647.getValue());
+		assertEquals(Integer.MAX_VALUE, IntegerEnumeration.NUMBER_2147483647_VALUE);
+		assertEquals(Integer.MIN_VALUE, IntegerEnumeration.NUMBER_MINUS_2147483648.getValue());
+		assertEquals(Integer.MIN_VALUE, IntegerEnumeration.NUMBER_MINUS_2147483648_VALUE);
+		assertEquals(List.of(Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE), Stream
+				.of(IntegerEnumeration.values())
+				.map(IntegerEnumeration::getValue)
+				.collect(Collectors.toList()));
+	}
+
+	@Test
+	@DisplayName("default value: string")
+	void defaultValueString() {
+		assertEquals("defaultStringValue", new Model().getDefaultString());
+	}
+
+	@Test
+	@DisplayName("default value: integer")
+	void defaultValueInteger() {
+		assertEquals(1234L, new Model().getDefaultInteger());
+	}
+
+	@Test
+	@DisplayName("default value: enumeration")
+	void defaultValueEnumeration() {
+		assertEquals(DefaultEnumeration.BAR, new Model().getDefaultEnumeration());
 	}
 }

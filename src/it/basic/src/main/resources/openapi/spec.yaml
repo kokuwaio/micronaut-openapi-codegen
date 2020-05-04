@@ -355,11 +355,25 @@ paths:
                 $ref: '#/components/schemas/QueryModel'
 components:
   schemas:
-    ModelEnum:
+    StringEnumeration:
       type: string
       enum:
       - one
       - two
+    IntegerEnumeration:
+      type: integer
+      enum:
+      - -2147483648
+      - -1
+      - 0
+      - 1
+      - 2147483647
+    NumberEnumeration:
+      type: number
+      enum:
+      - -1
+      - 0
+      - 1
     Model:
       type: object
       required:
@@ -389,6 +403,26 @@ components:
           type: string
           additionalProperties:
             type: string
+        modelEnumeration:
+          $ref: '#/components/schemas/StringEnumeration'
+        embeddedEnumeration:
+          type: string
+          enum:
+          - first
+          - second
+        defaultString:
+          type: string
+          default: defaultStringValue
+        defaultInteger:
+          type: integer
+          format: int64
+          default: 1234
+        defaultEnumeration:
+          type: string
+          enum:
+          - foo
+          - bar
+          default: bar
     InheritanceModel:
       discriminator:
         propertyName: type

@@ -15,5 +15,5 @@
 {{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}			{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} {{paramName}}{{#hasMore}},
+{{/isHeaderParam}}			{{{dataType}}} {{paramName}}{{#hasMore}},
 {{/hasMore}}{{/allParams}}

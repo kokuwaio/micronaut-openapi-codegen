@@ -78,5 +78,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	public {{classname}} {{setter}}({{{datatypeWithEnum}}} {{name}}) {
 		this.{{name}} = {{name}};
 		return this;
-	}{{/vars}}
+	}{{/vars}}{{#vars}}{{#isEnum}}{{^isContainer}}
+
+{{>modelEnum}}{{/isContainer}}{{/isEnum}}{{/vars}}
 }

@@ -22,7 +22,9 @@ import java.util.stream.Collectors;
 
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
+import org.openapitools.codegen.CodegenModel;
 import org.openapitools.codegen.CodegenOperation;
+import org.openapitools.codegen.CodegenProperty;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
@@ -230,6 +232,43 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			return "new " + instantiationTypes.get("map") + "<>()";
 		}
 		return super.toDefaultValue(schema);
+	}
+
+	@Override
+	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
+		super.postProcessModelProperty(model, property);
+		if (property.defaultValue != null && property.isEnum) {
+			property.defaultValue = toEnumName(property) + "." + toEnumVarName(property.defaultValue, property.dataType);
+		}
+	}
+
+	// enum
+
+	@Override
+	public String toEnumName(CodegenProperty property) {
+		return property.nameInCamelCase;
+	}
+
+	@Override
+	public String toEnumVarName(String value, String datatype) {
+		return super.toEnumVarName(value, datatype.replace("java.lang.", ""));
+	}
+
+	@Override
+	public String toEnumValue(String value, String datatype) {
+		if (List.of("int", Integer.class.getSimpleName(), Integer.class.getName()).contains(datatype)) {
+			return value;
+		}
+		if (List.of("long", Long.class.getSimpleName(), Long.class.getName()).contains(datatype)) {
+			return value + "L";
+		}
+		if (List.of("float", Float.class.getSimpleName(), Float.class.getName()).contains(datatype)) {
+			return value + "F";
+		}
+		if (List.of("double", Double.class.getSimpleName(), Double.class.getName()).contains(datatype)) {
+			return value + "D";
+		}
+		return super.toEnumValue(value, datatype);
 	}
 
 	// setter

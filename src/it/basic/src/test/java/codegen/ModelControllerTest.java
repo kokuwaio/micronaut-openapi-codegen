@@ -21,7 +21,9 @@ import org.junit.jupiter.api.Test;
 import codegen.model.InheritanceModel1;
 import codegen.model.InheritanceModel2;
 import codegen.model.Model;
+import codegen.model.Model.EmbeddedEnumeration;
 import codegen.model.ModelStore;
+import codegen.model.StringEnumeration;
 import io.micronaut.test.annotation.MicronautTest;
 
 @MicronautTest
@@ -40,8 +42,8 @@ class ModelControllerTest implements ModelApiTestSpec {
 	@Test
 	@Override
 	public void findAll200() {
-		store.add(new Model().id(1).name(UUID.randomUUID().toString()));
-		store.add(new Model().id(2).name(UUID.randomUUID().toString()));
+		store.add(new Model().id(1).name(UUID.randomUUID().toString()).embeddedEnumeration(EmbeddedEnumeration.FIRST));
+		store.add(new Model().id(2).name(UUID.randomUUID().toString()).modelEnumeration(StringEnumeration.ONE));
 		store.add(new Model().id(3).name(UUID.randomUUID().toString()));
 		var response = assert200(() -> client.findAll());
 		assertEquals(3, response.getBody().get().size(), "response body");
