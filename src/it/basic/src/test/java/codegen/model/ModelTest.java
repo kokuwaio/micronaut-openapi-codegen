@@ -2,6 +2,7 @@ package codegen.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -108,6 +109,18 @@ class ModelTest {
 				.of(IntegerEnumeration.values())
 				.map(IntegerEnumeration::getValue)
 				.collect(Collectors.toList()));
+	}
+
+	@Test
+	@DisplayName("default value: array required")
+	void defaultValueArrayRequired() {
+		assertNotNull(new Model().getArray());
+	}
+
+	@Test
+	@DisplayName("default value: array nullable")
+	void defaultValueArrayNullable() {
+		assertNull(new Model().getNullableArray());
 	}
 
 	@Test

@@ -403,9 +403,14 @@ components:
           type: string
           additionalProperties:
             type: string
-        nullable:
+        nullableString:
           type: string
           nullable: true
+        nullableArray:
+          type: array
+          nullable: true
+          items:
+            type: string
         modelEnumeration:
           $ref: '#/components/schemas/StringEnumeration'
         embeddedEnumeration:

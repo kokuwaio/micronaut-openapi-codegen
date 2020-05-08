@@ -127,7 +127,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			additionalProperties.put(CodegenConstants.INVOKER_PACKAGE, apiPackage);
 		}
 		if (additionalProperties.get("testPackage") == null) {
-			additionalProperties.put("testPackage", apiPackage);
+			additionalProperties.put("testPackage", additionalProperties.get(CodegenConstants.INVOKER_PACKAGE));
 		}
 
 		super.processOpts();
@@ -152,6 +152,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
 		}
+//		if (additionalProperties.containsKey(CodegenConstants.generate_)) {
+//			generateSupportingFailes = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
+//		}
 
 		// we do not generate projects, only api, set source and test folder
 

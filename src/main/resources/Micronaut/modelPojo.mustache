@@ -9,19 +9,7 @@
 public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}} {
 
 {{#vars}}{{#description}}	/** {{description}} */
-{{/description}}{{#useBeanValidation}}{{#isContainer}}	@javax.validation.Valid
-{{/isContainer}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
-{{/isNullable}}{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
-{{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})
-{{/minimum}}{{#maximum}}	@javax.validation.constraints.Max({{maximum}})
-{{/maximum}}{{#minLength}}{{^maxLength}}	@javax.validation.constraints.Size(min = {{minLength}})
-{{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}	@javax.validation.constraints.Size(max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}	@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}	@javax.validation.constraints.Size(min = {{minItems}})
-{{/maxItems}}{{/minItems}}{{^minItems}}{{#maxItems}}	@javax.validation.constraints.Size(max = {{maxItems}})
-{{/maxItems}}{{/minItems}}{{#minItems}}{{#maxItems}}	@javax.validation.constraints.Size(min = {{minItems}}, max = {{maxItems}})
-{{/maxItems}}{{/minItems}}{{/useBeanValidation}}	@com.fasterxml.jackson.annotation.JsonProperty("{{baseName}}")
-	private {{#isNullable}}{{#jacksonDatabindNullable}}org.openapitools.jackson.nullable.JsonNullable<{{/jacksonDatabindNullable}}{{/isNullable}}{{{datatypeWithEnum}}}{{#isNullable}}{{#jacksonDatabindNullable}}>{{/jacksonDatabindNullable}}{{/isNullable}} {{name}}{{#jacksonDatabindNullable}}{{^isNullable}}{{#defaultValue}}{{^isContainer}} = {{{.}}}{{/isContainer}}{{#isContainer}}{{#required}} = {{{.}}}{{/required}}{{/isContainer}}{{/defaultValue}}{{/isNullable}}{{#isNullable}} = org.openapitools.jackson.nullable.JsonNullable.{{#defaultValue}}of({{{.}}}){{/defaultValue}}{{^defaultValue}}undefined(){{/defaultValue}}{{/isNullable}}{{/jacksonDatabindNullable}}{{^jacksonDatabindNullable}}{{#defaultValue}}{{^isContainer}} = {{{.}}}{{/isContainer}}{{#isContainer}}{{#required}} = {{{.}}}{{/required}}{{/isContainer}}{{/defaultValue}}{{/jacksonDatabindNullable}};
+{{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
 {{/vars}}
 	// methods
@@ -58,12 +46,12 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	// fluent
 	{{#vars}}
 
-	public {{classname}} {{name}}({{#isNullable}}{{#jacksonDatabindNullable}}org.openapitools.jackson.nullable.JsonNullable<{{/jacksonDatabindNullable}}{{/isNullable}}{{{datatypeWithEnum}}}{{#isNullable}}{{#jacksonDatabindNullable}}>{{/jacksonDatabindNullable}}{{/isNullable}} {{name}}) {
+	public {{classname}} {{name}}({{>modelPropertyType}} {{name}}) {
 		this.{{name}} = {{name}};
 		return this;
 	}
 
-	public {{#isNullable}}{{#jacksonDatabindNullable}}org.openapitools.jackson.nullable.JsonNullable<{{/jacksonDatabindNullable}}{{/isNullable}}{{{datatypeWithEnum}}}{{#isNullable}}{{#jacksonDatabindNullable}}>{{/jacksonDatabindNullable}}{{/isNullable}} {{name}}() {
+	public {{>modelPropertyType}} {{name}}() {
 		return {{name}};
 	}
 	{{/vars}}
@@ -71,11 +59,11 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	// getter/setter
 	{{#vars}}
 
-	public {{#isNullable}}{{#jacksonDatabindNullable}}org.openapitools.jackson.nullable.JsonNullable<{{/jacksonDatabindNullable}}{{/isNullable}}{{{datatypeWithEnum}}}{{#isNullable}}{{#jacksonDatabindNullable}}>{{/jacksonDatabindNullable}}{{/isNullable}} {{getter}}() {
+	public {{>modelPropertyType}} {{getter}}() {
 		return {{name}};
 	}
 
-	public {{classname}} {{setter}}({{#isNullable}}{{#jacksonDatabindNullable}}org.openapitools.jackson.nullable.JsonNullable<{{/jacksonDatabindNullable}}{{/isNullable}}{{{datatypeWithEnum}}}{{#isNullable}}{{#jacksonDatabindNullable}}>{{/jacksonDatabindNullable}}{{/isNullable}} {{name}}) {
+	public {{classname}} {{setter}}({{>modelPropertyType}} {{name}}) {
 		this.{{name}} = {{name}};
 		return this;
 	}{{/vars}}{{#vars}}{{#isEnum}}{{^isContainer}}

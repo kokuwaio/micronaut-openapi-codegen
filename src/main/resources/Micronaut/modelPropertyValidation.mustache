@@ -1,0 +1,12 @@
+{{#isContainer}}	@javax.validation.Valid
+{{/isContainer}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
+{{/isNullable}}{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
+{{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})
+{{/minimum}}{{#maximum}}	@javax.validation.constraints.Max({{maximum}})
+{{/maximum}}{{#minLength}}{{^maxLength}}	@javax.validation.constraints.Size(min = {{minLength}})
+{{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}	@javax.validation.constraints.Size(max = {{maxLength}})
+{{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}	@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
+{{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}	@javax.validation.constraints.Size(min = {{minItems}})
+{{/maxItems}}{{/minItems}}{{^minItems}}{{#maxItems}}	@javax.validation.constraints.Size(max = {{maxItems}})
+{{/maxItems}}{{/minItems}}{{#minItems}}{{#maxItems}}	@javax.validation.constraints.Size(min = {{minItems}}, max = {{maxItems}})
+{{/maxItems}}{{/minItems}}
