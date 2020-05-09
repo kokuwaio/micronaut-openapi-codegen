@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>@project.groupId@</groupId>
+		<artifactId>@project.artifactId@-it</artifactId>
+		<version>LOCAL-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>@project.artifactId@-it-hono-api</artifactId>
+
+	<dependencies>
+
+		<!-- micronaut -->
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-security-jwt</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/device-registry-v1.yaml</inputSpec>
+							<apiPackage>org.eclipse.hono.api</apiPackage>
+						</configuration>
+					</execution>
+					<execution>
+						<id>admin</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/device-registry-admin.yaml</inputSpec>
+							<apiPackage>org.eclipse.hono.api.admin</apiPackage>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<modelPackage>org.eclipse.hono.model</modelPackage>
+					<invokerPackage>org.eclipse.hono</invokerPackage>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
