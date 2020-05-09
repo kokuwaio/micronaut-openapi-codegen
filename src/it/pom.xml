@@ -181,6 +181,9 @@
 						<goals>
 							<goal>generate</goal>
 						</goals>
+						<configuration>
+							<apiPackage>codegen</apiPackage>
+						</configuration>
 					</execution>
 				</executions>
 				<configuration>
@@ -189,7 +192,6 @@
 					<generatorName>micronaut</generatorName>
 					<inputSpec>${project.basedir}/src/main/resources/openapi/spec.yaml</inputSpec>
 					<output>${project.build.directory}</output>
-					<apiPackage>codegen</apiPackage>
 					<configOptions>
 						<useBeanValidation>false</useBeanValidation>
 					</configOptions>

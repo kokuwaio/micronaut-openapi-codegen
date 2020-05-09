@@ -119,16 +119,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// reuse api package if other packages are not provided
 
-		var apiPackage = additionalProperties.get(CodegenConstants.API_PACKAGE);
-		if (additionalProperties.get(CodegenConstants.MODEL_PACKAGE) == null) {
-			additionalProperties.put(CodegenConstants.MODEL_PACKAGE, apiPackage);
-		}
-		if (additionalProperties.get(CodegenConstants.INVOKER_PACKAGE) == null) {
-			additionalProperties.put(CodegenConstants.INVOKER_PACKAGE, apiPackage);
-		}
-		if (additionalProperties.get("testPackage") == null) {
-			additionalProperties.put("testPackage", additionalProperties.get(CodegenConstants.INVOKER_PACKAGE));
-		}
+		apiPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.API_PACKAGE, k -> "changeMe");
+		modelPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.MODEL_PACKAGE, k -> apiPackage);
+		invokerPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.INVOKER_PACKAGE, k -> apiPackage);
 
 		super.processOpts();
 
@@ -152,9 +145,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
 		}
-//		if (additionalProperties.containsKey(CodegenConstants.generate_)) {
-//			generateSupportingFailes = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
-//		}
 
 		// we do not generate projects, only api, set source and test folder
 
@@ -162,9 +152,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		projectTestFolder = "generated-test-sources";
 		sourceFolder = projectFolder + File.separator + "openapi";
 		testFolder = projectTestFolder + File.separator + "openapi";
-		if (testPackage == null || testPackage.isEmpty()) {
-			testPackage = this.apiPackage;
-		}
 
 		// add files to generate
 
@@ -174,7 +161,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (generateApiTests) {
 			apiTestTemplateFiles.put("test.mustache", "Spec.java");
 			apiTestTemplateFiles.put("test_client.mustache", "Client.java");
-			addSupportingFile(testFolder, testPackage, "HttpResponseAssertions");
+			addSupportingFile(testFolder, invokerPackage, "HttpResponseAssertions");
 		}
 		if (dateTimeRelaxed && !openAPI.getPaths().isEmpty()) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
@@ -215,8 +202,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		var hasSecurityJwt = (boolean) operation.vendorExtensions.getOrDefault("has401", false);
 		if (generateApiTests && hasSecurityJwt) {
-			addSupportingFile(testFolder, testPackage, "JwtProvider");
-			addSupportingFile(testFolder, testPackage, "JwtBuilder");
+			addSupportingFile(testFolder, invokerPackage, "JwtProvider");
+			addSupportingFile(testFolder, invokerPackage, "JwtBuilder");
 		}
 
 		return operation;
