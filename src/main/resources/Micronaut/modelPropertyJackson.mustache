@@ -1,2 +1,2 @@
-	@com.fasterxml.jackson.annotation.JsonProperty("{{baseName}}")
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_{{nameInSnakeCase}})
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.{{#required}}ALWAYS{{/required}}{{^required}}NON_ABSENT{{/required}})

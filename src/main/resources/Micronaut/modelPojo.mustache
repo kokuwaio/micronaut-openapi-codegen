@@ -8,8 +8,13 @@
 {{/introspected}}
 public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}} {
 
+{{#vars}}
+	public static final String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
+{{/vars}}
+
 {{#vars}}{{#description}}	/** {{description}} */
-{{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
+{{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
+	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
 {{/vars}}
 	// methods
