@@ -32,8 +32,10 @@ import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpStatus;
 import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.servers.Server;
@@ -216,6 +218,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			var type = CUSTOM_FORMATS.get(format).getName();
 			LOGGER.warn("Use custom format {} with type {}.", format, type);
 			return type;
+		}
+		if (schema instanceof ComposedSchema) {
+			ComposedSchema cs = (ComposedSchema) schema;
+			if (CollectionUtils.isNotEmpty(cs.getOneOf())) {
+				// ignore embedded oneOf schemas
+				return Object.class.getName();
+			}
 		}
 		return super.getSchemaType(schema);
 	}
