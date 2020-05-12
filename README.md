@@ -21,7 +21,7 @@ Jackson Inclusions:
  * `required=true` & `nullable=false`: `JsonInclude.ALWAYS`
  * `required=true` & `nullable=true`: `JsonInclude.ALWAYS`
  * `required=false` & `nullable=false`: `JsonInclude.NON_ABSENT`
- * `required=false` & `nullable=true`: `JsonInclude.NON_ABSENT`
+ * `required=false` & `nullable=true`: `JsonInclude.NON_NULL`
 
 Container (array/map):
  * `required=true` & `nullable=false`: empty containers are set as default value
