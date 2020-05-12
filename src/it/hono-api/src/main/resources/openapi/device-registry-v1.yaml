@@ -612,6 +612,12 @@ components:
                format: date-time
             "comment":
                type: string
+         discriminator:
+            propertyName: type
+            mapping:
+               "PasswordSecret": '#/components/schemas/PasswordSecret'
+               "PSKSecret": '#/components/schemas/PSKSecret'
+               "X509CertificateSecret": '#/components/schemas/X509CertificateSecret'
 
       X509CertificateSecret:
          additionalProperties: false
