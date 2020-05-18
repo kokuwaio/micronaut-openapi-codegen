@@ -189,6 +189,24 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		extensions.put("status", HttpStatus.valueOf(Integer.valueOf(response.code)).name());
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
 
+		// add pattern to path paramters
+
+		var uuid = "[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]";
+		if (CollectionUtils.isNotEmpty(operation.pathParams)) {
+			for (var param : operation.pathParams) {
+				var name = param.paramName;
+				if (param.isUuid) {
+					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + uuid + "}");
+				}
+				if (param.isString && param.maxLength != null) {
+					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + param.maxLength + "}");
+				}
+				if (param.isInteger) {
+					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":[0-9]+}");
+				}
+			}
+		}
+
 		// add wildcard for lists for clients (api client & test client)
 
 		var containerParams = operation.queryParams.stream().filter(p -> p.isContainer).collect(Collectors.toList());

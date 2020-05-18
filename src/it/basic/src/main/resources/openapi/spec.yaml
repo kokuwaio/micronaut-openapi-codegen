@@ -353,6 +353,69 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryModel'
+  /uri/{uuid}:
+    get:
+      operationId: uriWithUuid
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      tags:
+      - uri
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+  /uri/{uuid1}/{uuid2}:
+    get:
+      operationId: uriWithMultipleUuids
+      parameters:
+      - name: uuid1
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: uuid2
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      tags:
+      - uri
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+  /uri/{string}:
+    get:
+      operationId: uriWithString
+      parameters:
+      - name: string
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 10
+      tags:
+      - uri
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
 components:
   schemas:
     StringEnumeration:
