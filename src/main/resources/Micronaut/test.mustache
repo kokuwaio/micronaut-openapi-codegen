@@ -6,6 +6,6 @@ public interface {{classname}}TestSpec { {{#operations}}{{#operation}}
 
 	// {{nickname}}{{#responses}}
 
-	/** Test for {@link {{classname}}Api#{{nickname}}} with repsonse code {{code}}. */
+	/** Test for {@link {{classname}}#{{nickname}}} with repsonse code {{code}}. */
 	void {{nickname}}{{code}}() throws Exception;{{/responses}}{{/operation}}
 }{{/operations}}
