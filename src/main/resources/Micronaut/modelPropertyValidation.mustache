@@ -1,4 +1,5 @@
-{{#isContainer}}	@javax.validation.Valid
+{{#isModel}}	@javax.validation.Valid
+{{/isModel}}{{#isContainer}}	@javax.validation.Valid
 {{/isContainer}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
 {{/isNullable}}{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})

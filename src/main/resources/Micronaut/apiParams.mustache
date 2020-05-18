@@ -1,5 +1,6 @@
-{{#allParams}}{{#useBeanValidation}}{{#isBodyParam}}			@javax.validation.Valid
-{{/isBodyParam}}{{#pattern}}			@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
+{{#allParams}}{{#useBeanValidation}}{{#isBodyParam}}{{#isModel}}			@javax.validation.Valid
+{{/isModel}}{{#isContainer}}			@javax.validation.Valid
+{{/isContainer}}{{/isBodyParam}}{{#pattern}}			@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#required}}{{^isPathParam}}			@javax.validation.constraints.NotNull
 {{/isPathParam}}{{/required}}{{#minimum}}{{#isInteger}}			@javax.validation.constraints.Min({{minimum}})
 {{/isInteger}}{{#isLong}}			@javax.validation.constraints.Min({{minimum}})

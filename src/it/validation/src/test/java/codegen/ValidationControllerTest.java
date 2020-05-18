@@ -20,27 +20,33 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	@Test
 	@Override
 	public void body204() {
-		assert200(() -> client.body(new Model().name("test")));
+		assert200(() -> client.body(model()));
 	}
 
 	@Test
 	@Override
 	public void body400() {
-		assert400(() -> client.body(new Model()));
-		assert400(() -> client.body(new Model().name("abcdef")));
+		assert400(() -> client.body(model().name(null)));
+		assert400(() -> client.body(model().name("abcdef")));
+		assert400(() -> client.body(model().embedded(null)));
+		assert400(() -> client.body(model().embedded(new Embedded())));
 	}
 
 	@Test
 	@Override
 	public void bodyWithCollection204() {
 		assert200(() -> client.bodyWithCollection(new ModelWithCollection()));
-		assert200(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(new Model().name("test")))));
+		assert200(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model()))));
 	}
 
 	@Test
 	@Override
 	public void bodyWithCollection400() {
 		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(new Model()))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().name(null)))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().name("abcdef")))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(null)))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(new Embedded())))));
 	}
 
 	@Test
@@ -51,8 +57,12 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 
 	@Test
 	@Override
-	public void queryParam404() {
+	public void queryParam400() {
 		assert400(() -> client.queryParam(0));
 		assert400(() -> client.queryParam(3));
+	}
+
+	private Model model() {
+		return new Model().name("foo").embedded(new Embedded().name("bar"));
 	}
 }

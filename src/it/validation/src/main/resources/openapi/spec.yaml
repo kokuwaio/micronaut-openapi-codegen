@@ -55,14 +55,22 @@ paths:
       responses:
         200:
           description: Ok.
-        404:
-          description: NotFound.
+        400:
+          description: BadRequest.
 components:
   schemas:
+    Embedded:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
     Model:
       type: object
       required:
       - name
+      - embedded
       properties:
         id:
           type: integer
@@ -70,6 +78,8 @@ components:
         name:
           type: string
           maxLength: 5
+        embedded:
+          $ref: '#/components/schemas/Embedded'
     ModelWithCollection:
       type: object
       required:
