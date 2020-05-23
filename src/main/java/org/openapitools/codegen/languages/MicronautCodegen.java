@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenModel;
@@ -59,6 +60,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			"offset-time", OffsetTime.class);
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
+	private static final String UUID_PATTERN = StringUtils.repeat("[a-f0-9]", 8)
+			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 4)
+			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 12);
 	private boolean generateApiTests = true;
 	private boolean dateTimeRelaxed = true;
 	private boolean introspected = true;
@@ -68,11 +72,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	public MicronautCodegen() {
 
-		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
+		cliOptions.add(CliOption.newBoolean(
+				USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
-		cliOptions.add(CliOption.newBoolean(JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
+		cliOptions.add(CliOption.newBoolean(
+				JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -123,7 +129,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		apiPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.API_PACKAGE, k -> "changeMe");
 		modelPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.MODEL_PACKAGE, k -> apiPackage);
-		invokerPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.INVOKER_PACKAGE, k -> apiPackage);
+		invokerPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.INVOKER_PACKAGE,
+				k -> apiPackage);
 
 		super.processOpts();
 
@@ -191,12 +198,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// add pattern to path paramters
 
-		var uuid = "[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]";
 		if (CollectionUtils.isNotEmpty(operation.pathParams)) {
 			for (var param : operation.pathParams) {
 				var name = param.paramName;
 				if (param.isUuid) {
-					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + uuid + "}");
+					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + UUID_PATTERN + "}");
 				}
 				if (param.isString && param.maxLength != null) {
 					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + param.maxLength + "}");
@@ -262,7 +268,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
 		super.postProcessModelProperty(model, property);
 		if (property.defaultValue != null && property.isEnum) {
-			property.defaultValue = toEnumName(property) + "." + toEnumVarName(property.defaultValue, property.dataType);
+			property.defaultValue = toEnumName(property) + "."
+					+ toEnumVarName(property.defaultValue, property.dataType);
 		}
 	}
 

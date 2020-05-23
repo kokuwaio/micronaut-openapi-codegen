@@ -1,6 +1,6 @@
 ## Features
 
- * generate api interfaces (see [declarative client](https://docs.micronaut.io/1.3.3/guide/index.html#clientAnnotation))
+ * generate api interfaces (see [declarative client](https://docs.micronaut.io/1.3.5/guide/index.html#clientAnnotation))
  * generate model objects with fluent and property accessors
  * generate interfaces for api tests based on method name and return code
  * genarate client interfaces with mironaut **clientId**
@@ -43,12 +43,12 @@ If `jacksonDatabindNullable=true` is configured always `JsonNullable.undefined()
 
 Display dependency updates:
 ```
-mvn versions:display-property-updates
+mvn versions:display-property-updates -U
 ```
 
 Update dependencies:
 ```
-mvn versions:update-properties -DgenerateBackupPoms=false
+mvn versions:update-properties
 ```
 
 ### Release locally
