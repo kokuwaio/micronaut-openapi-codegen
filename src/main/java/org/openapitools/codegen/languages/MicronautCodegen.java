@@ -267,9 +267,17 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
 		super.postProcessModelProperty(model, property);
-		if (property.defaultValue != null && property.isEnum) {
-			property.defaultValue = toEnumName(property) + "."
-					+ toEnumVarName(property.defaultValue, property.dataType);
+		if (property.isEnum) {
+			// handle maps with emum as value, hono uses this spec (would not recommend this)
+			if (property.isMapContainer && property.items != null) {
+				property.dataType = property.items.dataType;
+				property.datatypeWithEnum = typeMapping.get("map")
+						+ "<" + typeMapping.get("string") + ", " + toEnumName(property) + ">";
+			}
+			if (property.defaultValue != null) {
+				property.defaultValue = toEnumName(property) + "."
+						+ toEnumVarName(property.defaultValue, property.dataType);
+			}
 		}
 	}
 
