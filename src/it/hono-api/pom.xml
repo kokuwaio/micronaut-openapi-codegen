@@ -32,25 +32,14 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/device-registry-v1.yaml</inputSpec>
+							<inputSpec>https://raw.githubusercontent.com/eclipse/hono/1.2.2/site/documentation/content/api/management/device-registry-v1.yaml</inputSpec>
+							<skipValidateSpec>true</skipValidateSpec>
 							<apiPackage>org.eclipse.hono.api</apiPackage>
-						</configuration>
-					</execution>
-					<execution>
-						<id>admin</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/device-registry-admin.yaml</inputSpec>
-							<apiPackage>org.eclipse.hono.api.admin</apiPackage>
+							<modelPackage>org.eclipse.hono.model</modelPackage>
+							<invokerPackage>org.eclipse.hono</invokerPackage>
 						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<modelPackage>org.eclipse.hono.model</modelPackage>
-					<invokerPackage>org.eclipse.hono</invokerPackage>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
