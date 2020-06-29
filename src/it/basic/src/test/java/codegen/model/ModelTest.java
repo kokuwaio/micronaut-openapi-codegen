@@ -35,12 +35,14 @@ class ModelTest {
 	void inheritanceIsAssignableFrom() {
 		assertTrue(InheritanceModel.class.isAssignableFrom(InheritanceModel1.class));
 		assertTrue(InheritanceModel.class.isAssignableFrom(InheritanceModel2.class));
+		assertTrue(InheritanceModel.class.isAssignableFrom(InheritanceModel2a.class));
+		assertTrue(InheritanceModel2.class.isAssignableFrom(InheritanceModel2a.class));
 	}
 
 	@Test
 	@DisplayName("inheritance: test with jackson")
 	void inheritanceJackson() throws IOException {
-		var expected = new InheritanceModel2().b("b2").id(2).name("b2");
+		var expected = new InheritanceModel2a().c("c2").b("b2").id(2).name("b2");
 		var json = mapper.writeValueAsBytes(expected);
 		var actual = mapper.readValue(json, InheritanceModel.class);
 		assertEquals(expected, actual);

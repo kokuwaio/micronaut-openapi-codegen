@@ -504,6 +504,7 @@ components:
         mapping:
           InheritanceModel1: '#/components/schemas/InheritanceModel1'
           InheritanceModel2: '#/components/schemas/InheritanceModel2'
+          InheritanceModel2a: '#/components/schemas/InheritanceModel2a'
       properties:
         id:
           type: integer
@@ -521,6 +522,12 @@ components:
       - $ref: '#/components/schemas/InheritanceModel'
       - properties:
           b:
+            type: string
+    InheritanceModel2a:
+      allOf:
+      - $ref: '#/components/schemas/InheritanceModel2'
+      - properties:
+          c:
             type: string
     QueryModel:
       type: object
