@@ -194,6 +194,7 @@
 					<output>${project.build.directory}</output>
 					<configOptions>
 						<useBeanValidation>false</useBeanValidation>
+						<useOptionals>false</useOptionals>
 					</configOptions>
 				</configuration>
 				<dependencies>

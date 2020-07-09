@@ -11,10 +11,10 @@
 {{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}			@javax.validation.constraints.Size(min = {{minLength}})
 {{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}			@javax.validation.constraints.Size(max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}			@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{/useBeanValidation}}{{^required}}{{^isBodyParam}}			@javax.annotation.Nullable
+{{/maxLength}}{{/minLength}}{{/useBeanValidation}}{{^required}}{{^isBodyParam}}{{^useOptionals}}			@javax.annotation.Nullable{{/useOptionals}}{{#useOptionals}}			@javax.annotation.Nonnull{{/useOptionals}}
 {{/isBodyParam}}{{/required}}{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isContainer}}(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}}){{/isContainer}}
 {{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}			{{{dataType}}} {{paramName}}{{#hasMore}},
+{{/isHeaderParam}}			{{#isBodyParam}}{{{dataType}}}{{/isBodyParam}}{{^isBodyParam}}{{#required}}{{{dataType}}}{{/required}}{{^required}}{{#useOptionals}}java.util.Optional<{{{dataType}}}>{{/useOptionals}}{{^useOptionals}}{{{dataType}}}{{/useOptionals}}{{/required}}{{/isBodyParam}} {{paramName}}{{#hasMore}},
 {{/hasMore}}{{/allParams}}

@@ -1,0 +1,40 @@
+openapi: 3.0.2
+info:
+  title: Test Spec
+  version: '0'
+paths:
+  /elements:
+    post:
+      tags:
+        - optionals
+      operationId: post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        201:
+          description: C
+    get:
+      operationId: get
+      tags:
+        - optionals
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+        - in: query
+          name: size
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+

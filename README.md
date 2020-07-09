@@ -14,6 +14,8 @@
  * useBeanValidation: generate validation annotations (default `true`)
  * useGenericResponse: return generic container or specifc model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
  * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `false`)
+ * useOptionals: optional parameters are generated as `java.util.Optional` (default `true`)
+ 
 
 ### Null handling and default values
 
