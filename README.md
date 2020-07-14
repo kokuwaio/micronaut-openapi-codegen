@@ -41,6 +41,13 @@ If `jacksonDatabindNullable=true` is configured always `JsonNullable.undefined()
 
 ## Build & Release
 
+### Test
+
+Run single test:
+```
+mvn verify -Dinvoker.parallelThreads=1 -Dinvoker.streamLogs=true -Dinvoker.test=basic
+```
+
 ### Dependency updates
 
 Display dependency updates:
