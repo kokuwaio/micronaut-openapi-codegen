@@ -14,7 +14,7 @@
 
 		<!-- micronaut -->
 		<dependency>
-			<groupId>io.micronaut</groupId>
+			<groupId>io.micronaut.security</groupId>
 			<artifactId>micronaut-security-jwt</artifactId>
 		</dependency>
 
