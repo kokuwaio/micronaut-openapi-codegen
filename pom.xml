@@ -84,6 +84,20 @@
 
 			<!-- run tests -->
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>cpu-count</goal>
+						</goals>
+						<configuration>
+							<cpuCount>invoker.parallelThreads</cpuCount>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-invoker-plugin</artifactId>
 				<executions>
@@ -97,7 +111,6 @@
 				</executions>
 				<configuration>
 					<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-					<streamLogs>true</streamLogs>
 					<filterProperties>
 						<version.io.micronaut>${version.io.micronaut}</version.io.micronaut>
 						<version.org.apache.maven.plugins.resources>${version.org.apache.maven.plugins.resources}</version.org.apache.maven.plugins.resources>
@@ -110,7 +123,6 @@
 						<goal>clean</goal>
 						<goal>verify</goal>
 					</goals>
-					<showErrors>true</showErrors>
 					<writeJunitReport>true</writeJunitReport>
 				</configuration>
 			</plugin>
