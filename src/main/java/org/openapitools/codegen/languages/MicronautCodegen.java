@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
 
 import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpStatus;
+import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -81,6 +82,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(
 				JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
+		cliOptions.add(CliOption.newBoolean(SUPPORT_ASYNC, "Use async responses", supportAsync));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newBoolean(OPTIONALS, "use optionals instead of @Nullable."));
 
@@ -117,6 +119,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("BigDecimal", Double.class.getName());
 		typeMapping.put("UUID", UUID.class.getName());
 		typeMapping.put("URI", URI.class.getName());
+		typeMapping.put("asyncCompletable", "io.reactivex.Completable");
+		typeMapping.put("asyncSingle", "io.reactivex.Single");
+		typeMapping.put("asyncMaybe", "io.reactivex.Maybe");
+		typeMapping.put("asyncFlowable", "io.reactivex.Flowable");
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
 	}
@@ -237,6 +243,26 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (generateApiTests && hasSecurityJwt) {
 			addSupportingFile(testFolder, invokerPackage, "JwtProvider");
 			addSupportingFile(testFolder, invokerPackage, "JwtBuilder");
+		}
+
+		// async
+
+		if (supportAsync) {
+			var isVoid = operation.returnType == null;
+			var isStream = source.getResponses().containsKey("200")
+					&& source.getResponses().get("200").getContent().containsKey(MediaType.APPLICATION_JSON_STREAM);
+			extensions.put("asyncContainer", typeMapping.get("asyncSingle"));
+			extensions.put("asyncStream", isStream);
+			if (!useGenericResponse) {
+				if (isVoid) {
+					extensions.put("asyncContainer", typeMapping.get("asyncCompletable"));
+				} else if ((boolean) operation.vendorExtensions.getOrDefault("has404", false)) {
+					extensions.put("asyncContainer", typeMapping.get("asyncMaybe"));
+				}
+			}
+			if (isStream) {
+				extensions.put("asyncContainer", typeMapping.get("asyncFlowable"));
+			}
 		}
 
 		return operation;

@@ -15,7 +15,7 @@
  * useGenericResponse: return generic container or specifc model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
  * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `false`)
  * useOptionals: optional parameters are generated as `java.util.Optional` (default `true`)
- 
+ * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.0.0/guide/index.html#reactiveServer)
 
 ### Null handling and default values
 
