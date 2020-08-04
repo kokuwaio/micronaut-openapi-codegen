@@ -228,9 +228,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// add wildcard for lists for clients (api client & test client)
 
-		var containerParams = operation.queryParams.stream().filter(p -> p.isContainer).collect(Collectors.toList());
-		if (!containerParams.isEmpty()) {
-			extensions.put("path", operation.path + "?" + containerParams.stream()
+		var listParams = operation.queryParams.stream().filter(p -> p.isListContainer).collect(Collectors.toList());
+		if (!listParams.isEmpty()) {
+			extensions.put("path", operation.path + "?" + listParams.stream()
 					.map(p -> "{&" + p.baseName + "*}")
 					.collect(Collectors.joining()));
 		} else {
