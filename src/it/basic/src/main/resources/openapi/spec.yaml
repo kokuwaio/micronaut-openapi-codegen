@@ -458,6 +458,9 @@ components:
           format: date-time
         number:
           type: number
+        binary:
+          type: string
+          format: binary
         array:
           type: array
           items:

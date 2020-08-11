@@ -140,4 +140,10 @@ class ModelTest {
 	void defaultValueEnumeration() {
 		assertEquals(DefaultEnumeration.BAR, new Model().getDefaultEnumeration());
 	}
+
+	@Test
+	@DisplayName("model: binary type")
+	void modelBinary() throws ReflectiveOperationException {
+		assertEquals(byte[].class, Model.class.getDeclaredField("binary").getType());
+	}
 }

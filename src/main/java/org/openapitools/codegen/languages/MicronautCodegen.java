@@ -119,6 +119,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("BigDecimal", Double.class.getName());
 		typeMapping.put("UUID", UUID.class.getName());
 		typeMapping.put("URI", URI.class.getName());
+		typeMapping.put("file", "byte[]");
 		typeMapping.put("asyncCompletable", "io.reactivex.Completable");
 		typeMapping.put("asyncSingle", "io.reactivex.Single");
 		typeMapping.put("asyncMaybe", "io.reactivex.Maybe");
