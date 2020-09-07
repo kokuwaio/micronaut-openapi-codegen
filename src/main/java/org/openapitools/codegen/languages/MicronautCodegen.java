@@ -196,7 +196,15 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		var operation = super.fromOperation(path, httpMethod, source, servers);
 		var extensions = operation.vendorExtensions;
-		var response = operation.responses.iterator().next();
+
+		// get default response with status
+
+		var response = operation.responses.stream()
+				.filter(r -> r.isDefault).findAny()
+				.orElse(operation.responses.iterator().next());
+		if ("0".equals(response.code)) {
+			response.code = response.dataType == null ? "204" : "200";
+		}
 
 		// remove media type */*
 

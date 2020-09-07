@@ -65,4 +65,12 @@ class ResponseController implements ResponseApi {
 			throw new HttpStatusException(HttpStatus.NOT_FOUND, null);
 		}
 	}
+
+	@Override
+	public void defaultWithNoContent() {}
+
+	@Override
+	public String defaultWithOk() {
+		return STRING;
+	}
 }

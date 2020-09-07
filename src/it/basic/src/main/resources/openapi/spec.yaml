@@ -164,6 +164,26 @@ paths:
                 type: number
         404:
           description: Ok.
+  /response/default/ok:
+    get:
+      operationId: defaultWithOk
+      tags:
+      - response
+      responses:
+        default:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+  /response/default/noContent:
+    get:
+      operationId: defaultWithNoContent
+      tags:
+      - response
+      responses:
+        default:
+          description: NoContent.
   /model:
     get:
       description: 'Get list of models'

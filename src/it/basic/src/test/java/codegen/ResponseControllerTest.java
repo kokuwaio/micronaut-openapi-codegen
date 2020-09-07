@@ -120,4 +120,16 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 		var response = assert200(() -> client.header());
 		assertEquals(ResponseController.DOUBLE, response.getHeaders().get("foo", Double.class));
 	}
+
+	@Test
+	@Override
+	public void defaultWithNoContent204() {
+		assert204(() -> client.defaultWithNoContent());
+	}
+
+	@Test
+	@Override
+	public void defaultWithOk200() {
+		assert200(() -> client.defaultWithOk());
+	}
 }
