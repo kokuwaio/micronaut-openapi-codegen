@@ -11,6 +11,8 @@ import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
+import codegen.model.ResponseMultiple200;
+import codegen.model.ResponseMultiple300;
 import io.micronaut.test.annotation.MicronautTest;
 
 @MicronautTest
@@ -44,28 +46,36 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 	@Override
 	public void multiple200() {
 		var response = assert200(() -> client.multiple(false));
-		assertEquals(ResponseController.STRING, response.body());
+		assertEquals(
+				new ResponseMultiple200().setFoo(ResponseController.STRING),
+				response.getBody(ResponseMultiple200.class).orElse(null));
 	}
 
 	@Test
 	@Override
 	public void multiple300() {
 		var response = assert300(() -> client.multiple(true));
-		assertEquals(ResponseController.DOUBLE, response.getBody(Double.class).orElse(null));
+		assertEquals(
+				new ResponseMultiple300().setBar(ResponseController.DOUBLE),
+				response.getBody(ResponseMultiple300.class).orElse(null));
 	}
 
 	@Test
 	@Override
 	public void multipleNotFound200() {
 		var response = assert200(() -> client.multipleNotFound(false, true));
-		assertEquals(ResponseController.STRING, response.body());
+		assertEquals(
+				new ResponseMultiple200().setFoo(ResponseController.STRING),
+				response.getBody(ResponseMultiple200.class).orElse(null));
 	}
 
 	@Test
 	@Override
 	public void multipleNotFound300() {
 		var response = assert300(() -> client.multipleNotFound(true, true));
-		assertEquals(ResponseController.DOUBLE, response.getBody(Double.class).orElse(null));
+		assertEquals(
+				new ResponseMultiple300().setBar(ResponseController.DOUBLE),
+				response.getBody(ResponseMultiple300.class).orElse(null));
 	}
 
 	@Test

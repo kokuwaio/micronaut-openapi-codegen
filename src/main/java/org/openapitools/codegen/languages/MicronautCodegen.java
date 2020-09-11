@@ -205,6 +205,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if ("0".equals(response.code)) {
 			response.code = response.dataType == null ? "204" : "200";
 		}
+		var responsesWithBody = operation.responses.stream()
+				.filter(r -> Integer.valueOf(r.code) < 400)
+				.filter(r -> r.dataType != null)
+				.count();
+		if (responsesWithBody > 1) {
+			operation.returnType = null;
+		}
 
 		// remove media type */*
 
@@ -214,7 +221,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// store method and status for micronaut
 
 		extensions.put("httpMethod", httpMethod.toUpperCase().charAt(0) + httpMethod.substring(1).toLowerCase());
-		extensions.put("generic", useGenericResponse || response.hasHeaders);
+		extensions.put("generic", useGenericResponse || response.hasHeaders || responsesWithBody > 1);
 		extensions.put("status", HttpStatus.valueOf(Integer.valueOf(response.code)).name());
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
 

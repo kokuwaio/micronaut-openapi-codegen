@@ -126,13 +126,13 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/ResponseMultiple200'
         300:
           description: Ok.
           content:
             application/json:
               schema:
-                type: number
+                $ref: '#/components/schemas/ResponseMultiple300'
   /response/multiple-notfound:
     get:
       operationId: multipleNotFound
@@ -155,13 +155,13 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/ResponseMultiple200'
         300:
           description: Ok.
           content:
             application/json:
               schema:
-                type: number
+                $ref: '#/components/schemas/ResponseMultiple300'
         404:
           description: Ok.
   /response/default/ok:
@@ -567,3 +567,13 @@ components:
           type: array
           items:
             type: string
+    ResponseMultiple200:
+      type: object
+      properties:
+        foo: 
+          type: string
+    ResponseMultiple300:
+      type: object
+      properties:
+        bar: 
+          type: number
