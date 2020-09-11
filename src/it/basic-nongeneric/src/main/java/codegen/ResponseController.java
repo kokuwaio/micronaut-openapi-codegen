@@ -3,6 +3,8 @@ package codegen;
 import java.util.List;
 import java.util.Optional;
 
+import codegen.model.ResponseMultiple200;
+import codegen.model.ResponseMultiple300;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
@@ -31,19 +33,19 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public String multiple(Boolean redirect) {
+	public HttpResponse<?> multiple(Boolean redirect) {
 		if (redirect) {
-			throw new HttpStatusException(HttpStatus.MULTIPLE_CHOICES, DOUBLE);
+			return HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE));
 		}
-		return STRING;
+		return HttpResponse.ok(new ResponseMultiple200().setFoo(STRING));
 	}
 
 	@Override
-	public Optional<String> multipleNotFound(Boolean redirect, Boolean found) {
+	public HttpResponse<?> multipleNotFound(Boolean redirect, Boolean found) {
 		if (redirect) {
-			throw new HttpStatusException(HttpStatus.MULTIPLE_CHOICES, DOUBLE);
+			return HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE));
 		}
-		return found ? Optional.of(STRING) : Optional.empty();
+		return found ? HttpResponse.ok(new ResponseMultiple200().setFoo(STRING)) : HttpResponse.notFound();
 	}
 
 	@Override
