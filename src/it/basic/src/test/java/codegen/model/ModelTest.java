@@ -47,6 +47,21 @@ class ModelTest {
 	}
 
 	@Test
+	@DisplayName("inheritance: test with jackson and type")
+	void inheritanceJacksonType() throws IOException {
+		assertTrue(InheritanceModelWithType.class.isAssignableFrom(InheritanceModelWithType1.class));
+		assertTrue(InheritanceModelWithType.class.isAssignableFrom(InheritanceModelWithType2.class));
+		assertTrue(InheritanceModelWithType.class.isAssignableFrom(InheritanceModelWithType3.class));
+		assertTrue(InheritanceModelWithType2.class.isAssignableFrom(InheritanceModelWithType3.class));
+		var expected = new InheritanceModelWithType3().c("c3").b("b2").id(2).name("b2");
+		var json = mapper.writeValueAsString(expected);
+		var actual = mapper.readValue(json, InheritanceModelWithType.class);
+		assertEquals(InheritanceModelType.INHERITANCEMODEL3, expected.getType(), "type");
+		assertEquals(1, json.split("type", -1).length - 1, "multiple");
+		assertEquals(expected, actual);
+	}
+
+	@Test
 	@DisplayName("introspected: present by default")
 	void introspected() {
 		assertNotNull(Model.class.getAnnotation(Introspected.class), "no annotation found");
