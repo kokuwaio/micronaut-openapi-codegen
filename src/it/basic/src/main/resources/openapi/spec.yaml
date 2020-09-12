@@ -545,6 +545,45 @@ components:
       - properties:
           b:
             type: string
+    InheritanceModelType:
+      type: string
+      enum:
+      - InheritanceModel1
+      - InheritanceModel2
+      - InheritanceModel3
+    InheritanceModelWithType:
+      discriminator:
+        propertyName: type
+        mapping:
+          InheritanceModel1: '#/components/schemas/InheritanceModelWithType1'
+          InheritanceModel2: '#/components/schemas/InheritanceModelWithType2'
+          InheritanceModel3: '#/components/schemas/InheritanceModelWithType3'
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/InheritanceModelType'
+        name:
+          type: string
+    InheritanceModelWithType1:
+      allOf:
+      - $ref: '#/components/schemas/InheritanceModelWithType'
+      - properties:
+          a:
+            type: string
+    InheritanceModelWithType2:
+      allOf:
+      - $ref: '#/components/schemas/InheritanceModelWithType'
+      - properties:
+          b:
+            type: string
+    InheritanceModelWithType3:
+      allOf:
+      - $ref: '#/components/schemas/InheritanceModelWithType2'
+      - properties:
+          c:
+            type: string
     QueryModel:
       type: object
       properties:

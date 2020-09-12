@@ -314,6 +314,67 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
+	public Map<String, Object> updateAllModels(Map<String, Object> objs) {
+		var superObjs = super.updateAllModels(objs);
+
+		Map<String, CodegenModel> allModels = getAllModels(objs);
+		for (CodegenModel model : allModels.values()) {
+
+			var discriminator = model.discriminator;
+			if (discriminator == null) {
+				continue;
+			}
+
+			// remove discriminator type
+
+			model.vars.stream()
+					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
+					.findAny().ifPresent(property -> {
+						discriminator.setPropertyType(property.getDataType());
+						model.vars.remove(property);
+					});
+
+			// add discriminator value to submodel
+
+			for (var mappedModel : discriminator.getMappedModels()) {
+
+				var subModel = allModels.get(mappedModel.getModelName());
+				if (subModel == null) {
+					LOGGER.warn("{} - model in discriminator {} with name {} not found",
+							model.name, discriminator.getPropertyName(), mappedModel.getModelName());
+					continue;
+				}
+				if (subModel.parentModel == null) {
+					subModel.parentModel = model;
+					subModel.parent = model.getClassname();
+					LOGGER.warn("{} added missing sub model {}", model.name, subModel.name);
+				}
+				subModel.vars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
+
+				Map<String, Object> extensions = subModel.getVendorExtensions();
+				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
+				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
+				switch (discriminator.getPropertyType()) {
+					case "java.lang.String":
+						extensions.put("discriminatorPropertyValue", '"' + mappedModel.getMappingName() + '"');
+						break;
+					case "java.lang.Long":
+					case "java.lang.Integer":
+					case "java.lang.Double":
+					case "java.lang.Float":
+						extensions.put("discriminatorPropertyValue", mappedModel.getMappingName());
+						break;
+					default:
+						extensions.put("discriminatorPropertyValue", discriminator.getPropertyType() + "."
+								+ toEnumVarName(mappedModel.getMappingName(), ""));
+				}
+			}
+		}
+
+		return superObjs;
+	}
+
+	@Override
 	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
 		super.postProcessModelProperty(model, property);
 		if (property.isEnum) {
