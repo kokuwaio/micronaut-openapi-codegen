@@ -40,6 +40,7 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
+import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
 
 public class MicronautCodegen extends AbstractJavaCodegen
@@ -265,8 +266,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		if (supportAsync) {
 			var isVoid = operation.returnType == null;
-			var isStream = source.getResponses().containsKey("200")
-					&& source.getResponses().get("200").getContent().containsKey(MediaType.APPLICATION_JSON_STREAM);
+			var isStream = Optional.ofNullable(source.getResponses().get("200"))
+					.map(ApiResponse::getContent) // may be null
+					.filter(content -> content.containsKey(MediaType.APPLICATION_JSON_STREAM))
+					.isPresent();
 			extensions.put("asyncContainer", typeMapping.get("asyncSingle"));
 			extensions.put("asyncStream", isStream);
 			if (!useGenericResponse) {

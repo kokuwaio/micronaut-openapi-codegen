@@ -59,6 +59,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Model'
+  /noContent:
+    get:
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok but no content defined.
   /stream:
     get:
       operationId: stream

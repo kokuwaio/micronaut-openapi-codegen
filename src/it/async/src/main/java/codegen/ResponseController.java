@@ -34,6 +34,11 @@ public class ResponseController implements ResponseApi {
 	}
 
 	@Override
+	public Single<HttpResponse<?>> noContentGet() {
+		return Single.just(HttpResponse.ok());
+	}
+
+	@Override
 	public HttpResponse<Flowable<Model>> stream() {
 		return HttpResponse.ok(Flowable.fromIterable(ARRAY));
 	}

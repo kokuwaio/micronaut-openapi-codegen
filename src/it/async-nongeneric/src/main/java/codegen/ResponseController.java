@@ -2,6 +2,7 @@ package codegen;
 
 import java.util.List;
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
@@ -27,6 +28,11 @@ public class ResponseController implements ResponseApi {
 	@Override
 	public Maybe<Model> maybe(Boolean found) {
 		return found ? Maybe.just(SINGLE) : Maybe.empty();
+	}
+
+	@Override
+	public Completable noContentGet() {
+		return Completable.complete();
 	}
 
 	@Override
