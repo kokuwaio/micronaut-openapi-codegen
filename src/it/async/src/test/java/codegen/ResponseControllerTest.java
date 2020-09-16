@@ -56,6 +56,12 @@ public class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
+	public void noContentGet200() {
+		assert200(() -> client.noContentGet());
+	}
+
+	@Test
+	@Override
 	public void array200() {
 		var response = assert200(() -> client.array());
 		assertEquals(ResponseController.ARRAY, response.body());
