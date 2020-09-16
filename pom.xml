@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.kokuwa</groupId>
 		<artifactId>maven-parent</artifactId>
-		<version>0.1.0</version>
+		<version>0.2.0</version>
 		<relativePath />
 	</parent>
 
@@ -111,14 +111,6 @@
 				</executions>
 				<configuration>
 					<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-					<filterProperties>
-						<version.io.micronaut>${version.io.micronaut}</version.io.micronaut>
-						<version.org.apache.maven.plugins.resources>${version.org.apache.maven.plugins.resources}</version.org.apache.maven.plugins.resources>
-						<version.org.apache.maven.plugins.surefire>${version.org.apache.maven.plugins.surefire}</version.org.apache.maven.plugins.surefire>
-						<version.org.junit.jupiter>${version.org.junit.jupiter}</version.org.junit.jupiter>
-						<version.org.openapitools>${version.org.openapitools}</version.org.openapitools>
-						<version.org.openapitools.jackson.nullable>${version.org.openapitools.jackson.nullable}</version.org.openapitools.jackson.nullable>
-					</filterProperties>
 					<goals>
 						<goal>clean</goal>
 						<goal>verify</goal>
