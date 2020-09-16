@@ -559,13 +559,8 @@ components:
           InheritanceModel2: '#/components/schemas/InheritanceModelWithType2'
           InheritanceModel3: '#/components/schemas/InheritanceModelWithType3'
       properties:
-        id:
-          type: integer
-          format: int32
         type:
           $ref: '#/components/schemas/InheritanceModelType'
-        name:
-          type: string
     InheritanceModelWithType1:
       allOf:
       - $ref: '#/components/schemas/InheritanceModelWithType'

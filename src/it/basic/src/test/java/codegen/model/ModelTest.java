@@ -44,6 +44,7 @@ class ModelTest {
 		var json = mapper.writeValueAsBytes(expected);
 		var actual = mapper.readValue(json, InheritanceModel.class);
 		assertEquals(expected, actual);
+		assertEquals(expected.hashCode(), actual.hashCode());
 	}
 
 	@Test
@@ -53,12 +54,13 @@ class ModelTest {
 		assertTrue(InheritanceModelWithType.class.isAssignableFrom(InheritanceModelWithType2.class));
 		assertTrue(InheritanceModelWithType.class.isAssignableFrom(InheritanceModelWithType3.class));
 		assertTrue(InheritanceModelWithType2.class.isAssignableFrom(InheritanceModelWithType3.class));
-		var expected = new InheritanceModelWithType3().c("c3").b("b2").id(2).name("b2");
+		var expected = new InheritanceModelWithType3().c("c3").b("b2");
 		var json = mapper.writeValueAsString(expected);
 		var actual = mapper.readValue(json, InheritanceModelWithType.class);
 		assertEquals(InheritanceModelType.INHERITANCEMODEL3, expected.getType(), "type");
 		assertEquals(1, json.split("type", -1).length - 1, "multiple");
 		assertEquals(expected, actual);
+		assertEquals(expected.hashCode(), actual.hashCode());
 	}
 
 	@Test
