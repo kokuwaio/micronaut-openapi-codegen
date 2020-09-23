@@ -13,7 +13,7 @@
  * dateTimeRelaxed: add type registrar for releaxed time converter (default `true`)
  * useBeanValidation: generate validation annotations (default `true`)
  * useGenericResponse: return generic container or specifc model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
- * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `false`)
+ * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
  * useOptionals: optional parameters are generated as `java.util.Optional` (default `true`)
  * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.0.3/guide/index.html#reactiveServer)
 
@@ -33,6 +33,26 @@ Container (array/map):
  
 If `jacksonDatabindNullable=true` is configured always `JsonNullable.undefined()` is set.
 
+Do not forget to add the dependency to `pom.xml`:
+```xml
+<dependency>
+	<groupId>org.openapitools</groupId>
+	<artifactId>jackson-databind-nullable</artifactId>
+	<version>0.2.1</version>
+</dependency>
+```
+
+And register [Jackson Module](https://github.com/OpenAPITools/jackson-databind-nullable):
+```java
+@Factory
+public class ApplicationFactory {
+
+	@Singleton
+	JsonNullableModule jsonNullableModule() {
+		return new JsonNullableModule();
+	}
+}
+```
 
 ### Not supported
 

@@ -185,6 +185,7 @@
 					<configOptions>
 						<useBeanValidation>false</useBeanValidation>
 						<useOptionals>false</useOptionals>
+						<jacksonDatabindNullable>false</jacksonDatabindNullable>
 					</configOptions>
 				</configuration>
 				<dependencies>

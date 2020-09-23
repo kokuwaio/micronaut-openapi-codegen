@@ -71,7 +71,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean introspected = true;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
-	private boolean jacksonDatabindNullable = false;
+	private boolean jacksonDatabindNullable = true;
 	private boolean useOptionals = true;
 
 	public MicronautCodegen() {
