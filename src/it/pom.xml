@@ -26,9 +26,9 @@
 		<version.org.apache.maven.plugins.surefire>@version.org.apache.maven.plugins.surefire@</version.org.apache.maven.plugins.surefire>
 		<version.org.codehaus.mojo.build-helper>@version.org.codehaus.mojo.build-helper@</version.org.codehaus.mojo.build-helper>
 
-		<version.ch.qos.logback>1.2.3</version.ch.qos.logback>
 		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
 		<version.org.openapitools>@version.org.openapitools@</version.org.openapitools>
+		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
 
 	</properties>
 
@@ -42,6 +42,11 @@
 				<version>${version.io.micronaut}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openapitools</groupId>
+				<artifactId>jackson-databind-nullable</artifactId>
+				<version>${version.org.openapitools.jackson.nullable}</version>
 			</dependency>
 
 		</dependencies>
@@ -72,7 +77,6 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>${version.ch.qos.logback}</version>
 			<scope>runtime</scope>
 		</dependency>
 
