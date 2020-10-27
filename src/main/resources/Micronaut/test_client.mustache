@@ -8,14 +8,14 @@ import {{modelPackage}}.*;{{/modelPackage}}
 public interface {{classname}}TestClient { {{#operations}}{{#operation}}
 
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
-	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
-	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
 	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{nickname}}({{#hasParams}}
 {{>testParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{#vendorExtensions.has401}}
 
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{#hasConsumes}}
-	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
-	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
 	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{nickname}}(
 			@javax.annotation.Nullable
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
