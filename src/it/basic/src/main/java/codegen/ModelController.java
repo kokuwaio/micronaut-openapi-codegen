@@ -34,7 +34,7 @@ class ModelController implements ModelApi {
 	}
 
 	@Override
-	public HttpResponse<?> create(Model model) {
+	public HttpResponse<Object> create(Model model) {
 		if (model.getId() != null) {
 			if (find(model.getId()).isPresent()) {
 				return HttpResponse.status(HttpStatus.CONFLICT, "dupplicate id");
@@ -47,7 +47,7 @@ class ModelController implements ModelApi {
 	}
 
 	@Override
-	public HttpResponse<?> delete(Integer modelId) {
+	public HttpResponse<Object> delete(Integer modelId) {
 		return store.remove(modelId) ? HttpResponse.noContent() : HttpResponse.notFound();
 	}
 

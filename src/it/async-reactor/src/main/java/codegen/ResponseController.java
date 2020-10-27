@@ -14,7 +14,7 @@ public class ResponseController implements ResponseApi {
 	static final List<Model> ARRAY = List.of(new Model().string("a"), new Model().string("b"));
 
 	@Override
-	public Mono<HttpResponse<?>> completable() {
+	public Mono<HttpResponse<Object>> completable() {
 		return Mono.just(HttpResponse.noContent());
 	}
 
@@ -29,7 +29,7 @@ public class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public Mono<HttpResponse<?>> noContentGet() {
+	public Mono<HttpResponse<Object>> noContentGet() {
 		return Mono.just(HttpResponse.ok());
 	}
 

@@ -7,17 +7,17 @@ import io.micronaut.http.annotation.Controller;
 class ValidationController implements ValidationApi {
 
 	@Override
-	public HttpResponse<?> body(Model model) {
+	public HttpResponse<Object> body(Model model) {
 		return HttpResponse.ok();
 	}
 
 	@Override
-	public HttpResponse<?> bodyWithCollection(ModelWithCollection modelWithCollection) {
+	public HttpResponse<Object> bodyWithCollection(ModelWithCollection modelWithCollection) {
 		return HttpResponse.ok();
 	}
 
 	@Override
-	public HttpResponse<?> queryParam(Integer modelId) {
+	public HttpResponse<Object> queryParam(Integer modelId) {
 		return HttpResponse.ok();
 	}
 }

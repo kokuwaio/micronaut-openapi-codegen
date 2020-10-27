@@ -21,7 +21,7 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public HttpResponse<String> header() {
+	public HttpResponse<Object> header() {
 		return HttpResponse.ok();
 	}
 
@@ -31,7 +31,7 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public HttpResponse<?> multiple(Boolean redirect) {
+	public HttpResponse<Object> multiple(Boolean redirect) {
 		if (redirect) {
 			return HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE));
 		}
@@ -39,7 +39,7 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public HttpResponse<?> multipleNotFound(Boolean redirect, Boolean found) {
+	public HttpResponse<Object> multipleNotFound(Boolean redirect, Boolean found) {
 		if (redirect) {
 			return HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE));
 		}
@@ -57,17 +57,17 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public HttpResponse<?> voidNormal() {
+	public HttpResponse<Object> voidNormal() {
 		return HttpResponse.noContent();
 	}
 
 	@Override
-	public HttpResponse<?> voidNotFound(Boolean found) {
+	public HttpResponse<Object> voidNotFound(Boolean found) {
 		return found ? HttpResponse.noContent() : HttpResponse.notFound();
 	}
 
 	@Override
-	public HttpResponse<?> defaultWithNoContent() {
+	public HttpResponse<Object> defaultWithNoContent() {
 		return HttpResponse.noContent();
 	}
 
