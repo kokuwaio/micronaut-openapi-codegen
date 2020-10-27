@@ -9,14 +9,13 @@ import java.util.Optional;
 @Controller
 public class OptionalsApiController implements codegen.OptionalsApi {
 
+	@Override
+	public HttpResponse<String> get(Integer size, Optional<String> id) {
+		return null;
+	}
 
-    @Override
-    public HttpResponse<String> get(Integer size, @Nonnull Optional<String> id) {
-        return null;
-    }
-
-    @Override
-    public HttpResponse<?> post(String body) {
-        return null;
-    }
+	@Override
+	public HttpResponse<Object> post(String body) {
+		return null;
+	}
 }

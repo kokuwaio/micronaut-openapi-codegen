@@ -14,7 +14,7 @@ public class ResponseController implements ResponseApi {
 	static final List<Model> ARRAY = List.of(new Model().string("a"), new Model().string("b"));
 
 	@Override
-	public Single<HttpResponse<?>> completable() {
+	public Single<HttpResponse<Object>> completable() {
 		return Single.just(HttpResponse.noContent());
 	}
 
@@ -34,7 +34,7 @@ public class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public Single<HttpResponse<?>> noContentGet() {
+	public Single<HttpResponse<Object>> noContentGet() {
 		return Single.just(HttpResponse.ok());
 	}
 
