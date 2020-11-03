@@ -163,4 +163,10 @@ class ModelTest {
 	void modelBinary() throws ReflectiveOperationException {
 		assertEquals(byte[].class, Model.class.getDeclaredField("binary").getType());
 	}
+
+	@Test
+	@DisplayName("model: any type")
+	void modelAny() throws ReflectiveOperationException {
+		assertEquals(Object.class, Model.class.getDeclaredField("any").getType());
+	}
 }
