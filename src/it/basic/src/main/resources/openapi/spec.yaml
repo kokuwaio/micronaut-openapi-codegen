@@ -504,6 +504,7 @@ components:
         binary:
           type: string
           format: binary
+        any: {}
         array:
           type: array
           items:
