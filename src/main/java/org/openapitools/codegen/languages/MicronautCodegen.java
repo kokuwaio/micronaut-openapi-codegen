@@ -393,6 +393,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 						+ toEnumVarName(property.defaultValue, property.dataType);
 			}
 		}
+		if ("byte[]".equals(property.dataType)) {
+			property.isByteArray = true;
+		}
 	}
 
 	// enum

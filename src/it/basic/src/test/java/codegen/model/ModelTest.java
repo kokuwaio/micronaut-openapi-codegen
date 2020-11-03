@@ -159,9 +159,23 @@ class ModelTest {
 	}
 
 	@Test
+	@DisplayName("model: bytes type")
+	void modelBytes() throws ReflectiveOperationException {
+		assertEquals(byte[].class, Model.class.getDeclaredField("bytes").getType());
+		var model1 = new Model().setBytes("test".getBytes());
+		var model2 = new Model().setBytes("test".getBytes());
+		assertEquals(model1, model2);
+		assertEquals(model1.hashCode(), model2.hashCode());
+	}
+
+	@Test
 	@DisplayName("model: binary type")
 	void modelBinary() throws ReflectiveOperationException {
 		assertEquals(byte[].class, Model.class.getDeclaredField("binary").getType());
+		var model1 = new Model().setBinary("test".getBytes());
+		var model2 = new Model().setBinary("test".getBytes());
+		assertEquals(model1, model2);
+		assertEquals(model1.hashCode(), model2.hashCode());
 	}
 
 	@Test
