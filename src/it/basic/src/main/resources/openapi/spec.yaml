@@ -504,6 +504,9 @@ components:
         binary:
           type: string
           format: binary
+        bytes:
+          type: string
+          format: byte
         any: {}
         array:
           type: array
