@@ -28,6 +28,7 @@ import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenProperty;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
+import org.openapitools.codegen.languages.features.OptionalFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
@@ -44,13 +45,13 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
 
 public class MicronautCodegen extends AbstractJavaCodegen
-		implements BeanValidationFeatures, UseGenericResponseFeatures {
+		implements BeanValidationFeatures, UseGenericResponseFeatures, OptionalFeatures {
 
 	public static final String CLIENT_ID = "clientId";
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String JACKSON_DATABIND_NULLABLE = "jacksonDatabindNullable";
-	public static final String OPTIONALS = "useOptionals";
+	public static final String USE_OPTIONAL_DEPRECATED = "useOptionals";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
 			"period", Period.class,
@@ -72,20 +73,20 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 	private boolean jacksonDatabindNullable = true;
-	private boolean useOptionals = true;
+	private boolean useOptional = true;
 
 	public MicronautCodegen() {
 
 		cliOptions.add(CliOption.newBoolean(
 				USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
+		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "use Optional<T> instead of @Nullable."));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(
 				JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
 		cliOptions.add(CliOption.newBoolean(SUPPORT_ASYNC, "Use async responses", supportAsync));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
-		cliOptions.add(CliOption.newBoolean(OPTIONALS, "use optionals instead of @Nullable."));
 
 		// there is no documentation template yet
 
@@ -101,7 +102,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
 		additionalProperties.put(JACKSON_DATABIND_NULLABLE, jacksonDatabindNullable);
-		additionalProperties.put(OPTIONALS, useOptionals);
+		additionalProperties.put(USE_OPTIONAL, useOptional);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -164,8 +165,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(JACKSON_DATABIND_NULLABLE)) {
 			jacksonDatabindNullable = convertPropertyToBooleanAndWriteBack(JACKSON_DATABIND_NULLABLE);
 		}
-		if (additionalProperties.containsKey(OPTIONALS)) {
-			useOptionals = convertPropertyToBooleanAndWriteBack(OPTIONALS);
+		if (additionalProperties.containsKey(USE_OPTIONAL)) {
+			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL);
+		}
+		if (additionalProperties.containsKey(USE_OPTIONAL_DEPRECATED)) {
+			LOGGER.warn("Use deprecated option {} that was renamed to {}.", USE_OPTIONAL_DEPRECATED, USE_OPTIONAL);
+			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL_DEPRECATED);
 		}
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
@@ -437,6 +442,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public void setUseGenericResponse(boolean useGenericResponse) {
 		this.useGenericResponse = useGenericResponse;
+	}
+
+	@Override
+	public void setUseOptional(boolean useOptional) {
+		this.useOptional = useOptional;
 	}
 
 	// internal
