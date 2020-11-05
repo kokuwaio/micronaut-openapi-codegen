@@ -25,6 +25,7 @@ import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenModel;
 import org.openapitools.codegen.CodegenOperation;
+import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.CodegenProperty;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
@@ -125,10 +126,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("URI", URI.class.getName());
 		typeMapping.put("file", "byte[]");
 		typeMapping.put("AnyType", Object.class.getName());
+		typeMapping.put("fileUpload", "io.micronaut.http.multipart.CompletedFileUpload");
 		typeMapping.put("asyncCompletable", "io.reactivex.Completable");
 		typeMapping.put("asyncSingle", "io.reactivex.Single");
 		typeMapping.put("asyncMaybe", "io.reactivex.Maybe");
 		typeMapping.put("asyncFlowable", "io.reactivex.Flowable");
+		typeMapping.put("asyncFileUpload", "io.micronaut.http.multipart.StreamingFileUpload");
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
 	}
@@ -383,6 +386,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 
 		return superObjs;
+	}
+
+	@Override
+	public void postProcessParameter(CodegenParameter parameter) {
+		if (parameter.isFormParam && parameter.isFile) {
+			parameter.dataType = typeMapping.get(supportAsync ? "asyncFileUpload" : "fileUpload");
+		}
 	}
 
 	@Override
