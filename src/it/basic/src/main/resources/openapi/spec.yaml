@@ -459,6 +459,71 @@ paths:
                     type: string
                 required:
                 - string
+  /mediatype/post-octet-stream:
+    post:
+      operationId: mediatypePostOctetStream
+      tags:
+      - mediatype
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  binary:
+                    type: string
+                    format: binary
+                required:
+                - binary
+  /mediatype/post-multipart:
+    post:
+      # see https://swagger.io/docs/specification/describing-request-body/file-upload/
+      operationId: mediatypePostMultipart
+      tags:
+      - mediatype
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                userId:
+                  type: integer
+                fileName:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: integer
+                  userId:
+                    type: integer
+                  fileName:
+                    type: string
+                  file:
+                    type: string
+                    format: byte
+                required:
+                - orderId
+                - userId
+                - fileName
+                - file
 components:
   schemas:
     StringEnumeration:
