@@ -1,0 +1,18 @@
+name: PullRequest
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: setup
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: dependencies
+      run: mvn -B -q dependency:go-offline
+    - name: verify
+      run: mvn -B verify -Dinvoker.streamLogs=true

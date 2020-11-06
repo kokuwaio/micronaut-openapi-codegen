@@ -1,0 +1,28 @@
+name: Snapshot
+
+on:
+  push:
+    branches:
+    - 'main'
+    - '[1-9]+.[0-9]+.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: setup
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+        server-id: sonatype-nexus
+        server-username: SERVER_USERNAME
+        server-password: SERVER_PASSWORD
+    - name: dependencies
+      run: mvn -B -q dependency:go-offline
+    - name: deploy
+      run: mvn -B deploy
+      env:
+        SERVER_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
+        SERVER_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
