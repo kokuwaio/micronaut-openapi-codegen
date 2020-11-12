@@ -184,7 +184,7 @@
 					<output>${project.build.directory}</output>
 					<configOptions>
 						<useBeanValidation>false</useBeanValidation>
-						<useOptionals>false</useOptionals>
+						<useOptional>false</useOptional>
 						<jacksonDatabindNullable>false</jacksonDatabindNullable>
 					</configOptions>
 				</configuration>

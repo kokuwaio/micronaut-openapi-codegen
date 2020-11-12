@@ -27,7 +27,7 @@
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<configuration>
 					<configOptions>
-						<useOptionals>true</useOptionals>
+						<useOptional>true</useOptional>
 					</configOptions>
 				</configuration>
 			</plugin>
