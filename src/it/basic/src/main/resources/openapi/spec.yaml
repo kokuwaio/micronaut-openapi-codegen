@@ -524,6 +524,30 @@ paths:
                 - userId
                 - fileName
                 - file
+  /mediatype/multiple-contenttypes:
+    post:
+      operationId: mediatypeMultipleContentTypes
+      tags:
+      - mediatype
+      parameters:
+      - name: plain
+        in: query
+        required: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  value:
+                    type: string
+            text/plain:
+              schema:
+                type: string
 components:
   schemas:
     StringEnumeration:
