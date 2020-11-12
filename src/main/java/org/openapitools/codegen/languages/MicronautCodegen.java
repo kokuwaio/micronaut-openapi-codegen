@@ -82,8 +82,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "use Optional<T> instead of @Nullable.", useOptional));
-		cliOptions.add(CliOption.newBoolean(
-				USE_OPTIONAL_DEPRECATED, "use Optional<T> instead of @Nullable.", useOptional));
+		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL_DEPRECATED, "use Optional<T> instead of @Nullable."));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(

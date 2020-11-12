@@ -11,11 +11,11 @@
 {{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}			@javax.validation.constraints.Size(min = {{minLength}})
 {{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}			@javax.validation.constraints.Size(max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}			@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{/useBeanValidation}}{{^required}}{{^isBodyParam}}{{^useOptionals}}			@javax.annotation.Nullable{{/useOptionals}}{{#useOptionals}}			@javax.annotation.Nonnull{{/useOptionals}}
+{{/maxLength}}{{/minLength}}{{/useBeanValidation}}{{^required}}{{^isBodyParam}}{{^useOptional}}			@javax.annotation.Nullable{{/useOptional}}{{#useOptional}}			@javax.annotation.Nonnull{{/useOptional}}
 {{/isBodyParam}}{{/required}}{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isListContainer}}(value = "{{baseName}}"{{^isContainer}}{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}}{{/isContainer}}){{/isListContainer}}
 {{/isQueryParam}}{{#isFormParam}}			@io.micronaut.http.annotation.Part(value = "{{baseName}}")
 {{/isFormParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}			{{#isBodyParam}}{{{dataType}}}{{/isBodyParam}}{{^isBodyParam}}{{#required}}{{{dataType}}}{{/required}}{{^required}}{{#useOptionals}}java.util.Optional<{{{dataType}}}>{{/useOptionals}}{{^useOptionals}}{{{dataType}}}{{/useOptionals}}{{/required}}{{/isBodyParam}} {{paramName}}{{#hasMore}},
+{{/isHeaderParam}}			{{#isBodyParam}}{{{dataType}}}{{/isBodyParam}}{{^isBodyParam}}{{#required}}{{{dataType}}}{{/required}}{{^required}}{{#useOptional}}java.util.Optional<{{{dataType}}}>{{/useOptional}}{{^useOptional}}{{{dataType}}}{{/useOptional}}{{/required}}{{/isBodyParam}} {{paramName}}{{#hasMore}},
 {{/hasMore}}{{/allParams}}
