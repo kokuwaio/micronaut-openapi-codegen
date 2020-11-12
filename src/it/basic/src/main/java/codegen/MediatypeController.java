@@ -5,8 +5,10 @@ import java.io.IOException;
 import codegen.model.InlineResponse2001;
 import codegen.model.InlineResponse2002;
 import codegen.model.InlineResponse2003;
+import codegen.model.InlineResponse2004;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
+import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.exceptions.HttpStatusException;
 import io.micronaut.http.multipart.CompletedFileUpload;
@@ -36,5 +38,13 @@ public class MediatypeController implements MediatypeApi {
 		} catch (IOException e) {
 			throw new HttpStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e);
 		}
+	}
+
+	@Override
+	public HttpResponse<Object> mediatypeMultipleContentTypes(Boolean plain) {
+		var response = HttpResponse.status(HttpStatus.OK);
+		return plain
+				? response.contentType(MediaType.TEXT_PLAIN).body("plain")
+				: response.contentType(MediaType.APPLICATION_JSON).body(new InlineResponse2004().setValue("json"));
 	}
 }

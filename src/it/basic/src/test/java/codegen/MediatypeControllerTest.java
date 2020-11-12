@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import codegen.model.InlineResponse2001;
 import codegen.model.InlineResponse2002;
 import codegen.model.InlineResponse2003;
+import codegen.model.InlineResponse2004;
 import io.micronaut.http.HttpMethod;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
@@ -62,5 +63,21 @@ public class MediatypeControllerTest implements MediatypeApiTestSpec {
 						.build());
 		var actual = assert200(() -> rawClient.toBlocking().exchange(request, InlineResponse2003.class)).body();
 		assertEquals(expected, actual);
+	}
+
+	@Test
+	@Override
+	public void mediatypeMultipleContentTypes200() {
+		var response = client.mediatypeMultipleContentTypes(false);
+		assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getContentType().orElse(null), "type");
+		assertEquals(new InlineResponse2004().setValue("json"),
+				response.getBody(InlineResponse2004.class).orElse(null), "body");
+	}
+
+	@Test
+	public void mediatypeMultipleContentTypes200Plain() {
+		var response = client.mediatypeMultipleContentTypes(true);
+		assertEquals(MediaType.TEXT_PLAIN_TYPE, response.getContentType().orElse(null), "type");
+		assertEquals("plain", response.getBody(String.class).orElse(null), "body");
 	}
 }

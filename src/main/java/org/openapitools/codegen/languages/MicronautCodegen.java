@@ -223,6 +223,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (responsesWithBody > 1) {
 			operation.returnType = null;
 		}
+		if (operation.produces != null && operation.produces.size() > 1) {
+			operation.returnType = null;
+		}
 
 		// remove media type */*
 
