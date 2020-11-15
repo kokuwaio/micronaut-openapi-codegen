@@ -84,8 +84,14 @@ components:
       type: object
       required:
       - list
+      - uuids
       properties:
         list:
           type: array
           items:
             $ref: '#/components/schemas/Model'
+        uuids:
+          type: array
+          items:
+            type: string
+            format: uuid
