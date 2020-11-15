@@ -11,10 +11,10 @@
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>1.6.4-SNAPSHOT</version>
+	<version>1.7.0-SNAPSHOT</version>
 
 	<name>OpenApi codegen for Micronaut</name>
-	<description>This is an openapi generator for micronaut.</description>
+	<description>This is an openapi generator for Micronaut.</description>
 	<url>https://github.com/kokuwaio/micronaut-openapi-codegen</url>
 	<inceptionYear>2019</inceptionYear>
 	<licenses>

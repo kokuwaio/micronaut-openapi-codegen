@@ -53,6 +53,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String JACKSON_DATABIND_NULLABLE = "jacksonDatabindNullable";
 	public static final String USE_OPTIONAL_DEPRECATED = "useOptionals";
+	public static final String USE_JAVAX_GENERATED = "useJavaxGenerated";
+	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
 			"period", Period.class,
@@ -75,14 +77,19 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useGenericResponse = true;
 	private boolean jacksonDatabindNullable = true;
 	private boolean useOptional = true;
+	private boolean useJavaxGenerated = true;
+	private boolean useLombokGenerated = false;
 
 	public MicronautCodegen() {
 
 		cliOptions.add(CliOption.newBoolean(
 				USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
-		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "use Optional<T> instead of @Nullable.", useOptional));
-		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL_DEPRECATED, "use Optional<T> instead of @Nullable."));
+		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "Use Optional<T> instead of @Nullable.", useOptional));
+		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL_DEPRECATED, "Use Optional<T> instead of @Nullable."));
+		cliOptions.add(CliOption.newBoolean(USE_JAVAX_GENERATED, "Add @javax.annotation.processing.Generated.",
+				useJavaxGenerated));
+		cliOptions.add(CliOption.newBoolean(USE_LOMBOK_GENERATED, "Add @lombok.Generated.", useLombokGenerated));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(
@@ -105,6 +112,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
 		additionalProperties.put(JACKSON_DATABIND_NULLABLE, jacksonDatabindNullable);
 		additionalProperties.put(USE_OPTIONAL, useOptional);
+		additionalProperties.put(USE_JAVAX_GENERATED, useJavaxGenerated);
+		additionalProperties.put(USE_LOMBOK_GENERATED, useLombokGenerated);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -175,6 +184,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(USE_OPTIONAL_DEPRECATED)) {
 			LOGGER.warn("Use deprecated option {} that was renamed to {}.", USE_OPTIONAL_DEPRECATED, USE_OPTIONAL);
 			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL_DEPRECATED);
+		}
+		if (additionalProperties.containsKey(USE_JAVAX_GENERATED)) {
+			useJavaxGenerated = convertPropertyToBooleanAndWriteBack(USE_JAVAX_GENERATED);
+		}
+		if (additionalProperties.containsKey(USE_LOMBOK_GENERATED)) {
+			useLombokGenerated = convertPropertyToBooleanAndWriteBack(USE_LOMBOK_GENERATED);
 		}
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
