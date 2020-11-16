@@ -4,6 +4,7 @@ import static codegen.HttpResponseAssertions.assert200;
 import static codegen.HttpResponseAssertions.assert400;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -37,6 +38,7 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	public void bodyWithCollection204() {
 		assert200(() -> client.bodyWithCollection(new ModelWithCollection()));
 		assert200(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model()))));
+		assert200(() -> client.bodyWithCollection(new ModelWithCollection().uuids(List.of(UUID.randomUUID()))));
 	}
 
 	@Test
