@@ -17,7 +17,7 @@ public interface {{classname}}TestClient { {{#operations}}{{#operation}}
 	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
 	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{nickname}}(
-			@javax.annotation.Nullable
+            {{^useOptional}}@javax.annotation.Nullable{{/useOptional}}
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			String authorization{{#hasParams}},
 {{>testParams}}{{/hasParams}});{{/vendorExtensions.has401}}{{/operation}}
