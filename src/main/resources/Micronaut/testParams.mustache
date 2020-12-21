@@ -1,7 +1,7 @@
-{{#allParams}}			@javax.annotation.Nullable
+{{#allParams}}			{{^useOptional}}@javax.annotation.Nullable{{/useOptional}}
 {{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isContainer}}(value = "{{baseName}}"){{/isContainer}}
 {{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}")
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}			{{{dataType}}} {{paramName}}{{#hasMore}},
+{{/isHeaderParam}}			{{#required}}{{{dataType}}}{{/required}}{{^required}}{{#useOptional}}java.util.Optional<{{{dataType}}}>{{/useOptional}}{{^useOptional}}{{{dataType}}}{{/useOptional}}{{/required}} {{paramName}}{{#hasMore}},
 {{/hasMore}}{{/allParams}}
