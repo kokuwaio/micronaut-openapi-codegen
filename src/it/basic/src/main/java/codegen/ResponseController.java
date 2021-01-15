@@ -65,14 +65,4 @@ class ResponseController implements ResponseApi {
 	public HttpResponse<Object> voidNotFound(Boolean found) {
 		return found ? HttpResponse.noContent() : HttpResponse.notFound();
 	}
-
-	@Override
-	public HttpResponse<Object> defaultWithNoContent() {
-		return HttpResponse.noContent();
-	}
-
-	@Override
-	public HttpResponse<String> defaultWithOk() {
-		return HttpResponse.ok();
-	}
 }
