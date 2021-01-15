@@ -27,6 +27,8 @@ import org.openapitools.codegen.CodegenModel;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.CodegenProperty;
+import org.openapitools.codegen.CodegenResponse;
+import org.openapitools.codegen.SpecValidationException;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.OptionalFeatures;
@@ -223,14 +225,26 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		var operation = super.fromOperation(path, httpMethod, source, servers);
 		var extensions = operation.vendorExtensions;
 
-		// get default response with status
+		// warn if operation has only wildcard responses
 
-		var response = operation.responses.stream()
-				.filter(r -> r.isDefault).findAny()
-				.orElse(operation.responses.iterator().next());
-		if ("0".equals(response.code)) {
-			response.code = response.dataType == null ? "204" : "200";
+		Optional<CodegenResponse> wildcardResponse = operation.responses.stream()
+				.filter(CodegenResponse::isWildcard)
+				.findAny();
+		if (wildcardResponse.isPresent() && operation.responses.size() == 1) {
+			String message = "Operation " + operation.nickname + " has no documented response code, only default.";
+			LOGGER.warn(message);
+			if (isStrictSpecBehavior()) {
+				throw new SpecValidationException(message);
+			}
+			wildcardResponse.ifPresent(response -> response.code = response.dataType == null ? "204" : "200");
 		}
+
+		// get response with status
+
+		CodegenResponse response = operation.responses.stream()
+				.filter(r -> !r.isWildcard())
+				.findAny()
+				.orElseGet(wildcardResponse::get);
 		var responsesWithBody = operation.responses.stream()
 				.filter(r -> Integer.valueOf(r.code) < 400)
 				.filter(r -> r.dataType != null)
