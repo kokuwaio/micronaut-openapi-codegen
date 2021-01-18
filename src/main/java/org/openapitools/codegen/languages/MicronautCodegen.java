@@ -54,7 +54,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String JACKSON_DATABIND_NULLABLE = "jacksonDatabindNullable";
-	public static final String USE_OPTIONAL_DEPRECATED = "useOptionals";
 	public static final String USE_JAVAX_GENERATED = "useJavaxGenerated";
 	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
@@ -88,7 +87,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "Use Optional<T> instead of @Nullable.", useOptional));
-		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL_DEPRECATED, "Use Optional<T> instead of @Nullable."));
 		cliOptions.add(CliOption.newBoolean(USE_JAVAX_GENERATED, "Add @javax.annotation.processing.Generated.",
 				useJavaxGenerated));
 		cliOptions.add(CliOption.newBoolean(USE_LOMBOK_GENERATED, "Add @lombok.Generated.", useLombokGenerated));
@@ -147,6 +145,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
+	public void postProcess() {}
+
+	@Override
 	public String getName() {
 		return "micronaut";
 	}
@@ -182,10 +183,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(USE_OPTIONAL)) {
 			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL);
-		}
-		if (additionalProperties.containsKey(USE_OPTIONAL_DEPRECATED)) {
-			LOGGER.warn("Use deprecated option {} that was renamed to {}.", USE_OPTIONAL_DEPRECATED, USE_OPTIONAL);
-			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL_DEPRECATED);
 		}
 		if (additionalProperties.containsKey(USE_JAVAX_GENERATED)) {
 			useJavaxGenerated = convertPropertyToBooleanAndWriteBack(USE_JAVAX_GENERATED);
@@ -285,11 +282,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			}
 		}
 
-		// add wildcard for lists for clients (api client & test client)
+		// add wildcard for lists in path (api client & test client)
 
-		var listParams = operation.queryParams.stream().filter(p -> p.isListContainer).collect(Collectors.toList());
-		if (!listParams.isEmpty()) {
-			extensions.put("path", operation.path + "?" + listParams.stream()
+		var arrayParams = operation.queryParams.stream().filter(p -> p.isArray).collect(Collectors.toList());
+		if (!arrayParams.isEmpty()) {
+			extensions.put("path", operation.path + "?" + arrayParams.stream()
 					.map(p -> "{&" + p.baseName + "*}")
 					.collect(Collectors.joining()));
 		} else {
@@ -431,7 +428,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		super.postProcessModelProperty(model, property);
 		if (property.isEnum) {
 			// handle maps with emum as value, hono uses this spec (would not recommend this)
-			if (property.isMapContainer && property.items != null) {
+			if (property.isMap && property.items != null) {
 				property.dataType = property.items.dataType;
 				property.datatypeWithEnum = typeMapping.get("map")
 						+ "<" + typeMapping.get("string") + ", " + toEnumName(property) + ">";

@@ -3,5 +3,5 @@
 {{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}")
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header("{{baseName}}")
-{{/isHeaderParam}}			{{{dataType}}} {{paramName}}{{#hasMore}},
-{{/hasMore}}{{/allParams}}
+{{/isHeaderParam}}			{{{dataType}}} {{paramName}}{{^-last}},
+{{/-last}}{{/allParams}}
