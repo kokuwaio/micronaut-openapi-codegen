@@ -38,15 +38,15 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 			return false;
 		}
 		{{classname}} other = ({{classname}}) object;
-		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}.equals({{name}}, other.{{name}}){{#hasMore}}
-				&& {{/hasMore}}{{^hasMore}}{{#discriminator}}
+		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}.equals({{name}}, other.{{name}}){{^-last}}
+				&& {{/-last}}{{#-last}}{{#discriminator}}
 				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}}{{#parent}}
-				&& super.equals(object){{/parent}};{{/hasMore}}{{/vars}}
+				&& super.equals(object){{/parent}};{{/-last}}{{/vars}}
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash({{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#hasMore}}, {{/hasMore}}{{^hasMore}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/hasMore}}{{/vars}});
+		return java.util.Objects.hash({{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 		return new StringBuilder()
 				.append("{{classname}}["){{#parent}}
 				.append("super").append(super.toString()){{/parent}}
-		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{#hasMore}}.append(","){{/hasMore}}
+		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
 		{{/vars}}		.append("]")
 				.toString();
 	}
