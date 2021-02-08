@@ -152,8 +152,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {
-	}
+	public void postProcess() {}
 
 	@Override
 	public String getName() {
@@ -389,8 +388,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			model.vars.stream()
 					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
 					.findAny().ifPresent(property -> {
-				discriminator.setPropertyType(property.getDataType());
-				model.vars.remove(property);
+								discriminator.setPropertyType(property.getDataType());
+								model.vars.remove(property);
 			});
 
 			// add discriminator value to submodel

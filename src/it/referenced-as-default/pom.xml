@@ -8,15 +8,11 @@
 		<version>LOCAL-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>@project.artifactId@-it-validation</artifactId>
+	<artifactId>@project.artifactId@-refernece-as-default</artifactId>
 
 	<dependencies>
 
 		<!-- micronaut -->
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-validation</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http</artifactId>
@@ -35,6 +31,7 @@
 					<configOptions>
 						<useOptional>true</useOptional>
 						<useReferencedSchemaAsDefault>true</useReferencedSchemaAsDefault>
+						<introspected>false</introspected>
 					</configOptions>
 				</configuration>
 			</plugin>
