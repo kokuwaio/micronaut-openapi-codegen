@@ -18,6 +18,7 @@
  * useLombokGenerated: add `@lombok.Generated` to all classes (default `false`), usefull for [jacoco](https://github.com/jacoco/jacoco/pull/731)
  * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
  * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.1.3/guide/index.html#reactiveServer)
+ * useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values 
 
 ### Null handling and default values
 
