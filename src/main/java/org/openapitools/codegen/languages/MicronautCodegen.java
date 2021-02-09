@@ -1,17 +1,35 @@
 package org.openapitools.codegen.languages;
 
-import io.micronaut.core.util.CollectionUtils;
-import io.micronaut.http.HttpStatus;
-import io.micronaut.http.MediaType;
-import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.ArraySchema;
-import io.swagger.v3.oas.models.media.ComposedSchema;
-import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.media.StringSchema;
-import io.swagger.v3.oas.models.responses.ApiResponse;
-import io.swagger.v3.oas.models.servers.Server;
+import java.io.File;
+import java.net.URI;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.Period;
+import java.time.ZonedDateTime;
+import java.time.temporal.TemporalAmount;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
-import org.openapitools.codegen.*;
+import org.openapitools.codegen.CliOption;
+import org.openapitools.codegen.CodegenConstants;
+import org.openapitools.codegen.CodegenModel;
+import org.openapitools.codegen.CodegenOperation;
+import org.openapitools.codegen.CodegenParameter;
+import org.openapitools.codegen.CodegenProperty;
+import org.openapitools.codegen.CodegenResponse;
+import org.openapitools.codegen.SpecValidationException;
+import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.OptionalFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
@@ -19,12 +37,15 @@ import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.net.URI;
-import java.time.*;
-import java.time.temporal.TemporalAmount;
-import java.util.*;
-import java.util.stream.Collectors;
+import io.micronaut.core.util.CollectionUtils;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.MediaType;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.ComposedSchema;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.media.StringSchema;
+import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.servers.Server;
 
 public class MicronautCodegen extends AbstractJavaCodegen
 		implements BeanValidationFeatures, UseGenericResponseFeatures, OptionalFeatures {
@@ -81,7 +102,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newBoolean(USE_REFERENCED_SCHEMA_AS_DEFAULT,
 				"Use the referenced schemas type as default values.", useReferencedSchemaAsDefault));
-		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED, "Support addtional properties with  composed schemas.",
+		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
+				"Support addtional properties with  composed schemas.",
 				supportsAdditionalPropertiesWithComposedSchema));
 
 		// there is no documentation template yet
@@ -102,7 +124,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_JAVAX_GENERATED, useJavaxGenerated);
 		additionalProperties.put(USE_LOMBOK_GENERATED, useLombokGenerated);
 		additionalProperties.put(USE_REFERENCED_SCHEMA_AS_DEFAULT, useReferencedSchemaAsDefault);
-		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED, supportsAdditionalPropertiesWithComposedSchema);
+		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED,
+				supportsAdditionalPropertiesWithComposedSchema);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -188,9 +211,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			useReferencedSchemaAsDefault = convertPropertyToBooleanAndWriteBack(USE_REFERENCED_SCHEMA_AS_DEFAULT);
 		}
 		if (additionalProperties.containsKey(ADDITIONAL_PROPS_COMPOSED)) {
-			supportsAdditionalPropertiesWithComposedSchema = convertPropertyToBooleanAndWriteBack(ADDITIONAL_PROPS_COMPOSED);
+			supportsAdditionalPropertiesWithComposedSchema =
+					convertPropertyToBooleanAndWriteBack(ADDITIONAL_PROPS_COMPOSED);
 		}
-
 
 		// we do not generate projects, only api, set source and test folder
 
@@ -325,28 +348,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public String getTypeDeclaration(Schema p) {
-		Schema<?> schema = ModelUtils.unaliasSchema(this.openAPI, p, this.importMapping);
-		Schema<?> target = ModelUtils.isGenerateAliasAsModel() ? p : schema;
-		Schema inner;
-		if (ModelUtils.isArraySchema(target)) {
-			inner = this.getSchemaItems((ArraySchema) schema);
-			return this.getSchemaType(target) + "<" + this.getTypeDeclaration(inner) + ">";
-		} else if (ModelUtils.isMapSchema(target)) {
-			inner = this.getAdditionalProperties(target);
-			if (inner == null) {
-				LOGGER.error("`{}` (map property) does not have a proper inner type defined. Default to type:string", p.getName());
-				inner = (new StringSchema()).description("TODO default missing map inner type to string");
-				p.setAdditionalProperties(inner);
-			}
-
-			return this.getSchemaType(target) + "<String, " + this.getTypeDeclaration(inner) + ">";
-		} else {
-			return super.getTypeDeclaration(target);
-		}
-	}
-
-	@Override
 	public String getSchemaType(Schema schema) {
 		var format = schema.getFormat();
 		if (schema instanceof StringSchema && format != null && CUSTOM_FORMATS.containsKey(format)) {
@@ -388,9 +389,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		for (CodegenModel model : allModels.values()) {
 
 			// check id additional properties should be handled through composition and apply the map if so.
-			// see https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java#L196-L201
 			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
-				model.getVendorExtensions().put("additionalPropertiesMap", String.format("java.util.Map<java.lang.String, %s>", model.getAdditionalProperties().getDataType()));
+				model.getVendorExtensions()
+						.put("additionalPropertiesMap", String.format("java.util.Map<java.lang.String, %s>",
+								model.getAdditionalProperties().getDataType()));
 			}
 
 			var discriminator = model.discriminator;
@@ -402,8 +404,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			model.vars.stream()
 					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
 					.findAny().ifPresent(property -> {
-				discriminator.setPropertyType(property.getDataType());
-				model.vars.remove(property);
+								discriminator.setPropertyType(property.getDataType());
+								model.vars.remove(property);
 			});
 
 			// add discriminator value to submodel
