@@ -80,7 +80,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
         return additionalProperties;
     }
 
-    @com.fasterxml.jackson.annotation.JsonAnyGetter
+    @com.fasterxml.jackson.annotation.JsonAnySetter
     public void setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} additionalProperties) {
         this.additionalProperties = additionalProperties;
     }
