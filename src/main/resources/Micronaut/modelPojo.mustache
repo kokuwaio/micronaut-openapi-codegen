@@ -72,6 +72,22 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	}
 	{{/vars}}
 
+    {{#vendorExtensions.additionalPropertiesMap}}
+    private {{{vendorExtensions.additionalPropertiesMap}}} additionalProperties;
+
+    @com.fasterxml.jackson.annotation.JsonAnyGetter
+    public {{{vendorExtensions.additionalPropertiesMap}}} getAdditionalProperties() {
+        return additionalProperties;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonAnySetter
+    public void setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} additionalProperties) {
+        this.additionalProperties = additionalProperties;
+    }
+
+    {{/vendorExtensions.additionalPropertiesMap}}
+
+
 	// getter/setter
 	{{#vars}}
 

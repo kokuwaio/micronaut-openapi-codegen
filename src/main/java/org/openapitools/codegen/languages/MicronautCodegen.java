@@ -56,6 +56,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String JACKSON_DATABIND_NULLABLE = "jacksonDatabindNullable";
 	public static final String USE_JAVAX_GENERATED = "useJavaxGenerated";
 	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
+	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
+	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
+
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
 			"period", Period.class,
@@ -80,6 +83,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useOptional = true;
 	private boolean useJavaxGenerated = true;
 	private boolean useLombokGenerated = false;
+	private boolean useReferencedSchemaAsDefault = false;
 
 	public MicronautCodegen() {
 
@@ -96,6 +100,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
 		cliOptions.add(CliOption.newBoolean(SUPPORT_ASYNC, "Use async responses", supportAsync));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
+		cliOptions.add(CliOption.newBoolean(USE_REFERENCED_SCHEMA_AS_DEFAULT,
+				"Use the referenced schemas type as default values.", useReferencedSchemaAsDefault));
+		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
+				"Support addtional properties with  composed schemas.",
+				supportsAdditionalPropertiesWithComposedSchema));
 
 		// there is no documentation template yet
 
@@ -114,6 +123,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_OPTIONAL, useOptional);
 		additionalProperties.put(USE_JAVAX_GENERATED, useJavaxGenerated);
 		additionalProperties.put(USE_LOMBOK_GENERATED, useLombokGenerated);
+		additionalProperties.put(USE_REFERENCED_SCHEMA_AS_DEFAULT, useReferencedSchemaAsDefault);
+		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED,
+				supportsAdditionalPropertiesWithComposedSchema);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -145,7 +157,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {}
+	public void postProcess() {
+	}
 
 	@Override
 	public String getName() {
@@ -192,6 +205,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
+		}
+
+		if (additionalProperties.containsKey(USE_REFERENCED_SCHEMA_AS_DEFAULT)) {
+			useReferencedSchemaAsDefault = convertPropertyToBooleanAndWriteBack(USE_REFERENCED_SCHEMA_AS_DEFAULT);
+		}
+		if (additionalProperties.containsKey(ADDITIONAL_PROPS_COMPOSED)) {
+			supportsAdditionalPropertiesWithComposedSchema =
+					convertPropertyToBooleanAndWriteBack(ADDITIONAL_PROPS_COMPOSED);
 		}
 
 		// we do not generate projects, only api, set source and test folder
@@ -346,6 +367,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	@Override
 	public String toDefaultValue(Schema schema) {
+
+		if (useReferencedSchemaAsDefault && schema.get$ref() != null) {
+			return "new " + getSchemaType(schema) + "()";
+		}
+
 		if (ModelUtils.isArraySchema(schema)) {
 			return "new " + instantiationTypes.get("array") + "<>()";
 		}
@@ -362,19 +388,25 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		Map<String, CodegenModel> allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
 
+			// check id additional properties should be handled through composition and apply the map if so.
+			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
+				model.getVendorExtensions()
+						.put("additionalPropertiesMap", String.format("java.util.Map<java.lang.String, %s>",
+								model.getAdditionalProperties().getDataType()));
+			}
+
 			var discriminator = model.discriminator;
 			if (discriminator == null) {
 				continue;
 			}
-
 			// remove discriminator type
 
 			model.vars.stream()
 					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
 					.findAny().ifPresent(property -> {
-						discriminator.setPropertyType(property.getDataType());
-						model.vars.remove(property);
-					});
+								discriminator.setPropertyType(property.getDataType());
+								model.vars.remove(property);
+			});
 
 			// add discriminator value to submodel
 
