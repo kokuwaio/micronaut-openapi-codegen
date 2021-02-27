@@ -13,7 +13,7 @@
  * dateTimeRelaxed: add type registrar for relaxed time converter (default `true`)
  * useBeanValidation: generate validation annotations (default `true`)
  * useGenericResponse: return generic container or specific model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
- * useOptionals: optional parameters are generated as `java.util.Optional` (default `true`)
+ * useOptional: optional parameters are generated as `java.util.Optional` (default `true`)
  * useJavaxGenerated: add `@javax.annotation.processing.Generated` to all classes (default `true`)
  * useLombokGenerated: add `@lombok.Generated` to all classes (default `false`), usefull for [jacoco](https://github.com/jacoco/jacoco/pull/731)
  * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
