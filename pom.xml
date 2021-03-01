@@ -48,8 +48,8 @@
 		<!-- ============================= Libaries ============================== -->
 		<!-- ===================================================================== -->
 
-		<version.io.micronaut>2.2.3</version.io.micronaut>
-		<version.org.openapitools>5.0.0</version.org.openapitools>
+		<version.io.micronaut>2.3.3</version.io.micronaut>
+		<version.org.openapitools>5.0.1</version.org.openapitools>
 		<version.org.openapitools.jackson.nullable>0.2.1</version.org.openapitools.jackson.nullable>
 
 	</properties>
