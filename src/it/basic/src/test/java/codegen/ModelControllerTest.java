@@ -6,6 +6,7 @@ import static codegen.HttpResponseAssertions.assert204;
 import static codegen.HttpResponseAssertions.assert404;
 import static codegen.HttpResponseAssertions.assert409;
 import static codegen.HttpResponseAssertions.getLocationHeaderValue;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -98,6 +99,15 @@ class ModelControllerTest implements ModelApiTestSpec {
 	public void getInheritance200() {
 		var expected = List.of(new InheritanceModel1(), new InheritanceModel2());
 		var actual = assert200(() -> client.getInheritance()).body().list();
+		assertEquals(expected, actual, "response body");
+	}
+
+	@Test
+	@Override
+	public void putInheritanceList200() {
+		var models = List.of(new InheritanceModel1(), new InheritanceModel2());
+		var expected = models.stream().map(m -> m.getType()).collect(toList());
+		var actual = assert200(() -> client.putInheritanceList(models)).body();
 		assertEquals(expected, actual, "response body");
 	}
 }

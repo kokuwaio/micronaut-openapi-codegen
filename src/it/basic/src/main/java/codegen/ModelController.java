@@ -1,5 +1,7 @@
 package codegen;
 
+import static java.util.stream.Collectors.toList;
+
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +10,7 @@ import java.util.stream.IntStream;
 
 import javax.inject.Inject;
 
+import codegen.model.InheritanceModel;
 import codegen.model.InheritanceModel1;
 import codegen.model.InheritanceModel2;
 import codegen.model.InlineResponse200;
@@ -58,5 +61,10 @@ class ModelController implements ModelApi {
 	@Override
 	public HttpResponse<InlineResponse200> getInheritance() {
 		return HttpResponse.ok(new InlineResponse200().list(List.of(new InheritanceModel1(), new InheritanceModel2())));
+	}
+
+	@Override
+	public HttpResponse<List<String>> putInheritanceList(List<InheritanceModel> inheritanceModels) {
+		return HttpResponse.ok(inheritanceModels.stream().map(m -> m.getType()).collect(toList()));
 	}
 }

@@ -251,6 +251,27 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/InheritanceModel'
+    put:
+      operationId: putInheritanceList
+      tags:
+      - model
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/InheritanceModel'
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /query/multiple-lists:
     get:
       operationId: getMultipleLists
