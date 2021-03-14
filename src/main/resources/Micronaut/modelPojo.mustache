@@ -1,4 +1,4 @@
-{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY, property = "{{{discriminatorName}}}")
+{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = {{classname}}.JSON_DISCRIMINATOR)
 @com.fasterxml.jackson.annotation.JsonSubTypes({
 	{{#discriminator.mappedModels}}
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"),
@@ -10,7 +10,9 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 {{#vars}}
 	public static final String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
-{{/vars}}
+{{/vars}}{{#discriminator}}
+	public static final String JSON_DISCRIMINATOR = "{{discriminatorName}}";
+{{/discriminator}}
 
 {{#vars}}{{#description}}	/** {{description}} */
 {{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
@@ -18,7 +20,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 {{/vars}}
 {{#discriminator}}
-	@com.fasterxml.jackson.annotation.JsonIgnore
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();
 
 {{/discriminator}}{{#vendorExtensions.discriminatorPropertyValue}}
