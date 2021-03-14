@@ -8,7 +8,7 @@
 		<version>LOCAL-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>@project.artifactId@-it-validation</artifactId>
+	<artifactId>@project.artifactId@-it-optional-with-validation</artifactId>
 
 	<dependencies>
 
@@ -28,6 +28,7 @@
 				<configuration>
 					<configOptions>
 						<useOptional>true</useOptional>
+						<useBeanValidation>true</useBeanValidation>
 					</configOptions>
 				</configuration>
 			</plugin>
