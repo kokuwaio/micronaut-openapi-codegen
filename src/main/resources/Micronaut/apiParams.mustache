@@ -11,7 +11,7 @@
 {{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}			@javax.validation.constraints.Size(min = {{minLength}})
 {{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}			@javax.validation.constraints.Size(max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}			@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{/useBeanValidation}}{{^required}}{{^isBodyParam}}{{^useOptional}}			@javax.annotation.Nullable{{/useOptional}}{{#useOptional}}			@javax.annotation.Nonnull{{/useOptional}}
+{{/maxLength}}{{/minLength}}{{/useBeanValidation}}{{^required}}{{^isBodyParam}}{{^useOptional}}			@{{type.Nullable}}{{/useOptional}}{{#useOptional}}			@{{type.Nonnull}}{{/useOptional}}
 {{/isBodyParam}}{{/required}}{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isArray}}(value = "{{baseName}}"{{^isContainer}}{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}}{{/isContainer}}){{/isArray}}
 {{/isQueryParam}}{{#isFormParam}}			@io.micronaut.http.annotation.Part(value = "{{baseName}}")
 {{/isFormParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body

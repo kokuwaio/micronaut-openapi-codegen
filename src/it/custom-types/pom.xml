@@ -16,7 +16,11 @@
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http</artifactId>
-			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>
@@ -33,6 +37,8 @@
 						<typeMapping>UUID=String</typeMapping>
 						<typeMapping>array=java.util.Set</typeMapping>
 						<typeMapping>map=java.util.Dictionary</typeMapping>
+						<typeMapping>Nullable=io.micronaut.core.annotation.Nullable</typeMapping>
+						<typeMapping>Nonnull=io.micronaut.core.annotation.NonNull</typeMapping>
 					</typeMappings>
 					<instantiationTypes>
 						<instantiationType>map=java.util.Hashtable</instantiationType>
@@ -40,6 +46,7 @@
 					</instantiationTypes>
 					<configOptions>
 						<useJavaxGenerated>false</useJavaxGenerated>
+						<useOptional>true</useOptional>
 						<introspected>false</introspected>
 					</configOptions>
 					<generateSupportingFiles>false</generateSupportingFiles>
