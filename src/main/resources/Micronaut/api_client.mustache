@@ -13,7 +13,7 @@ public interface {{classname}}Client extends {{classname}} {
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
 	{{>returnType}} {{nickname}}(
-			@javax.annotation.Nullable
+			@{{type.Nullable}}
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			String authorization{{#hasParams}},
 {{>apiParams}}{{/hasParams}});

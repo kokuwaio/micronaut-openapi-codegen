@@ -2,7 +2,20 @@ openapi: 3.0.2
 info:
   title: Test Spec
   version: '0'
-paths: {}
+paths: 
+  /optional:
+    get:
+      operationId: optional
+      parameters:
+      - name: parameter
+        in: query
+        schema:
+          type: string
+      tags:
+      - parameter
+      responses:
+        204:
+          description: Ok.
 components:
   schemas:
     Model:

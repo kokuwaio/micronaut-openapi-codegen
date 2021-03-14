@@ -152,13 +152,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("asyncMaybe", "io.reactivex.Maybe");
 		typeMapping.put("asyncFlowable", "io.reactivex.Flowable");
 		typeMapping.put("asyncFileUpload", "io.micronaut.http.multipart.StreamingFileUpload");
+		typeMapping.put("Nullable", javax.annotation.Nullable.class.getName());
+		typeMapping.put("Nonnull", javax.annotation.Nonnull.class.getName());
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
 	}
 
 	@Override
-	public void postProcess() {
-	}
+	public void postProcess() {}
 
 	@Override
 	public String getName() {
@@ -235,6 +236,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (dateTimeRelaxed && !openAPI.getPaths().isEmpty()) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
+
+		// add type mappings for mustache
+
+		additionalProperties.put("type.Nullable", typeMapping.get("Nullable"));
+		additionalProperties.put("type.Nonnull", typeMapping.get("Nonnull"));
 	}
 
 	@Override
@@ -404,9 +410,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			model.vars.stream()
 					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
 					.findAny().ifPresent(property -> {
-								discriminator.setPropertyType(property.getDataType());
-								model.vars.remove(property);
-			});
+						discriminator.setPropertyType(property.getDataType());
+						model.vars.remove(property);
+					});
 
 			// add discriminator value to submodel
 

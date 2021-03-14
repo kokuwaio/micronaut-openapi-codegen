@@ -1,4 +1,4 @@
-{{#allParams}}			@javax.annotation.Nullable
+{{#allParams}}			@{{type.Nullable}}
 {{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isContainer}}(value = "{{baseName}}"){{/isContainer}}
 {{/isQueryParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(name = "{{baseName}}")
