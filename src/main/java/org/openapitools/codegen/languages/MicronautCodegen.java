@@ -58,6 +58,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
 	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
 	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
+	public static final String GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES = "genericResponseWhenMultipleContentTypes";
 
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
@@ -84,6 +85,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useJavaxGenerated = true;
 	private boolean useLombokGenerated = false;
 	private boolean useReferencedSchemaAsDefault = false;
+	private boolean genericResponseWhenMultipleContentTypes = true;
 
 	public MicronautCodegen() {
 
@@ -103,8 +105,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(USE_REFERENCED_SCHEMA_AS_DEFAULT,
 				"Use the referenced schemas type as default values.", useReferencedSchemaAsDefault));
 		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
-				"Support addtional properties with  composed schemas.",
+				"Support additional properties with composed schemas.",
 				supportsAdditionalPropertiesWithComposedSchema));
+		cliOptions.add(CliOption.newBoolean(GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES,
+				"Use generic response when operation returns multiple content types.",
+				genericResponseWhenMultipleContentTypes));
 
 		// there is no documentation template yet
 
@@ -215,6 +220,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			supportsAdditionalPropertiesWithComposedSchema =
 					convertPropertyToBooleanAndWriteBack(ADDITIONAL_PROPS_COMPOSED);
 		}
+		if (additionalProperties.containsKey(GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES)) {
+			genericResponseWhenMultipleContentTypes =
+					convertPropertyToBooleanAndWriteBack(GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES);
+		}
 
 		// we do not generate projects, only api, set source and test folder
 
@@ -276,7 +285,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (responsesWithBody > 1) {
 			operation.returnType = null;
 		}
-		if (operation.produces != null && operation.produces.size() > 1) {
+		if (genericResponseWhenMultipleContentTypes && operation.produces != null && operation.produces.size() > 1) {
 			operation.returnType = null;
 		}
 
