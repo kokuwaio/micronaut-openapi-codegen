@@ -58,6 +58,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
 	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
 	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
+	public static final String GENERIC_RESPONSE_WHEN_MULTIPLE_BODIES = "genericResponseWhenMultipleBodies";
 	public static final String GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES = "genericResponseWhenMultipleContentTypes";
 
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
@@ -85,6 +86,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useJavaxGenerated = true;
 	private boolean useLombokGenerated = false;
 	private boolean useReferencedSchemaAsDefault = false;
+	private boolean genericResponseWhenMultipleBodies = true;
 	private boolean genericResponseWhenMultipleContentTypes = true;
 
 	public MicronautCodegen() {
@@ -107,6 +109,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
 				"Support additional properties with composed schemas.",
 				supportsAdditionalPropertiesWithComposedSchema));
+		cliOptions.add(CliOption.newBoolean(GENERIC_RESPONSE_WHEN_MULTIPLE_BODIES,
+				"Use generic response when operation returns multiple bodies.",
+				genericResponseWhenMultipleBodies));
 		cliOptions.add(CliOption.newBoolean(GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES,
 				"Use generic response when operation returns multiple content types.",
 				genericResponseWhenMultipleContentTypes));
@@ -220,6 +225,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			supportsAdditionalPropertiesWithComposedSchema =
 					convertPropertyToBooleanAndWriteBack(ADDITIONAL_PROPS_COMPOSED);
 		}
+		if (additionalProperties.containsKey(GENERIC_RESPONSE_WHEN_MULTIPLE_BODIES)) {
+			genericResponseWhenMultipleBodies =
+					convertPropertyToBooleanAndWriteBack(GENERIC_RESPONSE_WHEN_MULTIPLE_BODIES);
+		}
 		if (additionalProperties.containsKey(GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES)) {
 			genericResponseWhenMultipleContentTypes =
 					convertPropertyToBooleanAndWriteBack(GENERIC_RESPONSE_WHEN_MULTIPLE_CONTENT_TYPES);
@@ -282,7 +291,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				.filter(r -> Integer.valueOf(r.code) < 400)
 				.filter(r -> r.dataType != null)
 				.count();
-		if (responsesWithBody > 1) {
+		if (genericResponseWhenMultipleBodies && responsesWithBody > 1) {
 			operation.returnType = null;
 		}
 		if (genericResponseWhenMultipleContentTypes && operation.produces != null && operation.produces.size() > 1) {
