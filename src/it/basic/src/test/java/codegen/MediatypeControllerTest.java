@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import codegen.model.InlineResponse2001;
 import codegen.model.InlineResponse2002;
 import codegen.model.InlineResponse2003;
-import codegen.model.InlineResponse2004;
+import codegen.model.MediaModel;
+import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpMethod;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
@@ -67,17 +68,39 @@ public class MediatypeControllerTest implements MediatypeApiTestSpec {
 
 	@Test
 	@Override
-	public void mediatypeMultipleContentTypes200() {
-		var response = client.mediatypeMultipleContentTypes(false);
+	public void mediatypeMultipleContentTypesDifferentModel200() {
+		var response = client.mediatypeMultipleContentTypesDifferentModel(false);
 		assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getContentType().orElse(null), "type");
-		assertEquals(new InlineResponse2004().setValue("json"),
-				response.getBody(InlineResponse2004.class).orElse(null), "body");
+		assertEquals(new MediaModel().setData("json"), response.getBody(MediaModel.class).orElse(null), "body");
 	}
 
 	@Test
-	public void mediatypeMultipleContentTypes200Plain() {
-		var response = client.mediatypeMultipleContentTypes(true);
+	public void mediatypeMultipleContentTypesDifferentModel200Plain() {
+		var response = client.mediatypeMultipleContentTypesDifferentModel(true);
 		assertEquals(MediaType.TEXT_PLAIN_TYPE, response.getContentType().orElse(null), "type");
 		assertEquals("plain", response.getBody(String.class).orElse(null), "body");
+	}
+
+	@Test
+	@Override
+	public void mediatypeMultipleContentTypesSameModel200() {
+		var request = HttpRequest
+				.GET("/mediatype/multiple-contenttypes-with-same-model")
+				.accept(MediaType.APPLICATION_JSON);
+		var response = HttpResponseAssertions
+				.assert200(() -> rawClient.toBlocking().exchange(request, MediaModel.class));
+		assertEquals(MediaType.APPLICATION_JSON, response.header(HttpHeaders.CONTENT_TYPE));
+		assertEquals(new MediaModel().setData("test"), response.body());
+	}
+
+	@Test
+	public void mediatypeMultipleContentTypesSameModel200Xml() {
+		var request = HttpRequest
+				.GET("/mediatype/multiple-contenttypes-with-same-model")
+				.accept(MediaType.APPLICATION_XML);
+		var response = HttpResponseAssertions
+				.assert200(() -> rawClient.toBlocking().exchange(request, MediaModel.class));
+		assertEquals(MediaType.APPLICATION_XML, response.header(HttpHeaders.CONTENT_TYPE));
+		assertEquals(new MediaModel().setData("test"), response.body());
 	}
 }

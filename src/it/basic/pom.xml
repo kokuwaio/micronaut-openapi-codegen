@@ -10,6 +10,13 @@
 
 	<artifactId>@project.artifactId@-it-basic</artifactId>
 
+	<dependencies>
+		<dependency>
+			<groupId>io.micronaut.xml</groupId>
+			<artifactId>micronaut-jackson-xml</artifactId>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

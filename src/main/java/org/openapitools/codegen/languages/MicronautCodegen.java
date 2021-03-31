@@ -269,15 +269,27 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				.filter(r -> !r.isWildcard())
 				.findAny()
 				.orElseGet(wildcardResponse::get);
-		var responsesWithBody = operation.responses.stream()
+		var responses = operation.responses.stream()
 				.filter(r -> Integer.valueOf(r.code) < 400)
-				.filter(r -> r.dataType != null)
-				.count();
-		if (responsesWithBody > 1) {
-			operation.returnType = null;
+				.collect(Collectors.toList());
+		var useGeneric = responses.size() > 1;
+
+		if (responses.size() > 1) {
+			var hasMultipleBodyTypes = responses.stream().map(r -> r.dataType).distinct().count() > 1;
+			if (hasMultipleBodyTypes) {
+				// delete return type if responses with multiple models are present
+				operation.returnType = null;
+			}
 		}
+
 		if (operation.produces != null && operation.produces.size() > 1) {
-			operation.returnType = null;
+			var specResponse = ApiResponse.class.cast(response.vendorExtensions.get(ApiResponse.class.getName()));
+			var hasMultipleBodyTypes = specResponse.getContent().values().stream().distinct().count() > 1;
+			if (hasMultipleBodyTypes) {
+				// delete return type if response has multiple contenttypes with different models
+				operation.returnType = null;
+				useGeneric = true;
+			}
 		}
 
 		// remove media type */*
@@ -288,7 +300,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// store method and status for micronaut
 
 		extensions.put("httpMethod", httpMethod.toUpperCase().charAt(0) + httpMethod.substring(1).toLowerCase());
-		extensions.put("generic", useGenericResponse || response.hasHeaders || responsesWithBody > 1);
+		extensions.put("generic", useGenericResponse || response.hasHeaders || useGeneric);
 		extensions.put("status", HttpStatus.valueOf(Integer.valueOf(response.code)).name());
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
 
@@ -351,6 +363,18 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 
 		return operation;
+	}
+
+	@Override
+	public CodegenResponse fromResponse(String responseCode, ApiResponse response) {
+		var codegenResponse = super.fromResponse(responseCode, response);
+
+		// save responses with multiple content types
+		// see https://github.com/OpenAPITools/openapi-generator/issues/6708
+
+		codegenResponse.vendorExtensions.put(ApiResponse.class.getName(), response);
+
+		return codegenResponse;
 	}
 
 	@Override

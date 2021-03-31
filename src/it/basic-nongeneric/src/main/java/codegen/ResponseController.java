@@ -33,15 +33,21 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public HttpResponse<Object> multiple(Boolean redirect) {
-		if (redirect) {
-			return HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE));
-		}
-		return HttpResponse.ok(new ResponseMultiple200().setFoo(STRING));
+	public HttpResponse<ResponseMultiple200> multipleResponseCodes(Boolean redirect) {
+		return redirect
+				? HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple200().setFoo(STRING))
+				: HttpResponse.ok(new ResponseMultiple200().setFoo(STRING));
 	}
 
 	@Override
-	public HttpResponse<Object> multipleNotFound(Boolean redirect, Boolean found) {
+	public HttpResponse<Object> multipleDataTypes(Boolean redirect) {
+		return redirect
+				? HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE))
+				: HttpResponse.ok(new ResponseMultiple200().setFoo(STRING));
+	}
+
+	@Override
+	public HttpResponse<Object> multipleDataTypesNotFound(Boolean redirect, Boolean found) {
 		if (redirect) {
 			return HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple300().setBar(DOUBLE));
 		}

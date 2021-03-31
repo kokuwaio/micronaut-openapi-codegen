@@ -109,9 +109,33 @@ paths:
                   type: string
         404:
           description: Ok.
-  /response/multiple:
+  /response/multiple-response-codes:
     get:
-      operationId: multiple
+      operationId: multipleResponseCodes
+      parameters:
+      - name: redirect
+        in: query
+        required: true
+        schema:
+          type: boolean
+      tags:
+      - response
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMultiple200'
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMultiple200'
+  /response/multiple-datatypes:
+    get:
+      operationId: multipleDataTypes
       parameters:
       - name: redirect
         in: query
@@ -133,9 +157,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseMultiple300'
-  /response/multiple-notfound:
+  /response/multiple-datatypes-notfound:
     get:
-      operationId: multipleNotFound
+      operationId: multipleDataTypesNotFound
       parameters:
       - name: redirect
         in: query
@@ -525,9 +549,9 @@ paths:
                 - userId
                 - fileName
                 - file
-  /mediatype/multiple-contenttypes:
-    post:
-      operationId: mediatypeMultipleContentTypes
+  /mediatype/multiple-contenttypes-with-different-model:
+    get:
+      operationId: mediatypeMultipleContentTypesDifferentModel
       tags:
       - mediatype
       parameters:
@@ -542,13 +566,25 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  value:
-                    type: string
+                $ref: '#/components/schemas/MediaModel'
             text/plain:
               schema:
                 type: string
+  /mediatype/multiple-contenttypes-with-same-model:
+    get:
+      operationId: mediatypeMultipleContentTypesSameModel
+      tags:
+      - mediatype
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MediaModel'
 components:
   schemas:
     StringEnumeration:
@@ -728,3 +764,8 @@ components:
       properties:
         bar: 
           type: number
+    MediaModel:
+      type: object
+      properties:
+        data: 
+          type: string

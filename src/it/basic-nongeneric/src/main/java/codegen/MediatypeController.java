@@ -17,24 +17,23 @@ import io.micronaut.http.multipart.CompletedFileUpload;
 public class MediatypeController implements MediatypeApi {
 
 	@Override
-	public HttpResponse<InlineResponse2001> mediatypePostPlain(String string) {
-		return HttpResponse.ok(new InlineResponse2001().setString(string));
+	public InlineResponse2001 mediatypePostPlain(String string) {
+		return new InlineResponse2001().setString(string);
 	}
 
 	@Override
-	public HttpResponse<InlineResponse2002> mediatypePostOctetStream(byte[] body) {
-		return HttpResponse.ok(new InlineResponse2002().setBinary(body));
+	public InlineResponse2002 mediatypePostOctetStream(byte[] body) {
+		return new InlineResponse2002().setBinary(body);
 	}
 
 	@Override
-	public HttpResponse<InlineResponse2003> mediatypePostMultipart(Integer orderId, Integer userId,
-			CompletedFileUpload fileName) {
+	public InlineResponse2003 mediatypePostMultipart(Integer orderId, Integer userId, CompletedFileUpload fileName) {
 		try {
-			return HttpResponse.ok(new InlineResponse2003()
+			return new InlineResponse2003()
 					.setOrderId(orderId)
 					.setUserId(userId)
 					.setFileName(fileName.getFilename())
-					.setFile(fileName.getBytes()));
+					.setFile(fileName.getBytes());
 		} catch (IOException e) {
 			throw new HttpStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e);
 		}
@@ -49,7 +48,7 @@ public class MediatypeController implements MediatypeApi {
 	}
 
 	@Override
-	public HttpResponse<MediaModel> mediatypeMultipleContentTypesSameModel() {
-		return HttpResponse.ok(new MediaModel().setData("test"));
+	public MediaModel mediatypeMultipleContentTypesSameModel() {
+		return new MediaModel().setData("test");
 	}
 }
