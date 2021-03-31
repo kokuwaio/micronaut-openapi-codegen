@@ -44,8 +44,22 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
-	public void multiple200() {
-		var response = assert200(() -> client.multiple(false));
+	public void multipleResponseCodes200() {
+		var response = assert200(() -> client.multipleResponseCodes(false));
+		assertEquals(new ResponseMultiple200().setFoo(ResponseController.STRING), response.body());
+	}
+
+	@Test
+	@Override
+	public void multipleResponseCodes300() {
+		var response = assert300(() -> client.multipleResponseCodes(true));
+		assertEquals(new ResponseMultiple200().setFoo(ResponseController.STRING), response.body());
+	}
+
+	@Test
+	@Override
+	public void multipleDataTypes200() {
+		var response = assert200(() -> client.multipleDataTypes(false));
 		assertEquals(
 				new ResponseMultiple200().setFoo(ResponseController.STRING),
 				response.getBody(ResponseMultiple200.class).orElse(null));
@@ -53,8 +67,8 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
-	public void multiple300() {
-		var response = assert300(() -> client.multiple(true));
+	public void multipleDataTypes300() {
+		var response = assert300(() -> client.multipleDataTypes(true));
 		assertEquals(
 				new ResponseMultiple300().setBar(ResponseController.DOUBLE),
 				response.getBody(ResponseMultiple300.class).orElse(null));
@@ -62,8 +76,8 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
-	public void multipleNotFound200() {
-		var response = assert200(() -> client.multipleNotFound(false, true));
+	public void multipleDataTypesNotFound200() {
+		var response = assert200(() -> client.multipleDataTypesNotFound(false, true));
 		assertEquals(
 				new ResponseMultiple200().setFoo(ResponseController.STRING),
 				response.getBody(ResponseMultiple200.class).orElse(null));
@@ -71,8 +85,8 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
-	public void multipleNotFound300() {
-		var response = assert300(() -> client.multipleNotFound(true, true));
+	public void multipleDataTypesNotFound300() {
+		var response = assert300(() -> client.multipleDataTypesNotFound(true, true));
 		assertEquals(
 				new ResponseMultiple300().setBar(ResponseController.DOUBLE),
 				response.getBody(ResponseMultiple300.class).orElse(null));
@@ -80,8 +94,8 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
-	public void multipleNotFound404() {
-		assert404(() -> client.multipleNotFound(false, false));
+	public void multipleDataTypesNotFound404() {
+		assert404(() -> client.multipleDataTypesNotFound(false, false));
 	}
 
 	@Test
