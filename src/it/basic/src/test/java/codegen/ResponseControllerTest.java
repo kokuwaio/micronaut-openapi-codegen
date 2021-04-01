@@ -4,6 +4,7 @@ import static codegen.HttpResponseAssertions.assert200;
 import static codegen.HttpResponseAssertions.assert204;
 import static codegen.HttpResponseAssertions.assert300;
 import static codegen.HttpResponseAssertions.assert404;
+import static codegen.HttpResponseAssertions.assert502;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -40,6 +41,20 @@ class ResponseControllerTest implements ResponseApiTestSpec {
 	public void arrayNotFound404() {
 		var response = assert404(() -> client.arrayNotFound(false));
 		assertNull(response.body());
+	}
+
+	@Test
+	@Override
+	public void defaultResponse200() {
+		var response = assert200(() -> client.defaultResponse(false));
+		assertEquals(3L, response.body());
+	}
+
+	@Test
+	@Override
+	public void defaultResponse0() {
+		var response = assert502(() -> client.defaultResponse(true));
+		assertEquals("nope", response.getBody(String.class).orElse(null));
 	}
 
 	@Test

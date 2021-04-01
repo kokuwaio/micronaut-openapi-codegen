@@ -109,6 +109,31 @@ paths:
                   type: string
         404:
           description: Ok.
+  /response/default-response:
+    get:
+      operationId: defaultResponse
+      tags:
+      - response
+      parameters:
+      - name: error
+        in: query
+        required: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int64
+        default:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
   /response/multiple-response-codes:
     get:
       operationId: multipleResponseCodes

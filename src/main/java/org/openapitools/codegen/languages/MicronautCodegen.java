@@ -270,7 +270,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				.findAny()
 				.orElseGet(wildcardResponse::get);
 		var responses = operation.responses.stream()
-				.filter(r -> Integer.valueOf(r.code) < 400)
+				.filter(r -> {
+					var code = Integer.valueOf(r.code);
+					return code >= 200 && code < 400;
+				})
 				.collect(Collectors.toList());
 		var useGeneric = responses.size() > 1;
 
