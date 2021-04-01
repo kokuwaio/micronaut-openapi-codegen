@@ -7,6 +7,7 @@ import codegen.model.ResponseMultiple300;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.exceptions.HttpStatusException;
 
 @Controller
 class ResponseController implements ResponseApi {
@@ -28,6 +29,14 @@ class ResponseController implements ResponseApi {
 	@Override
 	public HttpResponse<List<String>> arrayNotFound(Boolean found) {
 		return found ? HttpResponse.ok(ARRAY) : HttpResponse.notFound();
+	}
+
+	@Override
+	public HttpResponse<Long> defaultResponse(Boolean error) {
+		if (error) {
+			throw new HttpStatusException(HttpStatus.BAD_GATEWAY, (Object) "nope");
+		}
+		return HttpResponse.ok(3L);
 	}
 
 	@Override

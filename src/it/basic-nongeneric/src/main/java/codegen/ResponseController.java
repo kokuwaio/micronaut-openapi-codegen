@@ -33,6 +33,14 @@ class ResponseController implements ResponseApi {
 	}
 
 	@Override
+	public Long defaultResponse(Boolean error) {
+		if (error) {
+			throw new HttpStatusException(HttpStatus.BAD_GATEWAY, (Object) "nope");
+		}
+		return 3L;
+	}
+
+	@Override
 	public HttpResponse<ResponseMultiple200> multipleResponseCodes(Boolean redirect) {
 		return redirect
 				? HttpResponse.status(HttpStatus.MULTIPLE_CHOICES).body(new ResponseMultiple200().setFoo(STRING))
