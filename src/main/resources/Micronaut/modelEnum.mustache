@@ -1,3 +1,5 @@
+{{#introspected}}@io.micronaut.core.annotation.Introspected
+{{/introspected}}
 public enum {{#nameInCamelCase}}{{{nameInCamelCase}}}{{/nameInCamelCase}}{{^nameInCamelCase}}{{{classname}}}{{/nameInCamelCase}} {
 
 {{#allowableValues}}{{#enumVars}}	{{{name}}}({{{value}}}){{^-last}},

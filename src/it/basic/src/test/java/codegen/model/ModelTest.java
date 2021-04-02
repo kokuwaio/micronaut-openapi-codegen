@@ -70,6 +70,12 @@ class ModelTest {
 	}
 
 	@Test
+	@DisplayName("model enum: introspected present by default")
+	void modelEnumIntrospected() {
+		assertNotNull(StringEnumeration.class.getAnnotation(Introspected.class), "no annotation found");
+	}
+
+	@Test
 	@DisplayName("model enum: constants")
 	void modelEnumConstants() {
 		assertEquals(StringEnumeration.ONE.getValue(), StringEnumeration.ONE_VALUE);
@@ -90,6 +96,12 @@ class ModelTest {
 		assertEquals(Optional.of(StringEnumeration.ONE), StringEnumeration.toOptional(StringEnumeration.ONE_VALUE));
 		assertEquals(Optional.of(StringEnumeration.TWO), StringEnumeration.toOptional(StringEnumeration.TWO_VALUE));
 		assertEquals(Optional.empty(), StringEnumeration.toOptional("meh"));
+	}
+
+	@Test
+	@DisplayName("embedded enum: introspected present by default")
+	void embeddedEnumIntrospected() {
+		assertNotNull(EmbeddedEnumeration.class.getAnnotation(Introspected.class), "no annotation found");
 	}
 
 	@Test
