@@ -100,7 +100,42 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	public {{classname}} {{setter}}({{>modelPropertyType}} {{name}}) {
 		this.{{name}} = {{name}};
 		return this;
-	}{{/vars}}{{#vars}}{{#isEnum}}
+	}
+
+    {{#isContainer}}
+	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInCamelCase}}Item({{#isMap}}String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
+		{{#isNullable}}
+			{{#jacksonDatabindNullable}}
+		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
+			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of({{{defaultValue}}});
+		}
+		try {
+			this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
+		} catch (java.util.NoSuchElementException e) {
+			// this can never happen, as we make sure above that the value is present
+		}
+			{{/jacksonDatabindNullable}}
+			{{^jacksonDatabindNullable}}
+		if (this.{{name}} == null) {
+			this.{{name}} = {{{defaultValue}}};
+		}
+		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
+			{{/jacksonDatabindNullable}}
+		{{/isNullable}}
+		{{^isNullable}}
+			{{^jacksonDatabindNullable}}
+		if (this.{{name}} == null) {
+			this.{{name}} = {{{defaultValue}}};
+		}
+		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
+			{{/jacksonDatabindNullable}}
+		{{/isNullable}}
+		return this;
+	}
+
+	{{/isContainer}}
+    {{/vars}}
+    {{#vars}}{{#isEnum}}
 
 {{>modelEnum}}{{/isEnum}}{{/vars}}
 }
