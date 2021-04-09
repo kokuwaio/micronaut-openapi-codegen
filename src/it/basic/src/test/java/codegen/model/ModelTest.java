@@ -64,6 +64,12 @@ class ModelTest {
 	}
 
 	@Test
+	@DisplayName("inheritance: has visitor")
+	void inheritanceHasVisitor() throws ReflectiveOperationException {
+		assertNotNull(InheritanceModel.class.getDeclaredMethod("accept", InheritanceModel.Visitor.class), "model doesn't accept visitor");
+	}
+
+	@Test
 	@DisplayName("introspected: present by default")
 	void introspected() {
 		assertNotNull(Model.class.getAnnotation(Introspected.class), "no annotation found");
