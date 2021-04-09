@@ -6,12 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ModelTest {
 
-	final Model model = new Model();
+	Model model;
+
+	@BeforeEach
+	void beforeEach() {
+		model = new Model();
+	}
 
 	@Test
 	@DisplayName("non nullable string without default value")
@@ -49,4 +55,13 @@ class ModelTest {
 	void nullableArray() {
 		assertFalse(model.getNullableArray().isPresent());
 	}
+
+	@Test
+	@DisplayName("nullable array add single item")
+	void nullableArrayAddSingleItem() {
+		assertFalse(model.getNullableArray().isPresent());
+		model.addNullableArrayItem("item");
+		assertTrue(model.getNullableArray().isPresent());
+	}
+
 }
