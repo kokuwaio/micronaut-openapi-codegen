@@ -58,6 +58,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
 	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
 	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
+	public static final String VISITABLE = "visitable";
 
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
@@ -84,6 +85,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useJavaxGenerated = true;
 	private boolean useLombokGenerated = false;
 	private boolean useReferencedSchemaAsDefault = false;
+	private boolean visitable = true;
 
 	public MicronautCodegen() {
 
@@ -102,6 +104,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newBoolean(USE_REFERENCED_SCHEMA_AS_DEFAULT,
 				"Use the referenced schemas type as default values.", useReferencedSchemaAsDefault));
+		cliOptions.add(CliOption.newBoolean(VISITABLE,
+				"Generate visitor for subtypes with a discriminator.", visitable));
 		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
 				"Support addtional properties with  composed schemas.",
 				supportsAdditionalPropertiesWithComposedSchema));
@@ -124,6 +128,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_JAVAX_GENERATED, useJavaxGenerated);
 		additionalProperties.put(USE_LOMBOK_GENERATED, useLombokGenerated);
 		additionalProperties.put(USE_REFERENCED_SCHEMA_AS_DEFAULT, useReferencedSchemaAsDefault);
+		additionalProperties.put(VISITABLE, visitable);
 		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED,
 				supportsAdditionalPropertiesWithComposedSchema);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
@@ -210,6 +215,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		if (additionalProperties.containsKey(USE_REFERENCED_SCHEMA_AS_DEFAULT)) {
 			useReferencedSchemaAsDefault = convertPropertyToBooleanAndWriteBack(USE_REFERENCED_SCHEMA_AS_DEFAULT);
+		}
+		if (additionalProperties.containsKey(VISITABLE)) {
+			visitable = convertPropertyToBooleanAndWriteBack(VISITABLE);
 		}
 		if (additionalProperties.containsKey(ADDITIONAL_PROPS_COMPOSED)) {
 			supportsAdditionalPropertiesWithComposedSchema =
