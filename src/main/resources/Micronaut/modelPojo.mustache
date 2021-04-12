@@ -136,6 +136,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	{{/isContainer}}
     {{/vars}}
 
+    {{#visitable}}
     {{#discriminator}}
     /**
      * Accept the visitor and invoke it for the specific {{classname}} type.
@@ -166,6 +167,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
     }
         {{/interfaces.0}}
     {{/parent}}
+    {{/visitable}}
 
     {{#vars}}{{#isEnum}}
 

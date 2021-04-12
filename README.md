@@ -15,10 +15,11 @@
  * useGenericResponse: return generic container or specific model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
  * useOptional: optional parameters are generated as `java.util.Optional` (default `true`)
  * useJavaxGenerated: add `@javax.annotation.processing.Generated` to all classes (default `true`)
- * useLombokGenerated: add `@lombok.Generated` to all classes (default `false`), usefull for [jacoco](https://github.com/jacoco/jacoco/pull/731)
+ * useLombokGenerated: add `@lombok.Generated` to all classes (default `false`), useful for [jacoco](https://github.com/jacoco/jacoco/pull/731)
  * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
  * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.1.3/guide/index.html#reactiveServer)
- * useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values 
+ * useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values
+ * visitable: generate visitor for subtypes with a discriminator (default `true`)
 
 ### Null handling and default values
 
