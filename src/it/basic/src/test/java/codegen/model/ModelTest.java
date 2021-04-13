@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -194,5 +197,13 @@ class ModelTest {
 	@DisplayName("model: any type")
 	void modelAny() throws ReflectiveOperationException {
 		assertEquals(Object.class, Model.class.getDeclaredField("any").getType());
+	}
+
+	@Test
+	@DisplayName("model: set type")
+	void modelSet() throws ReflectiveOperationException {
+		assertEquals(Set.class, Model.class.getDeclaredField("setModel").getType());
+		var model = new Model().addSetModelItem("test");
+		assertTrue(model.getSetModel() instanceof HashSet, "The model should be instantiated to HashSet.");
 	}
 }
