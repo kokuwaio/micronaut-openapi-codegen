@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -160,7 +160,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("Nonnull", javax.annotation.Nonnull.class.getName());
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
-		instantiationTypes.put("set", HashSet.class.getName());
+		instantiationTypes.put("set", LinkedHashSet.class.getName());
 	}
 
 	@Override
