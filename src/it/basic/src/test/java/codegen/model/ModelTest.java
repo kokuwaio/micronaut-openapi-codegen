@@ -205,5 +205,5 @@ class ModelTest {
 		assertEquals(Set.class, Model.class.getDeclaredField("setModel").getType());
 		var model = new Model().addSetModelItem("test");
 		assertTrue(model.getSetModel() instanceof LinkedHashSet, "The model should be instantiated to HashSet.");
-	}HashSet
+	}
 }
