@@ -14,9 +14,11 @@ import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -41,6 +43,7 @@ import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
@@ -139,6 +142,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("DateTime", Instant.class.getName());
 		typeMapping.put("array", List.class.getName());
 		typeMapping.put("map", Map.class.getName());
+		typeMapping.put("set", Set.class.getName());
 		typeMapping.put("boolean", Boolean.class.getName());
 		typeMapping.put("string", String.class.getName());
 		typeMapping.put("int", Integer.class.getName());
@@ -161,6 +165,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("Nonnull", javax.annotation.Nonnull.class.getName());
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
+		instantiationTypes.put("set", HashSet.class.getName());
 	}
 
 	@Override
@@ -413,8 +418,15 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			return "new " + getSchemaType(schema) + "()";
 		}
 
+		if (ModelUtils.isSet(schema)) {
+			ArraySchema arraySchema = (ArraySchema) schema;
+			String itemType = Optional.ofNullable(arraySchema.getItems()).map(this::getSchemaType).orElse("");
+			return "new " + instantiationTypes.get("set") + "<" + itemType + ">()";
+		}
 		if (ModelUtils.isArraySchema(schema)) {
-			return "new " + instantiationTypes.get("array") + "<>()";
+			ArraySchema arraySchema = (ArraySchema) schema;
+			String itemType = Optional.ofNullable(arraySchema.getItems()).map(this::getSchemaType).orElse("");
+			return "new " + instantiationTypes.get("array") + "<" + itemType + ">()";
 		}
 		if (ModelUtils.isMapSchema(schema)) {
 			return "new " + instantiationTypes.get("map") + "<>()";

@@ -699,6 +699,8 @@ components:
           type: string
           default: defaultNullableValue
           nullable: true
+        setModel:
+          $ref: '#/components/schemas/SetModel'
     InheritanceModel:
       discriminator:
         propertyName: type
@@ -794,3 +796,8 @@ components:
       properties:
         data: 
           type: string
+    SetModel:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
