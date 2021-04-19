@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import codegen.model.ResponseMultiple200;
 import codegen.model.ResponseMultiple300;
-import io.micronaut.test.annotation.MicronautTest;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 
 @MicronautTest
 class ResponseControllerTest implements ResponseApiTestSpec {

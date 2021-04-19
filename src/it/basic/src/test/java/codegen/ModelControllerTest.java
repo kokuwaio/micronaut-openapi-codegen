@@ -25,7 +25,7 @@ import codegen.model.Model;
 import codegen.model.Model.EmbeddedEnumeration;
 import codegen.model.ModelStore;
 import codegen.model.StringEnumeration;
-import io.micronaut.test.annotation.MicronautTest;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 
 @MicronautTest
 class ModelControllerTest implements ModelApiTestSpec {

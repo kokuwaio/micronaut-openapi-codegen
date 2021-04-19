@@ -1,6 +1,6 @@
 ## Features
 
- * generate api interfaces (see [declarative client](https://docs.micronaut.io/2.1.3/guide/index.html#clientAnnotation))
+ * generate api interfaces (see [declarative client](https://docs.micronaut.io/2.4.2/guide/index.html#clientAnnotation))
  * generate model objects with fluent and property accessors
  * generate interfaces for api tests based on method name and return code
  * generate client interfaces with micronaut **clientId**
@@ -17,7 +17,7 @@
  * useJavaxGenerated: add `@javax.annotation.processing.Generated` to all classes (default `true`)
  * useLombokGenerated: add `@lombok.Generated` to all classes (default `false`), useful for [jacoco](https://github.com/jacoco/jacoco/pull/731)
  * jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
- * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.1.3/guide/index.html#reactiveServer)
+ * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.4.2/guide/index.html#reactiveServer)
  * useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values
  * visitable: generate visitor for subtypes with a discriminator (default `true`)
 
