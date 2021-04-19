@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import codegen.model.Model.DefaultEnumeration;
 import codegen.model.Model.EmbeddedEnumeration;
 import io.micronaut.core.annotation.Introspected;
-import io.micronaut.test.annotation.MicronautTest;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 
 @MicronautTest
 class ModelTest {
