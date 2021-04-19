@@ -56,8 +56,8 @@ public class ResponseControllerTest implements ResponseApiTestSpec {
 
 	@Test
 	@Override
-	public void noContentGet200() {
-		assert200(() -> client.noContentGet());
+	public void noContent200() {
+		assert200(() -> client.noContent());
 	}
 
 	@Test

@@ -34,7 +34,7 @@ public class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public Single<HttpResponse<Object>> noContentGet() {
+	public Single<HttpResponse<Object>> noContent() {
 		return Single.just(HttpResponse.ok());
 	}
 

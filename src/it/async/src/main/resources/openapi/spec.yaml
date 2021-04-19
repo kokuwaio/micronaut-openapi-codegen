@@ -61,6 +61,7 @@ paths:
                   $ref: '#/components/schemas/Model'
   /noContent:
     get:
+      operationId: noContent
       tags:
       - response
       responses:

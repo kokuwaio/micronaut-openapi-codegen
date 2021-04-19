@@ -29,7 +29,7 @@ public class ResponseController implements ResponseApi {
 	}
 
 	@Override
-	public Mono<HttpResponse<Object>> noContentGet() {
+	public Mono<HttpResponse<Object>> noContent() {
 		return Mono.just(HttpResponse.ok());
 	}
 
