@@ -9,5 +9,4 @@
 	</parent>
 
 	<artifactId>@project.artifactId@-it-swagger20</artifactId>
-
 </project>
