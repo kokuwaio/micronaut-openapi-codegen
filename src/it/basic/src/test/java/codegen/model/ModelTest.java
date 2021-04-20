@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
-
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -206,10 +208,92 @@ class ModelTest {
 	}
 
 	@Test
-	@DisplayName("model: set type")
-	void modelSet() throws ReflectiveOperationException {
-		assertEquals(Set.class, Model.class.getDeclaredField("setModel").getType());
-		var model = new Model().addSetModelItem("test");
-		assertTrue(model.getSetModel() instanceof LinkedHashSet, "The model should be instantiated to HashSet.");
+	@DisplayName("model: addItem for list")
+	void modelAddItemList() {
+		var model = new Model();
+		assertEquals(List.of(), model.getArray());
+		model.addArrayItem("foo");
+		assertEquals(List.of("foo"), model.getArray());
+		assertTrue(model.getArray() instanceof ArrayList);
+	}
+
+	@Test
+	@DisplayName("model: addItem for set")
+	void modelAddItemSet() {
+		var model = new Model();
+		assertEquals(Set.of(), model.getSet());
+		model.addSetItem("foo");
+		assertEquals(Set.of("foo"), model.getSet());
+		assertTrue(model.getSet() instanceof LinkedHashSet);
+	}
+
+	@Test
+	@DisplayName("model: addItem for map")
+	void modelAddItemMap() {
+		var model = new Model();
+		assertEquals(Map.of(), model.getMap());
+		model.putMapItem("foo", "bar");
+		assertEquals(Map.of("foo", "bar"), model.getMap());
+		assertTrue(model.getMap() instanceof HashMap);
+	}
+
+	@Test
+	@DisplayName("model: addItem for nullable list")
+	void modelAddItemNullableList() {
+		var model = new Model();
+		assertNull(model.getNullableArray());
+		model.addNullableArrayItem("foo");
+		assertEquals(List.of("foo"), model.getNullableArray());
+		assertTrue(model.getNullableArray() instanceof ArrayList);
+	}
+
+	@Test
+	@DisplayName("model: addItem for nullable set")
+	void modelAddItemNullableSet() {
+		var model = new Model();
+		assertNull(model.getNullableSet());
+		model.addNullableSetItem("foo");
+		assertEquals(Set.of("foo"), model.getNullableSet());
+		assertTrue(model.getNullableSet() instanceof LinkedHashSet);
+	}
+
+	@Test
+	@DisplayName("model: addItem for nullable map")
+	void modelAddItemNullableMap() {
+		var model = new Model();
+		assertNull(model.getNullableMap());
+		model.putNullableMapItem("foo", "bar");
+		assertEquals(Map.of("foo", "bar"), model.getNullableMap());
+		assertTrue(model.getNullableMap() instanceof HashMap);
+	}
+
+	@Test
+	@DisplayName("model: addItem for optional list")
+	void modelAddItemoptionalList() {
+		var model = new Model();
+		assertNull(model.getOptionalArray());
+		model.addOptionalArrayItem("foo");
+		assertEquals(List.of("foo"), model.getOptionalArray());
+		assertTrue(model.getOptionalArray() instanceof ArrayList);
+	}
+
+	@Test
+	@DisplayName("model: addItem for optional set")
+	void modelAddItemoptionalSet() {
+		var model = new Model();
+		assertNull(model.getOptionalSet());
+		model.addOptionalSetItem("foo");
+		assertEquals(Set.of("foo"), model.getOptionalSet());
+		assertTrue(model.getOptionalSet() instanceof LinkedHashSet);
+	}
+
+	@Test
+	@DisplayName("model: addItem for optional map")
+	void modelAddItemoptionalMap() {
+		var model = new Model();
+		assertNull(model.getOptionalMap());
+		model.putOptionalMapItem("foo", "bar");
+		assertEquals(Map.of("foo", "bar"), model.getOptionalMap());
+		assertTrue(model.getOptionalMap() instanceof HashMap);
 	}
 }
