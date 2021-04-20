@@ -637,6 +637,7 @@ components:
       - name
       - array
       - map
+      - set
       properties:
         id:
           type: integer
@@ -663,7 +664,25 @@ components:
           type: array
           items:
             type: string
+        set:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
         map:
+          type: string
+          additionalProperties:
+            type: string
+        optionalArray:
+          type: array
+          items:
+            type: string
+        optionalSet:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        optionalMap:
           type: string
           additionalProperties:
             type: string
@@ -674,6 +693,17 @@ components:
           type: array
           nullable: true
           items:
+            type: string
+        nullableSet:
+          type: array
+          nullable: true
+          items:
+            type: string
+          uniqueItems: true
+        nullableMap:
+          type: string
+          nullable: true
+          additionalProperties:
             type: string
         modelEnumeration:
           $ref: '#/components/schemas/StringEnumeration'
@@ -699,8 +729,6 @@ components:
           type: string
           default: defaultNullableValue
           nullable: true
-        setModel:
-          $ref: '#/components/schemas/SetModel'
     InheritanceModel:
       discriminator:
         propertyName: type
@@ -796,8 +824,3 @@ components:
       properties:
         data: 
           type: string
-    SetModel:
-      type: array
-      items:
-        type: string
-      uniqueItems: true

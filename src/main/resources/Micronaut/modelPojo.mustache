@@ -10,15 +10,16 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 {{#vars}}
 	public static final String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
-{{/vars}}{{#discriminator}}
-	public static final String JSON_DISCRIMINATOR = "{{discriminatorName}}";
+{{/vars}}{{#discriminator}}	public static final String JSON_DISCRIMINATOR = "{{discriminatorName}}";
 {{/discriminator}}
 
 {{#vars}}{{#description}}	/** {{description}} */
 {{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
 	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
-{{/vars}}
+{{/vars}}{{#vendorExtensions.additionalPropertiesMap}}
+	private {{{vendorExtensions.additionalPropertiesMap}}} additionalProperties;
+{{/vendorExtensions.additionalPropertiesMap}}
 {{#discriminator}}
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();
@@ -29,6 +30,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	}
 
 {{/vendorExtensions.discriminatorPropertyValue}}
+
 	// methods
 
 	@Override
@@ -64,8 +66,8 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	// fluent
 	{{#vars}}
 
-	public {{classname}} {{name}}({{>modelPropertyType}} {{name}}) {
-		this.{{name}} = {{name}};
+	public {{classname}} {{name}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
+		this.{{name}} = new{{nameInCamelCase}};
 		return this;
 	}
 
@@ -74,46 +76,39 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	}
 	{{/vars}}
 
-    {{#vendorExtensions.additionalPropertiesMap}}
-    private {{{vendorExtensions.additionalPropertiesMap}}} additionalProperties;
 
-    @com.fasterxml.jackson.annotation.JsonAnyGetter
-    public {{{vendorExtensions.additionalPropertiesMap}}} getAdditionalProperties() {
-        return additionalProperties;
-    }
+	// getter/setter{{#vendorExtensions.additionalPropertiesMap}}
 
-    @com.fasterxml.jackson.annotation.JsonAnySetter
-    public void setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} additionalProperties) {
-        this.additionalProperties = additionalProperties;
-    }
+	@com.fasterxml.jackson.annotation.JsonAnyGetter
+	public {{{vendorExtensions.additionalPropertiesMap}}} getAdditionalProperties() {
+		return additionalProperties;
+	}
 
-    {{/vendorExtensions.additionalPropertiesMap}}
-
-
-	// getter/setter
+	@com.fasterxml.jackson.annotation.JsonAnySetter
+	public {{classname}} setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} newAdditionalProperties) {
+		this.additionalProperties = newAdditionalProperties;
+		return this;
+	}
+	{{/vendorExtensions.additionalPropertiesMap}}
 	{{#vars}}
 
 	public {{>modelPropertyType}} {{getter}}() {
 		return {{name}};
 	}
 
-	public {{classname}} {{setter}}({{>modelPropertyType}} {{name}}) {
-		this.{{name}} = {{name}};
+	public {{classname}} {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
+		this.{{name}} = new{{nameInCamelCase}};
 		return this;
 	}
 
-    {{#isContainer}}
+	{{#isContainer}}
 	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInCamelCase}}Item({{#isMap}}String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
 		{{#isNullable}}
 			{{#jacksonDatabindNullable}}
 		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
 			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of({{{defaultValue}}});
 		}
-		try {
-			this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
-		} catch (java.util.NoSuchElementException e) {
-			// this can never happen, as we make sure above that the value is present
-		}
+		this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
 			{{/jacksonDatabindNullable}}
 			{{^jacksonDatabindNullable}}
 		if (this.{{name}} == null) {
@@ -123,16 +118,13 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 			{{/jacksonDatabindNullable}}
 		{{/isNullable}}
 		{{^isNullable}}
-			{{^jacksonDatabindNullable}}
 		if (this.{{name}} == null) {
 			this.{{name}} = {{{defaultValue}}};
 		}
 		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
-			{{/jacksonDatabindNullable}}
 		{{/isNullable}}
 		return this;
 	}
-
 	{{/isContainer}}
     {{/vars}}
 
