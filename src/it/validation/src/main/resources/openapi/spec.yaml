@@ -69,15 +69,33 @@ components:
     Model:
       type: object
       required:
-      - name
+      - stringValue
+      - integerValue
       - embedded
       properties:
-        id:
-          type: integer
-          format: int32
-        name:
+        stringValue:
           type: string
           maxLength: 5
+        integerValue:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 3
+        longValue:
+          type: integer
+          format: int32
+          minimum: 5
+          maximum: 7
+        floatValue:
+          type: number
+          format: float
+          minimum: 1.78
+          maximum: 1.95
+        doubleValue:
+          type: number
+          format: double
+          minimum: 3.11
+          maximum: 6.12
         embedded:
           $ref: '#/components/schemas/Embedded'
     ModelWithCollection:
