@@ -10,7 +10,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 {{#vars}}
 	public static final String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
-{{/vars}}{{#discriminator}}	public static final String JSON_DISCRIMINATOR = "{{discriminatorName}}";
+{{/vars}}{{#discriminator}}	public static final String JSON_DISCRIMINATOR = "{{propertyBaseName}}";
 {{/discriminator}}
 
 {{#vars}}{{#description}}	/** {{description}} */
