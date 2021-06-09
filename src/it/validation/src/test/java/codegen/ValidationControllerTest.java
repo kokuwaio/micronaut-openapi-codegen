@@ -22,13 +22,29 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	@Override
 	public void body204() {
 		assert200(() -> client.body(model()));
+		assert200(() -> client.body(model().setIntegerValue(1)));
+		assert200(() -> client.body(model().setIntegerValue(3)));
+		assert200(() -> client.body(model().setLongValue(5)));
+		assert200(() -> client.body(model().setLongValue(7)));
+		assert200(() -> client.body(model().setFloatValue(1.79F)));
+		assert200(() -> client.body(model().setFloatValue(1.94F)));
+		assert200(() -> client.body(model().setDoubleValue(3.11D)));
+		assert200(() -> client.body(model().setDoubleValue(6.12D)));
 	}
 
 	@Test
 	@Override
 	public void body400() {
-		assert400(() -> client.body(model().name(null)));
-		assert400(() -> client.body(model().name("abcdef")));
+		assert400(() -> client.body(model().setStringValue(null)));
+		assert400(() -> client.body(model().setStringValue("abcdef")));
+		assert400(() -> client.body(model().setIntegerValue(0)));
+		assert400(() -> client.body(model().setIntegerValue(4)));
+		assert400(() -> client.body(model().setLongValue(4)));
+		assert400(() -> client.body(model().setLongValue(8)));
+		assert400(() -> client.body(model().setFloatValue(1.77F)));
+		assert400(() -> client.body(model().setFloatValue(1.96F)));
+		assert400(() -> client.body(model().setDoubleValue(3.10D)));
+		assert400(() -> client.body(model().setDoubleValue(6.13D)));
 		assert400(() -> client.body(model().embedded(null)));
 		assert400(() -> client.body(model().embedded(new Embedded())));
 	}
@@ -45,10 +61,13 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	@Override
 	public void bodyWithCollection400() {
 		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(new Model()))));
-		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().name(null)))));
-		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().name("abcdef")))));
+		assert400(
+				() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().setStringValue(null)))));
+		assert400(() -> client
+				.bodyWithCollection(new ModelWithCollection().list(List.of(model().setStringValue("abcdef")))));
 		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(null)))));
-		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(new Embedded())))));
+		assert400(() -> client
+				.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(new Embedded())))));
 	}
 
 	@Test
@@ -65,6 +84,6 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	}
 
 	private Model model() {
-		return new Model().name("foo").embedded(new Embedded().name("bar"));
+		return new Model().setStringValue("foo").setIntegerValue(1).embedded(new Embedded().name("bar"));
 	}
 }

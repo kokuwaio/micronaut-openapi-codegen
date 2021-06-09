@@ -2,8 +2,8 @@
 {{/isModel}}{{#isContainer}}{{^items.isUuid}}	@javax.validation.Valid
 {{/items.isUuid}}{{/isContainer}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
 {{/isNullable}}{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
-{{/pattern}}{{#minimum}}	@javax.validation.constraints.Min({{minimum}})
-{{/minimum}}{{#maximum}}	@javax.validation.constraints.Max({{maximum}})
+{{/pattern}}{{#minimum}}	@javax.validation.constraints.{{#isDouble}}DecimalMin("{{minimum}}"){{/isDouble}}{{#isFloat}}DecimalMin("{{minimum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Min({{minimum}}){{/isDouble}}{{/isFloat}}
+{{/minimum}}{{#maximum}}	@javax.validation.constraints.{{#isDouble}}DecimalMax("{{maximum}}"){{/isDouble}}{{#isFloat}}DecimalMax("{{maximum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Max({{maximum}}){{/isDouble}}{{/isFloat}}
 {{/maximum}}{{#minLength}}{{^maxLength}}	@javax.validation.constraints.Size(min = {{minLength}})
 {{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}	@javax.validation.constraints.Size(max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}	@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
