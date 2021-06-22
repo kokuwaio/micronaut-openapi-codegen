@@ -13,6 +13,6 @@ class ModelTest {
 	void defaultType() {
 		assertFalse(new Entity() instanceof Map, "Entity should not extend map.");
 		assertDoesNotThrow(() -> new Entity().getAdditionalProperties(), "The additional properties field should have been created.");
-		assertDoesNotThrow(() -> new Entity().setAdditionalProperties(Map.of("my", "property")), "The additional properties field should offer a setter.");
+		assertDoesNotThrow(() -> new Entity().setAdditionalProperties("my", "property"), "The additional properties field should offer a setter.");
 	}
 }
