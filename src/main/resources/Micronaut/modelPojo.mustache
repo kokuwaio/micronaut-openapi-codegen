@@ -85,10 +85,19 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	}
 
 	@com.fasterxml.jackson.annotation.JsonAnySetter
-	public {{classname}} setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} newAdditionalProperties) {
-		this.additionalProperties = newAdditionalProperties;
-		return this;
+	public {{classname}} setAdditionalProperties(java.lang.String propertyKey, java.lang.Object value) {
+	    if (this.additionalProperties == null) {
+            this.additionalProperties = new java.util.HashMap<>();
+        }
+        this.additionalProperties.put(propertyKey, value);
+        return this;
 	}
+
+	public {{classname}} setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} newAdditionalProperties) {
+	this.additionalProperties = newAdditionalProperties;
+	return this;
+    }
+
 	{{/vendorExtensions.additionalPropertiesMap}}
 	{{#vars}}
 
