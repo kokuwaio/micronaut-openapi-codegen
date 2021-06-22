@@ -92,6 +92,12 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
         this.additionalProperties.put(propertyKey, value);
         return this;
 	}
+
+	public {{classname}} setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} newAdditionalProperties) {
+    		this.additionalProperties = newAdditionalProperties;
+    		return this;
+    }
+
 	{{/vendorExtensions.additionalPropertiesMap}}
 	{{#vars}}
 
