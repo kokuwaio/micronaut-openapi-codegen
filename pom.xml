@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.kokuwa</groupId>
 		<artifactId>maven-parent</artifactId>
-		<version>0.3.0</version>
+		<version>0.3.1</version>
 		<relativePath />
 	</parent>
 
@@ -48,7 +48,7 @@
 		<!-- ============================= Libaries ============================== -->
 		<!-- ===================================================================== -->
 
-		<version.io.micronaut>2.5.5</version.io.micronaut>
+		<version.io.micronaut>2.5.7</version.io.micronaut>
 		<version.org.openapitools>5.1.1</version.org.openapitools>
 		<version.org.openapitools.jackson.nullable>0.2.1</version.org.openapitools.jackson.nullable>
 
