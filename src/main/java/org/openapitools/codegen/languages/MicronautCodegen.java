@@ -62,6 +62,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
 	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
 	public static final String VISITABLE = "visitable";
+	public static final String PAGEABLE = "pageable";
 
 	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
 			"temporal-amount", TemporalAmount.class,
@@ -89,6 +90,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useLombokGenerated = false;
 	private boolean useReferencedSchemaAsDefault = false;
 	private boolean visitable = true;
+	private boolean pageable = false;
 
 	public MicronautCodegen() {
 
@@ -112,6 +114,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
 				"Support addtional properties with  composed schemas.",
 				supportsAdditionalPropertiesWithComposedSchema));
+		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
 
 		// there is no documentation template yet
 
@@ -134,6 +137,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(VISITABLE, visitable);
 		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED,
 				supportsAdditionalPropertiesWithComposedSchema);
+		additionalProperties.put(PAGEABLE, pageable);
 		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
@@ -166,6 +170,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
 		instantiationTypes.put("set", LinkedHashSet.class.getName());
+		importMapping.clear();
 	}
 
 	@Override
@@ -217,16 +222,18 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
 		}
-
 		if (additionalProperties.containsKey(USE_REFERENCED_SCHEMA_AS_DEFAULT)) {
 			useReferencedSchemaAsDefault = convertPropertyToBooleanAndWriteBack(USE_REFERENCED_SCHEMA_AS_DEFAULT);
 		}
 		if (additionalProperties.containsKey(VISITABLE)) {
 			visitable = convertPropertyToBooleanAndWriteBack(VISITABLE);
 		}
+		if (additionalProperties.containsKey(PAGEABLE)) {
+			pageable = convertPropertyToBooleanAndWriteBack(PAGEABLE);
+		}
 		if (additionalProperties.containsKey(ADDITIONAL_PROPS_COMPOSED)) {
-			supportsAdditionalPropertiesWithComposedSchema =
-					convertPropertyToBooleanAndWriteBack(ADDITIONAL_PROPS_COMPOSED);
+			supportsAdditionalPropertiesWithComposedSchema = convertPropertyToBooleanAndWriteBack(
+					ADDITIONAL_PROPS_COMPOSED);
 		}
 
 		// we do not generate projects, only api, set source and test folder
@@ -248,6 +255,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (dateTimeRelaxed && !openAPI.getPaths().isEmpty()) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
+		}
+		if (pageable) {
+			addSupportingFile(sourceFolder, invokerPackage, "PageableProvider");
 		}
 
 		// add type mappings for mustache

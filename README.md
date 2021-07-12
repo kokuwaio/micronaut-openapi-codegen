@@ -20,6 +20,7 @@
  * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.4.2/guide/index.html#reactiveServer)
  * useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values
  * visitable: generate visitor for subtypes with a discriminator (default `true`)
+ * pagable: generate provider for pagable (default `false`)
 
 ### Null handling and default values
 
