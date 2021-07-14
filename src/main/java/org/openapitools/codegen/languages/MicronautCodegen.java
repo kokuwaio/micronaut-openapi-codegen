@@ -467,9 +467,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			model.vars.stream()
 					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
 					.findAny().ifPresent(property -> {
-						discriminator.setPropertyType(property.getDataType());
-						model.vars.remove(property);
-					});
+				discriminator.setPropertyType(property.getDataType());
+				model.vars.remove(property);
+			});
 
 			// add discriminator value to submodel
 
@@ -531,6 +531,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			if (property.defaultValue != null) {
 				property.defaultValue = toEnumName(property) + "."
 						+ toEnumVarName(property.defaultValue, property.dataType);
+			}
+			if (property.isArray && property.items != null) {
+				property.dataType = property.items.dataType;
+				property.datatypeWithEnum = typeMapping.get("array")
+						+ "<" + toEnumName(property) + ">";
+				property.defaultValue = "new " + instantiationTypes.get("array") + "()";
 			}
 		}
 		if ("byte[]".equals(property.dataType)) {
