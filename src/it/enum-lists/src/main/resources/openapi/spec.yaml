@@ -1,0 +1,22 @@
+openapi: 3.0.2
+info:
+  title: Test Spec
+  version: '0'
+
+paths: { }
+
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        mood:
+          type: array
+          items:
+            type: string
+            enum:
+              - HAPPY
+              - CREATIVE
+              - CHALLANGED
+              - WORRIED
+              - SUICIDAL
