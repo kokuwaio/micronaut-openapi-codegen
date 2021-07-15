@@ -12,7 +12,7 @@ public interface {{classname}} {
 {{#summary}}	/** {{summary}} */
 {{/summary}}	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.path}}}"){{^vendorExtensions.generic}}
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
-	@io.micronaut.http.annotation.Consumes({{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}}){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
 	{{>returnType}} {{nickname}}({{#hasParams}}
 {{>apiParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{/operation}}
