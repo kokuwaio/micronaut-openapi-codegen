@@ -296,4 +296,18 @@ class ModelTest {
 		assertEquals(Map.of("foo", "bar"), model.getOptionalMap());
 		assertTrue(model.getOptionalMap() instanceof HashMap);
 	}
+
+	@Test
+	@DisplayName("model: property with multiple enum values")
+	void modelMultiEnumProperty() {
+		var model = new MultiEnumPropertyModel();
+		assertNull(model.getMultiEnum());
+		model.putMultiEnumItem("foo", MultiEnumPropertyModel.MultiEnum.ONE);
+		model.putMultiEnumItem("bar", MultiEnumPropertyModel.MultiEnum.TWO);
+		assertTrue(model.getMultiEnum() instanceof HashMap);
+		assertEquals(Map.of(
+				"foo", MultiEnumPropertyModel.MultiEnum.ONE,
+				"bar", MultiEnumPropertyModel.MultiEnum.TWO),
+				model.getMultiEnum());
+	}
 }

@@ -76,6 +76,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			"offset-time", OffsetTime.class);
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
+	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
+	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
 	private static final String UUID_PATTERN = StringUtils.repeat("[a-f0-9]", 8)
 			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 4)
 			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 12);
@@ -294,7 +296,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				.orElseGet(wildcardResponse::get);
 		var responses = operation.responses.stream()
 				.filter(r -> {
-					var code = Integer.valueOf(r.code);
+					if (r.isRange()) {
+						throw new SpecValidationException("Range responses are not supported: " + r.code);
+					}
+					var code = Integer.parseInt(r.code);
 					return code >= 200 && code < 400;
 				})
 				.collect(Collectors.toList());
@@ -309,7 +314,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 
 		if (operation.produces != null && operation.produces.size() > 1) {
-			var specResponse = ApiResponse.class.cast(response.vendorExtensions.get(ApiResponse.class.getName()));
+			var specResponse = (ApiResponse) response.vendorExtensions.get(ApiResponse.class.getName());
 			var hasMultipleBodyTypes = specResponse.getContent().values().stream().distinct().count() > 1;
 			if (hasMultipleBodyTypes) {
 				// delete return type if response has multiple contenttypes with different models
@@ -327,7 +332,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		extensions.put("httpMethod", httpMethod.toUpperCase().charAt(0) + httpMethod.substring(1).toLowerCase());
 		extensions.put("generic", useGenericResponse || response.hasHeaders || useGeneric);
-		extensions.put("status", HttpStatus.valueOf(Integer.valueOf(response.code)).name());
+		extensions.put("status", HttpStatus.valueOf(Integer.parseInt(response.code)).name());
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
 
 		// add pattern to path paramters
@@ -431,12 +436,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (ModelUtils.isSet(schema)) {
 			ArraySchema arraySchema = (ArraySchema) schema;
 			String itemType = Optional.ofNullable(arraySchema.getItems()).map(this::getSchemaType).orElse("");
-			return "new " + instantiationTypes.get("set") + "<" + itemType + ">()";
+			return "new " + instantiationTypes.get("set") + "<>()";
 		}
 		if (ModelUtils.isArraySchema(schema)) {
 			ArraySchema arraySchema = (ArraySchema) schema;
 			String itemType = Optional.ofNullable(arraySchema.getItems()).map(this::getSchemaType).orElse("");
-			return "new " + instantiationTypes.get("array") + "<" + itemType + ">()";
+			return "new " + instantiationTypes.get("array") + "<>()";
 		}
 		if (ModelUtils.isMapSchema(schema)) {
 			return "new " + instantiationTypes.get("map") + "<>()";
@@ -522,21 +527,23 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
 		super.postProcessModelProperty(model, property);
 		if (property.isEnum) {
-			// handle maps with emum as value, hono uses this spec (would not recommend this)
+			if (property.defaultValue != null) {
+				property.defaultValue = toEnumName(property) + "."
+						+ toEnumVarName(property.defaultValue, property.dataType);
+			}
+			// handle maps with enum as value, Hono uses this spec (would not recommend this)
 			if (property.isMap && property.items != null) {
 				property.dataType = property.items.dataType;
 				property.datatypeWithEnum = typeMapping.get("map")
 						+ "<" + typeMapping.get("string") + ", " + toEnumName(property) + ">";
-			}
-			if (property.defaultValue != null) {
-				property.defaultValue = toEnumName(property) + "."
-						+ toEnumVarName(property.defaultValue, property.dataType);
+				property.items.datatypeWithEnum = toEnumName(property);
+				property.defaultValue = "new " + instantiationTypes.get("map") + "<>()";
 			}
 			if (property.isArray && property.items != null) {
 				property.dataType = property.items.dataType;
 				property.datatypeWithEnum = typeMapping.get("array")
 						+ "<" + toEnumName(property) + ">";
-				property.defaultValue = "new " + instantiationTypes.get("array") + "()";
+				property.defaultValue = "new " + instantiationTypes.get("array") + "<>()";
 			}
 		}
 		if ("byte[]".equals(property.dataType)) {

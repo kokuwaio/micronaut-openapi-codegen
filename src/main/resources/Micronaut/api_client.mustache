@@ -17,4 +17,5 @@ public interface {{classname}}Client extends {{classname}} {
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			String authorization{{#hasParams}},
 {{>apiParams}}{{/hasParams}});
-{{/vendorExtensions.has401}}{{/operation}}}{{/operations}}
+{{/vendorExtensions.has401}}{{/operation}}
+}{{/operations}}

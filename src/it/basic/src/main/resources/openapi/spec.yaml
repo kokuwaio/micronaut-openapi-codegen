@@ -790,7 +790,7 @@ components:
     QueryModel:
       type: object
       properties:
-        number: 
+        number:
           type: number
         uuid:
           type: string
@@ -812,15 +812,27 @@ components:
     ResponseMultiple200:
       type: object
       properties:
-        foo: 
+        foo:
           type: string
     ResponseMultiple300:
       type: object
       properties:
-        bar: 
+        bar:
           type: number
     MediaModel:
       type: object
       properties:
-        data: 
+        data:
           type: string
+    MultiEnumPropertyModel:
+      type: object
+      properties:
+        multiEnum:
+          type: object
+          additionalProperties:
+            type: string
+            default: one
+            enum:
+              - one
+              - two
+              - three
