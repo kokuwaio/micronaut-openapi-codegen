@@ -17,6 +17,12 @@ class ValidationController implements ValidationApi {
 	}
 
 	@Override
+	public HttpResponse<ModelWithConstraintCollection> bodyWithConstraintCollection(
+			ModelWithConstraintCollection modelWithConstraintCollection) {
+		return HttpResponse.ok();
+	}
+
+	@Override
 	public HttpResponse<Object> queryParam(Integer modelId) {
 		return HttpResponse.ok();
 	}

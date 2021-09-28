@@ -17,6 +17,10 @@
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-validation</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-client</artifactId>
+		</dependency>
 
 	</dependencies>
 
@@ -28,6 +32,7 @@
 				<configuration>
 					<configOptions>
 						<useBeanValidation>true</useBeanValidation>
+						<clientId>$${test.clientId:/}</clientId>
 					</configOptions>
 				</configuration>
 			</plugin>

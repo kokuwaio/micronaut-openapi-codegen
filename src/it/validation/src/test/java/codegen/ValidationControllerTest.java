@@ -2,12 +2,16 @@ package codegen;
 
 import static codegen.HttpResponseAssertions.assert200;
 import static codegen.HttpResponseAssertions.assert400;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -17,6 +21,9 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 
 	@Inject
 	ValidationApiTestClient client;
+
+	@Inject
+	ValidationApiClient validatingClient;
 
 	@Test
 	@Override
@@ -60,14 +67,50 @@ class ValidationControllerTest implements ValidationApiTestSpec {
 	@Test
 	@Override
 	public void bodyWithCollection400() {
-		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(new Model()))));
-		assert400(
-				() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().setStringValue(null)))));
-		assert400(() -> client
-				.bodyWithCollection(new ModelWithCollection().list(List.of(model().setStringValue("abcdef")))));
-		assert400(() -> client.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(null)))));
-		assert400(() -> client
-				.bodyWithCollection(new ModelWithCollection().list(List.of(model().embedded(new Embedded())))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection()
+				.list(List.of(new Model()))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection()
+				.list(List.of(model().setStringValue(null)))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection()
+				.list(List.of(model().setStringValue("abcdef")))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection()
+				.list(List.of(model().embedded(null)))));
+		assert400(() -> client.bodyWithCollection(new ModelWithCollection()
+				.list(List.of(model().embedded(new Embedded())))));
+	}
+
+	@Test
+	@DisplayName("succesful client side bean validation")
+	@Override
+	public void bodyWithConstraintCollection200() {
+		assert200(() -> validatingClient.bodyWithConstraintCollection(new ModelWithConstraintCollection()
+				.addObjArrayItem(new Embedded().name("embed"))
+				.addUuidArrayItem(UUID.randomUUID())
+				.addUuidArrayItem(UUID.randomUUID())
+		));
+		// use of additional properties must not trigger violation due to falsely required @Introspected annotation
+		assert200(() -> validatingClient.bodyWithConstraintCollection(new ModelWithConstraintCollection()
+				.addObjArrayItem(new Embedded().name("embed"))
+				.properties(Map.of("key", "value"))
+		));
+
+	}
+
+	@Test
+	@DisplayName("violation of client side bean validation")
+	@Override
+	public void bodyWithConstraintCollection400() {
+		assertThrows(ConstraintViolationException.class, () -> validatingClient.bodyWithConstraintCollection(
+				// too less entries
+				new ModelWithConstraintCollection()));
+		assertThrows(ConstraintViolationException.class, () -> validatingClient.bodyWithConstraintCollection(
+				new ModelWithConstraintCollection()
+						.addObjArrayItem(new Embedded().name("embed"))
+						// too many entries
+						.addUuidArrayItem(UUID.randomUUID())
+						.addUuidArrayItem(UUID.randomUUID())
+						.addUuidArrayItem(UUID.randomUUID())
+		));
 	}
 
 	@Test

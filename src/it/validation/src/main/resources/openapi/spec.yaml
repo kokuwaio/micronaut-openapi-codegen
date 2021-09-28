@@ -37,6 +37,27 @@ paths:
           description: Ok.
         400:
           description: BadRequest.
+  /bodyWithConstraintCollection:
+    patch:
+      description: 'validate body'
+      operationId: bodyWithConstraintCollection
+      tags:
+        - validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelWithConstraintCollection'
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelWithConstraintCollection'
+        400:
+          description: BadRequest.
   /param/query:
     get:
       description: 'validate query param'
@@ -113,3 +134,30 @@ components:
           items:
             type: string
             format: uuid
+    ModelProps:
+      type: object
+      additionalProperties:
+        type: object
+    ModelWithConstraintCollection:
+      type: object
+      required:
+        - stringArray
+        - objArray
+      properties:
+        stringArray:
+          type: array
+          items:
+            type: string
+        uuidArray:
+          type: array
+          maxItems: 2
+          items:
+            type: string
+            format: uuid
+        objArray:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Embedded'
+        properties:
+          $ref: '#/components/schemas/ModelProps'
