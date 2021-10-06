@@ -612,6 +612,13 @@ paths:
                 $ref: '#/components/schemas/MediaModel'
 components:
   schemas:
+    SimpleObject:
+      type: object
+      properties:
+        someString:
+          type: string
+        someInt:
+          type: integer
     StringEnumeration:
       type: string
       enum:
@@ -631,6 +638,11 @@ components:
       - -1
       - 0
       - 1
+    NullableObjectMap:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/SimpleObject'
+      nullable: true
     Model:
       type: object
       required:
@@ -705,6 +717,8 @@ components:
           nullable: true
           additionalProperties:
             type: string
+        nullableObjMap:
+          $ref: '#/components/schemas/NullableObjectMap'
         modelEnumeration:
           $ref: '#/components/schemas/StringEnumeration'
         embeddedEnumeration:
