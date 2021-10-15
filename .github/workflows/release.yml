@@ -1,7 +1,12 @@
 name: Release
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      versionLevel:
+        description: 'Increase <(M)ajor.(m)inor.(p)atch>'
+        required: true
+        default: 'p'
 
 jobs:
   build:
@@ -10,6 +15,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
       with:
+        fetch-depth: 0
         token: ${{ secrets.GIT_ACTION_TOKEN }}
     - name: git-configure
       run: |
@@ -24,12 +30,17 @@ jobs:
         server-password: SERVER_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: GPG_PASSPHRASE
+    - name: determine version
+      id: version
+      uses: Benbentwo/increment-semver@master
+      with:
+        version-level: '-${{ github.event.inputs.versionLevel }}'
     - name: dependencies
       run: mvn -B -q dependency:go-offline
     - name: prepare
       run: mvn -B release:prepare
     - name: perform
-      run: mvn -B release:perform
+      run: mvn -B release:perform -DreleaseProfiles=oss-release
       env:
         SERVER_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
         SERVER_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
