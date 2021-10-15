@@ -36,7 +36,7 @@ jobs:
           server-username: SERVER_USERNAME
           server-password: SERVER_PASSWORD
       - run: mvn -B -q dependency:go-offline
-      - run: mvn -B deploy
+      - run: mvn -B deploy -Poss
         env:
           SERVER_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           SERVER_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
