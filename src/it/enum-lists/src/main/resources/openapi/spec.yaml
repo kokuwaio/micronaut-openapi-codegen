@@ -3,7 +3,7 @@ info:
   title: Test Spec
   version: '0'
 
-paths: { }
+paths: {}
 
 components:
   schemas:

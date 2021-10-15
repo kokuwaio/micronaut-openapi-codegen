@@ -3,13 +3,13 @@ info:
   title: Test Spec
   version: '0.6'
 servers:
-- url: http://localhost:8080
+  - url: http://localhost:8080
 paths:
   /response/void:
     get:
       operationId: voidNormal
       tags:
-      - response
+        - response
       responses:
         204:
           description: Ok.
@@ -17,13 +17,13 @@ paths:
     get:
       operationId: voidNotFound
       parameters:
-      - name: found
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
       tags:
-      - response
+        - response
       responses:
         204:
           description: Ok.
@@ -33,7 +33,7 @@ paths:
     get:
       operationId: single
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -45,13 +45,13 @@ paths:
     get:
       operationId: optional
       tags:
-      - response
+        - response
       parameters:
-      - name: found
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
       responses:
         200:
           description: Ok.
@@ -65,7 +65,7 @@ paths:
     get:
       operationId: header
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -77,7 +77,7 @@ paths:
     get:
       operationId: array
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -91,13 +91,13 @@ paths:
     get:
       operationId: arrayNotFound
       parameters:
-      - name: found
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -113,13 +113,13 @@ paths:
     get:
       operationId: defaultResponse
       tags:
-      - response
+        - response
       parameters:
-      - name: error
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: error
+          in: query
+          required: true
+          schema:
+            type: boolean
       responses:
         200:
           description: Ok.
@@ -138,13 +138,13 @@ paths:
     get:
       operationId: multipleResponseCodes
       parameters:
-      - name: redirect
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -162,13 +162,13 @@ paths:
     get:
       operationId: multipleDataTypes
       parameters:
-      - name: redirect
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -186,18 +186,18 @@ paths:
     get:
       operationId: multipleDataTypesNotFound
       parameters:
-      - name: redirect
-        in: query
-        required: true
-        schema:
-          type: boolean
-      - name: found
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -218,7 +218,7 @@ paths:
       description: 'Get list of models'
       operationId: findAll
       tags:
-      - model
+        - model
       responses:
         200:
           description: Ok.
@@ -232,7 +232,7 @@ paths:
       description: 'Create model'
       operationId: create
       tags:
-      - model
+        - model
       requestBody:
         content:
           application/json:
@@ -251,17 +251,17 @@ paths:
           description: Conflict.
   /model/{modelId}:
     parameters:
-    - name: modelId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int32
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
     get:
       description: 'Get model'
       operationId: findById
       tags:
-      - model
+        - model
       responses:
         200:
           description: Ok.
@@ -275,7 +275,7 @@ paths:
       description: 'Delete model'
       operationId: delete
       tags:
-      - model
+        - model
       responses:
         204:
           description: Deleted.
@@ -285,7 +285,7 @@ paths:
     get:
       operationId: getInheritance
       tags:
-      - model
+        - model
       responses:
         200:
           description: Ok.
@@ -294,7 +294,7 @@ paths:
               schema:
                 type: object
                 required:
-                - list
+                  - list
                 properties:
                   list:
                     type: array
@@ -303,7 +303,7 @@ paths:
     put:
       operationId: putInheritanceList
       tags:
-      - model
+        - model
       requestBody:
         required: true
         content:
@@ -325,22 +325,22 @@ paths:
     get:
       operationId: getMultipleLists
       parameters:
-      - name: a
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: b
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
+        - name: a
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: b
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
       tags:
-      - query
+        - query
       responses:
         200:
           description: Ok.
@@ -352,14 +352,14 @@ paths:
     get:
       operationId: getTypeDate
       parameters:
-      - name: date
-        in: query
-        required: false
-        schema:
-          type: string
-          format: date
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
       tags:
-      - query
+        - query
       responses:
         200:
           description: Ok.
@@ -371,14 +371,14 @@ paths:
     get:
       operationId: getTypeDateTime
       parameters:
-      - name: date-time
-        in: query
-        required: false
-        schema:
-          type: string
-          format: date-time
+        - name: date-time
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
       tags:
-      - query
+        - query
       responses:
         200:
           description: Ok.
@@ -390,13 +390,13 @@ paths:
     get:
       operationId: getTypeNumber
       parameters:
-      - name: number
-        in: query
-        required: false
-        schema:
-          type: number
+        - name: number
+          in: query
+          required: false
+          schema:
+            type: number
       tags:
-      - query
+        - query
       responses:
         200:
           description: Ok.
@@ -408,14 +408,14 @@ paths:
     get:
       operationId: getUuid
       parameters:
-      - name: number
-        in: query
-        required: false
-        schema:
-          type: string
-          format: uuid
+        - name: number
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
       tags:
-      - query
+        - query
       responses:
         200:
           description: Ok.
@@ -427,14 +427,14 @@ paths:
     get:
       operationId: uriWithUuid
       parameters:
-      - name: uuid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
       tags:
-      - uri
+        - uri
       responses:
         200:
           description: Ok.
@@ -446,20 +446,20 @@ paths:
     get:
       operationId: uriWithMultipleUuids
       parameters:
-      - name: uuid1
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: uuid2
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - name: uuid1
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: uuid2
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
       tags:
-      - uri
+        - uri
       responses:
         200:
           description: Ok.
@@ -471,14 +471,14 @@ paths:
     get:
       operationId: uriWithString
       parameters:
-      - name: string
-        in: path
-        required: true
-        schema:
-          type: string
-          maxLength: 10
+        - name: string
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 10
       tags:
-      - uri
+        - uri
       responses:
         200:
           description: Ok.
@@ -490,7 +490,7 @@ paths:
     post:
       operationId: mediatypePostPlain
       tags:
-      - mediatype
+        - mediatype
       requestBody:
         required: true
         content:
@@ -508,12 +508,12 @@ paths:
                   string:
                     type: string
                 required:
-                - string
+                  - string
   /mediatype/post-octet-stream:
     post:
       operationId: mediatypePostOctetStream
       tags:
-      - mediatype
+        - mediatype
       requestBody:
         content:
           application/octet-stream:
@@ -532,13 +532,13 @@ paths:
                     type: string
                     format: binary
                 required:
-                - binary
+                  - binary
   /mediatype/post-multipart:
     post:
       # see https://swagger.io/docs/specification/describing-request-body/file-upload/
       operationId: mediatypePostMultipart
       tags:
-      - mediatype
+        - mediatype
       requestBody:
         content:
           multipart/form-data:
@@ -570,21 +570,21 @@ paths:
                     type: string
                     format: byte
                 required:
-                - orderId
-                - userId
-                - fileName
-                - file
+                  - orderId
+                  - userId
+                  - fileName
+                  - file
   /mediatype/multiple-contenttypes-with-different-model:
     get:
       operationId: mediatypeMultipleContentTypesDifferentModel
       tags:
-      - mediatype
+        - mediatype
       parameters:
-      - name: plain
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: plain
+          in: query
+          required: true
+          schema:
+            type: boolean
       responses:
         200:
           description: Ok.
@@ -599,7 +599,7 @@ paths:
     get:
       operationId: mediatypeMultipleContentTypesSameModel
       tags:
-      - mediatype
+        - mediatype
       responses:
         200:
           description: Ok.
@@ -622,22 +622,22 @@ components:
     StringEnumeration:
       type: string
       enum:
-      - one
-      - two
+        - one
+        - two
     IntegerEnumeration:
       type: integer
       enum:
-      - -2147483648
-      - -1
-      - 0
-      - 1
-      - 2147483647
+        - -2147483648
+        - -1
+        - 0
+        - 1
+        - 2147483647
     NumberEnumeration:
       type: number
       enum:
-      - -1
-      - 0
-      - 1
+        - -1
+        - 0
+        - 1
     NullableObjectMap:
       type: object
       additionalProperties:
@@ -646,10 +646,10 @@ components:
     Model:
       type: object
       required:
-      - name
-      - array
-      - map
-      - set
+        - name
+        - array
+        - map
+        - set
       properties:
         id:
           type: integer
@@ -724,8 +724,8 @@ components:
         embeddedEnumeration:
           type: string
           enum:
-          - first
-          - second
+            - first
+            - second
         defaultString:
           type: string
           default: defaultStringValue
@@ -736,8 +736,8 @@ components:
         defaultEnumeration:
           type: string
           enum:
-          - foo
-          - bar
+            - foo
+            - bar
           default: bar
         defaultNullable:
           type: string
@@ -757,22 +757,22 @@ components:
           type: string
     InheritanceModel1:
       allOf:
-      - $ref: '#/components/schemas/InheritanceModel'
-      - properties:
-          a:
-            type: string
+        - $ref: '#/components/schemas/InheritanceModel'
+        - properties:
+            a:
+              type: string
     InheritanceModel2:
       allOf:
-      - $ref: '#/components/schemas/InheritanceModel'
-      - properties:
-          b:
-            type: string
+        - $ref: '#/components/schemas/InheritanceModel'
+        - properties:
+            b:
+              type: string
     InheritanceModelType:
       type: string
       enum:
-      - InheritanceModel1
-      - InheritanceModel2
-      - InheritanceModel3
+        - InheritanceModel1
+        - InheritanceModel2
+        - InheritanceModel3
     InheritanceModelWithType:
       discriminator:
         propertyName: type
@@ -785,22 +785,22 @@ components:
           $ref: '#/components/schemas/InheritanceModelType'
     InheritanceModelWithType1:
       allOf:
-      - $ref: '#/components/schemas/InheritanceModelWithType'
-      - properties:
-          a:
-            type: string
+        - $ref: '#/components/schemas/InheritanceModelWithType'
+        - properties:
+            a:
+              type: string
     InheritanceModelWithType2:
       allOf:
-      - $ref: '#/components/schemas/InheritanceModelWithType'
-      - properties:
-          b:
-            type: string
+        - $ref: '#/components/schemas/InheritanceModelWithType'
+        - properties:
+            b:
+              type: string
     InheritanceModelWithType3:
       allOf:
-      - $ref: '#/components/schemas/InheritanceModelWithType2'
-      - properties:
-          c:
-            type: string
+        - $ref: '#/components/schemas/InheritanceModelWithType2'
+        - properties:
+            c:
+              type: string
     QueryModel:
       type: object
       properties:

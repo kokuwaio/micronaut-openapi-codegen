@@ -3,13 +3,13 @@ info:
   title: Test Spec
   version: '0'
 servers:
-- url: http://localhost:8080
+  - url: http://localhost:8080
 paths:
   /:
     get:
       operationId: unsecured
       tags:
-      - security
+        - security
       responses:
         200:
           description: Ok.
@@ -17,7 +17,7 @@ paths:
     get:
       operationId: secured
       tags:
-      - security
+        - security
       responses:
         200:
           description: Ok.
@@ -27,7 +27,7 @@ paths:
     get:
       operationId: securedAdmin
       tags:
-      - security
+        - security
       responses:
         200:
           description: Ok.

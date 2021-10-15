@@ -1,18 +1,32 @@
 name: PullRequest
 
-on: [pull_request]
+"on": [pull_request]
 
 jobs:
+
+  lint-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          format: colored
+          strict: true
+
+  lint-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://avtodev/markdown-lint:v1
+        with:
+          args: /github/workspace
+
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v2
-    - name: setup
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: dependencies
-      run: mvn -B -q dependency:go-offline
-    - name: verify
-      run: mvn -B verify -Dinvoker.streamLogs=true
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - run: mvn -B -q dependency:go-offline
+      - run: mvn -B verify -Dinvoker.streamLogs=true

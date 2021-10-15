@@ -3,14 +3,14 @@ info:
   title: Test Spec
   version: '0.6'
 servers:
-- url: http://localhost:8080
+  - url: http://localhost:8080
 paths:
   /body:
     post:
       description: 'validate body'
       operationId: body
       tags:
-      - validation
+        - validation
       requestBody:
         content:
           application/json:
@@ -26,7 +26,7 @@ paths:
       description: 'validate body'
       operationId: bodyWithCollection
       tags:
-      - validation
+        - validation
       requestBody:
         content:
           application/json:
@@ -63,16 +63,16 @@ paths:
       description: 'validate query param'
       operationId: queryParam
       parameters:
-      - name: modelId
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 2
+        - name: modelId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 2
       tags:
-      - validation
+        - validation
       responses:
         200:
           description: Ok.
@@ -83,16 +83,16 @@ components:
     Embedded:
       type: object
       required:
-      - name
+        - name
       properties:
         name:
           type: string
     Model:
       type: object
       required:
-      - stringValue
-      - integerValue
-      - embedded
+        - stringValue
+        - integerValue
+        - embedded
       properties:
         stringValue:
           type: string
@@ -122,8 +122,8 @@ components:
     ModelWithCollection:
       type: object
       required:
-      - list
-      - uuids
+        - list
+        - uuids
       properties:
         list:
           type: array

@@ -3,13 +3,13 @@ info:
   title: Test Spec
   version: '0.6'
 servers:
-- url: http://localhost:8080
+  - url: http://localhost:8080
 paths:
   /completable:
     get:
       operationId: completable
       tags:
-      - response
+        - response
       responses:
         204:
           description: Ok.
@@ -17,7 +17,7 @@ paths:
     get:
       operationId: single
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -29,13 +29,13 @@ paths:
     get:
       operationId: maybe
       tags:
-      - response
+        - response
       parameters:
-      - name: found
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
       responses:
         200:
           description: Ok.
@@ -49,7 +49,7 @@ paths:
     get:
       operationId: array
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.
@@ -63,7 +63,7 @@ paths:
     get:
       operationId: noContent
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok but no content defined.
@@ -71,7 +71,7 @@ paths:
     get:
       operationId: stream
       tags:
-      - response
+        - response
       responses:
         200:
           description: Ok.

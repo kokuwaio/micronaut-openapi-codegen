@@ -6,7 +6,7 @@ paths:
   /elements:
     post:
       tags:
-      - optionals
+        - optionals
       operationId: post
       requestBody:
         content:
@@ -19,17 +19,17 @@ paths:
     get:
       operationId: get
       tags:
-      - optionals
+        - optionals
       parameters:
-      - in: query
-        name: id
-        schema:
-          type: string
-      - in: query
-        name: size
-        required: true
-        schema:
-          type: integer
+        - in: query
+          name: id
+          schema:
+            type: string
+        - in: query
+          name: size
+          required: true
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -40,16 +40,16 @@ paths:
   /issue49:
     get:
       tags:
-      - optionals
+        - optionals
       operationId: issue49
       parameters:
-      - in: query
-        name: version
-        required: false
-        schema:
-          type: string
-          minLength: 1
-          pattern: '^\d+\.\d+\.\d+$'
+        - in: query
+          name: version
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            pattern: '^\d+\.\d+\.\d+$'
       responses:
         204:
           description: Nothing

@@ -8,7 +8,7 @@ paths:
   /:
     get:
       tags:
-      - Foo
+        - Foo
       operationId: get
       responses:
         200:
