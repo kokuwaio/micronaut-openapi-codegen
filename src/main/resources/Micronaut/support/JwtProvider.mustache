@@ -1,13 +1,11 @@
 package {{invokerPackage}};
 
-import javax.inject.Singleton;
-
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.security.token.jwt.signature.SignatureGeneratorConfiguration;
 
 {{>generated}}
 @Requires(beans = SignatureGeneratorConfiguration.class)
-@Singleton
+@{{type.Singleton}}
 public class JwtProvider {
 
 	private final SignatureGeneratorConfiguration signature;

@@ -6,8 +6,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.inject.Singleton;
-
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.naming.NameUtils;
 import io.micronaut.data.model.Pageable;
@@ -27,7 +25,7 @@ import io.micronaut.http.exceptions.HttpStatusException;
  * @see io.micronaut.data.runtime.http.PageableRequestArgumentBinder
  */
 {{>generated}}
-@Singleton
+@{{type.Singleton}}
 @Requires(beans = PageableConfiguration.class)
 public class PageableProvider {
 

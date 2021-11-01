@@ -43,7 +43,6 @@ import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
@@ -76,11 +75,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			"offset-time", OffsetTime.class);
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
+
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
 	private static final String UUID_PATTERN = StringUtils.repeat("[a-f0-9]", 8)
 			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 4)
 			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 12);
+
 	private boolean generateApiTests = true;
 	private boolean dateTimeRelaxed = true;
 	private boolean introspected = true;
@@ -169,6 +170,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("asyncFileUpload", "io.micronaut.http.multipart.StreamingFileUpload");
 		typeMapping.put("Nullable", javax.annotation.Nullable.class.getName());
 		typeMapping.put("Nonnull", javax.annotation.Nonnull.class.getName());
+		typeMapping.put("Inject", javax.inject.Inject.class.getName());
+		typeMapping.put("Singleton", javax.inject.Singleton.class.getName());
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
 		instantiationTypes.put("set", LinkedHashSet.class.getName());
@@ -266,6 +269,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		additionalProperties.put("type.Nullable", typeMapping.get("Nullable"));
 		additionalProperties.put("type.Nonnull", typeMapping.get("Nonnull"));
+		additionalProperties.put("type.Inject", typeMapping.get("Inject"));
+		additionalProperties.put("type.Singleton", typeMapping.get("Singleton"));
 	}
 
 	@Override
@@ -434,13 +439,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 
 		if (ModelUtils.isSet(schema)) {
-			ArraySchema arraySchema = (ArraySchema) schema;
-			String itemType = Optional.ofNullable(arraySchema.getItems()).map(this::getSchemaType).orElse("");
 			return "new " + instantiationTypes.get("set") + "<>()";
 		}
 		if (ModelUtils.isArraySchema(schema)) {
-			ArraySchema arraySchema = (ArraySchema) schema;
-			String itemType = Optional.ofNullable(arraySchema.getItems()).map(this::getSchemaType).orElse("");
 			return "new " + instantiationTypes.get("array") + "<>()";
 		}
 		if (ModelUtils.isMapSchema(schema)) {
@@ -472,9 +473,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			model.vars.stream()
 					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
 					.findAny().ifPresent(property -> {
-				discriminator.setPropertyType(property.getDataType());
-				model.vars.remove(property);
-			});
+						discriminator.setPropertyType(property.getDataType());
+						model.vars.remove(property);
+					});
 
 			// add discriminator value to submodel
 

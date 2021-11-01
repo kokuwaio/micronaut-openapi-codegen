@@ -8,14 +8,12 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
-import javax.inject.Singleton;
-
 import io.micronaut.context.annotation.BootstrapContextCompatible;
 import io.micronaut.core.convert.ConversionService;
 import io.micronaut.core.convert.TypeConverterRegistrar;
 
 {{>generated}}
-@Singleton
+@{{type.Singleton}}
 @BootstrapContextCompatible
 public class TimeTypeConverterRegistrar implements TypeConverterRegistrar {
 
