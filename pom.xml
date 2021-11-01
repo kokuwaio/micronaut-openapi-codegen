@@ -48,6 +48,7 @@
 		<!-- ============================= Libaries ============================== -->
 		<!-- ===================================================================== -->
 
+		<version.io.kokuwa.micronaut.logging>0.1.2</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>2.5.13</version.io.micronaut>
 		<version.org.openapitools>5.3.0</version.org.openapitools>
 		<version.org.openapitools.jackson.nullable>0.2.1</version.org.openapitools.jackson.nullable>
@@ -61,6 +62,11 @@
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http</artifactId>
 			<version>${version.io.micronaut}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.kokuwa.micronaut</groupId>
+			<artifactId>micronaut-logging</artifactId>
+			<version>${version.io.kokuwa.micronaut.logging}</version>
 		</dependency>
 
 		<!-- openapi -->

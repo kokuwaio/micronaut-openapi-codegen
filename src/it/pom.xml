@@ -26,6 +26,7 @@
 		<version.org.apache.maven.plugins.surefire>@version.org.apache.maven.plugins.surefire@</version.org.apache.maven.plugins.surefire>
 		<version.org.codehaus.mojo.build-helper>@version.org.codehaus.mojo.build-helper@</version.org.codehaus.mojo.build-helper>
 
+		<version.io.kokuwa.micronaut.logging>@version.io.kokuwa.micronaut.logging@</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
 		<version.org.openapitools>@version.org.openapitools@</version.org.openapitools>
 		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
@@ -42,6 +43,11 @@
 				<version>${version.io.micronaut}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.kokuwa.micronaut</groupId>
+				<artifactId>micronaut-logging</artifactId>
+				<version>${version.io.kokuwa.micronaut.logging}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.openapitools</groupId>
@@ -68,27 +74,20 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-client</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- logging -->
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
+			<groupId>io.kokuwa.micronaut</groupId>
+			<artifactId>micronaut-logging</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
 		<!-- test -->
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
+			<groupId>io.micronaut.test</groupId>
+			<artifactId>micronaut-test-junit5</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.micronaut.test</groupId>
-			<artifactId>micronaut-test-junit5</artifactId>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-client</artifactId>
 			<scope>test</scope>
 		</dependency>
 
