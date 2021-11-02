@@ -1,5 +1,6 @@
 {{#isModel}}	@javax.validation.Valid
-{{/isModel}}{{#isContainer}}{{#mostInnerItems.isModel}}{{^isNullable}}{{^jacksonDatabindNullable}}	@javax.validation.Valid
+{{/isModel}}{{#isContainer}}{{#mostInnerItems.isModel}}{{^isNullable}}	@javax.validation.Valid
+{{/isNullable}}{{#isNullable}}{{^jacksonDatabindNullable}}	@javax.validation.Valid
 {{/jacksonDatabindNullable}}{{/isNullable}}{{/mostInnerItems.isModel}}{{/isContainer}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
 {{/isNullable}}{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#minimum}}	@javax.validation.constraints.{{#isDouble}}DecimalMin("{{minimum}}"){{/isDouble}}{{#isFloat}}DecimalMin("{{minimum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Min({{minimum}}){{/isDouble}}{{/isFloat}}

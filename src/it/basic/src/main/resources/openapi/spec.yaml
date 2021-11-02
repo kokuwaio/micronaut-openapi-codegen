@@ -617,6 +617,7 @@ components:
       properties:
         someString:
           type: string
+          maxLength: 5
         someInt:
           type: integer
     StringEnumeration:
@@ -648,6 +649,7 @@ components:
       required:
         - name
         - array
+        - requiredObjArray
         - map
         - set
       properties:
@@ -685,6 +687,10 @@ components:
           type: string
           additionalProperties:
             type: string
+        requiredObjArray:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimpleObject'
         optionalArray:
           type: array
           items:

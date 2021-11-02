@@ -27,9 +27,27 @@ class NullableValidationTest {
 	}
 
 	@Test
+	@DisplayName("client side validation without JsonNullable")
+	public void nonNullObjectValidation() {
+		assert200(() -> validatingClient.create(new Model()
+				.name("validation test")
+				.addRequiredObjArrayItem(new SimpleObject()
+						.someString("fit"))));
+	}
+
+	@Test
 	@DisplayName("client side validation failure with JsonNullable")
 	public void nullableObjectValidationViolation() {
 		assertThrows(ConstraintViolationException.class, () -> validatingClient.create(new Model()
 				.name("1234567890123456789012345678901234567890"))); // length violation
+	}
+
+	@Test
+	@DisplayName("client side validation failure without JsonNullable")
+	public void nonNullObjectValidationViolation() {
+		assertThrows(ConstraintViolationException.class, () -> validatingClient.create(new Model()
+				.name("is required")
+				.addRequiredObjArrayItem(new SimpleObject()
+						.someString("does not fit")))); // length violation
 	}
 }
