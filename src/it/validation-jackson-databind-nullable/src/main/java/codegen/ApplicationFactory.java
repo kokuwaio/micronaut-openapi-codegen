@@ -10,8 +10,8 @@ import io.micronaut.context.annotation.Factory;
 public class ApplicationFactory {
 
 	/**
-	 * The Jackson module returned here is responsible for the marshalling/unmarshalling of {@link
-	 * org.openapitools.jackson.nullable.JsonNullable}s.
+	 * The Jackson module returned here is responsible for the marshalling/unmarshalling of
+	 * {@link org.openapitools.jackson.nullable.JsonNullable}s.
 	 *
 	 * @return The instantiated module.
 	 */

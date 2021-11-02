@@ -2,13 +2,14 @@ package codegen;
 
 import java.util.List;
 
-import codegen.model.*;
-
+import codegen.model.InheritanceModel;
+import codegen.model.InlineResponse200;
+import codegen.model.Model;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 
 @Controller
-class ModelController implements ModelApi {
+public class ModelController implements ModelApi {
 
 	@Override
 	public HttpResponse<Object> create(Model model) {

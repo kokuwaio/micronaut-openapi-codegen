@@ -2,6 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>io.kokuwa</groupId>
+		<artifactId>maven-parent</artifactId>
+		<version>@project.parent.version@</version>
+		<relativePath />
+	</parent>
+
 	<groupId>@project.groupId@</groupId>
 	<artifactId>@project.artifactId@-it</artifactId>
 	<version>LOCAL-SNAPSHOT</version>
@@ -10,25 +17,12 @@
 	<properties>
 
 		<!-- ===================================================================== -->
-		<!-- =============================== Build =============================== -->
-		<!-- ===================================================================== -->
-
-		<project.build.sourceEncoding>@project.build.sourceEncoding@</project.build.sourceEncoding>
-		<maven.compiler.source>@maven.compiler.source@</maven.compiler.source>
-		<maven.compiler.target>@maven.compiler.target@</maven.compiler.target>
-
-		<!-- ===================================================================== -->
 		<!-- ============================= Libaries ============================== -->
 		<!-- ===================================================================== -->
 
-		<version.org.apache.maven.plugins.compiler>@version.org.apache.maven.plugins.compiler@</version.org.apache.maven.plugins.compiler>
-		<version.org.apache.maven.plugins.resources>@version.org.apache.maven.plugins.resources@</version.org.apache.maven.plugins.resources>
-		<version.org.apache.maven.plugins.surefire>@version.org.apache.maven.plugins.surefire@</version.org.apache.maven.plugins.surefire>
-		<version.org.codehaus.mojo.build-helper>@version.org.codehaus.mojo.build-helper@</version.org.codehaus.mojo.build-helper>
-
 		<version.io.kokuwa.micronaut.logging>@version.io.kokuwa.micronaut.logging@</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
-		<version.org.openapitools>@version.org.openapitools@</version.org.openapitools>
+		<version.org.openapitools.generator>@version.org.openapitools@</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
 
 	</properties>
@@ -99,7 +93,6 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.compiler}</version>
 					<configuration>
 						<parameters>true</parameters>
 						<annotationProcessorPaths>
@@ -110,26 +103,6 @@
 							</path>
 						</annotationProcessorPaths>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.resources}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.surefire}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>${version.org.codehaus.mojo.build-helper}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.openapitools</groupId>
-					<artifactId>openapi-generator-maven-plugin</artifactId>
-					<version>${version.org.openapitools}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
