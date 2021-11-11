@@ -1,0 +1,1337 @@
+openapi: 3.0.3
+info:
+  title: Spec for api tests.
+  version: '1'
+paths:
+  /response/void:
+    get:
+      operationId: voidFound
+      tags: [response]
+      responses:
+        204:
+          description: Ok.
+  /response/void-not-found:
+    get:
+      operationId: voidNotFound
+      tags: [response]
+      parameters:
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        204:
+          description: Ok.
+        404:
+          description: Not found.
+  /response/single:
+    get:
+      operationId: single
+      tags: [response]
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+  /response/optional:
+    get:
+      operationId: optional
+      tags: [response]
+      parameters:
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: string
+        404:
+          description: Not found.
+  /response/header:
+    get:
+      operationId: header
+      tags: [response]
+      responses:
+        200:
+          description: Ok.
+          headers:
+            foo:
+              schema:
+                type: number
+  /response/array-simple:
+    get:
+      operationId: arraySimple
+      tags: [response]
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /response/array-simple-empty:
+    get:
+      operationId: arraySimpleEmpty
+      tags: [response]
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /response/array-simple-not-found:
+    get:
+      operationId: arraySimpleNotFound
+      tags: [response]
+      parameters:
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        404:
+          description: Not found.
+  /response/array-complex:
+    get:
+      operationId: arrayComplex
+      tags: [response]
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StringModel'
+  /response/array-complex-not-found:
+    get:
+      operationId: arrayComplexNotFound
+      tags: [response]
+      parameters:
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StringModel'
+        404:
+          description: Not found.
+  /response/multiple-response-codes:
+    get:
+      operationId: multipleResponseCodes
+      tags: [response]
+      parameters:
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+  /response/multiple-response-codes-not-found:
+    get:
+      operationId: multipleResponseCodesNotFound
+      tags: [response]
+      parameters:
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+        404:
+          description: Not found.
+  /response/multiple-datatypes:
+    get:
+      operationId: multipleDataTypes
+      tags: [response]
+      parameters:
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumberModel'
+  /response/multiple-datatypes-not-found:
+    get:
+      operationId: multipleDataTypesNotFound
+      tags: [response]
+      parameters:
+        - name: redirect
+          in: query
+          required: true
+          schema:
+            type: boolean
+        - name: found
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+        300:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumberModel'
+        404:
+          description: Not found.
+  /mediatype/consumes-plain:
+    post:
+      operationId: mediatypeConsumesPlain
+      tags: [mediatype]
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+  /mediatype/consumes-octet-stream:
+    post:
+      operationId: mediatypeConsumesOctetStream
+      tags: [mediatype]
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+  /mediatype/consumes-multipart-with-fileupload:
+    post:
+      # see https://swagger.io/docs/specification/describing-request-body/file-upload/
+      operationId: mediatypeConsumesMultipartWithFileUpload
+      tags: [mediatype]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                userId:
+                  type: integer
+                file:
+                  type: string
+                  format: binary
+              required:
+                - orderId
+                - userId
+                - file
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Multipart'
+  /mediatype/consumes-multipart-without-fileupload:
+    post:
+      # see https://swagger.io/docs/specification/describing-request-body/file-upload/
+      operationId: mediatypeConsumesMultipartWithoutFileUpload
+      tags: [mediatype]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                userId:
+                  type: integer
+              required:
+                - orderId
+                - userId
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Multipart'
+  /mediatype/consumes-and-produces:
+    post:
+      operationId: mediatypeConsumesAndProduces
+      tags: [mediatype]
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+  /mediatype/produces-with-different-model:
+    get:
+      operationId: mediatypeProducesDifferentModel
+      tags: [mediatype]
+      parameters:
+        - name: value
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: plain
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+            text/plain:
+              schema:
+                type: string
+  /mediatype/produces-with-same-model:
+    get:
+      operationId: mediatypeProducesSameModel
+      tags: [mediatype]
+      parameters:
+        - name: value
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StringModel'
+  /param/path/requiredWithoutDefault/{string}:
+    get:
+      operationId: paramPathRequiredWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/requiredWithDefault/{string}:
+    get:
+      operationId: paramPathRequiredWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "this-is-default"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/with-max-length/{string}:
+    get:
+      operationId: paramPathWithMaxLength
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 5
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/with-pattern/{string}:
+    get:
+      operationId: paramPathWithPattern
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: "[0-9][a-z]"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/with-uuid/{uuid}:
+    get:
+      operationId: paramPathWithUuid
+      tags: [parameter]
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/with-integer/{integer}:
+    get:
+      operationId: paramPathWithInteger
+      tags: [parameter]
+      parameters:
+        - name: integer
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/with-long/{long}:
+    get:
+      operationId: paramPathWithLong
+      tags: [parameter]
+      parameters:
+        - name: long
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/with-bool/{bool}:
+    get:
+      operationId: paramPathWithBoolean
+      tags: [parameter]
+      parameters:
+        - name: bool
+          in: path
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/overlay/{string}:
+    get:
+      operationId: paramPathOverlayWithString
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 10
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/path/overlay/{uuid}:
+    get:
+      operationId: paramPathOverlayWithUuid
+      tags: [parameter]
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/multiple-lists:
+    get:
+      operationId: paramQueryMultipleLists
+      tags: [parameter]
+      parameters:
+        - name: a
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: b
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/date:
+    get:
+      operationId: paramQueryDate
+      tags: [parameter]
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/date-time:
+    get:
+      operationId: paramQueryDateTime
+      tags: [parameter]
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/number:
+    get:
+      operationId: paramQueryNumber
+      tags: [parameter]
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/uuid:
+    get:
+      operationId: paramQueryUuid
+      tags: [parameter]
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/requiredWithoutDefault:
+    get:
+      operationId: paramQueryRequiredWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+        400:
+          description: Parameter missing.
+  /param/query/requiredWithDefault:
+    get:
+      operationId: paramQueryRequiredWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "this-is-default"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/optionalWithoutDefault:
+    get:
+      operationId: paramQueryOptionalWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/query/optionalWithDefault:
+    get:
+      operationId: paramQueryOptionalWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: query
+          required: false
+          schema:
+            type: string
+            default: "this-is-default"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/header/requiredWithoutDefault:
+    get:
+      operationId: paramHeaderRequiredWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+        400:
+          description: Parameter missing.
+  /param/header/requiredWithDefault:
+    get:
+      operationId: paramHeaderRequiredWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "this-is-default"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/header/optionalWithoutDefault:
+    get:
+      operationId: paramHeaderOptionalWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/header/optionalWithDefault:
+    get:
+      operationId: paramHeaderOptionalWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: header
+          required: false
+          schema:
+            type: string
+            default: "this-is-default"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/body/required:
+    post:
+      operationId: paramBodyRequired
+      tags: [parameter]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterModel'
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+        400:
+          description: Parameter missing.
+  /param/body/optional:
+    post:
+      operationId: paramBodyOptional
+      tags: [parameter]
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterModel'
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /param/all/{path}:
+    get:
+      operationId: paramAll
+      tags: [parameter]
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: uuid
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: integer
+          in: header
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+  /validation/long/min:
+    get:
+      operationId: validationLongMin
+      tags: [validation]
+      parameters:
+        - name: integer
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 3
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/long/max:
+    get:
+      operationId: validationLongMax
+      tags: [validation]
+      parameters:
+        - name: integer
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+            maximum: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/long/range:
+    get:
+      operationId: validationLongRange
+      tags: [validation]
+      parameters:
+        - name: integer
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 3
+            maximum: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/integer/min:
+    get:
+      operationId: validationIntegerMin
+      tags: [validation]
+      parameters:
+        - name: integer
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 3
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/integer/max:
+    get:
+      operationId: validationIntegerMax
+      tags: [validation]
+      parameters:
+        - name: integer
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            maximum: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/integer/range:
+    get:
+      operationId: validationIntegerRange
+      tags: [validation]
+      parameters:
+        - name: integer
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 3
+            maximum: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/double/min:
+    get:
+      operationId: validationDoubleMin
+      tags: [validation]
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+            minimum: 3
+            exclusiveMinimum: true
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/double/max:
+    get:
+      operationId: validationDoubleMax
+      tags: [validation]
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+            maximum: 4
+            exclusiveMaximum: true
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/double/range:
+    get:
+      operationId: validationDoubleRange
+      tags: [validation]
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+            minimum: 3
+            maximum: 4
+            exclusiveMinimum: false
+            exclusiveMaximum: false
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/float/min:
+    get:
+      operationId: validationFloatMin
+      tags: [validation]
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
+            format: float
+            minimum: 3
+            exclusiveMinimum: true
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/float/max:
+    get:
+      operationId: validationFloatMax
+      tags: [validation]
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
+            format: float
+            maximum: 4
+            exclusiveMaximum: true
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/float/range:
+    get:
+      operationId: validationFloatRange
+      tags: [validation]
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
+            format: float
+            minimum: 3
+            maximum: 4
+            exclusiveMinimum: false
+            exclusiveMaximum: false
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/string/pattern:
+    get:
+      operationId: validationStringPattern
+      tags: [validation]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: "[a-z]{3,5}"
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/string/min:
+    get:
+      operationId: validationStringMin
+      tags: [validation]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 3
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/string/max:
+    get:
+      operationId: validationStringMax
+      tags: [validation]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+            maxLength: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/string/range:
+    get:
+      operationId: validationStringRange
+      tags: [validation]
+      parameters:
+        - name: string
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/list/min:
+    get:
+      operationId: validationListMin
+      tags: [validation]
+      parameters:
+        - name: list
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 3
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/list/max:
+    get:
+      operationId: validationListMax
+      tags: [validation]
+      parameters:
+        - name: list
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+            maxItems: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/list/range:
+    post:
+      operationId: validationListRange
+      tags: [validation]
+      parameters:
+        - name: list
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 3
+            maxItems: 4
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/list/model:
+    post:
+      operationId: validationListModel
+      tags: [validation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/StringModel'
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+  /validation/model:
+    post:
+      operationId: validationModel
+      tags: [validation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringModel'
+      responses:
+        204:
+          description: Ok.
+        400:
+          description: Bad request.
+components:
+  schemas:
+    StringModel:
+      type: object
+      properties:
+        foo:
+          type: string
+      required:
+        - foo
+    NumberModel:
+      type: object
+      properties:
+        bar:
+          type: number
+    Multipart:
+      type: object
+      properties:
+        orderId:
+          type: integer
+        userId:
+          type: integer
+        fileName:
+          type: string
+        file:
+          type: string
+          format: byte
+    ParameterModel:
+      type: object
+      properties:
+        bool:
+          type: string
+        string:
+          type: string
+        number:
+          type: number
+        integer:
+          type: integer
+          format: int32
+        uuid:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date
+        dateTime:
+          type: string
+          format: date-time
+        a:
+          type: array
+          items:
+            type: string
+        b:
+          type: array
+          items:
+            type: string
+            format: uuid
+        c:
+          type: array
+          items:
+            type: integer
+            format: int32

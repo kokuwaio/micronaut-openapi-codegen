@@ -2,13 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>io.kokuwa</groupId>
-		<artifactId>maven-parent</artifactId>
-		<version>@project.parent.version@</version>
-		<relativePath />
-	</parent>
-
 	<groupId>@project.groupId@</groupId>
 	<artifactId>@project.artifactId@-it</artifactId>
 	<version>LOCAL-SNAPSHOT</version>
@@ -17,13 +10,37 @@
 	<properties>
 
 		<!-- ===================================================================== -->
+		<!-- ============================== Build ================================ -->
+		<!-- ===================================================================== -->
+
+		<project.build.sourceEncoding>@project.build.sourceEncoding@</project.build.sourceEncoding>
+		<project.build.propertiesEncoding>@project.build.propertiesEncoding@</project.build.propertiesEncoding>
+		<project.reporting.outputEncoding>@project.reporting.outputEncoding@</project.reporting.outputEncoding>
+
+		<maven.compiler.source>@maven.compiler.source@</maven.compiler.source>
+		<maven.compiler.target>@maven.compiler.target@</maven.compiler.target>
+		<maven.compiler.parameters>true</maven.compiler.parameters>
+		<maven.compiler.showDeprecation>@maven.compiler.showDeprecation@</maven.compiler.showDeprecation>
+		<maven.compiler.showWarnings>@maven.compiler.showWarnings@</maven.compiler.showWarnings>
+
+		<!-- ===================================================================== -->
 		<!-- ============================= Libaries ============================== -->
 		<!-- ===================================================================== -->
 
+		<!-- dependencies -->
+
 		<version.io.kokuwa.micronaut.logging>@version.io.kokuwa.micronaut.logging@</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
-		<version.org.openapitools.generator>@version.org.openapitools@</version.org.openapitools.generator>
+		<version.org.openapitools.generator>@version.org.openapitools.generator@</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
+
+		<!-- plugins -->
+
+		<version.org.apache.maven.plugins.compiler>@version.org.apache.maven.plugins.compiler@</version.org.apache.maven.plugins.compiler>
+		<version.org.apache.maven.plugins.resources>@version.org.apache.maven.plugins.resources@</version.org.apache.maven.plugins.resources>
+		<version.org.apache.maven.plugins.surefire>@version.org.apache.maven.plugins.surefire@</version.org.apache.maven.plugins.surefire>
+		<version.org.codehaus.mojo.build-helper>@version.org.codehaus.mojo.build-helper@</version.org.codehaus.mojo.build-helper>
+		<version.org.codehaus.mojo.tidy>@version.org.codehaus.mojo.tidy@</version.org.codehaus.mojo.tidy>
 
 	</properties>
 
@@ -53,36 +70,11 @@
 	</dependencyManagement>
 	<dependencies>
 
-		<!-- micronaut -->
+		<!-- avoid compiler warning, see https://docs.micronaut.io/latest/guide/#_nullable_annotations -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-server-netty</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.kokuwa.micronaut</groupId>
-			<artifactId>micronaut-logging</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- test -->
-		<dependency>
-			<groupId>io.micronaut.test</groupId>
-			<artifactId>micronaut-test-junit5</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-client</artifactId>
-			<scope>test</scope>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
@@ -93,26 +85,48 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.compiler}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.resources}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.surefire}</version>
 					<configuration>
-						<parameters>true</parameters>
-						<annotationProcessorPaths>
-							<path>
-								<groupId>io.micronaut</groupId>
-								<artifactId>micronaut-inject-java</artifactId>
-								<version>${version.io.micronaut}</version>
-							</path>
-						</annotationProcessorPaths>
+						<redirectTestOutputToFile>true</redirectTestOutputToFile>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${version.org.codehaus.mojo.build-helper}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tidy-maven-plugin</artifactId>
+					<version>${version.org.codehaus.mojo.tidy}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.openapitools</groupId>
+					<artifactId>openapi-generator-maven-plugin</artifactId>
+					<version>${version.org.openapitools.generator}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+
+			<!-- add generated sources -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>openapi-source</id>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>add-source</goal>
 						</goals>
@@ -124,6 +138,7 @@
 					</execution>
 					<execution>
 						<id>openapi-test-source</id>
+						<phase>generate-test-sources</phase>
 						<goals>
 							<goal>add-test-source</goal>
 						</goals>
@@ -135,30 +150,44 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- generate sources from openapi spec -->
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>openapi-generate-server</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<apiPackage>codegen</apiPackage>
+							<apiPackage>codegen.server</apiPackage>
+						</configuration>
+					</execution>
+					<execution>
+						<id>openapi-generate-client</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<apiPackage>codegen.client</apiPackage>
+							<generateModels>false</generateModels>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<configOptions>
+								<clientId>test-client</clientId>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
 				<configuration>
+					<generatorName>micronaut</generatorName>
 					<skipValidateSpec>false</skipValidateSpec>
 					<strictSpec>true</strictSpec>
-					<generatorName>micronaut</generatorName>
-					<inputSpec>${project.basedir}/src/main/resources/openapi/spec.yaml</inputSpec>
+					<enablePostProcessFile>false</enablePostProcessFile>
 					<output>${project.build.directory}</output>
-					<configOptions>
-						<useBeanValidation>false</useBeanValidation>
-						<useOptional>false</useOptional>
-						<jacksonDatabindNullable>false</jacksonDatabindNullable>
-					</configOptions>
+					<ignoreFileOverride>${project.basedir}/../.openapi-generator</ignoreFileOverride>
+					<packageName>codegen</packageName>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -168,6 +197,21 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<!-- fail if any pom is dirty -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tidy-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>

@@ -1,25 +1,17 @@
 package org.openapitools.codegen.languages;
 
+import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
+import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
+import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
+
 import java.io.File;
-import java.net.URI;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.Period;
-import java.time.ZonedDateTime;
-import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,13 +31,10 @@ import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
 
@@ -55,123 +44,95 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String CLIENT_ID = "clientId";
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
-	public static final String JACKSON_DATABIND_NULLABLE = "jacksonDatabindNullable";
-	public static final String USE_JAVAX_GENERATED = "useJavaxGenerated";
-	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
-	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
-	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
-	public static final String VISITABLE = "visitable";
 	public static final String PAGEABLE = "pageable";
-
-	public static final Map<String, Class<?>> CUSTOM_FORMATS = Map.of(
-			"temporal-amount", TemporalAmount.class,
-			"period", Period.class,
-			"duration", Duration.class,
-			"instant", Instant.class,
-			"local-date-time", LocalDateTime.class,
-			"offset-date-time", OffsetDateTime.class,
-			"zoned-date-time", ZonedDateTime.class,
-			"local-time", LocalTime.class,
-			"offset-time", OffsetTime.class);
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
 	private static final String UUID_PATTERN = StringUtils.repeat("[a-f0-9]", 8)
 			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 4)
 			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 12);
+	private static final Logger LOG = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	private boolean generateApiTests = true;
-	private boolean dateTimeRelaxed = true;
-	private boolean introspected = true;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
-	private boolean jacksonDatabindNullable = true;
 	private boolean useOptional = true;
-	private boolean useJavaxGenerated = true;
-	private boolean useLombokGenerated = false;
-	private boolean useReferencedSchemaAsDefault = false;
-	private boolean visitable = true;
+	private boolean introspected = true;
+	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
+	private boolean isClient = false;
 
 	public MicronautCodegen() {
 
-		cliOptions.add(CliOption.newBoolean(
-				USE_BEANVALIDATION, "Use BeanValidation API annotations", useBeanValidation));
+		cliOptions.clear();
+		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use bean validation annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "Use Optional<T> instead of @Nullable.", useOptional));
-		cliOptions.add(CliOption.newBoolean(USE_JAVAX_GENERATED, "Add @javax.annotation.processing.Generated.",
-				useJavaxGenerated));
-		cliOptions.add(CliOption.newBoolean(USE_LOMBOK_GENERATED, "Add @lombok.Generated.", useLombokGenerated));
 		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
-		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
-		cliOptions.add(CliOption.newBoolean(
-				JACKSON_DATABIND_NULLABLE, "Add wrapper from jackson-databind-nullable.", jacksonDatabindNullable));
 		cliOptions.add(CliOption.newBoolean(SUPPORT_ASYNC, "Use async responses", supportAsync));
-		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
-		cliOptions.add(CliOption.newBoolean(USE_REFERENCED_SCHEMA_AS_DEFAULT,
-				"Use the referenced schemas type as default values.", useReferencedSchemaAsDefault));
-		cliOptions.add(CliOption.newBoolean(VISITABLE,
-				"Generate visitor for subtypes with a discriminator.", visitable));
-		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
-				"Support addtional properties with  composed schemas.",
-				supportsAdditionalPropertiesWithComposedSchema));
+		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
+		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
+		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
 
-		apiDocTemplateFiles.remove("api_doc.mustache");
-		apiTestTemplateFiles.remove("api_test.mustache");
-		modelDocTemplateFiles.remove("model_doc.mustache");
+		apiTemplateFiles.clear();
+		apiDocTemplateFiles.clear();
+		apiTestTemplateFiles.clear();
+		modelTemplateFiles.clear();
+		modelTemplateFiles.put("model.mustache", ".java");
+		modelDocTemplateFiles.clear();
+		modelTestTemplateFiles.clear();
 
 		// parent flags
 
-		dateLibrary = "do not trigger date type selection";
-		additionalProperties.put(INTROSPECTED, introspected);
-		additionalProperties.put(DATETIME_RELAXED, dateTimeRelaxed);
+		additionalProperties.clear();
 		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
-		additionalProperties.put(JACKSON_DATABIND_NULLABLE, jacksonDatabindNullable);
 		additionalProperties.put(USE_OPTIONAL, useOptional);
-		additionalProperties.put(USE_JAVAX_GENERATED, useJavaxGenerated);
-		additionalProperties.put(USE_LOMBOK_GENERATED, useLombokGenerated);
-		additionalProperties.put(USE_REFERENCED_SCHEMA_AS_DEFAULT, useReferencedSchemaAsDefault);
-		additionalProperties.put(VISITABLE, visitable);
-		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED,
-				supportsAdditionalPropertiesWithComposedSchema);
+		additionalProperties.put(INTROSPECTED, introspected);
 		additionalProperties.put(PAGEABLE, pageable);
-		additionalProperties.put(CodegenConstants.TEMPLATE_DIR, "Micronaut");
 
 		// add custom type mappings
 
-		typeMapping.put("date", LocalDate.class.getName());
-		typeMapping.put("DateTime", Instant.class.getName());
-		typeMapping.put("array", List.class.getName());
-		typeMapping.put("map", Map.class.getName());
-		typeMapping.put("set", Set.class.getName());
-		typeMapping.put("boolean", Boolean.class.getName());
-		typeMapping.put("string", String.class.getName());
-		typeMapping.put("int", Integer.class.getName());
-		typeMapping.put("Integer", Integer.class.getName());
-		typeMapping.put("long", Long.class.getName());
-		typeMapping.put("float", Float.class.getName());
-		typeMapping.put("number", Double.class.getName());
-		typeMapping.put("BigDecimal", Double.class.getName());
-		typeMapping.put("UUID", UUID.class.getName());
-		typeMapping.put("URI", URI.class.getName());
+		typeMapping.clear();
+		typeMapping.put("AnyType", java.lang.Object.class.getName());
+		typeMapping.put("date", java.time.LocalDate.class.getName());
+		typeMapping.put("DateTime", java.time.Instant.class.getName());
+		typeMapping.put("array", java.util.List.class.getName());
+		typeMapping.put("map", java.util.Map.class.getName());
+		typeMapping.put("set", java.util.Set.class.getName());
+		typeMapping.put("boolean", java.lang.Boolean.class.getName());
+		typeMapping.put("string", java.lang.String.class.getName());
+		typeMapping.put("int", java.lang.Integer.class.getName());
+		typeMapping.put("integer", java.lang.Integer.class.getName());
+		typeMapping.put("Integer", java.lang.Integer.class.getName());
+		typeMapping.put("long", java.lang.Long.class.getName());
+		typeMapping.put("Long", java.lang.Long.class.getName());
+		typeMapping.put("float", java.lang.Float.class.getName());
+		typeMapping.put("Float", java.lang.Float.class.getName());
+		typeMapping.put("double", java.lang.Double.class.getName());
+		typeMapping.put("Double", java.lang.Double.class.getName());
+		typeMapping.put("number", java.lang.Double.class.getName());
+		typeMapping.put("BigDecimal", java.lang.Double.class.getName());
+		typeMapping.put("UUID", java.util.UUID.class.getName());
+		typeMapping.put("URI", java.net.URI.class.getName());
 		typeMapping.put("file", "byte[]");
-		typeMapping.put("AnyType", Object.class.getName());
-		typeMapping.put("fileUpload", "io.micronaut.http.multipart.CompletedFileUpload");
-		typeMapping.put("asyncCompletable", "io.reactivex.Completable");
-		typeMapping.put("asyncSingle", "io.reactivex.Single");
-		typeMapping.put("asyncMaybe", "io.reactivex.Maybe");
-		typeMapping.put("asyncFlowable", "io.reactivex.Flowable");
-		typeMapping.put("asyncFileUpload", "io.micronaut.http.multipart.StreamingFileUpload");
-		typeMapping.put("Nullable", javax.annotation.Nullable.class.getName());
-		typeMapping.put("Nonnull", javax.annotation.Nonnull.class.getName());
-		typeMapping.put("Inject", javax.inject.Inject.class.getName());
-		typeMapping.put("Singleton", javax.inject.Singleton.class.getName());
+		typeMapping.put("ByteArray", "byte[]");
+		typeMapping.put("MultipartBody", io.micronaut.http.client.multipart.MultipartBody.class.getName());
+		typeMapping.put("fileUpload", io.micronaut.http.multipart.CompletedFileUpload.class.getName());
+		typeMapping.put("asyncFileUpload", io.micronaut.http.multipart.StreamingFileUpload.class.getName());
+		typeMapping.put("asyncCompletable", "reactor.core.publisher.Mono");
+		typeMapping.put("asyncSingle", "reactor.core.publisher.Mono");
+		typeMapping.put("asyncMaybe", "reactor.core.publisher.Mono");
+		typeMapping.put("asyncFlowable", "reactor.core.publisher.Flux");
+		typeMapping.put("Generated", io.micronaut.core.annotation.Generated.class.getName());
+		typeMapping.put("Nullable", io.micronaut.core.annotation.Nullable.class.getName());
+		typeMapping.put("Nonnull", io.micronaut.core.annotation.NonNull.class.getName());
+		typeMapping.put("Inject", jakarta.inject.Inject.class.getName());
+		typeMapping.put("Singleton", jakarta.inject.Singleton.class.getName());
+		instantiationTypes.clear();
 		instantiationTypes.put("array", ArrayList.class.getName());
 		instantiationTypes.put("map", HashMap.class.getName());
 		instantiationTypes.put("set", LinkedHashSet.class.getName());
@@ -179,90 +140,80 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {}
-
-	@Override
 	public String getName() {
 		return "micronaut";
 	}
 
 	@Override
+	public void postProcess() {}
+
+	@Override
 	public void processOpts() {
+		BiFunction<String, String, String> getOrDefault = (key,
+				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
-		// reuse api package if other packages are not provided
+		// reuse package if other packages are not provided
 
-		apiPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.API_PACKAGE, k -> "changeMe");
-		modelPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.MODEL_PACKAGE, k -> apiPackage);
-		invokerPackage = (String) additionalProperties.computeIfAbsent(CodegenConstants.INVOKER_PACKAGE,
-				k -> apiPackage);
+		var packageName = getOrDefault.apply(CodegenConstants.PACKAGE_NAME, "changeMe");
+		apiPackage = getOrDefault.apply(CodegenConstants.API_PACKAGE, packageName);
+		modelPackage = getOrDefault.apply(CodegenConstants.MODEL_PACKAGE, packageName);
+		invokerPackage = getOrDefault.apply(CodegenConstants.INVOKER_PACKAGE, packageName);
+		additionalProperties.put("isModelImport", !apiPackage.equals(modelPackage));
 
-		super.processOpts();
+		// process flags - this class
 
-		// process flags
-
-		if (additionalProperties.containsKey(INTROSPECTED)) {
-			introspected = convertPropertyToBooleanAndWriteBack(INTROSPECTED);
-		}
-		if (additionalProperties.containsKey(DATETIME_RELAXED)) {
-			dateTimeRelaxed = convertPropertyToBooleanAndWriteBack(DATETIME_RELAXED);
-		}
 		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
 			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
 		}
 		if (additionalProperties.containsKey(USE_GENERIC_RESPONSE)) {
 			useGenericResponse = convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE);
 		}
-		if (additionalProperties.containsKey(JACKSON_DATABIND_NULLABLE)) {
-			jacksonDatabindNullable = convertPropertyToBooleanAndWriteBack(JACKSON_DATABIND_NULLABLE);
-		}
 		if (additionalProperties.containsKey(USE_OPTIONAL)) {
 			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL);
 		}
-		if (additionalProperties.containsKey(USE_JAVAX_GENERATED)) {
-			useJavaxGenerated = convertPropertyToBooleanAndWriteBack(USE_JAVAX_GENERATED);
+		if (additionalProperties.containsKey(INTROSPECTED)) {
+			introspected = convertPropertyToBooleanAndWriteBack(INTROSPECTED);
 		}
-		if (additionalProperties.containsKey(USE_LOMBOK_GENERATED)) {
-			useLombokGenerated = convertPropertyToBooleanAndWriteBack(USE_LOMBOK_GENERATED);
-		}
-		if (additionalProperties.containsKey(CodegenConstants.GENERATE_API_TESTS)) {
-			generateApiTests = convertPropertyToBooleanAndWriteBack(CodegenConstants.GENERATE_API_TESTS);
-		}
-		if (additionalProperties.containsKey(USE_REFERENCED_SCHEMA_AS_DEFAULT)) {
-			useReferencedSchemaAsDefault = convertPropertyToBooleanAndWriteBack(USE_REFERENCED_SCHEMA_AS_DEFAULT);
-		}
-		if (additionalProperties.containsKey(VISITABLE)) {
-			visitable = convertPropertyToBooleanAndWriteBack(VISITABLE);
+		if (additionalProperties.containsKey(DATETIME_RELAXED)) {
+			dateTimeRelaxed = convertPropertyToBooleanAndWriteBack(DATETIME_RELAXED);
 		}
 		if (additionalProperties.containsKey(PAGEABLE)) {
 			pageable = convertPropertyToBooleanAndWriteBack(PAGEABLE);
 		}
-		if (additionalProperties.containsKey(ADDITIONAL_PROPS_COMPOSED)) {
-			supportsAdditionalPropertiesWithComposedSchema = convertPropertyToBooleanAndWriteBack(
-					ADDITIONAL_PROPS_COMPOSED);
+		if (additionalProperties.containsKey(SUPPORT_ASYNC)) {
+			supportAsync = convertPropertyToBooleanAndWriteBack(SUPPORT_ASYNC);
+		}
+		if (additionalProperties.containsKey(GENERATE_API_TESTS)) {
+			generateApiTests = convertPropertyToBooleanAndWriteBack(GENERATE_API_TESTS);
+		}
+		if (additionalProperties.containsKey(OPENAPI_NULLABLE)) {
+			openApiNullable = convertPropertyToBooleanAndWriteBack(OPENAPI_NULLABLE);
 		}
 
 		// we do not generate projects, only api, set source and test folder
 
-		projectFolder = "generated-sources";
-		projectTestFolder = "generated-test-sources";
-		sourceFolder = projectFolder + File.separator + "openapi";
-		testFolder = projectTestFolder + File.separator + "openapi";
+		templateDir = "Micronaut";
+		projectFolder = getOrDefault.apply("projectFolder", "generated-sources");
+		projectTestFolder = getOrDefault.apply("projectTestFolder", "generated-test-sources");
+		sourceFolder = getOrDefault.apply(SOURCE_FOLDER, projectFolder + File.separator + "openapi");
+		testFolder = getOrDefault.apply("testFolder", projectTestFolder + File.separator + "openapi");
+		modelNameSuffix = getOrDefault.apply(MODEL_NAME_SUFFIX, modelNameSuffix);
+		isClient = additionalProperties.containsKey(CLIENT_ID);
 
 		// add files to generate
 
-		if (additionalProperties.containsKey(CLIENT_ID)) {
-			apiTemplateFiles.put("api_client.mustache", "Client.java");
-		}
-		if (generateApiTests) {
-			apiTestTemplateFiles.put("test.mustache", "Spec.java");
-			apiTestTemplateFiles.put("test_client.mustache", "Client.java");
-			addSupportingFile(testFolder, invokerPackage, "HttpResponseAssertions");
-		}
-		if (dateTimeRelaxed && !openAPI.getPaths().isEmpty()) {
-			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
-		}
-		if (pageable) {
-			addSupportingFile(sourceFolder, invokerPackage, "PageableProvider");
+		if (isClient) {
+			apiTemplateFiles.put("apiClient.mustache", "Client.java");
+		} else {
+			apiTemplateFiles.put("apiServer.mustache", ".java");
+			if (pageable) {
+				addSupportingFile(sourceFolder, invokerPackage, "PageableProvider");
+			}
+			if (generateApiTests && !openAPI.getPaths().isEmpty()) {
+				apiTestTemplateFiles.put("testSpec.mustache", "Spec.java");
+				apiTestTemplateFiles.put("testClient.mustache", "Client.java");
+				addSupportingFile(testFolder, invokerPackage, "HttpResponseAssertions");
+			}
 		}
 
 		// add type mappings for mustache
@@ -271,102 +222,72 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put("type.Nonnull", typeMapping.get("Nonnull"));
 		additionalProperties.put("type.Inject", typeMapping.get("Inject"));
 		additionalProperties.put("type.Singleton", typeMapping.get("Singleton"));
+		additionalProperties.put("type.MultipartBody", typeMapping.get("MultipartBody"));
+		Optional.ofNullable(typeMapping.get("Generated"))
+				.filter(type -> !type.isBlank())
+				.ifPresent(type -> additionalProperties.put("type.Generated", type));
 	}
 
 	@Override
 	public CodegenOperation fromOperation(String path, String httpMethod, Operation source, List<Server> servers) {
 
 		var operation = super.fromOperation(path, httpMethod, source, servers);
-		var extensions = operation.vendorExtensions;
+		var produces = operation.produces == null ? List.<Map<String, String>>of() : operation.produces;
 
-		// warn if operation has only wildcard responses
+		// warn if operation has wildcard/range responses
 
-		Optional<CodegenResponse> wildcardResponse = operation.responses.stream()
-				.filter(CodegenResponse::isWildcard)
-				.findAny();
-		if (wildcardResponse.isPresent() && operation.responses.size() == 1) {
-			String message = "Operation " + operation.nickname + " has no documented response code, only default.";
-			LOGGER.warn(message);
-			if (isStrictSpecBehavior()) {
-				throw new SpecValidationException(message);
-			}
-			wildcardResponse.ifPresent(response -> response.code = response.dataType == null ? "204" : "200");
+		if (operation.responses.stream().anyMatch(CodegenResponse::isWildcard)) {
+			throw new SpecValidationException("Wildcard responses are not supported.");
+		}
+		if (operation.responses.stream().anyMatch(CodegenResponse::isRange)) {
+			throw new SpecValidationException("Range responses are not supported.");
 		}
 
-		// get response with status
+		// get responses for considering repsonse type
 
-		CodegenResponse response = operation.responses.stream()
-				.filter(r -> !r.isWildcard())
-				.findAny()
-				.orElseGet(wildcardResponse::get);
-		var responses = operation.responses.stream()
-				.filter(r -> {
-					if (r.isRange()) {
-						throw new SpecValidationException("Range responses are not supported: " + r.code);
-					}
-					var code = Integer.parseInt(r.code);
-					return code >= 200 && code < 400;
-				})
-				.collect(Collectors.toList());
-		var useGeneric = responses.size() > 1;
+		var responses = operation.responses.stream().filter(r -> r.is2xx || r.is3xx).collect(Collectors.toList());
+		var responsesCodes = responses.stream().map(r -> Integer.parseInt(r.code)).collect(Collectors.toList());
+		var responseGeneric = useGenericResponse;
+		var dataTypes = responses.stream().map(r -> r.dataType).collect(Collectors.toSet());
 
-		if (responses.size() > 1) {
-			var hasMultipleBodyTypes = responses.stream().map(r -> r.dataType).distinct().count() > 1;
-			if (hasMultipleBodyTypes) {
-				// delete return type if responses with multiple models are present
+		if (!responseGeneric && responses.size() > 1) {
+			LOG.info("operation {} has multiple responses {}, use generic response",
+					operation.nickname, responsesCodes);
+			responseGeneric = true;
+		}
+
+		if (!responseGeneric && responses.stream().anyMatch(r -> r.hasHeaders)) {
+			LOG.info("operation {} has response with header, use generic response", operation.nickname);
+			responseGeneric = true;
+		}
+
+		if (operation.returnType != null && dataTypes.size() > 1) {
+			LOG.info("operation {} has multiple responses {} with multiple models {}, erase return type",
+					operation.nickname, responsesCodes, dataTypes);
+			operation.returnType = null;
+		}
+
+		if ((operation.returnType != null || !responseGeneric) && produces.size() > 1) {
+			var specResponse = (ApiResponse) responses.get(0).vendorExtensions.get(ApiResponse.class.getName());
+			var returnTypes = specResponse.getContent().values().stream().collect(Collectors.toSet());
+			if (returnTypes.size() > 1) {
+				var mediaTypes = produces.stream().flatMap(m -> m.values().stream()).collect(Collectors.toSet());
+				LOG.info("operation {} has multiple media types {} with multiple models, erase return type",
+						operation.nickname, mediaTypes);
 				operation.returnType = null;
+				responseGeneric = true;
 			}
 		}
-
-		if (operation.produces != null && operation.produces.size() > 1) {
-			var specResponse = (ApiResponse) response.vendorExtensions.get(ApiResponse.class.getName());
-			var hasMultipleBodyTypes = specResponse.getContent().values().stream().distinct().count() > 1;
-			if (hasMultipleBodyTypes) {
-				// delete return type if response has multiple contenttypes with different models
-				operation.returnType = null;
-				useGeneric = true;
-			}
-		}
-
-		// remove media type */*
-
-		Optional.ofNullable(operation.produces).ifPresent(p -> p.removeIf(m -> "*/*".equals(m.get("mediaType"))));
-		Optional.ofNullable(operation.consumes).ifPresent(c -> c.removeIf(m -> "*/*".equals(m.get("mediaType"))));
 
 		// store method and status for micronaut
 
+		var extensions = operation.vendorExtensions;
 		extensions.put("httpMethod", httpMethod.toUpperCase().charAt(0) + httpMethod.substring(1).toLowerCase());
-		extensions.put("generic", useGenericResponse || response.hasHeaders || useGeneric);
-		extensions.put("status", HttpStatus.valueOf(Integer.parseInt(response.code)).name());
+		extensions.put("generic", responseGeneric);
+		if (responses.size() == 1) {
+			extensions.put("status", HttpStatus.valueOf(responsesCodes.get(0)).name());
+		}
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
-
-		// add pattern to path paramters
-
-		if (CollectionUtils.isNotEmpty(operation.pathParams)) {
-			for (var param : operation.pathParams) {
-				var name = param.paramName;
-				if (param.isUuid) {
-					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + UUID_PATTERN + "}");
-				}
-				if (param.isString && param.maxLength != null) {
-					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":" + param.maxLength + "}");
-				}
-				if (param.isInteger) {
-					operation.path = operation.path.replace("{" + name + "}", "{" + name + ":[0-9]+}");
-				}
-			}
-		}
-
-		// add wildcard for lists in path (api client & test client)
-
-		var arrayParams = operation.queryParams.stream().filter(p -> p.isArray).collect(Collectors.toList());
-		if (!arrayParams.isEmpty()) {
-			extensions.put("path", operation.path + "?" + arrayParams.stream()
-					.map(p -> "{&" + p.baseName + "*}")
-					.collect(Collectors.joining()));
-		} else {
-			extensions.put("path", operation.path);
-		}
 
 		// jwt provider for tests
 
@@ -381,14 +302,19 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (supportAsync) {
 			var isVoid = operation.returnType == null;
 			var isStream = Optional.ofNullable(source.getResponses().get("200"))
-					.map(ApiResponse::getContent) // may be null
+					.map(ApiResponse::getContent)
 					.filter(content -> content.containsKey(MediaType.APPLICATION_JSON_STREAM))
 					.isPresent();
 			extensions.put("asyncContainer", typeMapping.get("asyncSingle"));
 			extensions.put("asyncStream", isStream);
-			if (!useGenericResponse) {
+			if (!responseGeneric) {
 				if (isVoid) {
-					extensions.put("asyncContainer", typeMapping.get("asyncCompletable"));
+					var asyncCompletable = typeMapping.get("asyncCompletable");
+					if ("reactor.core.publisher.Mono".equals(asyncCompletable)) {
+						extensions.put("asyncContainer", asyncCompletable + "<" + java.lang.Void.class.getName() + ">");
+					} else {
+						extensions.put("asyncContainer", asyncCompletable);
+					}
 				} else if ((boolean) operation.vendorExtensions.getOrDefault("has404", false)) {
 					extensions.put("asyncContainer", typeMapping.get("asyncMaybe"));
 				}
@@ -397,6 +323,46 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				extensions.put("asyncContainer", typeMapping.get("asyncFlowable"));
 			}
 		}
+
+		// add upper case operationId for path constants
+
+		operation.vendorExtensions.put("operationIdUpperCase",
+				org.openapitools.codegen.utils.StringUtils.underscore(operation.nickname).toUpperCase());
+
+		operation.pathParams.stream().filter(p -> p.defaultValue != null).forEach(p -> {
+			LOG.warn("operation {} has path param {} with unsupported default value {}, default removed",
+					operation.nickname, p.baseName, p.defaultValue);
+			p.defaultValue = null;
+		});
+
+		// for handle client/server specific path
+
+		var clientPath = operation.path;
+		var queryParamsWithArray = operation.queryParams.stream().filter(p -> p.isArray).collect(Collectors.toList());
+		if (!queryParamsWithArray.isEmpty()) {
+			clientPath = operation.path + "?"
+					+ queryParamsWithArray.stream().map(p -> "{&" + p.baseName + "*}").collect(Collectors.joining());
+		}
+		extensions.put("clientPath", clientPath);
+
+		// for handle client/server specific path
+
+		var serverPath = operation.path;
+		for (var pathParam : operation.pathParams) {
+			var name = pathParam.baseName;
+			if (pathParam.isBoolean) {
+				serverPath = serverPath.replace("{" + name + "}", "{" + name + ":true|false}");
+			} else if (pathParam.isInteger || pathParam.isLong) {
+				serverPath = serverPath.replace("{" + name + "}", "{" + name + ":\\\\-?[0-9]+}");
+			} else if (pathParam.isUuid) {
+				serverPath = serverPath.replace("{" + name + "}", "{" + name + ":" + UUID_PATTERN + "}");
+			} else if (pathParam.maxLength != null) {
+				serverPath = serverPath.replace("{" + name + "}", "{" + name + ":" + pathParam.maxLength + "}");
+			} else if (pathParam.pattern != null && !pathParam.pattern.contains("{")) {
+				serverPath = serverPath.replace("{" + name + "}", "{" + name + ":" + pathParam.pattern + "}");
+			}
+		}
+		extensions.put("serverPath", serverPath);
 
 		return operation;
 	}
@@ -414,30 +380,42 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public String getSchemaType(Schema schema) {
-		var format = schema.getFormat();
-		if (schema instanceof StringSchema && format != null && CUSTOM_FORMATS.containsKey(format)) {
-			var type = CUSTOM_FORMATS.get(format).getName();
-			LOGGER.warn("Use custom format {} with type {}.", format, type);
-			return type;
+	public CodegenProperty fromProperty(String name, Schema source) {
+		var schema = ModelUtils.getReferencedSchema(this.openAPI, source);
+		var property = super.fromProperty(name, source);
+
+		// handle enum default value properly
+
+		if (schema.getEnum() != null && property.defaultValue != null) {
+			var dataType = toEnumName(property);
+			property.defaultValue = property.datatypeWithEnum + "." + toEnumVarName(property.defaultValue, dataType);
 		}
-		if (schema instanceof ComposedSchema) {
-			ComposedSchema cs = (ComposedSchema) schema;
-			if (CollectionUtils.isNotEmpty(cs.getOneOf())) {
-				// ignore embedded oneOf schemas
-				return Object.class.getName();
-			}
-		}
-		return super.getSchemaType(schema);
+
+		return property;
 	}
 
 	@Override
-	public String toDefaultValue(Schema schema) {
-
-		if (useReferencedSchemaAsDefault && schema.get$ref() != null) {
-			return "new " + getSchemaType(schema) + "()";
+	public void postProcessParameter(CodegenParameter parameter) {
+		if (parameter.isFormParam && parameter.isFile) {
+			parameter.dataType = typeMapping.get(supportAsync ? "asyncFileUpload" : "fileUpload");
 		}
+		if (dateTimeRelaxed && (parameter.isDate || parameter.isDateTime)) {
+			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
+		}
+	}
 
+	@Override
+	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
+		super.postProcessModelProperty(model, property);
+
+		if (openApiNullable && Boolean.FALSE.equals(property.required) && Boolean.TRUE.equals(property.isNullable)) {
+			property.getVendorExtensions().put("x-jackson-nullable", true);
+		}
+	}
+
+	@Override
+	public String toDefaultValue(Schema source) {
+		var schema = ModelUtils.getReferencedSchema(this.openAPI, source);
 		if (ModelUtils.isSet(schema)) {
 			return "new " + instantiationTypes.get("set") + "<>()";
 		}
@@ -448,108 +426,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			return "new " + instantiationTypes.get("map") + "<>()";
 		}
 		return super.toDefaultValue(schema);
-	}
-
-	@Override
-	public Map<String, Object> updateAllModels(Map<String, Object> objs) {
-		var superObjs = super.updateAllModels(objs);
-
-		Map<String, CodegenModel> allModels = getAllModels(objs);
-		for (CodegenModel model : allModels.values()) {
-
-			// check id additional properties should be handled through composition and apply the map if so.
-			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
-				model.getVendorExtensions()
-						.put("additionalPropertiesMap", String.format("java.util.Map<java.lang.String, %s>",
-								model.getAdditionalProperties().getDataType()));
-			}
-
-			var discriminator = model.discriminator;
-			if (discriminator == null) {
-				continue;
-			}
-			// remove discriminator type
-
-			model.vars.stream()
-					.filter(property -> property.getName().equals(discriminator.getPropertyName()))
-					.findAny().ifPresent(property -> {
-						discriminator.setPropertyType(property.getDataType());
-						model.vars.remove(property);
-					});
-
-			// add discriminator value to submodel
-
-			for (var mappedModel : discriminator.getMappedModels()) {
-
-				var subModel = allModels.get(mappedModel.getModelName());
-				if (subModel == null) {
-					LOGGER.warn("{} - model in discriminator {} with name {} not found",
-							model.name, discriminator.getPropertyName(), mappedModel.getModelName());
-					continue;
-				}
-				if (subModel.parentModel == null) {
-					subModel.parentModel = model;
-					subModel.parent = model.getClassname();
-					LOGGER.warn("{} added missing sub model {}", model.name, subModel.name);
-				}
-				subModel.vars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
-
-				Map<String, Object> extensions = subModel.getVendorExtensions();
-				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
-				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
-				switch (discriminator.getPropertyType()) {
-					case "java.lang.String":
-						extensions.put("discriminatorPropertyValue", '"' + mappedModel.getMappingName() + '"');
-						break;
-					case "java.lang.Long":
-					case "java.lang.Integer":
-					case "java.lang.Double":
-					case "java.lang.Float":
-						extensions.put("discriminatorPropertyValue", mappedModel.getMappingName());
-						break;
-					default:
-						extensions.put("discriminatorPropertyValue", discriminator.getPropertyType() + "."
-								+ toEnumVarName(mappedModel.getMappingName(), ""));
-				}
-			}
-		}
-
-		return superObjs;
-	}
-
-	@Override
-	public void postProcessParameter(CodegenParameter parameter) {
-		if (parameter.isFormParam && parameter.isFile) {
-			parameter.dataType = typeMapping.get(supportAsync ? "asyncFileUpload" : "fileUpload");
-		}
-	}
-
-	@Override
-	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
-		super.postProcessModelProperty(model, property);
-		if (property.isEnum) {
-			if (property.defaultValue != null) {
-				property.defaultValue = toEnumName(property) + "."
-						+ toEnumVarName(property.defaultValue, property.dataType);
-			}
-			// handle maps with enum as value, Hono uses this spec (would not recommend this)
-			if (property.isMap && property.items != null) {
-				property.dataType = property.items.dataType;
-				property.datatypeWithEnum = typeMapping.get("map")
-						+ "<" + typeMapping.get("string") + ", " + toEnumName(property) + ">";
-				property.items.datatypeWithEnum = toEnumName(property);
-				property.defaultValue = "new " + instantiationTypes.get("map") + "<>()";
-			}
-			if (property.isArray && property.items != null) {
-				property.dataType = property.items.dataType;
-				property.datatypeWithEnum = typeMapping.get("array")
-						+ "<" + toEnumName(property) + ">";
-				property.defaultValue = "new " + instantiationTypes.get("array") + "<>()";
-			}
-		}
-		if ("byte[]".equals(property.dataType)) {
-			property.isByteArray = true;
-		}
 	}
 
 	// enum
@@ -600,10 +476,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	// internal
 
-	void addSupportingFile(String folder, String packageString, String file) {
-		String templateFile = "support/" + file + ".mustache";
-		String destinationFilename = folder + "/" + packageString.replace(".", "/") + "/" + file + ".java";
-		SupportingFile supportingFile = new SupportingFile(templateFile, destinationFilename);
+	private void addSupportingFile(String folder, String packageString, String file) {
+		var templateFile = "support/" + file + ".mustache";
+		var destinationFilename = folder + "/" + packageString.replace(".", "/") + "/" + file + ".java";
+		var supportingFile = new SupportingFile(templateFile, destinationFilename);
 		if (!supportingFiles.contains(supportingFile)) {
 			supportingFiles.add(supportingFile);
 		}
