@@ -1,3 +1,0 @@
-jackson:
-  serialization:
-    writeDatesAsTimestamps: false

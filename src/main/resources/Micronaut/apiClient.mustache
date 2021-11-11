@@ -1,0 +1,28 @@
+package {{package}};
+
+{{#isModelImport}}import {{modelPackage}}.*;
+
+{{/isModelImport}}
+{{>generated}}@io.micronaut.http.client.annotation.Client(id = "{{clientId}}")
+public interface {{classname}}Client {
+{{#operations}}{{#operation}}
+	java.lang.String PATH_{{vendorExtensions.operationIdUpperCase}} = "{{path}}";{{/operation}}{{/operations}}{{#operations}}{{#operation}}
+
+	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.clientPath}}}"){{^vendorExtensions.generic}}
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
+	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
+	{{>returnType}} {{operationIdOriginal}}({{#hasParams}}
+{{>apiClientParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{#vendorExtensions.has401}}
+
+	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.clientPath}}}"){{^vendorExtensions.generic}}
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
+	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
+	{{>returnType}} {{operationIdOriginal}}(
+			@{{type.Nullable}}
+			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
+			String authorization{{#hasParams}},
+{{>apiClientParams}}{{/hasParams}});
+{{/vendorExtensions.has401}}{{/operation}}
+}{{/operations}}

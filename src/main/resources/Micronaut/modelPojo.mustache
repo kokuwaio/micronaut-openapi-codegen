@@ -1,4 +1,4 @@
-{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = {{classname}}.JSON_DISCRIMINATOR)
+{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = "{{{discriminator.propertyBaseName}}}", visible = true)
 @com.fasterxml.jackson.annotation.JsonSubTypes({
 	{{#discriminator.mappedModels}}
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"),
@@ -9,9 +9,8 @@
 public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}} {
 
 {{#vars}}
-	public static final String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
-{{/vars}}{{#discriminator}}	public static final String JSON_DISCRIMINATOR = "{{propertyBaseName}}";
-{{/discriminator}}
+	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
+{{/vars}}
 
 {{#vars}}{{#description}}	/** {{description}} */
 {{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
@@ -20,16 +19,6 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 {{/vars}}{{#vendorExtensions.additionalPropertiesMap}}
 	private {{{vendorExtensions.additionalPropertiesMap}}} additionalProperties;
 {{/vendorExtensions.additionalPropertiesMap}}
-{{#discriminator}}
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
-	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();
-
-{{/discriminator}}{{#vendorExtensions.discriminatorPropertyValue}}
-	public {{vendorExtensions.discriminatorPropertyType}} {{vendorExtensions.discriminatorPropertyGetter}}() {
-		return {{{vendorExtensions.discriminatorPropertyValue}}};
-	}
-
-{{/vendorExtensions.discriminatorPropertyValue}}
 
 	// methods
 
@@ -42,7 +31,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 			return false;
 		}
 		{{classname}} other = ({{classname}}) object;
-		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}.equals({{name}}, other.{{name}}){{^-last}}
+		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
 				&& {{/-last}}{{#-last}}{{#discriminator}}
 				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}}{{#parent}}
 				&& super.equals(object){{/parent}};{{/-last}}{{/vars}}
@@ -50,12 +39,12 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash({{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
+		return java.util.Objects.hash({{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
 	}
 
 	@Override
-	public String toString() {
-		return new StringBuilder()
+	public java.lang.String toString() {
+		return new java.lang.StringBuilder()
 				.append("{{classname}}["){{#parent}}
 				.append("super").append(super.toString()){{/parent}}
 		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
@@ -69,13 +58,32 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	public {{classname}} {{name}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
 		this.{{name}} = new{{nameInCamelCase}};
 		return this;
-	}
-
-	public {{>modelPropertyType}} {{name}}() {
-		return {{name}};
-	}
+	}{{#isContainer}}
+	
+	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInCamelCase}}Item({{#isMap}}java.lang.String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
+		{{#isNullable}}
+			{{#vendorExtensions.x-jackson-nullable}}
+		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
+			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of({{{defaultValue}}});
+		}
+		this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
+			{{/vendorExtensions.x-jackson-nullable}}
+			{{^vendorExtensions.x-jackson-nullable}}
+		if (this.{{name}} == null) {
+			this.{{name}} = {{{defaultValue}}};
+		}
+		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
+			{{/vendorExtensions.x-jackson-nullable}}
+		{{/isNullable}}
+		{{^isNullable}}
+		if (this.{{name}} == null) {
+			this.{{name}} = {{{defaultValue}}};
+		}
+		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
+		{{/isNullable}}
+		return this;
+	}{{/isContainer}}
 	{{/vars}}
-
 
 	// getter/setter{{#vendorExtensions.additionalPropertiesMap}}
 
@@ -86,91 +94,20 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 	@com.fasterxml.jackson.annotation.JsonAnySetter
 	public {{classname}} setAdditionalProperties(java.lang.String propertyKey, java.lang.Object value) {
-	    if (this.additionalProperties == null) {
-            this.additionalProperties = new java.util.HashMap<>();
-        }
-        this.additionalProperties.put(propertyKey, value);
-        return this;
-	}
-
-	public {{classname}} setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap}}} newAdditionalProperties) {
-	this.additionalProperties = newAdditionalProperties;
-	return this;
-    }
-
-	{{/vendorExtensions.additionalPropertiesMap}}
-	{{#vars}}
+		if (this.additionalProperties == null) {
+			this.additionalProperties = new java.util.HashMap<>();
+		}
+		this.additionalProperties.put(propertyKey, value);
+		return this;
+	}{{/vendorExtensions.additionalPropertiesMap}}{{#vars}}
 
 	public {{>modelPropertyType}} {{getter}}() {
 		return {{name}};
 	}
 
-	public {{classname}} {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
+	public void {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
 		this.{{name}} = new{{nameInCamelCase}};
-		return this;
-	}
-
-	{{#isContainer}}
-	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInCamelCase}}Item({{#isMap}}String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
-		{{#isNullable}}
-			{{#jacksonDatabindNullable}}
-		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
-			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of({{{defaultValue}}});
-		}
-		this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
-			{{/jacksonDatabindNullable}}
-			{{^jacksonDatabindNullable}}
-		if (this.{{name}} == null) {
-			this.{{name}} = {{{defaultValue}}};
-		}
-		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
-			{{/jacksonDatabindNullable}}
-		{{/isNullable}}
-		{{^isNullable}}
-		if (this.{{name}} == null) {
-			this.{{name}} = {{{defaultValue}}};
-		}
-		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
-		{{/isNullable}}
-		return this;
-	}
-	{{/isContainer}}
-    {{/vars}}
-
-    {{#visitable}}
-    {{#discriminator}}
-    /**
-     * Accept the visitor and invoke it for the specific {{classname}} type.
-     *
-     * @param visitor the {{classname}} visitor
-     * @param <T> the return type of the visitor
-     * @return the result from the visitor
-     */
-    public abstract <T> T accept(Visitor<T> visitor);
-
-    /**
-     * A {{classname}} visitor implementation allows visiting the various {{classname}} types.
-     *
-     * @param <R> the return type of the visitor
-     */
-    public interface Visitor<R> {
-        {{#discriminator.mappedModels}}
-        public R visit{{modelName}}({{modelName}} value);
-        {{/discriminator.mappedModels}}
-    }
-    {{/discriminator}}
-
-    {{#parent}}
-        {{#interfaces.0}}
-    @Override
-    public <T> T accept({{{parent}}}.Visitor<T> visitor) {
-        return visitor.visit{{classname}}(this);
-    }
-        {{/interfaces.0}}
-    {{/parent}}
-    {{/visitable}}
-
-    {{#vars}}{{#isEnum}}
+	}{{/vars}}{{#vars}}{{#isEnum}}
 
 {{>modelEnum}}{{/isEnum}}{{/vars}}
 }

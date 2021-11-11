@@ -1,5 +1,7 @@
 # Micronaut Codegen
 
+WIP: rework for verions 3.x.
+
 ## Features
 
 * generate api interfaces (see [declarative client](https://docs.micronaut.io/2.4.2/guide/index.html#clientAnnotation))
@@ -101,3 +103,20 @@ Run:
 ```sh
 mvn release:prepare release:perform release:clean -B
 ```
+
+cls && rm -rf target/it/test-api/target target/it/test-api/bin target/it/test-api/build.log target/it/test-api/target target/it/test-api-novalidation/bin target/it/test-api-novalidation/build.log && cp -r target/it/test-api src/it | mvn verify -DskipTests -Dinvoker.parallelThreads=1 -Dinvoker.streamLogs=true -Dinvoker.test=test-api
+
+todo:
+
+* api security
+* async reactor / rx
+
+bugs:
+
+* optional body
+* void with 404
+* api validation - annoation inheritance
+
+* optional body
+* void with 404
+* api validation - annoation inheritance
