@@ -1,0 +1,16 @@
+package {{package}};
+
+{{#isModelImport}}import {{modelPackage}}.*;
+
+{{/isModelImport}}{{>generated}}{{#useBeanValidation}}@io.micronaut.validation.Validated
+{{/useBeanValidation}}public interface {{classname}} {
+{{#operations}}{{#operation}}
+	java.lang.String PATH_{{vendorExtensions.operationIdUpperCase}} = "{{path}}";{{/operation}}{{/operations}}{{#operations}}{{#operation}}
+
+	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{vendorExtensions.serverPath}}"){{^vendorExtensions.generic}}
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
+	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
+	{{>returnType}} {{nickname}}({{#hasParams}}
+{{>apiServerParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{/operation}}
+}{{/operations}}

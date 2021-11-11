@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>@project.groupId@</groupId>
+		<artifactId>@project.artifactId@-it</artifactId>
+		<version>LOCAL-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>@project.artifactId@-it-test-api-async-reactor-generic</artifactId>
+
+	<dependencies>
+
+		<!-- micronaut -->
+		<dependency>
+			<groupId>io.micronaut.reactor</groupId>
+			<artifactId>micronaut-reactor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-server-netty</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut.xml</groupId>
+			<artifactId>micronaut-jackson-xml</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.kokuwa.micronaut</groupId>
+			<artifactId>micronaut-logging</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>io.micronaut.test</groupId>
+			<artifactId>micronaut-test-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- copy files -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/../test-api/src</directory>
+									<excludes>
+										<exclude>**/*Controller.java</exclude>
+										<exclude>**/*ClientTest.java</exclude>
+										<exclude>**/Parameter*.java</exclude>
+										<exclude>**/Validation*.java</exclude>
+									</excludes>
+								</resource>
+							</resources>
+							<outputDirectory>${project.basedir}/src</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- add compiler processors -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>io.micronaut</groupId>
+							<artifactId>micronaut-inject-java</artifactId>
+							<version>${version.io.micronaut}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<!-- generate sources from openapi spec -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<configuration>
+					<inputSpec>@project.basedir@/src/test/resources/openapi/test-api.yaml</inputSpec>
+					<apisToGenerate>Mediatype,Response</apisToGenerate>
+					<modelsToGenerate>StringModel,NumberModel,Multipart</modelsToGenerate>
+					<configOptions>
+						<supportAsync>true</supportAsync>
+						<useBeanValidation>false</useBeanValidation>
+						<dateTimeRelaxed>false</dateTimeRelaxed>
+					</configOptions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
