@@ -1,8 +1,45 @@
 # Micronaut Codegen
 
+OpenAPI code generator for Micronaut.
+
+[![License](https://img.shields.io/github/license/kokuwaio/micronaut-openapi-codegen.svg?label=License)](https://github.com/kokuwaio/micronaut-openapi-codegen/blob/main/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.kokuwa.micronaut%22%20AND%20a:%22micronaut-openapi-codegen%22)
+[![Build](https://img.shields.io/github/workflow/status/kokuwaio/micronaut-openapi-codegen/Build?label=Build)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/build.yaml)
+[![Lint](https://img.shields.io/github/workflow/status/kokuwaio/micronaut-openapi-codegen/CI/main?label=CI)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/ci.yaml)
+
+Include in your `pom.xml`:
+
+```xml
+<plugin>
+ <groupId>org.openapitools</groupId>
+ <artifactId>openapi-generator-maven-plugin</artifactId>
+ <version>${version.org.openapitools.generator}</version>
+ <executions>
+  <execution>
+   <goals>
+    <goal>generate</goal>
+   </goals>
+  </execution>
+ </executions>
+ <configuration>
+  <generatorName>micronaut</generatorName>
+  <output>${project.build.directory}</output>
+  <inputSpec>src/resources//openapi/spec.yaml</inputSpec>
+  <packageName>changeMe</packageName>
+ </configuration>
+ <dependencies>
+  <dependency>
+   <groupId>io.kokuwa.micronaut</groupId>
+   <artifactId>micronaut-openapi-codegen</artifactId>
+   <version>${version.io.kokuwa.micronaut.codegen}</version>
+  </dependency>
+ </dependencies>
+</plugin>
+```
+
 ## Features
 
-* generate api interfaces (see [declarative client](https://docs.micronaut.io/2.4.2/guide/index.html#clientAnnotation))
+* generate api interfaces (see [declarative client](https://docs.micronaut.io/latest/guide/index.html#clientAnnotation))
 * generate model objects with fluent and property accessors
 * generate interfaces for api tests based on method name and return code
 * generate client interfaces with micronaut **clientId**
@@ -16,13 +53,11 @@
 * useBeanValidation: generate validation annotations (default `true`)
 * useGenericResponse: return generic container or specific model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)
 * useOptional: optional parameters are generated as `java.util.Optional` (default `true`)
-* useJavaxGenerated: add `@javax.annotation.processing.Generated` to all classes (default `true`)
-* useLombokGenerated: add `@lombok.Generated` to all classes (default `false`), useful for [jacoco](https://github.com/jacoco/jacoco/pull/731)
-* jacksonDatabindNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
-* supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/2.4.2/guide/index.html#reactiveServer)
-* useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values
-* visitable: generate visitor for subtypes with a discriminator (default `true`)
+* openApiNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
+* supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/latest/guide/index.html#reactiveServer)
 * pagable: generate provider for pagable (default `false`)
+
+For examples see [integration tests](src/it).
 
 ### Null handling and default values
 
@@ -48,7 +83,7 @@ Do not forget to add the dependency to `pom.xml`:
 <dependency>
  <groupId>org.openapitools</groupId>
  <artifactId>jackson-databind-nullable</artifactId>
- <version>0.2.1</version>
+ <version>0.2.2</version>
 </dependency>
 ```
 

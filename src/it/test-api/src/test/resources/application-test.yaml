@@ -1,0 +1,19 @@
+micronaut:
+  server:
+    port: ${random.port}
+  http:
+    client:
+      logger-name: codegen.TestClient
+      read-timeout: 10m
+    services:
+      test-client:
+        url: http://localhost:${micronaut.server.port}
+
+jackson:
+  serialization:
+    indentOutput: true
+
+logger:
+  levels:
+    codegen: TRACE
+    io.micronaut: INFO

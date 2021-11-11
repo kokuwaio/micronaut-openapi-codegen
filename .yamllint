@@ -8,3 +8,15 @@ rules:
 
   # line length is not important
   line-length: disable
+
+  # force double quotes everywhere
+  quoted-strings:
+    quote-type: double
+    required: only-when-needed
+    ignore: |
+      src/test/resources/openapi/test-api.yaml
+      src/test/resources/openapi/test-model.yaml
+
+  # allow everything on keys
+  truthy:
+    check-keys: false

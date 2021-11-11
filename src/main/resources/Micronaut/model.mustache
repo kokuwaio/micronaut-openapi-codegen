@@ -3,9 +3,6 @@ package {{package}};
 {{#description}}/**
  * {{description}}
  **/
-{{/description}}{{>generated}}
-{{#models}}
-{{#model}}
-{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{^isEnum}}{{>modelPojo}}{{/isEnum}}
+{{/description}}{{>generated}}{{#models}}{{#model}}{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{^isEnum}}{{>modelPojo}}{{/isEnum}}
 {{/model}}
 {{/models}}

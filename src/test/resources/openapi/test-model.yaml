@@ -1,0 +1,249 @@
+openapi: 3.0.3
+info:
+  title: Spec for api tests.
+  version: '1'
+paths: {}
+components:
+  schemas:
+
+    ###
+    ### Model
+    ###
+
+    Model:
+      type: object
+      required:
+        - name
+        - array
+        - map
+        - set
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 36
+        date:
+          type: string
+          format: date
+        date-time:
+          type: string
+          format: date-time
+        number:
+          type: number
+        binary:
+          type: string
+          format: binary
+        bytes:
+          type: string
+          format: byte
+        any: {}
+        array:
+          type: array
+          items:
+            type: string
+        set:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        map:
+          type: string
+          additionalProperties:
+            type: string
+        optionalArray:
+          type: array
+          items:
+            type: string
+        optionalSet:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        optionalMap:
+          type: string
+          additionalProperties:
+            type: string
+        nullableString:
+          type: string
+          nullable: true
+        nullableArray:
+          type: array
+          nullable: true
+          items:
+            type: string
+        nullableSet:
+          type: array
+          nullable: true
+          items:
+            type: string
+          uniqueItems: true
+        nullableMap:
+          type: string
+          nullable: true
+          additionalProperties:
+            type: string
+        defaultString:
+          type: string
+          default: defaultStringValue
+        defaultInteger:
+          type: integer
+          format: int64
+          default: 1234
+        defaultNullable:
+          type: string
+          default: defaultNullableValue
+          nullable: true
+
+    ###
+    ### Enumerations
+    ###
+
+    EnumerationModel:
+      type: object
+      properties:
+        string:
+          $ref: '#/components/schemas/EnumerationString'
+        string-default:
+          $ref: '#/components/schemas/EnumerationStringDefault'
+        embedded:
+          type: string
+          enum:
+            - first
+            - second
+        embedded-default:
+          type: string
+          enum:
+            - three
+            - four
+          default: four
+    EnumerationString:
+      type: string
+      enum:
+        - one
+        - two
+    EnumerationStringDefault:
+      type: string
+      enum:
+        - three
+        - four
+      default: three
+    EnumerationInteger:
+      type: integer
+      enum:
+        - -2147483648
+        - -1
+        - 0
+        - 1
+        - 2147483647
+    EnumerationNumber:
+      type: number
+      enum:
+        - -1
+        - 0
+        - 1
+
+    ###
+    ### Simple Inheritance
+    ###
+
+    InheritanceSimple:
+      properties:
+        foo:
+          type: string
+      required:
+        - foo
+    InheritanceExtended:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceSimple'
+        - properties:
+            bar:
+              type: string
+          required:
+            - bar
+
+    ###
+    ### Complex inheritance without type property
+    ###
+
+    InheritanceWithoutType:
+      discriminator:
+        propertyName: type
+        mapping:
+          Inheritance1: '#/components/schemas/InheritanceWithoutType1'
+          Inheritance2: '#/components/schemas/InheritanceWithoutType2'
+      properties:
+        e:
+          type: string
+    InheritanceWithoutType1:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceWithoutType'
+        - properties:
+            f:
+              type: string
+    InheritanceWithoutType2:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceWithoutType'
+        - properties:
+            g:
+              type: string
+
+    ###
+    ### Inheritance with string type property
+    ###
+
+    InheritanceWithStringType:
+      discriminator:
+        propertyName: type
+        mapping:
+          Inheritance1: '#/components/schemas/InheritanceWithStringType1'
+          Inheritance2: '#/components/schemas/InheritanceWithStringType2'
+      properties:
+        type:
+          type: string
+        a:
+          type: string
+    InheritanceWithStringType1:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceWithStringType'
+        - properties:
+            b:
+              type: string
+    InheritanceWithStringType2:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceWithStringType'
+        - properties:
+            c:
+              type: string
+
+    ###
+    ### Inheritance with enum type property
+    ###
+
+    InheritanceWithEnumTypeEnum:
+      type: string
+      enum:
+        - Inheritance1
+        - Inheritance2
+    InheritanceWithEnumType:
+      discriminator:
+        propertyName: type
+        mapping:
+          Inheritance1: '#/components/schemas/InheritanceWithEnumType1'
+          Inheritance2: '#/components/schemas/InheritanceWithEnumType2'
+      properties:
+        type:
+          $ref: '#/components/schemas/InheritanceWithEnumTypeEnum'
+    InheritanceWithEnumType1:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceWithEnumType'
+        - properties:
+            d:
+              type: string
+    InheritanceWithEnumType2:
+      allOf:
+        - $ref: '#/components/schemas/InheritanceWithEnumType'
+        - properties:
+            e:
+              type: string

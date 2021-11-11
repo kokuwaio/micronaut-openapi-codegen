@@ -12,8 +12,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
 
-{{>generated}}
-public class HttpResponseAssertions {
+{{>generated}}public class HttpResponseAssertions {
 
 	public static <T> HttpResponse<T> assertStatus(HttpResponse<T> response, HttpStatus status) {
 		assertStatus(response, status, null);
