@@ -1,0 +1,9 @@
+package {{package}};
+
+/** Test for {@link {{classname}}}. */
+{{>generated}}public interface {{classname}}TestSpec { {{#operations}}{{#operation}}
+
+	// {{operationIdOriginal}}{{#responses}}
+
+	void {{operationIdOriginal}}{{code}}() throws java.lang.Exception;{{/responses}}{{/operation}}
+}{{/operations}}

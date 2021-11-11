@@ -1,0 +1,22 @@
+name: CodeQL
+
+"on":
+  workflow_dispatch: {}
+  pull_request: {}
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  codeql:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: github/codeql-action/init@v1
+        with:
+          languages: java
+      - uses: github/codeql-action/autobuild@v1
+      - uses: github/codeql-action/analyze@v1
