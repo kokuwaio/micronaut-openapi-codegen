@@ -49,7 +49,7 @@
 		<!-- ===================================================================== -->
 
 		<version.io.kokuwa.micronaut.logging>0.1.3</version.io.kokuwa.micronaut.logging>
-		<version.io.micronaut>2.5.13</version.io.micronaut>
+		<version.io.micronaut>3.2.7</version.io.micronaut>
 		<version.org.openapitools>5.3.1</version.org.openapitools>
 		<version.org.openapitools.jackson.nullable>0.2.2</version.org.openapitools.jackson.nullable>
 
