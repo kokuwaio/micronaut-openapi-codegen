@@ -60,6 +60,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String USE_LOMBOK_GENERATED = "useLombokGenerated";
 	public static final String ADDITIONAL_PROPS_COMPOSED = "supportsAdditionalPropertiesWithComposedSchema";
 	public static final String USE_REFERENCED_SCHEMA_AS_DEFAULT = "useReferencedSchemaAsDefault";
+	public static final String ANNOTATE_METHODS = "annotateMethods";
 	public static final String VISITABLE = "visitable";
 	public static final String PAGEABLE = "pageable";
 
@@ -92,6 +93,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useJavaxGenerated = true;
 	private boolean useLombokGenerated = false;
 	private boolean useReferencedSchemaAsDefault = false;
+	private boolean annotateMethods = false;
 	private boolean visitable = true;
 	private boolean pageable = false;
 
@@ -112,6 +114,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newBoolean(USE_REFERENCED_SCHEMA_AS_DEFAULT,
 				"Use the referenced schemas type as default values.", useReferencedSchemaAsDefault));
+		cliOptions.add(CliOption.newBoolean(ANNOTATE_METHODS,
+				"Add Jackson annotations to methods instead of fields.", annotateMethods));
 		cliOptions.add(CliOption.newBoolean(VISITABLE,
 				"Generate visitor for subtypes with a discriminator.", visitable));
 		cliOptions.add(CliOption.newBoolean(ADDITIONAL_PROPS_COMPOSED,
@@ -137,6 +141,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_JAVAX_GENERATED, useJavaxGenerated);
 		additionalProperties.put(USE_LOMBOK_GENERATED, useLombokGenerated);
 		additionalProperties.put(USE_REFERENCED_SCHEMA_AS_DEFAULT, useReferencedSchemaAsDefault);
+		additionalProperties.put(ANNOTATE_METHODS, annotateMethods);
 		additionalProperties.put(VISITABLE, visitable);
 		additionalProperties.put(ADDITIONAL_PROPS_COMPOSED,
 				supportsAdditionalPropertiesWithComposedSchema);
@@ -179,7 +184,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {}
+	public void postProcess() {
+	}
 
 	@Override
 	public String getName() {
@@ -229,6 +235,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(USE_REFERENCED_SCHEMA_AS_DEFAULT)) {
 			useReferencedSchemaAsDefault = convertPropertyToBooleanAndWriteBack(USE_REFERENCED_SCHEMA_AS_DEFAULT);
+		}
+		if (additionalProperties.containsKey(ANNOTATE_METHODS)) {
+			annotateMethods = convertPropertyToBooleanAndWriteBack(ANNOTATE_METHODS);
 		}
 		if (additionalProperties.containsKey(VISITABLE)) {
 			visitable = convertPropertyToBooleanAndWriteBack(VISITABLE);
@@ -464,6 +473,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 								model.getAdditionalProperties().getDataType()));
 			}
 
+			if (annotateMethods) {
+				model.getAllVars()
+						.forEach(codegenProperty -> codegenProperty.getVendorExtensions().put(ANNOTATE_METHODS, true));
+			}
+
 			var discriminator = model.discriminator;
 			if (discriminator == null) {
 				continue;
@@ -497,6 +511,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				Map<String, Object> extensions = subModel.getVendorExtensions();
 				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
 				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
+
 				switch (discriminator.getPropertyType()) {
 					case "java.lang.String":
 						extensions.put("discriminatorPropertyValue", '"' + mappedModel.getMappingName() + '"');

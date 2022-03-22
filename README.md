@@ -23,6 +23,7 @@
 * useReferencedSchemaAsDefault: use the referenced schema's type for instantiation of default values
 * visitable: generate visitor for subtypes with a discriminator (default `true`)
 * pagable: generate provider for pagable (default `false`)
+* annotateMethods: when jackson-annotations should be applied to methods instead of fields (default `false`)
 
 ### Null handling and default values
 
