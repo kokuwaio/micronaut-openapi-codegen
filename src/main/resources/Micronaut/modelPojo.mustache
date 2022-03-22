@@ -14,7 +14,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 {{/discriminator}}
 
 {{#vars}}{{#description}}	/** {{description}} */
-{{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
+{{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{^annotateMethods}}{{>modelPropertyJackson}}{{/annotateMethods}}
 	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
 {{/vars}}{{#vendorExtensions.additionalPropertiesMap}}
@@ -66,11 +66,13 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 	// fluent
 	{{#vars}}
 
+    {{#annotateMethods}}{{>modelPropertyJackson}}{{/annotateMethods}}
 	public {{classname}} {{name}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
 		this.{{name}} = new{{nameInCamelCase}};
 		return this;
 	}
 
+    {{#annotateMethods}}{{>modelPropertyJackson}}{{/annotateMethods}}
 	public {{>modelPropertyType}} {{name}}() {
 		return {{name}};
 	}
@@ -100,11 +102,12 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 
 	{{/vendorExtensions.additionalPropertiesMap}}
 	{{#vars}}
-
+	{{#annotateMethods}}{{>modelPropertyJackson}}{{/annotateMethods}}
 	public {{>modelPropertyType}} {{getter}}() {
 		return {{name}};
 	}
 
+    {{#annotateMethods}}{{>modelPropertyJackson}}{{/annotateMethods}}
 	public {{classname}} {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
 		this.{{name}} = new{{nameInCamelCase}};
 		return this;
