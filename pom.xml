@@ -108,7 +108,7 @@
 		<!-- dependencies -->
 
 		<version.io.kokuwa.micronaut.logging>3.0.4</version.io.kokuwa.micronaut.logging>
-		<version.io.micronaut>3.4.1</version.io.micronaut>
+		<version.io.micronaut>3.4.3</version.io.micronaut>
 		<version.javax.annotation.api>1.3.2</version.javax.annotation.api>
 		<version.org.junit.jupiter>5.8.2</version.org.junit.jupiter>
 		<version.org.openapitools.jackson.nullable>0.2.2</version.org.openapitools.jackson.nullable>
