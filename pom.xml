@@ -87,10 +87,10 @@
 		<version.org.apache.maven.plugins.checkstyle>3.1.2</version.org.apache.maven.plugins.checkstyle>
 		<version.org.apache.maven.plugins.clean>3.2.0</version.org.apache.maven.plugins.clean>
 		<version.org.apache.maven.plugins.compiler>3.10.1</version.org.apache.maven.plugins.compiler>
-		<version.org.apache.maven.plugins.deploy>3.0.0-M2</version.org.apache.maven.plugins.deploy>
+		<version.org.apache.maven.plugins.deploy>3.0.0</version.org.apache.maven.plugins.deploy>
 		<version.org.apache.maven.plugins.dependency_>3.3.0</version.org.apache.maven.plugins.dependency_>
 		<version.org.apache.maven.plugins.gpg>3.0.1</version.org.apache.maven.plugins.gpg>
-		<version.org.apache.maven.plugins.install>3.0.0-M1</version.org.apache.maven.plugins.install>
+		<version.org.apache.maven.plugins.install>3.0.1</version.org.apache.maven.plugins.install>
 		<version.org.apache.maven.plugins.invoker>3.3.0</version.org.apache.maven.plugins.invoker>
 		<version.org.apache.maven.plugins.javadoc>3.4.0</version.org.apache.maven.plugins.javadoc>
 		<version.org.apache.maven.plugins.jar>3.2.2</version.org.apache.maven.plugins.jar>
@@ -102,7 +102,7 @@
 		<version.org.codehaus.mojo.tidy>1.1.0</version.org.codehaus.mojo.tidy>
 		<version.org.openapitools.generator>5.4.0</version.org.openapitools.generator>
 		<version.org.sonatype.plugins.nexus-staging>1.6.13</version.org.sonatype.plugins.nexus-staging>
-		<version.com.puppycrawl.tools.checkstyle>10.3.1</version.com.puppycrawl.tools.checkstyle>
+		<version.com.puppycrawl.tools.checkstyle>10.3.2</version.com.puppycrawl.tools.checkstyle>
 		<version.io.kokuwa.checkstyle>0.5.6</version.io.kokuwa.checkstyle>
 
 		<!-- dependencies -->
