@@ -18,7 +18,6 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-		InheritanceWithEnumType3 other = (InheritanceWithEnumType3) object;
 		return super.equals(object);
 	}
 
