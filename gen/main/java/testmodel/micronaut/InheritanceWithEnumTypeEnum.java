@@ -5,10 +5,12 @@ package testmodel.micronaut;
 public enum InheritanceWithEnumTypeEnum {
 
 	INHERITANCE1("Inheritance1"),
-	INHERITANCE2("Inheritance2");
+	INHERITANCE2("Inheritance2"),
+	INHERITANCE3("Inheritance3");
 
 	public static final java.lang.String INHERITANCE1_VALUE = "Inheritance1";
 	public static final java.lang.String INHERITANCE2_VALUE = "Inheritance2";
+	public static final java.lang.String INHERITANCE3_VALUE = "Inheritance3";
 
 	private final java.lang.String value;
 

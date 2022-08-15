@@ -29,7 +29,9 @@ public enum InheritanceWithEnumTypeEnum {
   
   INHERITANCE1("Inheritance1"),
   
-  INHERITANCE2("Inheritance2");
+  INHERITANCE2("Inheritance2"),
+  
+  INHERITANCE3("Inheritance3");
 
   private String value;
 

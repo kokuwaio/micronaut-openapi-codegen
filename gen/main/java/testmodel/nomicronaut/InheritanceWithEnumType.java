@@ -4,6 +4,7 @@ package testmodel.nomicronaut;
 @com.fasterxml.jackson.annotation.JsonSubTypes({
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "Inheritance1"),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
+	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3"),
 })
 public abstract class InheritanceWithEnumType {
 
