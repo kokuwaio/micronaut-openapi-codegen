@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "Inheritance1"),
   @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
+  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3"),
 })
 
 

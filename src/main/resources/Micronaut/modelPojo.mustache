@@ -36,8 +36,9 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{#parent
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-		{{classname}} other = ({{classname}}) object;
-		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
+{{^vars}}{{#discriminator}}		{{classname}} other = ({{classname}}) object;
+{{/discriminator}}{{/vars}}{{#vars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
+{{/-last}}{{/vars}}		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
 				&& {{/-last}}{{#-last}}{{#discriminator}}
 				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}}{{#parent}}
 				&& super.equals(object){{/parent}};{{/-last}}{{/vars}}
