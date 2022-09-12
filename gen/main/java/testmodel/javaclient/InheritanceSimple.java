@@ -37,7 +37,7 @@ public class InheritanceSimple {
   public static final String JSON_PROPERTY_FOO = "foo";
   private String foo;
 
-  public InheritanceSimple() { 
+  public InheritanceSimple() {
   }
 
   public InheritanceSimple foo(String foo) {

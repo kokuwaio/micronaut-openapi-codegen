@@ -31,7 +31,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class Model   {
-  
   private @Valid Integer id;
   private @Valid String name;
   private @Valid LocalDate date;
@@ -43,13 +42,13 @@ public class Model   {
   private @Valid List<String> array = new ArrayList<>();
   private @Valid Set<String> set = new LinkedHashSet<>();
   private @Valid Map<String, String> map = new HashMap<>();
-  private @Valid List<String> optionalArray = new ArrayList<>();
-  private @Valid Set<String> optionalSet = new LinkedHashSet<>();
-  private @Valid Map<String, String> optionalMap = new HashMap<>();
+  private @Valid List<String> optionalArray = null;
+  private @Valid Set<String> optionalSet = null;
+  private @Valid Map<String, String> optionalMap = null;
   private @Valid String nullableString;
-  private @Valid List<String> nullableArray = new ArrayList<>();
-  private @Valid Set<String> nullableSet = new LinkedHashSet<>();
-  private @Valid Map<String, String> nullableMap = new HashMap<>();
+  private @Valid List<String> nullableArray = null;
+  private @Valid Set<String> nullableSet = null;
+  private @Valid Map<String, String> nullableMap = null;
   private @Valid String defaultString = "defaultStringValue";
   private @Valid Long defaultInteger = 1234l;
   private @Valid String defaultNullable = "defaultNullableValue";
@@ -73,7 +72,7 @@ public class Model   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public Model name(String name) {
     this.name = name;
@@ -93,7 +92,7 @@ public class Model   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public Model date(LocalDate date) {
     this.date = date;
@@ -112,7 +111,7 @@ public class Model   {
     this.date = date;
   }
 
-/**
+  /**
    **/
   public Model dateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
@@ -131,7 +130,7 @@ public class Model   {
     this.dateTime = dateTime;
   }
 
-/**
+  /**
    **/
   public Model number(BigDecimal number) {
     this.number = number;
@@ -150,7 +149,7 @@ public class Model   {
     this.number = number;
   }
 
-/**
+  /**
    **/
   public Model binary(File binary) {
     this.binary = binary;
@@ -169,7 +168,7 @@ public class Model   {
     this.binary = binary;
   }
 
-/**
+  /**
    **/
   public Model bytes(byte[] bytes) {
     this.bytes = bytes;
@@ -188,7 +187,7 @@ public class Model   {
     this.bytes = bytes;
   }
 
-/**
+  /**
    **/
   public Model any(Object any) {
     this.any = any;
@@ -207,7 +206,7 @@ public class Model   {
     this.any = any;
   }
 
-/**
+  /**
    **/
   public Model array(List<String> array) {
     this.array = array;
@@ -243,7 +242,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model set(Set<String> set) {
     this.set = set;
@@ -280,7 +279,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model map(Map<String, String> map) {
     this.map = map;
@@ -316,7 +315,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model optionalArray(List<String> optionalArray) {
     this.optionalArray = optionalArray;
@@ -351,7 +350,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model optionalSet(Set<String> optionalSet) {
     this.optionalSet = optionalSet;
@@ -387,7 +386,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model optionalMap(Map<String, String> optionalMap) {
     this.optionalMap = optionalMap;
@@ -422,7 +421,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model nullableString(String nullableString) {
     this.nullableString = nullableString;
@@ -441,7 +440,7 @@ public class Model   {
     this.nullableString = nullableString;
   }
 
-/**
+  /**
    **/
   public Model nullableArray(List<String> nullableArray) {
     this.nullableArray = nullableArray;
@@ -476,7 +475,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model nullableSet(Set<String> nullableSet) {
     this.nullableSet = nullableSet;
@@ -511,7 +510,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model nullableMap(Map<String, String> nullableMap) {
     this.nullableMap = nullableMap;
@@ -546,7 +545,7 @@ public class Model   {
 
     return this;
   }
-/**
+  /**
    **/
   public Model defaultString(String defaultString) {
     this.defaultString = defaultString;
@@ -565,7 +564,7 @@ public class Model   {
     this.defaultString = defaultString;
   }
 
-/**
+  /**
    **/
   public Model defaultInteger(Long defaultInteger) {
     this.defaultInteger = defaultInteger;
@@ -584,7 +583,7 @@ public class Model   {
     this.defaultInteger = defaultInteger;
   }
 
-/**
+  /**
    **/
   public Model defaultNullable(String defaultNullable) {
     this.defaultNullable = defaultNullable;

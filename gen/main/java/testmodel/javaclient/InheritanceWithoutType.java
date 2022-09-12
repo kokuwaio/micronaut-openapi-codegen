@@ -50,7 +50,7 @@ public class InheritanceWithoutType {
   public static final String JSON_PROPERTY_E = "e";
   private String e;
 
-  public InheritanceWithoutType() { 
+  public InheritanceWithoutType() {
   }
 
   public InheritanceWithoutType e(String e) {

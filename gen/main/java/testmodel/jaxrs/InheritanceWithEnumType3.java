@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithEnumType3 extends InheritanceWithEnumType  {
-  
 
-  
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

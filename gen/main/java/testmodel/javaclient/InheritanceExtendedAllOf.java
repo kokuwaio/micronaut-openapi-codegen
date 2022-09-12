@@ -38,7 +38,7 @@ public class InheritanceExtendedAllOf {
   public static final String JSON_PROPERTY_BAR = "bar";
   private String bar;
 
-  public InheritanceExtendedAllOf() { 
+  public InheritanceExtendedAllOf() {
   }
 
   public InheritanceExtendedAllOf bar(String bar) {

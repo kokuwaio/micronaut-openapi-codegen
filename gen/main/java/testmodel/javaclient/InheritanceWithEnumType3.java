@@ -35,7 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @java.lang.SuppressWarnings("all")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
-  public InheritanceWithEnumType3() { 
+  public InheritanceWithEnumType3() {
+
   }
 
   @Override

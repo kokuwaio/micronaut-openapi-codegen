@@ -123,7 +123,7 @@ public enum EmbeddedDefaultEnum {
   public static final String JSON_PROPERTY_EMBEDDED_DEFAULT = "embedded-default";
   private EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
 
-  public EnumerationModel() { 
+  public EnumerationModel() {
   }
 
   public EnumerationModel string(EnumerationString string) {

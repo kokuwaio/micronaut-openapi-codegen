@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import testmodel.spring.InheritanceWithStringType1;
-import testmodel.spring.InheritanceWithStringType2;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -31,9 +29,7 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = InheritanceWithStringType1.class, name = "Inheritance1"),
-  @JsonSubTypes.Type(value = InheritanceWithStringType2.class, name = "Inheritance2"),
-  @JsonSubTypes.Type(value = InheritanceWithStringType1.class, name = "InheritanceWithStringType1"),
-  @JsonSubTypes.Type(value = InheritanceWithStringType2.class, name = "InheritanceWithStringType2")
+  @JsonSubTypes.Type(value = InheritanceWithStringType2.class, name = "Inheritance2")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")

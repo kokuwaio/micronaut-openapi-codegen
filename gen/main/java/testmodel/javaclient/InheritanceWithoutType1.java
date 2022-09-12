@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import testmodel.javaclient.InheritanceWithoutType;
-import testmodel.javaclient.InheritanceWithoutType1AllOf;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -39,7 +38,8 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
   public static final String JSON_PROPERTY_F = "f";
   private String f;
 
-  public InheritanceWithoutType1() { 
+  public InheritanceWithoutType1() {
+
   }
 
   public InheritanceWithoutType1 f(String f) {
