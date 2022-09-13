@@ -16,34 +16,34 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * InheritanceWithStringType2AllOf
+ * InheritanceWithoutType1AllOf
  */
 @java.lang.SuppressWarnings("all")
 
-@JsonTypeName("InheritanceWithStringType2_allOf")
+@JsonTypeName("InheritanceWithoutType1_allOf")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class InheritanceWithStringType2AllOf {
+public class InheritanceWithoutType1AllOf {
 
-  @JsonProperty("c")
-  private String c;
+  @JsonProperty("f")
+  private String f;
 
-  public InheritanceWithStringType2AllOf c(String c) {
-    this.c = c;
+  public InheritanceWithoutType1AllOf f(String f) {
+    this.f = f;
     return this;
   }
 
   /**
-   * Get c
-   * @return c
+   * Get f
+   * @return f
   */
   
-  @Schema(name = "c", required = false)
-  public String getC() {
-    return c;
+  @Schema(name = "f", required = false)
+  public String getF() {
+    return f;
   }
 
-  public void setC(String c) {
-    this.c = c;
+  public void setF(String f) {
+    this.f = f;
   }
 
   @Override
@@ -54,20 +54,20 @@ public class InheritanceWithStringType2AllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InheritanceWithStringType2AllOf inheritanceWithStringType2AllOf = (InheritanceWithStringType2AllOf) o;
-    return Objects.equals(this.c, inheritanceWithStringType2AllOf.c);
+    InheritanceWithoutType1AllOf inheritanceWithoutType1AllOf = (InheritanceWithoutType1AllOf) o;
+    return Objects.equals(this.f, inheritanceWithoutType1AllOf.f);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(c);
+    return Objects.hash(f);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InheritanceWithStringType2AllOf {\n");
-    sb.append("    c: ").append(toIndentedString(c)).append("\n");
+    sb.append("class InheritanceWithoutType1AllOf {\n");
+    sb.append("    f: ").append(toIndentedString(f)).append("\n");
     sb.append("}");
     return sb.toString();
   }

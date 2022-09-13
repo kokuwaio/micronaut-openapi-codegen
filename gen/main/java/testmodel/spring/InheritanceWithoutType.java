@@ -7,10 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import testmodel.spring.InheritanceWithStringType;
-import testmodel.spring.InheritanceWithStringType1;
-import testmodel.spring.InheritanceWithStringType1AllOf;
-import testmodel.spring.InheritanceWithStringType2;
+import testmodel.spring.InheritanceWithoutType1;
+import testmodel.spring.InheritanceWithoutType2;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,7 +20,7 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * InheritanceWithStringType1
+ * InheritanceWithoutType
  */
 @java.lang.SuppressWarnings("all")
 
@@ -32,43 +30,35 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = InheritanceWithStringType1.class, name = "Inheritance1"),
-  @JsonSubTypes.Type(value = InheritanceWithStringType2.class, name = "Inheritance2")
+  @JsonSubTypes.Type(value = InheritanceWithoutType1.class, name = "Inheritance1"),
+  @JsonSubTypes.Type(value = InheritanceWithoutType2.class, name = "Inheritance2"),
+  @JsonSubTypes.Type(value = InheritanceWithoutType1.class, name = "InheritanceWithoutType1"),
+  @JsonSubTypes.Type(value = InheritanceWithoutType2.class, name = "InheritanceWithoutType2")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class InheritanceWithStringType1 extends InheritanceWithStringType {
+public class InheritanceWithoutType {
 
-  @JsonProperty("b")
-  private String b;
+  @JsonProperty("e")
+  private String e;
 
-  public InheritanceWithStringType1 b(String b) {
-    this.b = b;
+  public InheritanceWithoutType e(String e) {
+    this.e = e;
     return this;
   }
 
   /**
-   * Get b
-   * @return b
+   * Get e
+   * @return e
   */
   
-  @Schema(name = "b", required = false)
-  public String getB() {
-    return b;
+  @Schema(name = "e", required = false)
+  public String getE() {
+    return e;
   }
 
-  public void setB(String b) {
-    this.b = b;
-  }
-
-  public InheritanceWithStringType1 type(String type) {
-    super.setType(type);
-    return this;
-  }
-
-  public InheritanceWithStringType1 a(String a) {
-    super.setA(a);
-    return this;
+  public void setE(String e) {
+    this.e = e;
   }
 
   @Override
@@ -79,22 +69,20 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InheritanceWithStringType1 inheritanceWithStringType1 = (InheritanceWithStringType1) o;
-    return Objects.equals(this.b, inheritanceWithStringType1.b) &&
-        super.equals(o);
+    InheritanceWithoutType inheritanceWithoutType = (InheritanceWithoutType) o;
+    return Objects.equals(this.e, inheritanceWithoutType.e);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(b, super.hashCode());
+    return Objects.hash(e);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InheritanceWithStringType1 {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    b: ").append(toIndentedString(b)).append("\n");
+    sb.append("class InheritanceWithoutType {\n");
+    sb.append("    e: ").append(toIndentedString(e)).append("\n");
     sb.append("}");
     return sb.toString();
   }

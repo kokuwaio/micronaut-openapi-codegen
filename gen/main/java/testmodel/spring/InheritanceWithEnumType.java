@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import testmodel.spring.InheritanceWithEnumType1;
 import testmodel.spring.InheritanceWithEnumType2;
+import testmodel.spring.InheritanceWithEnumType3;
+import testmodel.spring.InheritanceWithEnumTypeEnum;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -32,17 +34,19 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "Inheritance1"),
   @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
+  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3"),
   @JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "InheritanceWithEnumType1"),
-  @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "InheritanceWithEnumType2")
+  @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "InheritanceWithEnumType2"),
+  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "InheritanceWithEnumType3")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithEnumType {
 
   @JsonProperty("type")
-  private String type;
+  private InheritanceWithEnumTypeEnum type;
 
-  public InheritanceWithEnumType type(String type) {
+  public InheritanceWithEnumType type(InheritanceWithEnumTypeEnum type) {
     this.type = type;
     return this;
   }
@@ -51,13 +55,13 @@ public class InheritanceWithEnumType {
    * Get type
    * @return type
   */
-  
+  @Valid 
   @Schema(name = "type", required = false)
-  public String getType() {
+  public InheritanceWithEnumTypeEnum getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(InheritanceWithEnumTypeEnum type) {
     this.type = type;
   }
 

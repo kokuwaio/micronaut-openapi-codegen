@@ -16,34 +16,34 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * InheritanceWithStringType2AllOf
+ * InheritanceWithEnumType2AllOf
  */
 @java.lang.SuppressWarnings("all")
 
-@JsonTypeName("InheritanceWithStringType2_allOf")
+@JsonTypeName("InheritanceWithEnumType2_allOf")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class InheritanceWithStringType2AllOf {
+public class InheritanceWithEnumType2AllOf {
 
-  @JsonProperty("c")
-  private String c;
+  @JsonProperty("e")
+  private String e;
 
-  public InheritanceWithStringType2AllOf c(String c) {
-    this.c = c;
+  public InheritanceWithEnumType2AllOf e(String e) {
+    this.e = e;
     return this;
   }
 
   /**
-   * Get c
-   * @return c
+   * Get e
+   * @return e
   */
   
-  @Schema(name = "c", required = false)
-  public String getC() {
-    return c;
+  @Schema(name = "e", required = false)
+  public String getE() {
+    return e;
   }
 
-  public void setC(String c) {
-    this.c = c;
+  public void setE(String e) {
+    this.e = e;
   }
 
   @Override
@@ -54,20 +54,20 @@ public class InheritanceWithStringType2AllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InheritanceWithStringType2AllOf inheritanceWithStringType2AllOf = (InheritanceWithStringType2AllOf) o;
-    return Objects.equals(this.c, inheritanceWithStringType2AllOf.c);
+    InheritanceWithEnumType2AllOf inheritanceWithEnumType2AllOf = (InheritanceWithEnumType2AllOf) o;
+    return Objects.equals(this.e, inheritanceWithEnumType2AllOf.e);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(c);
+    return Objects.hash(e);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InheritanceWithStringType2AllOf {\n");
-    sb.append("    c: ").append(toIndentedString(c)).append("\n");
+    sb.append("class InheritanceWithEnumType2AllOf {\n");
+    sb.append("    e: ").append(toIndentedString(e)).append("\n");
     sb.append("}");
     return sb.toString();
   }

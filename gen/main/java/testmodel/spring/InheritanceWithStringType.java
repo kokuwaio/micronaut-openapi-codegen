@@ -42,6 +42,9 @@ public class InheritanceWithStringType {
   @JsonProperty("type")
   private String type;
 
+  @JsonProperty("a")
+  private String a;
+
   public InheritanceWithStringType type(String type) {
     this.type = type;
     return this;
@@ -61,6 +64,25 @@ public class InheritanceWithStringType {
     this.type = type;
   }
 
+  public InheritanceWithStringType a(String a) {
+    this.a = a;
+    return this;
+  }
+
+  /**
+   * Get a
+   * @return a
+  */
+  
+  @Schema(name = "a", required = false)
+  public String getA() {
+    return a;
+  }
+
+  public void setA(String a) {
+    this.a = a;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -70,12 +92,13 @@ public class InheritanceWithStringType {
       return false;
     }
     InheritanceWithStringType inheritanceWithStringType = (InheritanceWithStringType) o;
-    return Objects.equals(this.type, inheritanceWithStringType.type);
+    return Objects.equals(this.type, inheritanceWithStringType.type) &&
+        Objects.equals(this.a, inheritanceWithStringType.a);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, a);
   }
 
   @Override
@@ -83,6 +106,7 @@ public class InheritanceWithStringType {
     StringBuilder sb = new StringBuilder();
     sb.append("class InheritanceWithStringType {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    a: ").append(toIndentedString(a)).append("\n");
     sb.append("}");
     return sb.toString();
   }

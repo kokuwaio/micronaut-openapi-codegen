@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public enum InheritanceWithEnumTypeEnum {
   
-  INHERITANCEWITHENUMTYPE1("InheritanceWithEnumType1"),
+  INHERITANCE1("Inheritance1"),
   
-  INHERITANCEWITHENUMTYPE2("InheritanceWithEnumType2");
+  INHERITANCE2("Inheritance2"),
+  
+  INHERITANCE3("Inheritance3");
 
   private String value;
 

@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenModel;
@@ -28,15 +27,13 @@ import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.OptionalFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
 import org.openapitools.codegen.model.ModelsMap;
-import org.openapitools.codegen.utils.ModelUtils;
+import org.openapitools.codegen.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.ComposedSchema;
-import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
 
@@ -50,9 +47,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
-	private static final String UUID_PATTERN = StringUtils.repeat("[a-f0-9]", 8)
-			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 4)
-			+ "-" + StringUtils.repeat("[a-f0-9]", 4) + "-" + StringUtils.repeat("[a-f0-9]", 12);
+	private static final String UUID_PATTERN = "[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
+			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
+			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
+			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
+			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]";
 	private static final Logger LOG = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	private boolean generateApiTests = true;
@@ -336,7 +335,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// add upper case operationId for path constants
 
 		operation.vendorExtensions.put("operationIdUpperCase",
-				org.openapitools.codegen.utils.StringUtils.underscore(operation.nickname).toUpperCase());
+				StringUtils.underscore(operation.nickname).toUpperCase());
 
 		operation.pathParams.stream().filter(p -> p.defaultValue != null).forEach(p -> {
 			LOG.warn("operation {} has path param {} with unsupported default value {}, default removed",
@@ -386,21 +385,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		codegenResponse.vendorExtensions.put(ApiResponse.class.getName(), response);
 
 		return codegenResponse;
-	}
-
-	@Override
-	public CodegenProperty fromProperty(String name, Schema source) {
-		var schema = ModelUtils.getReferencedSchema(this.openAPI, source);
-		var property = super.fromProperty(name, source);
-
-		// handle enum default value properly
-
-		if (schema.getEnum() != null && property.defaultValue != null) {
-			var dataType = toEnumName(property);
-			property.defaultValue = property.datatypeWithEnum + "." + toEnumVarName(property.defaultValue, dataType);
-		}
-
-		return property;
 	}
 
 	@Override
@@ -490,26 +474,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public String toDefaultValue(Schema source) {
-		var schema = ModelUtils.getReferencedSchema(this.openAPI, source);
-		if (ModelUtils.isSet(schema)) {
-			return "new " + instantiationTypes.get("set") + "<>()";
-		}
-		if (ModelUtils.isArraySchema(schema)) {
-			return "new " + instantiationTypes.get("array") + "<>()";
-		}
-		if (ModelUtils.isMapSchema(schema)) {
-			return "new " + instantiationTypes.get("map") + "<>()";
-		}
-		return super.toDefaultValue(schema);
-	}
-
-	@Override
-	public String getSchemaType(Schema schema) {
-		if (schema instanceof ComposedSchema) {
-			return schema.getTitle();
-		}
-		return super.getSchemaType(schema);
+	public boolean isDataTypeString(String dataType) {
+		return List.of(String.class.getSimpleName(), String.class.getName()).contains(dataType);
 	}
 
 	// enum

@@ -39,30 +39,35 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithStringType2 extends InheritanceWithStringType {
 
-  @JsonProperty("b")
-  private String b;
+  @JsonProperty("c")
+  private String c;
 
-  public InheritanceWithStringType2 b(String b) {
-    this.b = b;
+  public InheritanceWithStringType2 c(String c) {
+    this.c = c;
     return this;
   }
 
   /**
-   * Get b
-   * @return b
+   * Get c
+   * @return c
   */
   
-  @Schema(name = "b", required = false)
-  public String getB() {
-    return b;
+  @Schema(name = "c", required = false)
+  public String getC() {
+    return c;
   }
 
-  public void setB(String b) {
-    this.b = b;
+  public void setC(String c) {
+    this.c = c;
   }
 
   public InheritanceWithStringType2 type(String type) {
     super.setType(type);
+    return this;
+  }
+
+  public InheritanceWithStringType2 a(String a) {
+    super.setA(a);
     return this;
   }
 
@@ -75,13 +80,13 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
       return false;
     }
     InheritanceWithStringType2 inheritanceWithStringType2 = (InheritanceWithStringType2) o;
-    return Objects.equals(this.b, inheritanceWithStringType2.b) &&
+    return Objects.equals(this.c, inheritanceWithStringType2.c) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(b, super.hashCode());
+    return Objects.hash(c, super.hashCode());
   }
 
   @Override
@@ -89,7 +94,7 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
     StringBuilder sb = new StringBuilder();
     sb.append("class InheritanceWithStringType2 {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    b: ").append(toIndentedString(b)).append("\n");
+    sb.append("    c: ").append(toIndentedString(c)).append("\n");
     sb.append("}");
     return sb.toString();
   }

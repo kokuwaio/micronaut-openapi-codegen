@@ -24,26 +24,26 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithStringType1AllOf {
 
-  @JsonProperty("a")
-  private String a;
+  @JsonProperty("b")
+  private String b;
 
-  public InheritanceWithStringType1AllOf a(String a) {
-    this.a = a;
+  public InheritanceWithStringType1AllOf b(String b) {
+    this.b = b;
     return this;
   }
 
   /**
-   * Get a
-   * @return a
+   * Get b
+   * @return b
   */
   
-  @Schema(name = "a", required = false)
-  public String getA() {
-    return a;
+  @Schema(name = "b", required = false)
+  public String getB() {
+    return b;
   }
 
-  public void setA(String a) {
-    this.a = a;
+  public void setB(String b) {
+    this.b = b;
   }
 
   @Override
@@ -55,19 +55,19 @@ public class InheritanceWithStringType1AllOf {
       return false;
     }
     InheritanceWithStringType1AllOf inheritanceWithStringType1AllOf = (InheritanceWithStringType1AllOf) o;
-    return Objects.equals(this.a, inheritanceWithStringType1AllOf.a);
+    return Objects.equals(this.b, inheritanceWithStringType1AllOf.b);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(a);
+    return Objects.hash(b);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InheritanceWithStringType1AllOf {\n");
-    sb.append("    a: ").append(toIndentedString(a)).append("\n");
+    sb.append("    b: ").append(toIndentedString(b)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import testmodel.spring.InheritanceWithEnumType;
 import testmodel.spring.InheritanceWithEnumType1;
+import testmodel.spring.InheritanceWithEnumType1AllOf;
 import testmodel.spring.InheritanceWithEnumType2;
-import testmodel.spring.InheritanceWithStringType1AllOf;
+import testmodel.spring.InheritanceWithEnumType3;
+import testmodel.spring.InheritanceWithEnumTypeEnum;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -33,35 +35,36 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "Inheritance1"),
-  @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2")
+  @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
+  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
 
-  @JsonProperty("a")
-  private String a;
+  @JsonProperty("d")
+  private String d;
 
-  public InheritanceWithEnumType1 a(String a) {
-    this.a = a;
+  public InheritanceWithEnumType1 d(String d) {
+    this.d = d;
     return this;
   }
 
   /**
-   * Get a
-   * @return a
+   * Get d
+   * @return d
   */
   
-  @Schema(name = "a", required = false)
-  public String getA() {
-    return a;
+  @Schema(name = "d", required = false)
+  public String getD() {
+    return d;
   }
 
-  public void setA(String a) {
-    this.a = a;
+  public void setD(String d) {
+    this.d = d;
   }
 
-  public InheritanceWithEnumType1 type(String type) {
+  public InheritanceWithEnumType1 type(InheritanceWithEnumTypeEnum type) {
     super.setType(type);
     return this;
   }
@@ -75,13 +78,13 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
       return false;
     }
     InheritanceWithEnumType1 inheritanceWithEnumType1 = (InheritanceWithEnumType1) o;
-    return Objects.equals(this.a, inheritanceWithEnumType1.a) &&
+    return Objects.equals(this.d, inheritanceWithEnumType1.d) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(a, super.hashCode());
+    return Objects.hash(d, super.hashCode());
   }
 
   @Override
@@ -89,7 +92,7 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
     StringBuilder sb = new StringBuilder();
     sb.append("class InheritanceWithEnumType1 {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    a: ").append(toIndentedString(a)).append("\n");
+    sb.append("    d: ").append(toIndentedString(d)).append("\n");
     sb.append("}");
     return sb.toString();
   }
