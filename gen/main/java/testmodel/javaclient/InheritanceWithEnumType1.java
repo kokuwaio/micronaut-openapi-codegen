@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import testmodel.javaclient.InheritanceWithEnumType;
-import testmodel.javaclient.InheritanceWithEnumType1AllOf;
 import testmodel.javaclient.InheritanceWithEnumTypeEnum;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -40,7 +39,8 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
   public static final String JSON_PROPERTY_D = "d";
   private String d;
 
-  public InheritanceWithEnumType1() { 
+  public InheritanceWithEnumType1() {
+
   }
 
   public InheritanceWithEnumType1 d(String d) {

@@ -38,7 +38,7 @@ public class InheritanceWithEnumType1AllOf {
   public static final String JSON_PROPERTY_D = "d";
   private String d;
 
-  public InheritanceWithEnumType1AllOf() { 
+  public InheritanceWithEnumType1AllOf() {
   }
 
   public InheritanceWithEnumType1AllOf d(String d) {

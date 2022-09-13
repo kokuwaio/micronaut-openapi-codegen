@@ -3,7 +3,6 @@ package testmodel.jaxrs;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.InheritanceWithEnumType;
-import testmodel.jaxrs.InheritanceWithEnumType1AllOf;
 import testmodel.jaxrs.InheritanceWithEnumTypeEnum;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -21,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithEnumType1 extends InheritanceWithEnumType  {
-  
   private @Valid String d;
 
   /**

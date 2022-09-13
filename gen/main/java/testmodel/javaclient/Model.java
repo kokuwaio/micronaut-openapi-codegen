@@ -129,7 +129,7 @@ public class Model {
   public static final String JSON_PROPERTY_DEFAULT_NULLABLE = "defaultNullable";
   private String defaultNullable = "defaultNullableValue";
 
-  public Model() { 
+  public Model() {
   }
 
   public Model id(Integer id) {

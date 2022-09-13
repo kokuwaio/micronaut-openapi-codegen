@@ -54,7 +54,7 @@ public class InheritanceWithStringType {
   public static final String JSON_PROPERTY_A = "a";
   private String a;
 
-  public InheritanceWithStringType() { 
+  public InheritanceWithStringType() {
   }
 
   public InheritanceWithStringType type(String type) {

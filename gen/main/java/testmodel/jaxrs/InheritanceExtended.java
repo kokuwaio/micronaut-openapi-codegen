@@ -2,8 +2,6 @@ package testmodel.jaxrs;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import testmodel.jaxrs.InheritanceExtendedAllOf;
-import testmodel.jaxrs.InheritanceSimple;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -20,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class InheritanceExtended   {
-  
   private @Valid String foo;
   private @Valid String bar;
 
@@ -44,7 +41,7 @@ public class InheritanceExtended   {
     this.foo = foo;
   }
 
-/**
+  /**
    **/
   public InheritanceExtended bar(String bar) {
     this.bar = bar;

@@ -22,8 +22,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import testmodel.javaclient.InheritanceExtendedAllOf;
-import testmodel.javaclient.InheritanceSimple;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -43,7 +41,7 @@ public class InheritanceExtended {
   public static final String JSON_PROPERTY_BAR = "bar";
   private String bar;
 
-  public InheritanceExtended() { 
+  public InheritanceExtended() {
   }
 
   public InheritanceExtended foo(String foo) {

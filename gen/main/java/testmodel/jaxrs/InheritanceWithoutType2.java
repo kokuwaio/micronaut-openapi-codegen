@@ -3,7 +3,6 @@ package testmodel.jaxrs;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.InheritanceWithoutType;
-import testmodel.jaxrs.InheritanceWithoutType2AllOf;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -20,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithoutType2 extends InheritanceWithoutType  {
-  
   private @Valid String g;
 
   /**

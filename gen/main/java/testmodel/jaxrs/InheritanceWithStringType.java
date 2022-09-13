@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithStringType   {
-  
   private @Valid String type;
   private @Valid String a;
 
@@ -49,7 +48,7 @@ public class InheritanceWithStringType   {
     this.type = type;
   }
 
-/**
+  /**
    **/
   public InheritanceWithStringType a(String a) {
     this.a = a;

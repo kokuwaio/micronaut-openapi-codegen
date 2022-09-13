@@ -38,7 +38,7 @@ public class InheritanceWithoutType2AllOf {
   public static final String JSON_PROPERTY_G = "g";
   private String g;
 
-  public InheritanceWithoutType2AllOf() { 
+  public InheritanceWithoutType2AllOf() {
   }
 
   public InheritanceWithoutType2AllOf g(String g) {

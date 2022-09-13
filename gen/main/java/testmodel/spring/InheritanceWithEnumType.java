@@ -7,9 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import testmodel.spring.InheritanceWithEnumType1;
-import testmodel.spring.InheritanceWithEnumType2;
-import testmodel.spring.InheritanceWithEnumType3;
 import testmodel.spring.InheritanceWithEnumTypeEnum;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -34,10 +31,7 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "Inheritance1"),
   @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
-  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3"),
-  @JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "InheritanceWithEnumType1"),
-  @JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "InheritanceWithEnumType2"),
-  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "InheritanceWithEnumType3")
+  @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")

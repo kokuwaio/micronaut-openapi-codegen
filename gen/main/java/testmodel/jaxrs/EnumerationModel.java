@@ -20,11 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen")@java.lang.SuppressWarnings("all")
 
 public class EnumerationModel   {
-  
   private @Valid EnumerationString string;
   private @Valid EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
-
-@java.lang.SuppressWarnings("all")
+  @java.lang.SuppressWarnings("all")
 public enum EmbeddedEnum {
 
     FIRST(String.valueOf("first")), SECOND(String.valueOf("second"));
@@ -73,8 +71,7 @@ public enum EmbeddedEnum {
 }
 
   private @Valid EmbeddedEnum embedded;
-
-@java.lang.SuppressWarnings("all")
+  @java.lang.SuppressWarnings("all")
 public enum EmbeddedDefaultEnum {
 
     THREE(String.valueOf("three")), FOUR(String.valueOf("four"));
@@ -143,7 +140,7 @@ public enum EmbeddedDefaultEnum {
     this.string = string;
   }
 
-/**
+  /**
    **/
   public EnumerationModel stringDefault(EnumerationStringDefault stringDefault) {
     this.stringDefault = stringDefault;
@@ -162,7 +159,7 @@ public enum EmbeddedDefaultEnum {
     this.stringDefault = stringDefault;
   }
 
-/**
+  /**
    **/
   public EnumerationModel embedded(EmbeddedEnum embedded) {
     this.embedded = embedded;
@@ -181,7 +178,7 @@ public enum EmbeddedDefaultEnum {
     this.embedded = embedded;
   }
 
-/**
+  /**
    **/
   public EnumerationModel embeddedDefault(EmbeddedDefaultEnum embeddedDefault) {
     this.embeddedDefault = embeddedDefault;

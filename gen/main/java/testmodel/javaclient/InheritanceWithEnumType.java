@@ -52,7 +52,7 @@ public class InheritanceWithEnumType {
   public static final String JSON_PROPERTY_TYPE = "type";
   protected InheritanceWithEnumTypeEnum type;
 
-  public InheritanceWithEnumType() { 
+  public InheritanceWithEnumType() {
   }
 
   public InheritanceWithEnumType type(InheritanceWithEnumTypeEnum type) {

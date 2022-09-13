@@ -38,7 +38,7 @@ public class InheritanceWithoutType1AllOf {
   public static final String JSON_PROPERTY_F = "f";
   private String f;
 
-  public InheritanceWithoutType1AllOf() { 
+  public InheritanceWithoutType1AllOf() {
   }
 
   public InheritanceWithoutType1AllOf f(String f) {
