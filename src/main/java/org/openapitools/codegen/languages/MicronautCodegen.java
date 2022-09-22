@@ -167,7 +167,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public void processOpts() {
 		BiFunction<String, String, String> getOrDefault = (key,
-						defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
+				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
 		// reuse package if other packages are not provided
 
