@@ -56,7 +56,7 @@ Include in your `pom.xml`:
 * openApiNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
 * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/latest/guide/index.html#reactiveServer)
 * pagable: generate provider for pagable (default `false`)
-* generateExamples: generate example objects for the model, based on example and default values
+* generateExamples: generate example objects for the model, based on example and default values (default `true`)
 
 For examples see [integration tests](src/it).
 
