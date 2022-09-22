@@ -66,7 +66,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
 	private boolean isClient = false;
-	private boolean generateExamples = false;
+	private boolean generateExamples = true;
 
 	public MicronautCodegen() {
 
@@ -162,8 +162,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {
-	}
+	public void postProcess() {}
 
 	@Override
 	public void processOpts() {
