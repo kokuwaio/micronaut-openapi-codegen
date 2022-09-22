@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.openapitools.jackson.nullable.JsonNullable;
+import testmodel.jaxrs.EnumerationModel;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -32,16 +33,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 public class Model   {
   private @Valid Integer id;
+  private @Valid Integer idWithExample;
+  private @Valid Integer idWithDefault = 32;
   private @Valid String name;
+  private @Valid String nameWithExample;
+  private @Valid String nameWithDefault;
   private @Valid LocalDate date;
+  private @Valid LocalDate dateWithExample;
   private @Valid OffsetDateTime dateTime;
+  private @Valid OffsetDateTime dateTimeWithExample;
   private @Valid BigDecimal number;
   private @Valid File binary;
   private @Valid byte[] bytes;
   private @Valid Object any = null;
   private @Valid List<String> array = new ArrayList<>();
+  private @Valid List<String> arrayWithExample = null;
   private @Valid Set<String> set = new LinkedHashSet<>();
+  private @Valid Set<String> setWithExamples = null;
   private @Valid Map<String, String> map = new HashMap<>();
+  private @Valid Map<String, String> mapWithExample = null;
   private @Valid List<String> optionalArray = null;
   private @Valid Set<String> optionalSet = null;
   private @Valid Map<String, String> optionalMap = null;
@@ -52,6 +62,7 @@ public class Model   {
   private @Valid String defaultString = "defaultStringValue";
   private @Valid Long defaultInteger = 1234l;
   private @Valid String defaultNullable = "defaultNullableValue";
+  private @Valid EnumerationModel referenedModel;
 
   /**
    **/
@@ -70,6 +81,44 @@ public class Model   {
   @JsonProperty("id")
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  /**
+   **/
+  public Model idWithExample(Integer idWithExample) {
+    this.idWithExample = idWithExample;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "32", value = "")
+  @JsonProperty("idWithExample")
+  public Integer getIdWithExample() {
+    return idWithExample;
+  }
+
+  @JsonProperty("idWithExample")
+  public void setIdWithExample(Integer idWithExample) {
+    this.idWithExample = idWithExample;
+  }
+
+  /**
+   **/
+  public Model idWithDefault(Integer idWithDefault) {
+    this.idWithDefault = idWithDefault;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("idWithDefault")
+  public Integer getIdWithDefault() {
+    return idWithDefault;
+  }
+
+  @JsonProperty("idWithDefault")
+  public void setIdWithDefault(Integer idWithDefault) {
+    this.idWithDefault = idWithDefault;
   }
 
   /**
@@ -94,6 +143,44 @@ public class Model   {
 
   /**
    **/
+  public Model nameWithExample(String nameWithExample) {
+    this.nameWithExample = nameWithExample;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "MyExampleName", value = "")
+  @JsonProperty("nameWithExample")
+  public String getNameWithExample() {
+    return nameWithExample;
+  }
+
+  @JsonProperty("nameWithExample")
+  public void setNameWithExample(String nameWithExample) {
+    this.nameWithExample = nameWithExample;
+  }
+
+  /**
+   **/
+  public Model nameWithDefault(String nameWithDefault) {
+    this.nameWithDefault = nameWithDefault;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "MyDefaultName", value = "")
+  @JsonProperty("nameWithDefault")
+  public String getNameWithDefault() {
+    return nameWithDefault;
+  }
+
+  @JsonProperty("nameWithDefault")
+  public void setNameWithDefault(String nameWithDefault) {
+    this.nameWithDefault = nameWithDefault;
+  }
+
+  /**
+   **/
   public Model date(LocalDate date) {
     this.date = date;
     return this;
@@ -113,6 +200,25 @@ public class Model   {
 
   /**
    **/
+  public Model dateWithExample(LocalDate dateWithExample) {
+    this.dateWithExample = dateWithExample;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "Wed Feb 02 01:00:00 CET 2022", value = "")
+  @JsonProperty("dateWithExample")
+  public LocalDate getDateWithExample() {
+    return dateWithExample;
+  }
+
+  @JsonProperty("dateWithExample")
+  public void setDateWithExample(LocalDate dateWithExample) {
+    this.dateWithExample = dateWithExample;
+  }
+
+  /**
+   **/
   public Model dateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
     return this;
@@ -128,6 +234,25 @@ public class Model   {
   @JsonProperty("date-time")
   public void setDateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
+  }
+
+  /**
+   **/
+  public Model dateTimeWithExample(OffsetDateTime dateTimeWithExample) {
+    this.dateTimeWithExample = dateTimeWithExample;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "2017-07-21T17:32:28Z", value = "")
+  @JsonProperty("date-timeWithExample")
+  public OffsetDateTime getDateTimeWithExample() {
+    return dateTimeWithExample;
+  }
+
+  @JsonProperty("date-timeWithExample")
+  public void setDateTimeWithExample(OffsetDateTime dateTimeWithExample) {
+    this.dateTimeWithExample = dateTimeWithExample;
   }
 
   /**
@@ -244,6 +369,41 @@ public class Model   {
   }
   /**
    **/
+  public Model arrayWithExample(List<String> arrayWithExample) {
+    this.arrayWithExample = arrayWithExample;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "[\"a\",\"b\",\"b\"]", value = "")
+  @JsonProperty("arrayWithExample")
+  public List<String> getArrayWithExample() {
+    return arrayWithExample;
+  }
+
+  @JsonProperty("arrayWithExample")
+  public void setArrayWithExample(List<String> arrayWithExample) {
+    this.arrayWithExample = arrayWithExample;
+  }
+
+  public Model addArrayWithExampleItem(String arrayWithExampleItem) {
+    if (this.arrayWithExample == null) {
+      this.arrayWithExample = new ArrayList<>();
+    }
+
+    this.arrayWithExample.add(arrayWithExampleItem);
+    return this;
+  }
+
+  public Model removeArrayWithExampleItem(String arrayWithExampleItem) {
+    if (arrayWithExampleItem != null && this.arrayWithExample != null) {
+      this.arrayWithExample.remove(arrayWithExampleItem);
+    }
+
+    return this;
+  }
+  /**
+   **/
   public Model set(Set<String> set) {
     this.set = set;
     return this;
@@ -281,6 +441,42 @@ public class Model   {
   }
   /**
    **/
+  public Model setWithExamples(Set<String> setWithExamples) {
+    this.setWithExamples = setWithExamples;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "[\"a\",\"b\",\"c\"]", value = "")
+  @JsonProperty("setWithExamples")
+  public Set<String> getSetWithExamples() {
+    return setWithExamples;
+  }
+
+  @JsonProperty("setWithExamples")
+  @JsonDeserialize(as = LinkedHashSet.class)
+  public void setSetWithExamples(Set<String> setWithExamples) {
+    this.setWithExamples = setWithExamples;
+  }
+
+  public Model addSetWithExamplesItem(String setWithExamplesItem) {
+    if (this.setWithExamples == null) {
+      this.setWithExamples = new LinkedHashSet<>();
+    }
+
+    this.setWithExamples.add(setWithExamplesItem);
+    return this;
+  }
+
+  public Model removeSetWithExamplesItem(String setWithExamplesItem) {
+    if (setWithExamplesItem != null && this.setWithExamples != null) {
+      this.setWithExamples.remove(setWithExamplesItem);
+    }
+
+    return this;
+  }
+  /**
+   **/
   public Model map(Map<String, String> map) {
     this.map = map;
     return this;
@@ -311,6 +507,41 @@ public class Model   {
   public Model removeMapItem(String mapItem) {
     if (mapItem != null && this.map != null) {
       this.map.remove(mapItem);
+    }
+
+    return this;
+  }
+  /**
+   **/
+  public Model mapWithExample(Map<String, String> mapWithExample) {
+    this.mapWithExample = mapWithExample;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "{\"a\":\"b\",\"c\":\"d\"}", value = "")
+  @JsonProperty("mapWithExample")
+  public Map<String, String> getMapWithExample() {
+    return mapWithExample;
+  }
+
+  @JsonProperty("mapWithExample")
+  public void setMapWithExample(Map<String, String> mapWithExample) {
+    this.mapWithExample = mapWithExample;
+  }
+
+  public Model putMapWithExampleItem(String key, String mapWithExampleItem) {
+    if (this.mapWithExample == null) {
+      this.mapWithExample = new HashMap<>();
+    }
+
+    this.mapWithExample.put(key, mapWithExampleItem);
+    return this;
+  }
+
+  public Model removeMapWithExampleItem(String mapWithExampleItem) {
+    if (mapWithExampleItem != null && this.mapWithExample != null) {
+      this.mapWithExample.remove(mapWithExampleItem);
     }
 
     return this;
@@ -602,6 +833,25 @@ public class Model   {
     this.defaultNullable = defaultNullable;
   }
 
+  /**
+   **/
+  public Model referenedModel(EnumerationModel referenedModel) {
+    this.referenedModel = referenedModel;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("referenedModel")
+  public EnumerationModel getReferenedModel() {
+    return referenedModel;
+  }
+
+  @JsonProperty("referenedModel")
+  public void setReferenedModel(EnumerationModel referenedModel) {
+    this.referenedModel = referenedModel;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -613,16 +863,25 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
+        Objects.equals(this.idWithExample, model.idWithExample) &&
+        Objects.equals(this.idWithDefault, model.idWithDefault) &&
         Objects.equals(this.name, model.name) &&
+        Objects.equals(this.nameWithExample, model.nameWithExample) &&
+        Objects.equals(this.nameWithDefault, model.nameWithDefault) &&
         Objects.equals(this.date, model.date) &&
+        Objects.equals(this.dateWithExample, model.dateWithExample) &&
         Objects.equals(this.dateTime, model.dateTime) &&
+        Objects.equals(this.dateTimeWithExample, model.dateTimeWithExample) &&
         Objects.equals(this.number, model.number) &&
         Objects.equals(this.binary, model.binary) &&
         Arrays.equals(this.bytes, model.bytes) &&
         Objects.equals(this.any, model.any) &&
         Objects.equals(this.array, model.array) &&
+        Objects.equals(this.arrayWithExample, model.arrayWithExample) &&
         Objects.equals(this.set, model.set) &&
+        Objects.equals(this.setWithExamples, model.setWithExamples) &&
         Objects.equals(this.map, model.map) &&
+        Objects.equals(this.mapWithExample, model.mapWithExample) &&
         Objects.equals(this.optionalArray, model.optionalArray) &&
         Objects.equals(this.optionalSet, model.optionalSet) &&
         Objects.equals(this.optionalMap, model.optionalMap) &&
@@ -632,12 +891,13 @@ public class Model   {
         Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
-        Objects.equals(this.defaultNullable, model.defaultNullable);
+        Objects.equals(this.defaultNullable, model.defaultNullable) &&
+        Objects.equals(this.referenedModel, model.referenedModel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, date, dateTime, number, binary, Arrays.hashCode(bytes), any, array, set, map, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
   }
 
   @Override
@@ -646,16 +906,25 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    idWithExample: ").append(toIndentedString(idWithExample)).append("\n");
+    sb.append("    idWithDefault: ").append(toIndentedString(idWithDefault)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    nameWithExample: ").append(toIndentedString(nameWithExample)).append("\n");
+    sb.append("    nameWithDefault: ").append(toIndentedString(nameWithDefault)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    sb.append("    dateWithExample: ").append(toIndentedString(dateWithExample)).append("\n");
     sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
+    sb.append("    dateTimeWithExample: ").append(toIndentedString(dateTimeWithExample)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    binary: ").append(toIndentedString(binary)).append("\n");
     sb.append("    bytes: ").append(toIndentedString(bytes)).append("\n");
     sb.append("    any: ").append(toIndentedString(any)).append("\n");
     sb.append("    array: ").append(toIndentedString(array)).append("\n");
+    sb.append("    arrayWithExample: ").append(toIndentedString(arrayWithExample)).append("\n");
     sb.append("    set: ").append(toIndentedString(set)).append("\n");
+    sb.append("    setWithExamples: ").append(toIndentedString(setWithExamples)).append("\n");
     sb.append("    map: ").append(toIndentedString(map)).append("\n");
+    sb.append("    mapWithExample: ").append(toIndentedString(mapWithExample)).append("\n");
     sb.append("    optionalArray: ").append(toIndentedString(optionalArray)).append("\n");
     sb.append("    optionalSet: ").append(toIndentedString(optionalSet)).append("\n");
     sb.append("    optionalMap: ").append(toIndentedString(optionalMap)).append("\n");
@@ -666,6 +935,7 @@ public class Model   {
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
     sb.append("    defaultNullable: ").append(toIndentedString(defaultNullable)).append("\n");
+    sb.append("    referenedModel: ").append(toIndentedString(referenedModel)).append("\n");
     sb.append("}");
     return sb.toString();
   }

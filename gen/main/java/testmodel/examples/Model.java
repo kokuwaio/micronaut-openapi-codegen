@@ -1,4 +1,4 @@
-package testmodel.micronaut;
+package testmodel.examples;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
