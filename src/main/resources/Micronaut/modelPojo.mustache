@@ -146,12 +146,17 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 {{#vendorExtensions.x-is-one-of-interface}}
 {{^discriminator}}
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION, visible = true)
-{{/discriminator}}
 {{#interfaces}}
 {{#-first}}@com.fasterxml.jackson.annotation.JsonSubTypes({
    @com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{{.}}}.class),{{/-first}}{{^-first}}{{^-last}}   @com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{{.}}}.class),{{/-last}}{{/-first}}{{#-last}}   @com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{{.}}}.class)}){{/-last}}
 {{/interfaces}}
+{{/discriminator}}
 {{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = {{classname}}.JSON_DISCRIMINATOR)
+@com.fasterxml.jackson.annotation.JsonSubTypes({
+	{{#discriminator.mappedModels}}
+	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"),
+	{{/discriminator.mappedModels}}
+})
 {{/discriminator}}
 public interface {{classname}}{{#vendorExtensions.x-implements}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}}{{^discriminator}}{}{{/discriminator}}
 {{#discriminator}}
