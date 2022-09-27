@@ -95,5 +95,4 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(MicronautCodegen.INTROSPECTED, false)
 				.addTypeMapping("Generated", null));
 	}
-
 }
