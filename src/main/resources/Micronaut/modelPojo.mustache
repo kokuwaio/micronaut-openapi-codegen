@@ -7,7 +7,7 @@
 })
 {{/discriminator}}{{#introspected}}@io.micronaut.core.annotation.Introspected
 {{/introspected}}
-public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^vendorExtensions.x-implements}}{{#parent}} extends {{{parent}}}{{/parent}}{{/vendorExtensions.x-implements}}{{#vendorExtensions.x-implements}}{{#-first}} implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}} {
+public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parentModel.interfaces}}{{#parent}} extends {{{parent}}}{{/parent}}{{/parentModel.interfaces}}{{#vendorExtensions.x-implements}}{{#-first}} implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}} {
 {{#vars}}
 	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
 {{/vars}}{{#discriminator}}	public static final String JSON_DISCRIMINATOR = "{{propertyBaseName}}";
