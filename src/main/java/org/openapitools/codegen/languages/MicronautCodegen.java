@@ -1,11 +1,19 @@
 package org.openapitools.codegen.languages;
 
-import io.micronaut.http.HttpStatus;
-import io.micronaut.http.MediaType;
-import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.responses.ApiResponse;
-import io.swagger.v3.oas.models.servers.Server;
+import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
+import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
+import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.stream.Collectors;
+
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.CodegenModel;
@@ -24,20 +32,12 @@ import org.openapitools.codegen.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.stream.Collectors;
-
-import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
-import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
-import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
-import static org.openapitools.codegen.CodegenConstants.USE_ONEOF_DISCRIMINATOR_LOOKUP;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.MediaType;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.servers.Server;
 
 public class MicronautCodegen extends AbstractJavaCodegen
 		implements BeanValidationFeatures, UseGenericResponseFeatures, OptionalFeatures {
@@ -46,8 +46,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String PAGEABLE = "pageable";
-	public static final String ADDITIONAL_PROPERTIES_WITH_COMPOSED_SCHEMA = "supportsAdditionalPropertiesWithComposedSchema";
-	public static final String USE_ONE_OF_INTERFACES = "useOneOfInterfaces";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
@@ -71,7 +69,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// enable the supported default-codegen features
 
- 		supportsAdditionalPropertiesWithComposedSchema = true;
+		supportsAdditionalPropertiesWithComposedSchema = true;
 		useOneOfInterfaces = true;
 
 		cliOptions.clear();
@@ -103,7 +101,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_OPTIONAL, useOptional);
 		additionalProperties.put(INTROSPECTED, introspected);
 		additionalProperties.put(PAGEABLE, pageable);
-
 
 		// add custom type mappings
 
@@ -170,7 +167,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public void processOpts() {
 		BiFunction<String, String, String> getOrDefault = (key,
-				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
+			defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
 		// reuse package if other packages are not provided
 
@@ -398,7 +395,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		return codegenResponse;
 	}
 
-
 	@Override
 	public Map<String, ModelsMap> updateAllModels(Map<String, ModelsMap> objs) {
 		var superObjs = super.updateAllModels(objs);
@@ -406,7 +402,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// remove AllOf
 
 		objs.entrySet().removeIf(e -> e.getKey().endsWith("_allOf"));
-
 
 		Map<String, CodegenModel> allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {

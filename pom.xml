@@ -466,7 +466,7 @@
 						</goals>
 						<configuration>
 							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-							<parallelThreads>1</parallelThreads>
+							<parallelThreads>1C</parallelThreads>
 							<goals>test</goals>
 							<streamLogsOnFailures>true</streamLogsOnFailures>
 							<writeJunitReport>true</writeJunitReport>
