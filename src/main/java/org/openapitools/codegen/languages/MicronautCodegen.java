@@ -70,6 +70,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public MicronautCodegen() {
 
 		// enable the supported default-codegen features
+
  		supportsAdditionalPropertiesWithComposedSchema = true;
 		useOneOfInterfaces = true;
 
