@@ -7,7 +7,6 @@ package testmodel.nomicronaut;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3"),
 })
 public abstract class InheritanceWithEnumType {
-
 	public static final String JSON_DISCRIMINATOR = "type";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
@@ -42,5 +41,5 @@ public abstract class InheritanceWithEnumType {
 
 	// fluent
 
-	// getter/setter
 }
+

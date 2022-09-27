@@ -43,6 +43,7 @@ Include in your `pom.xml`:
 * generate interfaces for api tests based on method name and return code
 * generate client interfaces with micronaut **clientId**
 * add validation annotations
+* generate example instances of the model-objects
 
 ### Config options
 
@@ -55,6 +56,7 @@ Include in your `pom.xml`:
 * openApiNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
 * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/latest/guide/index.html#reactiveServer)
 * pagable: generate provider for pagable (default `false`)
+* generateExamples: generate example objects for the model, based on example and default values (default `true`)
 
 For examples see [integration tests](src/it).
 

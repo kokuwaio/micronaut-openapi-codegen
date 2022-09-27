@@ -1,7 +1,6 @@
 package testmodel.nomicronaut;
 
 public class InheritanceWithStringType2 extends InheritanceWithStringType {
-
 	public static final java.lang.String JSON_PROPERTY_C = "c";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_C)
@@ -50,7 +49,6 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
 		return this;
 	}
 
-	// getter/setter
 
 	public java.lang.String getC() {
 		return c;
@@ -60,3 +58,4 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
 		this.c = newC;
 	}
 }
+

@@ -3,7 +3,6 @@ package testapi.async.reactor;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class Multipart {
-
 	public static final java.lang.String JSON_PROPERTY_ORDER_ID = "orderId";
 	public static final java.lang.String JSON_PROPERTY_USER_ID = "userId";
 	public static final java.lang.String JSON_PROPERTY_FILE_NAME = "fileName";
@@ -81,7 +80,6 @@ public class Multipart {
 		return this;
 	}
 
-	// getter/setter
 
 	public java.lang.Integer getOrderId() {
 		return orderId;
@@ -115,3 +113,4 @@ public class Multipart {
 		this.file = newFile;
 	}
 }
+

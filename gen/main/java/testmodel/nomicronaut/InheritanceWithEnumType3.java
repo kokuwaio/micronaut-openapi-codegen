@@ -2,7 +2,6 @@ package testmodel.nomicronaut;
 
 public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 
-
 	@Override
 	public InheritanceWithEnumTypeEnum getType() {
 		return InheritanceWithEnumTypeEnum.INHERITANCE3;
@@ -37,5 +36,5 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 
 	// fluent
 
-	// getter/setter
 }
+
