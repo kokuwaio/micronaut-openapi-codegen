@@ -378,6 +378,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			}
 		}
 		extensions.put("serverPath", serverPath);
+		
 		return operation;
 	}
 
