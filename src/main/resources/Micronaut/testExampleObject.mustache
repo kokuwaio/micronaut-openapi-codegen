@@ -6,30 +6,56 @@ import {{importPath}}.*;
 public class {{classname}}TestExample {
 
         {{#model}}
-        {{#isEnum}}
-        public static {{classname}} INSTANCE = {{classname}}.values()[0];
-        {{/isEnum}}
-        {{^isEnum}}
-        {{^discriminator}}
-        public static {{classname}} INSTANCE = new {{classname}}();
-        {
+        public static {{classname}} build{{classname}}() {
+            {{#isEnum}}
+            return {{classname}}.values()[0];
+            {{/isEnum}}
+            {{^isEnum}}
+            {{^vendorExtensions.x-is-one-of-interface}}
+            {{^discriminator}}
+            {{classname}} exampleInstance = new {{classname}}();
             //initialize fields
             {{#vars}}
-                {{#isEnum}}
-                INSTANCE.set{{nameInCamelCase}}({{datatypeWithEnum}}.toEnum({{{example}}}));
-                {{/isEnum}}
-                {{#isModel}}
-                INSTANCE.set{{nameInCamelCase}}({{datatypeWithEnum}}TestExample.INSTANCE);
-                {{/isModel}}
-                {{^isEnum}}
-                {{^isModel}}
-                INSTANCE.set{{nameInCamelCase}}({{>testExampleObjectPropertyExample}});
-                {{/isModel}}
-                {{/isEnum}}
+            {{#isEnum}}
+            exampleInstance.set{{nameInCamelCase}}({{datatypeWithEnum}}.toEnum({{{example}}}));
+            {{/isEnum}}
+            {{#isModel}}
+            {{^isPrimitiveType}}
+            exampleInstance.set{{nameInCamelCase}}({{{example}}});
+            {{/isPrimitiveType}}
+            exampleInstance.set{{nameInCamelCase}}({{baseType}}TestExample.build{{baseType}}());
+            {{/isModel}}
+            {{^isEnum}}
+            {{^isModel}}
+            exampleInstance.set{{nameInCamelCase}}({{>testExampleObjectPropertyExample}});
+            {{/isModel}}
+            {{/isEnum}}
             {{/vars}}
+            return exampleInstance;
+            {{/discriminator}}
+            {{/vendorExtensions.x-is-one-of-interface}}
+            {{/isEnum}}
+            {{#vendorExtensions.x-is-one-of-interface}}
+            {{#interfaceModels}}
+            {{#-first}}
+            // use the first found implementation as example
+            return {{{classname}}}TestExample.build{{{classname}}}();
+            {{/-first}}
+            {{/interfaceModels}}
+            {{^interfaceModels}}
+            // there are no known downstream models.
+            return null;
+            {{/interfaceModels}}
+            {{/vendorExtensions.x-is-one-of-interface}}
+            {{#discriminator}}
+            {{#discriminator.mappedModels}}
+            {{#-first}}
+            // use the first found implementation as example
+            return {{{modelName}}}TestExample.build{{{modelName}}}();
+            {{/-first}}
+            {{/discriminator.mappedModels}}
+            {{/discriminator}}
         }
-        {{/discriminator}}
-        {{/isEnum}}
         {{/model}}
 }
 {{/models}}

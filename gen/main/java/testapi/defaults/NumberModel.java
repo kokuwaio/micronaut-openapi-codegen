@@ -3,7 +3,6 @@ package testapi.defaults;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class NumberModel {
-
 	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BAR)
@@ -45,7 +44,6 @@ public class NumberModel {
 		return this;
 	}
 
-	// getter/setter
 
 	public java.lang.Double getBar() {
 		return bar;
@@ -55,3 +53,4 @@ public class NumberModel {
 		this.bar = newBar;
 	}
 }
+

@@ -3,7 +3,6 @@ package testmodel.examples;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
-
 	public static final java.lang.String JSON_PROPERTY_D = "d";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_D)
@@ -52,7 +51,6 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
 		return this;
 	}
 
-	// getter/setter
 
 	public java.lang.String getD() {
 		return d;
@@ -62,3 +60,4 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
 		this.d = newD;
 	}
 }
+

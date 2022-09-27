@@ -4,12 +4,13 @@ import testmodel.examples.EnumerationModel.*;
 
 public class EnumerationModelTestExample {
 
-        public static EnumerationModel INSTANCE = new EnumerationModel();
-        {
+        public static EnumerationModel buildEnumerationModel() {
+            EnumerationModel exampleInstance = new EnumerationModel();
             //initialize fields
-                INSTANCE.setString(null);
-                INSTANCE.setStringDefault(null);
-                INSTANCE.setEmbedded(Embedded.toEnum("first"));
-                INSTANCE.setEmbeddedDefault(EmbeddedDefault.toEnum("four"));
+            exampleInstance.setString(null);
+            exampleInstance.setStringDefault(null);
+            exampleInstance.setEmbedded(Embedded.toEnum("first"));
+            exampleInstance.setEmbeddedDefault(EmbeddedDefault.toEnum("four"));
+            return exampleInstance;
         }
 }

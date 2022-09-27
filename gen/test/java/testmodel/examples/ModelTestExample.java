@@ -4,39 +4,41 @@ import testmodel.examples.Model.*;
 
 public class ModelTestExample {
 
-        public static Model INSTANCE = new Model();
-        {
+        public static Model buildModel() {
+            Model exampleInstance = new Model();
             //initialize fields
-                INSTANCE.setId(12);
-                INSTANCE.setIdWithExample(32);
-                INSTANCE.setIdWithDefault(32);
-                INSTANCE.setName("string");
-                INSTANCE.setNameWithExample("MyExampleName");
-                INSTANCE.setNameWithDefault("MyDefaultName");
-                INSTANCE.setDate(null);
-                INSTANCE.setDateWithExample(null);
-                INSTANCE.setDateTime(null);
-                INSTANCE.setDateTimeWithExample(null);
-                INSTANCE.setNumber(12.34);
-                INSTANCE.setBinary("byteArray".getBytes());
-                INSTANCE.setBytes("byteArray".getBytes());
-                INSTANCE.setAny(org.openapitools.jackson.nullable.JsonNullable.of(null));
-                INSTANCE.setArray(java.util.List.of());
-                INSTANCE.setArrayWithExample(java.util.List.of("a","b","b"));
-                INSTANCE.setSet(java.util.Set.of());
-                INSTANCE.setSetWithExamples(java.util.Set.of("a","b","c"));
-                INSTANCE.setMap(java.util.Map.of());
-                INSTANCE.setMapWithExample(java.util.Map.ofEntries(new java.util.AbstractMap.SimpleEntry("a", "b"),new java.util.AbstractMap.SimpleEntry("c", "d")));
-                INSTANCE.setOptionalArray(java.util.List.of());
-                INSTANCE.setOptionalSet(java.util.Set.of());
-                INSTANCE.setOptionalMap(java.util.Map.of());
-                INSTANCE.setNullableString(org.openapitools.jackson.nullable.JsonNullable.of("string"));
-                INSTANCE.setNullableArray(org.openapitools.jackson.nullable.JsonNullable.of(java.util.List.of()));
-                INSTANCE.setNullableSet(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Set.of()));
-                INSTANCE.setNullableMap(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Map.of()));
-                INSTANCE.setDefaultString("defaultStringValue");
-                INSTANCE.setDefaultInteger(java.lang.Long.valueOf(1234));
-                INSTANCE.setDefaultNullable(org.openapitools.jackson.nullable.JsonNullable.of("defaultNullableValue"));
-                INSTANCE.setReferenedModel(EnumerationModelTestExample.INSTANCE);
+            exampleInstance.setId(12);
+            exampleInstance.setIdWithExample(32);
+            exampleInstance.setIdWithDefault(32);
+            exampleInstance.setName("string");
+            exampleInstance.setNameWithExample("MyExampleName");
+            exampleInstance.setNameWithDefault("MyDefaultName");
+            exampleInstance.setDate(null);
+            exampleInstance.setDateWithExample(null);
+            exampleInstance.setDateTime(null);
+            exampleInstance.setDateTimeWithExample(null);
+            exampleInstance.setNumber(12.34);
+            exampleInstance.setBinary("byteArray".getBytes());
+            exampleInstance.setBytes("byteArray".getBytes());
+            exampleInstance.setAny(org.openapitools.jackson.nullable.JsonNullable.of(null));
+            exampleInstance.setArray(java.util.List.of());
+            exampleInstance.setArrayWithExample(java.util.List.of("a","b","b"));
+            exampleInstance.setSet(java.util.Set.of());
+            exampleInstance.setSetWithExamples(java.util.Set.of("a","b","c"));
+            exampleInstance.setMap(java.util.Map.of());
+            exampleInstance.setMapWithExample(java.util.Map.ofEntries(new java.util.AbstractMap.SimpleEntry("a", "b"),new java.util.AbstractMap.SimpleEntry("c", "d")));
+            exampleInstance.setOptionalArray(java.util.List.of());
+            exampleInstance.setOptionalSet(java.util.Set.of());
+            exampleInstance.setOptionalMap(java.util.Map.of());
+            exampleInstance.setNullableString(org.openapitools.jackson.nullable.JsonNullable.of("string"));
+            exampleInstance.setNullableArray(org.openapitools.jackson.nullable.JsonNullable.of(java.util.List.of()));
+            exampleInstance.setNullableSet(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Set.of()));
+            exampleInstance.setNullableMap(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Map.of()));
+            exampleInstance.setDefaultString("defaultStringValue");
+            exampleInstance.setDefaultInteger(java.lang.Long.valueOf(1234));
+            exampleInstance.setDefaultNullable(org.openapitools.jackson.nullable.JsonNullable.of("defaultNullableValue"));
+            exampleInstance.setReferenedModel(null);
+            exampleInstance.setReferenedModel(EnumerationModelTestExample.buildEnumerationModel());
+            return exampleInstance;
         }
 }

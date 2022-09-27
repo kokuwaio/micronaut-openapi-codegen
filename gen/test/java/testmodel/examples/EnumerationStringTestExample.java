@@ -4,5 +4,7 @@ import testmodel.examples.EnumerationString.*;
 
 public class EnumerationStringTestExample {
 
-        public static EnumerationString INSTANCE = EnumerationString.values()[0];
+        public static EnumerationString buildEnumerationString() {
+            return EnumerationString.values()[0];
+        }
 }

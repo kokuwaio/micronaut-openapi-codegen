@@ -4,9 +4,10 @@ import testmodel.examples.InheritanceWithStringType2.*;
 
 public class InheritanceWithStringType2TestExample {
 
-        public static InheritanceWithStringType2 INSTANCE = new InheritanceWithStringType2();
-        {
+        public static InheritanceWithStringType2 buildInheritanceWithStringType2() {
+            InheritanceWithStringType2 exampleInstance = new InheritanceWithStringType2();
             //initialize fields
-                INSTANCE.setC("string");
+            exampleInstance.setC("string");
+            return exampleInstance;
         }
 }

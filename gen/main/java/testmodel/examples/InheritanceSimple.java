@@ -3,7 +3,6 @@ package testmodel.examples;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class InheritanceSimple {
-
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 
 	@javax.validation.constraints.NotNull
@@ -46,7 +45,6 @@ public class InheritanceSimple {
 		return this;
 	}
 
-	// getter/setter
 
 	public java.lang.String getFoo() {
 		return foo;
@@ -56,3 +54,4 @@ public class InheritanceSimple {
 		this.foo = newFoo;
 	}
 }
+

@@ -4,10 +4,11 @@ import testmodel.examples.InheritanceExtended.*;
 
 public class InheritanceExtendedTestExample {
 
-        public static InheritanceExtended INSTANCE = new InheritanceExtended();
-        {
+        public static InheritanceExtended buildInheritanceExtended() {
+            InheritanceExtended exampleInstance = new InheritanceExtended();
             //initialize fields
-                INSTANCE.setFoo("string");
-                INSTANCE.setBar("string");
+            exampleInstance.setFoo("string");
+            exampleInstance.setBar("string");
+            return exampleInstance;
         }
 }

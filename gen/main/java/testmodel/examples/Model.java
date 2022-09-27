@@ -3,7 +3,6 @@ package testmodel.examples;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class Model {
-
 	public static final java.lang.String JSON_PROPERTY_ID = "id";
 	public static final java.lang.String JSON_PROPERTY_ID_WITH_EXAMPLE = "idWithExample";
 	public static final java.lang.String JSON_PROPERTY_ID_WITH_DEFAULT = "idWithDefault";
@@ -591,7 +590,6 @@ public class Model {
 		return this;
 	}
 
-	// getter/setter
 
 	public java.lang.Integer getId() {
 		return id;
@@ -841,3 +839,4 @@ public class Model {
 		this.referenedModel = newReferenedModel;
 	}
 }
+

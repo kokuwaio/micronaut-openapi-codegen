@@ -4,9 +4,10 @@ import testmodel.examples.InheritanceSimple.*;
 
 public class InheritanceSimpleTestExample {
 
-        public static InheritanceSimple INSTANCE = new InheritanceSimple();
-        {
+        public static InheritanceSimple buildInheritanceSimple() {
+            InheritanceSimple exampleInstance = new InheritanceSimple();
             //initialize fields
-                INSTANCE.setFoo("string");
+            exampleInstance.setFoo("string");
+            return exampleInstance;
         }
 }

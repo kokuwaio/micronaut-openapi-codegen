@@ -4,5 +4,7 @@ import testmodel.examples.InheritanceWithEnumTypeEnum.*;
 
 public class InheritanceWithEnumTypeEnumTestExample {
 
-        public static InheritanceWithEnumTypeEnum INSTANCE = InheritanceWithEnumTypeEnum.values()[0];
+        public static InheritanceWithEnumTypeEnum buildInheritanceWithEnumTypeEnum() {
+            return InheritanceWithEnumTypeEnum.values()[0];
+        }
 }

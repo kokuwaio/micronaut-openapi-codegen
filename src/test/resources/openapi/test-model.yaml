@@ -300,3 +300,74 @@ components:
     InheritanceWithEnumType3:
       allOf:
         - $ref: '#/components/schemas/InheritanceWithEnumType'
+
+    ###
+    ### Multi-Level OneOf
+    ###
+
+    OneOfModel:
+      oneOf:
+        - $ref: '#/components/schemas/FirstModel'
+        - $ref: '#/components/schemas/SecondLevelModel'
+
+    FirstModel:
+      type: object
+      properties:
+        type:
+          type: string
+        first:
+          type: string
+        secondLevel:
+          $ref: '#/components/schemas/SecondLevelModel'
+
+    SecondLevelModel:
+      oneOf:
+        - $ref: '#/components/schemas/SecondLevelOneModel'
+        - $ref: '#/components/schemas/SecondLevelTwoModel'
+
+
+    SecondLevelOneModel:
+      type: object
+      properties:
+        type:
+          type: string
+        one:
+          type: string
+
+    SecondLevelTwoModel:
+      type: object
+      properties:
+        type:
+          type: string
+        two:
+          type: string
+
+    ##
+    ## OneOf with discriminator
+    ##
+    OneOfInterface:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          Implementation1: '#/components/schemas/OneOfImplementor1'
+          Implementation2: '#/components/schemas/OneOfImplementor2'
+      properties:
+        type:
+          type: string
+      oneOf:
+        - $ref: '#/components/schemas/OneOfImplementor1'
+        - $ref: '#/components/schemas/OneOfImplementor2'
+
+    OneOfImplementor1:
+      type: object
+      properties:
+          property:
+            type: string
+
+
+    OneOfImplementor2:
+      type: object
+      properties:
+        property:
+          type: number

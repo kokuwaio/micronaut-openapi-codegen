@@ -4,5 +4,7 @@ import testmodel.examples.EnumerationInteger.*;
 
 public class EnumerationIntegerTestExample {
 
-        public static EnumerationInteger INSTANCE = EnumerationInteger.values()[0];
+        public static EnumerationInteger buildEnumerationInteger() {
+            return EnumerationInteger.values()[0];
+        }
 }

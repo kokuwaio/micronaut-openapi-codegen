@@ -4,5 +4,7 @@ import testmodel.examples.EnumerationNumber.*;
 
 public class EnumerationNumberTestExample {
 
-        public static EnumerationNumber INSTANCE = EnumerationNumber.values()[0];
+        public static EnumerationNumber buildEnumerationNumber() {
+            return EnumerationNumber.values()[0];
+        }
 }
