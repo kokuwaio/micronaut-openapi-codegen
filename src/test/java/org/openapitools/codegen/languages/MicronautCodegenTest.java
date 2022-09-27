@@ -96,10 +96,4 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addTypeMapping("Generated", null));
 	}
 
-	@DisplayName("with  model examples")
-	@Test
-	void  testModelWithExamples() {
-		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.examples")
-				.addAdditionalProperty(MicronautCodegen.GENERATE_EXAMPLES, true));
-	}
 }

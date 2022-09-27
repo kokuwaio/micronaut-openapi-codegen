@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -35,10 +34,10 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import static org.openapitools.codegen.CodegenConstants.GENERATE_ALIAS_AS_MODEL;
 import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
 import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
+import static org.openapitools.codegen.CodegenConstants.USE_ONEOF_DISCRIMINATOR_LOOKUP;
 
 public class MicronautCodegen extends AbstractJavaCodegen
 		implements BeanValidationFeatures, UseGenericResponseFeatures, OptionalFeatures {
@@ -47,8 +46,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String PAGEABLE = "pageable";
-	public static final String GENERATE_EXAMPLES = "generateExamples";
-	public static final String CUSTOM_TYPE_RESOLVERS = "customTypeResolvers";
+	public static final String ADDITIONAL_PROPERTIES_WITH_COMPOSED_SCHEMA = "supportsAdditionalPropertiesWithComposedSchema";
+	public static final String USE_ONE_OF_INTERFACES = "useOneOfInterfaces";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
@@ -67,10 +66,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
 	private boolean isClient = false;
-	private boolean generateExamples = true;
-	private boolean generateAliasAsModel = false;
 
 	public MicronautCodegen() {
+
+		// enable the supported default-codegen features
+ 		supportsAdditionalPropertiesWithComposedSchema = true;
+		useOneOfInterfaces = true;
 
 		cliOptions.clear();
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use bean validation annotations", useBeanValidation));
@@ -82,9 +83,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
 		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
-		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES,
-				"Generate example instances for tests.", generateExamples));
-		cliOptions.add(CliOption.newBoolean(GENERATE_ALIAS_AS_MODEL, "Generate aliases for collection objects.", generateAliasAsModel));
 
 		// there is no documentation template yet
 
@@ -104,12 +102,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_OPTIONAL, useOptional);
 		additionalProperties.put(INTROSPECTED, introspected);
 		additionalProperties.put(PAGEABLE, pageable);
-		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
-		additionalProperties.put(GENERATE_ALIAS_AS_MODEL, generateAliasAsModel);
 
-		supportsAdditionalPropertiesWithComposedSchema = true;
-		useOneOfInterfaces = true;
-		addOneOfInterfaceImports = true;
+
 		// add custom type mappings
 
 		typeMapping.clear();
@@ -214,9 +208,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(OPENAPI_NULLABLE)) {
 			openApiNullable = convertPropertyToBooleanAndWriteBack(OPENAPI_NULLABLE);
 		}
-		if (additionalProperties.containsKey(GENERATE_EXAMPLES)) {
-			generateExamples = convertPropertyToBooleanAndWriteBack(GENERATE_EXAMPLES);
-		}
 
 		// we do not generate projects, only api, set source and test folder
 
@@ -242,9 +233,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				apiTestTemplateFiles.put("testClient.mustache", "Client.java");
 				addSupportingFile(testFolder, invokerPackage, "HttpResponseAssertions");
 			}
-		}
-		if (generateExamples) {
-			modelTestTemplateFiles.put("testExampleObject.mustache", "Example.java");
 		}
 
 		// add type mappings for mustache
@@ -561,126 +549,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			return "new " + getSchemaType(schema) + "()";
 		}
 		return super.toDefaultValue(schema);
-	}
-
-	@Override
-	public String toExampleValue(Schema schema) {
-		String exampleValue = null;
-
-		// first choice: use the example, provided from the spec
-		if (schema.getExample() != null) {
-			exampleValue = schema.getExample().toString();
-			// second choice: use the default provided by the spec
-		} else if (schema.getDefault() != null) {
-			exampleValue = schema.getDefault().toString();
-			// special handling for enum: if no example or default is
-			// provided, use the first value
-		} else if (schema.getEnum() != null && !schema.getEnum().isEmpty()) {
-			exampleValue = schema.getEnum().get(0).toString();
-		}
-
-		// third choice: set type-specific default examples
-		if (ModelUtils.isBooleanSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("false");
-		} else if (ModelUtils.isDateSchema(schema)) {
-			if (typeMapping.get(schema.getType()).equals("java.time.LocalDate")) {
-				return Optional.ofNullable(exampleValue)
-						.map(ev -> String.format("java.time.LocalDate.parse(\"%s\")", ev))
-						.orElse("java.time.LocalDate.now()");
-			} else {
-				// we cannot provide a valid example for all possible date types
-				return "null";
-			}
-		} else if (ModelUtils.isDateTimeSchema(schema)) {
-			if (typeMapping.get(schema.getType()).equals("java.time.Instant")) {
-				return Optional.ofNullable(exampleValue)
-						.map(ev -> String.format("java.time.Instant.parse(\"%s\")", ev))
-						.orElse("java.time.Instant.now()");
-			} else {
-				// we cannot provide a valid example for all possible date types
-				return "null";
-			}
-		} else if (ModelUtils.isLongSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Long.valueOf(%s)", ev))
-					.orElse("100l");
-		} else if (ModelUtils.isFloatSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Float.valueOf(%s)", ev))
-					.orElse("12.34");
-		} else if (ModelUtils.isDoubleSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Double.valueOf(%s)", ev))
-					.orElse("43.21");
-		} else if (ModelUtils.isIntegerSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("12");
-		} else if (ModelUtils.isShortSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("1");
-		} else if (ModelUtils.isNumberSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Number.valueOf(%s)", ev))
-					.orElse("12.34");
-		} else if (ModelUtils.isByteArraySchema(schema) || ModelUtils.isBinarySchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("\"byteArray\".getBytes()");
-		} else if (ModelUtils.isFileSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("\"myFile\".getBytes()");
-		} else if (ModelUtils.isUUIDSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.util.UUID.fromString(\"%s\")", ev))
-					.orElse("java.util.UUID.randomUUID()");
-		} else if (ModelUtils.isURISchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.net.URI.create(\"%s\")", ev))
-					.orElse("java.net.URI.create(\"my:uri\")");
-		} else if (ModelUtils.isEmailSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("\"%s\"", ev))
-					.orElse("\"example@mail.org\"");
-		} else if (ModelUtils.isStringSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("\"%s\"", ev))
-					.orElse("\"string\"");
-		} else if (ModelUtils.isMapSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("%s", ev))
-					.map(this::parseYamlMapToMapString)
-					.orElse("java.util.Map.of()");
-		} else if (ModelUtils.isSet(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("%s", ev))
-					.map(this::parseYamlArrayToSetString)
-					.orElse("java.util.Set.of()");
-		} else if (ModelUtils.isArraySchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("%s", ev))
-					.map(this::parseYamlArrayToListString)
-					.orElse("java.util.List.of()");
-		} else {
-			// if no example can be generated, leave it null.
-			return "null";
-		}
-	}
-
-	private String parseYamlMapToMapString(String yamlMap) {
-
-		Map<?, ?> parsedMap = new org.yaml.snakeyaml.Yaml().loadAs(yamlMap, Map.class);
-		List<String> entryList = new ArrayList<>();
-
-		for (Map.Entry<?, ?> e : parsedMap.entrySet()) {
-			entryList.add(
-					String.format("new java.util.AbstractMap.SimpleEntry(\"%s\", \"%s\")",
-							e.getKey(),
-							e.getValue()));
-		}
-		return String.format("java.util.Map.ofEntries(%s)", String.join(",", entryList));
-	}
-
-	private String parseYamlArrayToListString(String yamlArray) {
-		return String.format("java.util.List.of(%s)", yamlArray.substring(1, yamlArray.length() - 1));
-	}
-
-	private String parseYamlArrayToSetString(String yamlArray) {
-		return String.format("java.util.Set.of(%s)", yamlArray.substring(1, yamlArray.length() - 1));
 	}
 
 	// internal

@@ -362,12 +362,40 @@ components:
     OneOfImplementor1:
       type: object
       properties:
-          property:
-            type: string
-
+        property:
+          type: string
 
     OneOfImplementor2:
       type: object
       properties:
         property:
           type: number
+
+    ##
+    ## Model with additional properties
+    ##
+    PropertyTypeOne:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - one
+
+    PropertyTypeTwo:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - two
+
+    AdditionalPropertiesModel:
+      type: object
+      properties:
+        id:
+          type: string
+      additionalProperties:
+        oneOf:
+          - $ref: '#/components/schemas/PropertyTypeOne'
+          - $ref: '#/components/schemas/PropertyTypeTwo'

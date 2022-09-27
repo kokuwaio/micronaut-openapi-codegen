@@ -7,7 +7,7 @@ package testmodel.micronaut;
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = OneOfInterface.JSON_DISCRIMINATOR)
 public interface OneOfInterface
 {
-   	public static final String JSON_DISCRIMINATOR = "type"; 
+   	String JSON_DISCRIMINATOR = "type"; 
 
    	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
     java.lang.String getType();

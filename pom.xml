@@ -454,26 +454,26 @@
 				</executions>
 			</plugin>
 
-<!--			&lt;!&ndash; run invoker tests &ndash;&gt;-->
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-invoker-plugin</artifactId>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<goals>-->
-<!--							<goal>install</goal>-->
-<!--							<goal>run</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>-->
-<!--							<parallelThreads>1C</parallelThreads>-->
-<!--							<goals>test</goals>-->
-<!--							<streamLogsOnFailures>true</streamLogsOnFailures>-->
-<!--							<writeJunitReport>true</writeJunitReport>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
+			<!-- run invoker tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-invoker-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<parallelThreads>1</parallelThreads>
+							<goals>test</goals>
+							<streamLogsOnFailures>true</streamLogsOnFailures>
+							<writeJunitReport>true</writeJunitReport>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- fail if any pom is dirty -->
 			<plugin>
