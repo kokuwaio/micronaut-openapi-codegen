@@ -105,7 +105,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// add custom type mappings
 
 		typeMapping.clear();
-
 		typeMapping.put("object", java.lang.Object.class.getName());
 		typeMapping.put("AnyType", java.lang.Object.class.getName());
 		typeMapping.put("date", java.time.LocalDate.class.getName());
@@ -166,7 +165,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public void processOpts() {
 		BiFunction<String, String, String> getOrDefault = (key,
-			defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
+				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
 		// reuse package if other packages are not provided
 
@@ -379,7 +378,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			}
 		}
 		extensions.put("serverPath", serverPath);
-
 		return operation;
 	}
 
@@ -391,6 +389,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// see https://github.com/OpenAPITools/openapi-generator/issues/6708
 
 		codegenResponse.vendorExtensions.put(ApiResponse.class.getName(), response);
+
 		return codegenResponse;
 	}
 
@@ -408,8 +407,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
 				model.getVendorExtensions()
 						.put("additionalPropertiesMap",
-								Map.of("keyType", "java.lang.String",
-										"valueType", model.getAdditionalProperties().getDataType()));
+								Map.of(
+										"keyType", "java.lang.String",
+										"valueType", model.getAdditionalProperties().getDataType()
+								)
+						);
 			}
 
 			// handle discriminator
