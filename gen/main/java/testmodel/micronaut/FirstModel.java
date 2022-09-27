@@ -68,6 +68,7 @@ public class FirstModel implements OneOfModel {
 		this.secondLevel = newSecondLevel;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getType() {

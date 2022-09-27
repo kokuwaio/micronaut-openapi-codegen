@@ -57,6 +57,7 @@ public class InheritanceExtended {
 		this.bar = newBar;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getFoo() {

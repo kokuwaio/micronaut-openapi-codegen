@@ -48,6 +48,7 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
 		this.d = newD;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getD() {

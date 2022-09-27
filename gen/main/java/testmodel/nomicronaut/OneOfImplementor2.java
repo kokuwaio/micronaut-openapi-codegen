@@ -48,6 +48,7 @@ public class OneOfImplementor2 implements OneOfInterface {
 		this.property = newProperty;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.Double getProperty() {

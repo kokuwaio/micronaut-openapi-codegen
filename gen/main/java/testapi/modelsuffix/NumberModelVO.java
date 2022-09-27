@@ -43,6 +43,7 @@ public class NumberModelVO {
 		this.bar = newBar;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.Double getBar() {

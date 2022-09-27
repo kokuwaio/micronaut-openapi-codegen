@@ -79,6 +79,7 @@ public class EnumerationModel {
 		this.embeddedDefault = newEmbeddedDefault;
 		return this;
 	}
+	// getter/setter
 
 
 	public EnumerationString getString() {

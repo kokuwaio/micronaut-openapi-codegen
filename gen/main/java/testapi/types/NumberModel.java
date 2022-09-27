@@ -42,6 +42,7 @@ public class NumberModel {
 		this.bar = newBar;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.Double getBar() {

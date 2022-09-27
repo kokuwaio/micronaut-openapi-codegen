@@ -589,6 +589,7 @@ public class Model {
 		this.referenedModel = newReferenedModel;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.Integer getId() {

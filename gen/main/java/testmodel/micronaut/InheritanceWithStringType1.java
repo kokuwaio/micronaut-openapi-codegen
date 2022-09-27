@@ -50,6 +50,7 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
 		this.b = newB;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getB() {

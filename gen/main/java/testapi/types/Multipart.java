@@ -78,6 +78,7 @@ public class Multipart {
 		this.file = newFile;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.Integer getOrderId() {

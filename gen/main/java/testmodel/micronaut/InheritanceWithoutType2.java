@@ -50,6 +50,7 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
 		this.g = newG;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getG() {

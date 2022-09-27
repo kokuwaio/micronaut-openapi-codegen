@@ -35,6 +35,7 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 	}
 
 	// fluent
+	// getter/setter
 
 }
 

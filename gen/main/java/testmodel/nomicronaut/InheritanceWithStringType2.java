@@ -48,6 +48,7 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
 		this.c = newC;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getC() {

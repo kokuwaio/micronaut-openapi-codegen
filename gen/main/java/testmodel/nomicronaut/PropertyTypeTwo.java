@@ -41,6 +41,7 @@ public class PropertyTypeTwo implements AdditionalPropertiesModelValue {
 		this.type = newType;
 		return this;
 	}
+	// getter/setter
 
 
 	public Type getType() {

@@ -53,6 +53,7 @@ public class SecondLevelTwoModel implements SecondLevelModel {
 		this.two = newTwo;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getType() {

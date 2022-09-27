@@ -44,6 +44,7 @@ public class StringModelVO {
 		this.foo = newFoo;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getFoo() {

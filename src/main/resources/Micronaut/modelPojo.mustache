@@ -113,6 +113,9 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^vendor
 		return this;
 	}{{/isContainer}}
 	{{/vars}}
+    {{^vendorExtensions.additionalPropertiesMap}}
+	// getter/setter
+    {{/vendorExtensions.additionalPropertiesMap}}
     {{#vendorExtensions.additionalPropertiesMap}}
 	// getter/setter java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}},{{{vendorExtensions.additionalPropertiesMap.valueType}}}>
 

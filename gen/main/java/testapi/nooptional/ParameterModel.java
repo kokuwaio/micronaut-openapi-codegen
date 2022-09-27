@@ -196,6 +196,7 @@ public class ParameterModel {
 		}
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getBool() {

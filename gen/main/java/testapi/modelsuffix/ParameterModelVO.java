@@ -196,6 +196,7 @@ public class ParameterModelVO {
 		}
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getBool() {

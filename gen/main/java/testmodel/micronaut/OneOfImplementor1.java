@@ -50,6 +50,7 @@ public class OneOfImplementor1 implements OneOfInterface {
 		this.property = newProperty;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getProperty() {

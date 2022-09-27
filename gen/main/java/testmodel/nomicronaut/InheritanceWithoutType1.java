@@ -48,6 +48,7 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
 		this.f = newF;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getF() {

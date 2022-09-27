@@ -51,6 +51,7 @@ public abstract class InheritanceWithStringType {
 		this.a = newA;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getA() {

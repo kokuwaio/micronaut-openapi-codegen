@@ -40,6 +40,7 @@ public abstract class InheritanceWithEnumType {
 	}
 
 	// fluent
+	// getter/setter
 
 }
 

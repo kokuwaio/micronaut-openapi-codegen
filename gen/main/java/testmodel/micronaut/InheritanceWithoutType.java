@@ -53,6 +53,7 @@ public abstract class InheritanceWithoutType {
 		this.e = newE;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getE() {

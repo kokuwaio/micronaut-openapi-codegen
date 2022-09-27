@@ -48,6 +48,7 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
 		this.e = newE;
 		return this;
 	}
+	// getter/setter
 
 
 	public java.lang.String getE() {

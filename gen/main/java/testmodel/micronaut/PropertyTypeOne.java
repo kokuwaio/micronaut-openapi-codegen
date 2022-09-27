@@ -43,6 +43,7 @@ public class PropertyTypeOne implements AdditionalPropertiesModelValue {
 		this.type = newType;
 		return this;
 	}
+	// getter/setter
 
 
 	public Type getType() {
