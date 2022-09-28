@@ -27,6 +27,7 @@ import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.OptionalFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
 import org.openapitools.codegen.model.ModelsMap;
+import org.openapitools.codegen.utils.ModelUtils;
 import org.openapitools.codegen.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ import org.slf4j.LoggerFactory;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
 
@@ -64,6 +66,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean isClient = false;
 
 	public MicronautCodegen() {
+
+		// enable the supported default-codegen features
+
+		supportsAdditionalPropertiesWithComposedSchema = true;
+		useOneOfInterfaces = true;
 
 		cliOptions.clear();
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use bean validation annotations", useBeanValidation));
@@ -395,10 +402,18 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		objs.entrySet().removeIf(e -> e.getKey().endsWith("_allOf"));
 
-		// handle discriminator
-
 		Map<String, CodegenModel> allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
+
+			// check if composed schemas for additional properties should be handled and apply to the map if so.
+
+			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
+				model.getVendorExtensions().put("additionalPropertiesMap", Map.of(
+						"keyType", "java.lang.String",
+						"valueType", model.getAdditionalProperties().getDataType()));
+			}
+
+			// handle discriminator
 
 			var discriminator = model.discriminator;
 			if (discriminator == null) {
@@ -522,6 +537,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public void setUseOptional(boolean useOptional) {
 		this.useOptional = useOptional;
+	}
+
+	@Override
+	public String toDefaultValue(Schema schema) {
+		if (ModelUtils.isGenerateAliasAsModel() && schema.get$ref() != null) {
+			return "new " + getSchemaType(schema) + "()";
+		}
+		return super.toDefaultValue(schema);
 	}
 
 	// internal

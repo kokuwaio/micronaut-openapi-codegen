@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.openapitools.jackson.nullable.JsonNullable;
+import testmodel.javaclient.EnumerationModel;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -42,16 +43,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   Model.JSON_PROPERTY_ID,
+  Model.JSON_PROPERTY_ID_WITH_EXAMPLE,
+  Model.JSON_PROPERTY_ID_WITH_DEFAULT,
   Model.JSON_PROPERTY_NAME,
+  Model.JSON_PROPERTY_NAME_WITH_EXAMPLE,
+  Model.JSON_PROPERTY_NAME_WITH_DEFAULT,
   Model.JSON_PROPERTY_DATE,
+  Model.JSON_PROPERTY_DATE_WITH_EXAMPLE,
   Model.JSON_PROPERTY_DATE_TIME,
+  Model.JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE,
   Model.JSON_PROPERTY_NUMBER,
   Model.JSON_PROPERTY_BINARY,
   Model.JSON_PROPERTY_BYTES,
   Model.JSON_PROPERTY_ANY,
   Model.JSON_PROPERTY_ARRAY,
+  Model.JSON_PROPERTY_ARRAY_WITH_EXAMPLE,
   Model.JSON_PROPERTY_SET,
+  Model.JSON_PROPERTY_SET_WITH_EXAMPLES,
   Model.JSON_PROPERTY_MAP,
+  Model.JSON_PROPERTY_MAP_WITH_EXAMPLE,
   Model.JSON_PROPERTY_OPTIONAL_ARRAY,
   Model.JSON_PROPERTY_OPTIONAL_SET,
   Model.JSON_PROPERTY_OPTIONAL_MAP,
@@ -61,7 +71,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Model.JSON_PROPERTY_NULLABLE_MAP,
   Model.JSON_PROPERTY_DEFAULT_STRING,
   Model.JSON_PROPERTY_DEFAULT_INTEGER,
-  Model.JSON_PROPERTY_DEFAULT_NULLABLE
+  Model.JSON_PROPERTY_DEFAULT_NULLABLE,
+  Model.JSON_PROPERTY_REFERENED_MODEL
 })
 @java.lang.SuppressWarnings("all")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -69,14 +80,32 @@ public class Model {
   public static final String JSON_PROPERTY_ID = "id";
   private Integer id;
 
+  public static final String JSON_PROPERTY_ID_WITH_EXAMPLE = "idWithExample";
+  private Integer idWithExample;
+
+  public static final String JSON_PROPERTY_ID_WITH_DEFAULT = "idWithDefault";
+  private Integer idWithDefault = 32;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_NAME_WITH_EXAMPLE = "nameWithExample";
+  private String nameWithExample;
+
+  public static final String JSON_PROPERTY_NAME_WITH_DEFAULT = "nameWithDefault";
+  private String nameWithDefault;
 
   public static final String JSON_PROPERTY_DATE = "date";
   private LocalDate date;
 
+  public static final String JSON_PROPERTY_DATE_WITH_EXAMPLE = "dateWithExample";
+  private LocalDate dateWithExample;
+
   public static final String JSON_PROPERTY_DATE_TIME = "date-time";
   private OffsetDateTime dateTime;
+
+  public static final String JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE = "date-timeWithExample";
+  private OffsetDateTime dateTimeWithExample;
 
   public static final String JSON_PROPERTY_NUMBER = "number";
   private BigDecimal number;
@@ -93,11 +122,20 @@ public class Model {
   public static final String JSON_PROPERTY_ARRAY = "array";
   private List<String> array = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_ARRAY_WITH_EXAMPLE = "arrayWithExample";
+  private List<String> arrayWithExample = null;
+
   public static final String JSON_PROPERTY_SET = "set";
   private Set<String> set = new LinkedHashSet<>();
 
+  public static final String JSON_PROPERTY_SET_WITH_EXAMPLES = "setWithExamples";
+  private Set<String> setWithExamples = null;
+
   public static final String JSON_PROPERTY_MAP = "map";
   private Map<String, String> map = new HashMap<>();
+
+  public static final String JSON_PROPERTY_MAP_WITH_EXAMPLE = "mapWithExample";
+  private Map<String, String> mapWithExample = null;
 
   public static final String JSON_PROPERTY_OPTIONAL_ARRAY = "optionalArray";
   private List<String> optionalArray = null;
@@ -129,6 +167,9 @@ public class Model {
   public static final String JSON_PROPERTY_DEFAULT_NULLABLE = "defaultNullable";
   private String defaultNullable = "defaultNullableValue";
 
+  public static final String JSON_PROPERTY_REFERENED_MODEL = "referenedModel";
+  private EnumerationModel referenedModel;
+
   public Model() {
   }
 
@@ -159,6 +200,60 @@ public class Model {
   }
 
 
+  public Model idWithExample(Integer idWithExample) {
+    
+    this.idWithExample = idWithExample;
+    return this;
+  }
+
+   /**
+   * Get idWithExample
+   * @return idWithExample
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "32", value = "")
+  @JsonProperty(JSON_PROPERTY_ID_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getIdWithExample() {
+    return idWithExample;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIdWithExample(Integer idWithExample) {
+    this.idWithExample = idWithExample;
+  }
+
+
+  public Model idWithDefault(Integer idWithDefault) {
+    
+    this.idWithDefault = idWithDefault;
+    return this;
+  }
+
+   /**
+   * Get idWithDefault
+   * @return idWithDefault
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ID_WITH_DEFAULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getIdWithDefault() {
+    return idWithDefault;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID_WITH_DEFAULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIdWithDefault(Integer idWithDefault) {
+    this.idWithDefault = idWithDefault;
+  }
+
+
   public Model name(String name) {
     
     this.name = name;
@@ -183,6 +278,60 @@ public class Model {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public Model nameWithExample(String nameWithExample) {
+    
+    this.nameWithExample = nameWithExample;
+    return this;
+  }
+
+   /**
+   * Get nameWithExample
+   * @return nameWithExample
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "MyExampleName", value = "")
+  @JsonProperty(JSON_PROPERTY_NAME_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getNameWithExample() {
+    return nameWithExample;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNameWithExample(String nameWithExample) {
+    this.nameWithExample = nameWithExample;
+  }
+
+
+  public Model nameWithDefault(String nameWithDefault) {
+    
+    this.nameWithDefault = nameWithDefault;
+    return this;
+  }
+
+   /**
+   * Get nameWithDefault
+   * @return nameWithDefault
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "MyDefaultName", value = "")
+  @JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getNameWithDefault() {
+    return nameWithDefault;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNameWithDefault(String nameWithDefault) {
+    this.nameWithDefault = nameWithDefault;
   }
 
 
@@ -213,6 +362,33 @@ public class Model {
   }
 
 
+  public Model dateWithExample(LocalDate dateWithExample) {
+    
+    this.dateWithExample = dateWithExample;
+    return this;
+  }
+
+   /**
+   * Get dateWithExample
+   * @return dateWithExample
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Wed Feb 02 01:00:00 CET 2022", value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public LocalDate getDateWithExample() {
+    return dateWithExample;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDateWithExample(LocalDate dateWithExample) {
+    this.dateWithExample = dateWithExample;
+  }
+
+
   public Model dateTime(OffsetDateTime dateTime) {
     
     this.dateTime = dateTime;
@@ -237,6 +413,33 @@ public class Model {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
+  }
+
+
+  public Model dateTimeWithExample(OffsetDateTime dateTimeWithExample) {
+    
+    this.dateTimeWithExample = dateTimeWithExample;
+    return this;
+  }
+
+   /**
+   * Get dateTimeWithExample
+   * @return dateTimeWithExample
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2017-07-21T17:32:28Z", value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDateTimeWithExample() {
+    return dateTimeWithExample;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDateTimeWithExample(OffsetDateTime dateTimeWithExample) {
+    this.dateTimeWithExample = dateTimeWithExample;
   }
 
 
@@ -380,6 +583,41 @@ public class Model {
   }
 
 
+  public Model arrayWithExample(List<String> arrayWithExample) {
+    
+    this.arrayWithExample = arrayWithExample;
+    return this;
+  }
+
+  public Model addArrayWithExampleItem(String arrayWithExampleItem) {
+    if (this.arrayWithExample == null) {
+      this.arrayWithExample = new ArrayList<>();
+    }
+    this.arrayWithExample.add(arrayWithExampleItem);
+    return this;
+  }
+
+   /**
+   * Get arrayWithExample
+   * @return arrayWithExample
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"a\",\"b\",\"b\"]", value = "")
+  @JsonProperty(JSON_PROPERTY_ARRAY_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getArrayWithExample() {
+    return arrayWithExample;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ARRAY_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setArrayWithExample(List<String> arrayWithExample) {
+    this.arrayWithExample = arrayWithExample;
+  }
+
+
   public Model set(Set<String> set) {
     
     this.set = set;
@@ -413,6 +651,42 @@ public class Model {
   }
 
 
+  public Model setWithExamples(Set<String> setWithExamples) {
+    
+    this.setWithExamples = setWithExamples;
+    return this;
+  }
+
+  public Model addSetWithExamplesItem(String setWithExamplesItem) {
+    if (this.setWithExamples == null) {
+      this.setWithExamples = new LinkedHashSet<>();
+    }
+    this.setWithExamples.add(setWithExamplesItem);
+    return this;
+  }
+
+   /**
+   * Get setWithExamples
+   * @return setWithExamples
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"a\",\"b\",\"c\"]", value = "")
+  @JsonProperty(JSON_PROPERTY_SET_WITH_EXAMPLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<String> getSetWithExamples() {
+    return setWithExamples;
+  }
+
+
+  @JsonDeserialize(as = LinkedHashSet.class)
+  @JsonProperty(JSON_PROPERTY_SET_WITH_EXAMPLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSetWithExamples(Set<String> setWithExamples) {
+    this.setWithExamples = setWithExamples;
+  }
+
+
   public Model map(Map<String, String> map) {
     
     this.map = map;
@@ -442,6 +716,41 @@ public class Model {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMap(Map<String, String> map) {
     this.map = map;
+  }
+
+
+  public Model mapWithExample(Map<String, String> mapWithExample) {
+    
+    this.mapWithExample = mapWithExample;
+    return this;
+  }
+
+  public Model putMapWithExampleItem(String key, String mapWithExampleItem) {
+    if (this.mapWithExample == null) {
+      this.mapWithExample = new HashMap<>();
+    }
+    this.mapWithExample.put(key, mapWithExampleItem);
+    return this;
+  }
+
+   /**
+   * Get mapWithExample
+   * @return mapWithExample
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"a\":\"b\",\"c\":\"d\"}", value = "")
+  @JsonProperty(JSON_PROPERTY_MAP_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getMapWithExample() {
+    return mapWithExample;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_MAP_WITH_EXAMPLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMapWithExample(Map<String, String> mapWithExample) {
+    this.mapWithExample = mapWithExample;
   }
 
 
@@ -764,6 +1073,33 @@ public class Model {
   }
 
 
+  public Model referenedModel(EnumerationModel referenedModel) {
+    
+    this.referenedModel = referenedModel;
+    return this;
+  }
+
+   /**
+   * Get referenedModel
+   * @return referenedModel
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REFERENED_MODEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public EnumerationModel getReferenedModel() {
+    return referenedModel;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REFERENED_MODEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReferenedModel(EnumerationModel referenedModel) {
+    this.referenedModel = referenedModel;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -774,16 +1110,25 @@ public class Model {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
+        Objects.equals(this.idWithExample, model.idWithExample) &&
+        Objects.equals(this.idWithDefault, model.idWithDefault) &&
         Objects.equals(this.name, model.name) &&
+        Objects.equals(this.nameWithExample, model.nameWithExample) &&
+        Objects.equals(this.nameWithDefault, model.nameWithDefault) &&
         Objects.equals(this.date, model.date) &&
+        Objects.equals(this.dateWithExample, model.dateWithExample) &&
         Objects.equals(this.dateTime, model.dateTime) &&
+        Objects.equals(this.dateTimeWithExample, model.dateTimeWithExample) &&
         Objects.equals(this.number, model.number) &&
         Objects.equals(this.binary, model.binary) &&
         Arrays.equals(this.bytes, model.bytes) &&
         Objects.equals(this.any, model.any) &&
         Objects.equals(this.array, model.array) &&
+        Objects.equals(this.arrayWithExample, model.arrayWithExample) &&
         Objects.equals(this.set, model.set) &&
+        Objects.equals(this.setWithExamples, model.setWithExamples) &&
         Objects.equals(this.map, model.map) &&
+        Objects.equals(this.mapWithExample, model.mapWithExample) &&
         Objects.equals(this.optionalArray, model.optionalArray) &&
         Objects.equals(this.optionalSet, model.optionalSet) &&
         Objects.equals(this.optionalMap, model.optionalMap) &&
@@ -793,7 +1138,8 @@ public class Model {
         Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
-        Objects.equals(this.defaultNullable, model.defaultNullable);
+        Objects.equals(this.defaultNullable, model.defaultNullable) &&
+        Objects.equals(this.referenedModel, model.referenedModel);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -802,7 +1148,7 @@ public class Model {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, date, dateTime, number, binary, Arrays.hashCode(bytes), any, array, set, map, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -817,16 +1163,25 @@ public class Model {
     StringBuilder sb = new StringBuilder();
     sb.append("class Model {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    idWithExample: ").append(toIndentedString(idWithExample)).append("\n");
+    sb.append("    idWithDefault: ").append(toIndentedString(idWithDefault)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    nameWithExample: ").append(toIndentedString(nameWithExample)).append("\n");
+    sb.append("    nameWithDefault: ").append(toIndentedString(nameWithDefault)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    sb.append("    dateWithExample: ").append(toIndentedString(dateWithExample)).append("\n");
     sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
+    sb.append("    dateTimeWithExample: ").append(toIndentedString(dateTimeWithExample)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    binary: ").append(toIndentedString(binary)).append("\n");
     sb.append("    bytes: ").append(toIndentedString(bytes)).append("\n");
     sb.append("    any: ").append(toIndentedString(any)).append("\n");
     sb.append("    array: ").append(toIndentedString(array)).append("\n");
+    sb.append("    arrayWithExample: ").append(toIndentedString(arrayWithExample)).append("\n");
     sb.append("    set: ").append(toIndentedString(set)).append("\n");
+    sb.append("    setWithExamples: ").append(toIndentedString(setWithExamples)).append("\n");
     sb.append("    map: ").append(toIndentedString(map)).append("\n");
+    sb.append("    mapWithExample: ").append(toIndentedString(mapWithExample)).append("\n");
     sb.append("    optionalArray: ").append(toIndentedString(optionalArray)).append("\n");
     sb.append("    optionalSet: ").append(toIndentedString(optionalSet)).append("\n");
     sb.append("    optionalMap: ").append(toIndentedString(optionalMap)).append("\n");
@@ -837,6 +1192,7 @@ public class Model {
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
     sb.append("    defaultNullable: ").append(toIndentedString(defaultNullable)).append("\n");
+    sb.append("    referenedModel: ").append(toIndentedString(referenedModel)).append("\n");
     sb.append("}");
     return sb.toString();
   }

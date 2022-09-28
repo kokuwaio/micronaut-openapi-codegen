@@ -176,6 +176,7 @@
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<configOptions>
 								<clientId>test-client</clientId>
+								<generateExamples>true</generateExamples>
 							</configOptions>
 						</configuration>
 					</execution>

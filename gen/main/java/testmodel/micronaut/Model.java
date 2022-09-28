@@ -5,16 +5,25 @@ package testmodel.micronaut;
 public class Model {
 
 	public static final java.lang.String JSON_PROPERTY_ID = "id";
+	public static final java.lang.String JSON_PROPERTY_ID_WITH_EXAMPLE = "idWithExample";
+	public static final java.lang.String JSON_PROPERTY_ID_WITH_DEFAULT = "idWithDefault";
 	public static final java.lang.String JSON_PROPERTY_NAME = "name";
+	public static final java.lang.String JSON_PROPERTY_NAME_WITH_EXAMPLE = "nameWithExample";
+	public static final java.lang.String JSON_PROPERTY_NAME_WITH_DEFAULT = "nameWithDefault";
 	public static final java.lang.String JSON_PROPERTY_DATE = "date";
+	public static final java.lang.String JSON_PROPERTY_DATE_WITH_EXAMPLE = "dateWithExample";
 	public static final java.lang.String JSON_PROPERTY_DATE_TIME = "date-time";
+	public static final java.lang.String JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE = "date-timeWithExample";
 	public static final java.lang.String JSON_PROPERTY_NUMBER = "number";
 	public static final java.lang.String JSON_PROPERTY_BINARY = "binary";
 	public static final java.lang.String JSON_PROPERTY_BYTES = "bytes";
 	public static final java.lang.String JSON_PROPERTY_ANY = "any";
 	public static final java.lang.String JSON_PROPERTY_ARRAY = "array";
+	public static final java.lang.String JSON_PROPERTY_ARRAY_WITH_EXAMPLE = "arrayWithExample";
 	public static final java.lang.String JSON_PROPERTY_SET = "set";
+	public static final java.lang.String JSON_PROPERTY_SET_WITH_EXAMPLES = "setWithExamples";
 	public static final java.lang.String JSON_PROPERTY_MAP = "map";
+	public static final java.lang.String JSON_PROPERTY_MAP_WITH_EXAMPLE = "mapWithExample";
 	public static final java.lang.String JSON_PROPERTY_OPTIONAL_ARRAY = "optionalArray";
 	public static final java.lang.String JSON_PROPERTY_OPTIONAL_SET = "optionalSet";
 	public static final java.lang.String JSON_PROPERTY_OPTIONAL_MAP = "optionalMap";
@@ -25,10 +34,19 @@ public class Model {
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_INTEGER = "defaultInteger";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_NULLABLE = "defaultNullable";
+	public static final java.lang.String JSON_PROPERTY_REFERENED_MODEL = "referenedModel";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer id;
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.lang.Integer idWithExample;
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID_WITH_DEFAULT)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.lang.Integer idWithDefault = 32;
 
 	@javax.validation.constraints.NotNull
 	@javax.validation.constraints.Size(max = 36)
@@ -36,13 +54,29 @@ public class Model {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String name;
 
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NAME_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.lang.String nameWithExample;
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.lang.String nameWithDefault;
+
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.LocalDate date;
 
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.time.LocalDate dateWithExample;
+
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_TIME)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.Instant dateTime;
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.time.Instant dateTimeWithExample;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NUMBER)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -65,15 +99,27 @@ public class Model {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.util.List<java.lang.String> array = new java.util.ArrayList<>();
 
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ARRAY_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.util.List<java.lang.String> arrayWithExample;
+
 	@javax.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_SET)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.util.Set<java.lang.String> set = new java.util.LinkedHashSet<>();
 
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_SET_WITH_EXAMPLES)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.util.Set<java.lang.String> setWithExamples;
+
 	@javax.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_MAP)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.util.Map<String, java.lang.String> map = new java.util.HashMap<>();
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_MAP_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.util.Map<String, java.lang.String> mapWithExample;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_OPTIONAL_ARRAY)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -115,6 +161,11 @@ public class Model {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.lang.String> defaultNullable = org.openapitools.jackson.nullable.JsonNullable.of("defaultNullableValue");
 
+	@javax.validation.Valid
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_REFERENED_MODEL)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private EnumerationModel referenedModel;
+
 	// methods
 
 	@Override
@@ -127,16 +178,25 @@ public class Model {
 		}
 		Model other = (Model) object;
 		return java.util.Objects.equals(id, other.id)
+				&& java.util.Objects.equals(idWithExample, other.idWithExample)
+				&& java.util.Objects.equals(idWithDefault, other.idWithDefault)
 				&& java.util.Objects.equals(name, other.name)
+				&& java.util.Objects.equals(nameWithExample, other.nameWithExample)
+				&& java.util.Objects.equals(nameWithDefault, other.nameWithDefault)
 				&& java.util.Objects.equals(date, other.date)
+				&& java.util.Objects.equals(dateWithExample, other.dateWithExample)
 				&& java.util.Objects.equals(dateTime, other.dateTime)
+				&& java.util.Objects.equals(dateTimeWithExample, other.dateTimeWithExample)
 				&& java.util.Objects.equals(number, other.number)
 				&& java.util.Arrays.equals(binary, other.binary)
 				&& java.util.Arrays.equals(bytes, other.bytes)
 				&& java.util.Objects.equals(any, other.any)
 				&& java.util.Objects.equals(array, other.array)
+				&& java.util.Objects.equals(arrayWithExample, other.arrayWithExample)
 				&& java.util.Objects.equals(set, other.set)
+				&& java.util.Objects.equals(setWithExamples, other.setWithExamples)
 				&& java.util.Objects.equals(map, other.map)
+				&& java.util.Objects.equals(mapWithExample, other.mapWithExample)
 				&& java.util.Objects.equals(optionalArray, other.optionalArray)
 				&& java.util.Objects.equals(optionalSet, other.optionalSet)
 				&& java.util.Objects.equals(optionalMap, other.optionalMap)
@@ -146,12 +206,13 @@ public class Model {
 				&& java.util.Objects.equals(nullableMap, other.nullableMap)
 				&& java.util.Objects.equals(defaultString, other.defaultString)
 				&& java.util.Objects.equals(defaultInteger, other.defaultInteger)
-				&& java.util.Objects.equals(defaultNullable, other.defaultNullable);
+				&& java.util.Objects.equals(defaultNullable, other.defaultNullable)
+				&& java.util.Objects.equals(referenedModel, other.referenedModel);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(id, name, date, dateTime, number, java.util.Arrays.hashCode(binary), java.util.Arrays.hashCode(bytes), any, array, set, map, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable);
+		return java.util.Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, java.util.Arrays.hashCode(binary), java.util.Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
 	}
 
 	@Override
@@ -159,16 +220,25 @@ public class Model {
 		return new java.lang.StringBuilder()
 				.append("Model[")
 				.append("id=").append(id).append(",")
+				.append("idWithExample=").append(idWithExample).append(",")
+				.append("idWithDefault=").append(idWithDefault).append(",")
 				.append("name=").append(name).append(",")
+				.append("nameWithExample=").append(nameWithExample).append(",")
+				.append("nameWithDefault=").append(nameWithDefault).append(",")
 				.append("date=").append(date).append(",")
+				.append("dateWithExample=").append(dateWithExample).append(",")
 				.append("dateTime=").append(dateTime).append(",")
+				.append("dateTimeWithExample=").append(dateTimeWithExample).append(",")
 				.append("number=").append(number).append(",")
 				.append("binary=").append(binary).append(",")
 				.append("bytes.length=").append(bytes == null ? null : bytes.length).append(",")
 				.append("any=").append(any).append(",")
 				.append("array=").append(array).append(",")
+				.append("arrayWithExample=").append(arrayWithExample).append(",")
 				.append("set=").append(set).append(",")
+				.append("setWithExamples=").append(setWithExamples).append(",")
 				.append("map=").append(map).append(",")
+				.append("mapWithExample=").append(mapWithExample).append(",")
 				.append("optionalArray=").append(optionalArray).append(",")
 				.append("optionalSet=").append(optionalSet).append(",")
 				.append("optionalMap=").append(optionalMap).append(",")
@@ -178,7 +248,8 @@ public class Model {
 				.append("nullableMap=").append(nullableMap).append(",")
 				.append("defaultString=").append(defaultString).append(",")
 				.append("defaultInteger=").append(defaultInteger).append(",")
-				.append("defaultNullable=").append(defaultNullable)
+				.append("defaultNullable=").append(defaultNullable).append(",")
+				.append("referenedModel=").append(referenedModel)
 				.append("]")
 				.toString();
 	}
@@ -190,8 +261,28 @@ public class Model {
 		return this;
 	}
 
+	public Model idWithExample(java.lang.Integer newIdWithExample) {
+		this.idWithExample = newIdWithExample;
+		return this;
+	}
+
+	public Model idWithDefault(java.lang.Integer newIdWithDefault) {
+		this.idWithDefault = newIdWithDefault;
+		return this;
+	}
+
 	public Model name(java.lang.String newName) {
 		this.name = newName;
+		return this;
+	}
+
+	public Model nameWithExample(java.lang.String newNameWithExample) {
+		this.nameWithExample = newNameWithExample;
+		return this;
+	}
+
+	public Model nameWithDefault(java.lang.String newNameWithDefault) {
+		this.nameWithDefault = newNameWithDefault;
 		return this;
 	}
 
@@ -200,8 +291,18 @@ public class Model {
 		return this;
 	}
 
+	public Model dateWithExample(java.time.LocalDate newDateWithExample) {
+		this.dateWithExample = newDateWithExample;
+		return this;
+	}
+
 	public Model dateTime(java.time.Instant newDateTime) {
 		this.dateTime = newDateTime;
+		return this;
+	}
+
+	public Model dateTimeWithExample(java.time.Instant newDateTimeWithExample) {
+		this.dateTimeWithExample = newDateTimeWithExample;
 		return this;
 	}
 
@@ -245,6 +346,26 @@ public class Model {
 		return this;
 	}
 
+	public Model arrayWithExample(java.util.List<java.lang.String> newArrayWithExample) {
+		this.arrayWithExample = newArrayWithExample;
+		return this;
+	}
+	
+	public Model addArrayWithExampleItem(java.lang.String arrayWithExampleItem) {
+		if (this.arrayWithExample == null) {
+			this.arrayWithExample = new java.util.ArrayList<>();
+		}
+		this.arrayWithExample.add(arrayWithExampleItem);
+		return this;
+	}
+
+	public Model removeArrayWithExampleItem(java.lang.String arrayWithExampleItem) {
+		if (this.arrayWithExample != null) {
+			this.arrayWithExample.remove(arrayWithExampleItem);
+		}
+		return this;
+	}
+
 	public Model set(java.util.Set<java.lang.String> newSet) {
 		this.set = newSet;
 		return this;
@@ -265,6 +386,26 @@ public class Model {
 		return this;
 	}
 
+	public Model setWithExamples(java.util.Set<java.lang.String> newSetWithExamples) {
+		this.setWithExamples = newSetWithExamples;
+		return this;
+	}
+	
+	public Model addSetWithExamplesItem(java.lang.String setWithExamplesItem) {
+		if (this.setWithExamples == null) {
+			this.setWithExamples = new java.util.LinkedHashSet<>();
+		}
+		this.setWithExamples.add(setWithExamplesItem);
+		return this;
+	}
+
+	public Model removeSetWithExamplesItem(java.lang.String setWithExamplesItem) {
+		if (this.setWithExamples != null) {
+			this.setWithExamples.remove(setWithExamplesItem);
+		}
+		return this;
+	}
+
 	public Model map(java.util.Map<String, java.lang.String> newMap) {
 		this.map = newMap;
 		return this;
@@ -281,6 +422,26 @@ public class Model {
 	public Model removeMapItem(java.lang.String key) {
 		if (this.map != null) {
 			this.map.remove(key);
+		}
+		return this;
+	}
+
+	public Model mapWithExample(java.util.Map<String, java.lang.String> newMapWithExample) {
+		this.mapWithExample = newMapWithExample;
+		return this;
+	}
+	
+	public Model putMapWithExampleItem(java.lang.String key, java.lang.String mapWithExampleItem) {
+		if (this.mapWithExample == null) {
+			this.mapWithExample = new java.util.HashMap<>();
+		}
+		this.mapWithExample.put(key, mapWithExampleItem);
+		return this;
+	}
+
+	public Model removeMapWithExampleItem(java.lang.String key) {
+		if (this.mapWithExample != null) {
+			this.mapWithExample.remove(key);
 		}
 		return this;
 	}
@@ -425,6 +586,11 @@ public class Model {
 		return this;
 	}
 
+	public Model referenedModel(EnumerationModel newReferenedModel) {
+		this.referenedModel = newReferenedModel;
+		return this;
+	}
+
 	// getter/setter
 
 	public java.lang.Integer getId() {
@@ -435,12 +601,44 @@ public class Model {
 		this.id = newId;
 	}
 
+	public java.lang.Integer getIdWithExample() {
+		return idWithExample;
+	}
+
+	public void setIdWithExample(java.lang.Integer newIdWithExample) {
+		this.idWithExample = newIdWithExample;
+	}
+
+	public java.lang.Integer getIdWithDefault() {
+		return idWithDefault;
+	}
+
+	public void setIdWithDefault(java.lang.Integer newIdWithDefault) {
+		this.idWithDefault = newIdWithDefault;
+	}
+
 	public java.lang.String getName() {
 		return name;
 	}
 
 	public void setName(java.lang.String newName) {
 		this.name = newName;
+	}
+
+	public java.lang.String getNameWithExample() {
+		return nameWithExample;
+	}
+
+	public void setNameWithExample(java.lang.String newNameWithExample) {
+		this.nameWithExample = newNameWithExample;
+	}
+
+	public java.lang.String getNameWithDefault() {
+		return nameWithDefault;
+	}
+
+	public void setNameWithDefault(java.lang.String newNameWithDefault) {
+		this.nameWithDefault = newNameWithDefault;
 	}
 
 	public java.time.LocalDate getDate() {
@@ -451,12 +649,28 @@ public class Model {
 		this.date = newDate;
 	}
 
+	public java.time.LocalDate getDateWithExample() {
+		return dateWithExample;
+	}
+
+	public void setDateWithExample(java.time.LocalDate newDateWithExample) {
+		this.dateWithExample = newDateWithExample;
+	}
+
 	public java.time.Instant getDateTime() {
 		return dateTime;
 	}
 
 	public void setDateTime(java.time.Instant newDateTime) {
 		this.dateTime = newDateTime;
+	}
+
+	public java.time.Instant getDateTimeWithExample() {
+		return dateTimeWithExample;
+	}
+
+	public void setDateTimeWithExample(java.time.Instant newDateTimeWithExample) {
+		this.dateTimeWithExample = newDateTimeWithExample;
 	}
 
 	public java.lang.Double getNumber() {
@@ -499,6 +713,14 @@ public class Model {
 		this.array = newArray;
 	}
 
+	public java.util.List<java.lang.String> getArrayWithExample() {
+		return arrayWithExample;
+	}
+
+	public void setArrayWithExample(java.util.List<java.lang.String> newArrayWithExample) {
+		this.arrayWithExample = newArrayWithExample;
+	}
+
 	public java.util.Set<java.lang.String> getSet() {
 		return set;
 	}
@@ -507,12 +729,28 @@ public class Model {
 		this.set = newSet;
 	}
 
+	public java.util.Set<java.lang.String> getSetWithExamples() {
+		return setWithExamples;
+	}
+
+	public void setSetWithExamples(java.util.Set<java.lang.String> newSetWithExamples) {
+		this.setWithExamples = newSetWithExamples;
+	}
+
 	public java.util.Map<String, java.lang.String> getMap() {
 		return map;
 	}
 
 	public void setMap(java.util.Map<String, java.lang.String> newMap) {
 		this.map = newMap;
+	}
+
+	public java.util.Map<String, java.lang.String> getMapWithExample() {
+		return mapWithExample;
+	}
+
+	public void setMapWithExample(java.util.Map<String, java.lang.String> newMapWithExample) {
+		this.mapWithExample = newMapWithExample;
 	}
 
 	public java.util.List<java.lang.String> getOptionalArray() {
@@ -593,5 +831,13 @@ public class Model {
 
 	public void setDefaultNullable(org.openapitools.jackson.nullable.JsonNullable<java.lang.String> newDefaultNullable) {
 		this.defaultNullable = newDefaultNullable;
+	}
+
+	public EnumerationModel getReferenedModel() {
+		return referenedModel;
+	}
+
+	public void setReferenedModel(EnumerationModel newReferenedModel) {
+		this.referenedModel = newReferenedModel;
 	}
 }
