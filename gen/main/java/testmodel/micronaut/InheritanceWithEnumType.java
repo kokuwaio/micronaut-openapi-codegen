@@ -9,6 +9,7 @@ package testmodel.micronaut;
 })
 @io.micronaut.core.annotation.Introspected
 public abstract class InheritanceWithEnumType {
+
 	public static final String JSON_DISCRIMINATOR = "type";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
@@ -42,7 +43,6 @@ public abstract class InheritanceWithEnumType {
 	}
 
 	// fluent
+
 	// getter/setter
-
 }
-

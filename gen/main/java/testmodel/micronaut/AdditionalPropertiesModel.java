@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class AdditionalPropertiesModel {
+
 	public static final java.lang.String JSON_PROPERTY_ID = "id";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID)
@@ -10,6 +11,7 @@ public class AdditionalPropertiesModel {
 	private java.lang.String id;
 
 	private java.util.Map<java.lang.String,AdditionalPropertiesModelValue> additionalProperties;
+
 	// methods
 
 	@Override
@@ -44,7 +46,6 @@ public class AdditionalPropertiesModel {
 		this.id = newId;
 		return this;
 	}
-	// getter/setter java.util.Map<java.lang.String,AdditionalPropertiesModelValue>
 
 	@com.fasterxml.jackson.annotation.JsonAnyGetter
 	public java.util.Map<java.lang.String,AdditionalPropertiesModelValue> getAdditionalProperties() {
@@ -53,11 +54,13 @@ public class AdditionalPropertiesModel {
 
 	@com.fasterxml.jackson.annotation.JsonAnySetter
 	public void setAdditionalProperties(java.lang.String propertyKey,AdditionalPropertiesModelValue value) {
-        if (this.additionalProperties == null) {
-                    this.additionalProperties = new java.util.HashMap<>();
-                }
-        this.additionalProperties.put(propertyKey, value);
-    }
+		if (this.additionalProperties == null) {
+					this.additionalProperties = new java.util.HashMap<>();
+				}
+		this.additionalProperties.put(propertyKey, value);
+	}
+
+	// getter/setter
 
 	public java.lang.String getId() {
 		return id;
@@ -67,4 +70,3 @@ public class AdditionalPropertiesModel {
 		this.id = newId;
 	}
 }
-

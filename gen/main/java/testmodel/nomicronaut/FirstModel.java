@@ -1,6 +1,7 @@
 package testmodel.nomicronaut;
 
 public class FirstModel implements OneOfModel {
+
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 	public static final java.lang.String JSON_PROPERTY_FIRST = "first";
 	public static final java.lang.String JSON_PROPERTY_SECOND_LEVEL = "secondLevel";
@@ -66,8 +67,8 @@ public class FirstModel implements OneOfModel {
 		this.secondLevel = newSecondLevel;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getType() {
 		return type;
@@ -93,4 +94,3 @@ public class FirstModel implements OneOfModel {
 		this.secondLevel = newSecondLevel;
 	}
 }
-

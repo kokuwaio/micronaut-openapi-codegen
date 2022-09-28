@@ -2,6 +2,7 @@ package testapi.types;
 
 @io.micronaut.core.annotation.Introspected
 public class StringModel {
+
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 
 	@javax.validation.constraints.NotNull
@@ -43,8 +44,8 @@ public class StringModel {
 		this.foo = newFoo;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getFoo() {
 		return foo;
@@ -54,4 +55,3 @@ public class StringModel {
 		this.foo = newFoo;
 	}
 }
-
