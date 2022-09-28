@@ -1,6 +1,7 @@
 package testmodel.nomicronaut;
 
 public class InheritanceWithoutType2 extends InheritanceWithoutType {
+
 	public static final java.lang.String JSON_PROPERTY_G = "g";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_G)
@@ -48,8 +49,8 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
 		this.g = newG;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getG() {
 		return g;
@@ -59,4 +60,3 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
 		this.g = newG;
 	}
 }
-

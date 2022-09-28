@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class InheritanceWithoutType1 extends InheritanceWithoutType {
+
 	public static final java.lang.String JSON_PROPERTY_F = "f";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_F)
@@ -50,8 +51,8 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
 		this.f = newF;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getF() {
 		return f;
@@ -61,4 +62,3 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
 		this.f = newF;
 	}
 }
-

@@ -3,6 +3,7 @@ package testapi.modelsuffix;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class StringModelVO {
+
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 
 	@javax.validation.constraints.NotNull
@@ -44,8 +45,8 @@ public class StringModelVO {
 		this.foo = newFoo;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getFoo() {
 		return foo;
@@ -55,4 +56,3 @@ public class StringModelVO {
 		this.foo = newFoo;
 	}
 }
-

@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class OneOfImplementor2 implements OneOfInterface {
+
 	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_PROPERTY)
@@ -50,8 +51,8 @@ public class OneOfImplementor2 implements OneOfInterface {
 		this.property = newProperty;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.Double getProperty() {
 		return property;
@@ -61,4 +62,3 @@ public class OneOfImplementor2 implements OneOfInterface {
 		this.property = newProperty;
 	}
 }
-

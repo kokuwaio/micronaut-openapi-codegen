@@ -8,6 +8,7 @@ package testmodel.micronaut;
 })
 @io.micronaut.core.annotation.Introspected
 public abstract class InheritanceWithStringType {
+
 	public static final java.lang.String JSON_PROPERTY_A = "a";
 	public static final String JSON_DISCRIMINATOR = "type";
 
@@ -53,8 +54,8 @@ public abstract class InheritanceWithStringType {
 		this.a = newA;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getA() {
 		return a;
@@ -64,4 +65,3 @@ public abstract class InheritanceWithStringType {
 		this.a = newA;
 	}
 }
-

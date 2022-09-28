@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class PropertyTypeTwo implements AdditionalPropertiesModelValue {
+
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TYPE)
@@ -43,8 +44,8 @@ public class PropertyTypeTwo implements AdditionalPropertiesModelValue {
 		this.type = newType;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public Type getType() {
 		return type;
@@ -85,4 +86,3 @@ public enum Type {
 	}
 }
 }
-

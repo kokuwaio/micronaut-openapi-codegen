@@ -1,6 +1,7 @@
 package testmodel.nomicronaut;
 
 public class InheritanceSimple {
+
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 
 	@javax.validation.constraints.NotNull
@@ -42,8 +43,8 @@ public class InheritanceSimple {
 		this.foo = newFoo;
 		return this;
 	}
-	// getter/setter
 
+	// getter/setter
 
 	public java.lang.String getFoo() {
 		return foo;
@@ -53,4 +54,3 @@ public class InheritanceSimple {
 		this.foo = newFoo;
 	}
 }
-
