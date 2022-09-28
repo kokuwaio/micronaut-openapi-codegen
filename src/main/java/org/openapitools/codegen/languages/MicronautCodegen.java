@@ -404,15 +404,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		Map<String, CodegenModel> allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
+
 			// check if composed schemas for additional properties should be handled and apply to the map if so.
+
 			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
-				model.getVendorExtensions()
-						.put("additionalPropertiesMap",
-								Map.of(
-										"keyType", "java.lang.String",
-										"valueType", model.getAdditionalProperties().getDataType()
-								)
-						);
+				model.getVendorExtensions().put("additionalPropertiesMap", Map.of(
+						"keyType", "java.lang.String",
+						"valueType", model.getAdditionalProperties().getDataType()));
 			}
 
 			// handle discriminator
