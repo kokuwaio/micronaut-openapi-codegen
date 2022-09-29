@@ -35,7 +35,8 @@ public class ModelTestExample {
 		exampleInstance.setNullableSet(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Set.of()));
 		exampleInstance.setNullableMap(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Map.of()));
 		exampleInstance.setDefaultString("defaultStringValue");
-		exampleInstance.setDefaultInteger(java.lang.Long.valueOf(1234));
+		exampleInstance.setDefaultInteger(1234);
+		exampleInstance.setDefaultLong(java.lang.Long.valueOf(5678));
 		exampleInstance.setDefaultNullable(org.openapitools.jackson.nullable.JsonNullable.of("defaultNullableValue"));
 		exampleInstance.setReferenedModel(null);
 		exampleInstance.setReferenedModel(EnumerationModelTestExample.build());

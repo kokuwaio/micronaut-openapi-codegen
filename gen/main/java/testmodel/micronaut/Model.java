@@ -33,6 +33,7 @@ public class Model {
 	public static final java.lang.String JSON_PROPERTY_NULLABLE_MAP = "nullableMap";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_INTEGER = "defaultInteger";
+	public static final java.lang.String JSON_PROPERTY_DEFAULT_LONG = "defaultLong";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_NULLABLE = "defaultNullable";
 	public static final java.lang.String JSON_PROPERTY_REFERENED_MODEL = "referenedModel";
 
@@ -155,7 +156,11 @@ public class Model {
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_INTEGER)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.lang.Long defaultInteger = 1234l;
+	private java.lang.Integer defaultInteger = 1234;
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_LONG)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.lang.Long defaultLong = 5678l;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_NULLABLE)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
@@ -206,13 +211,14 @@ public class Model {
 				&& java.util.Objects.equals(nullableMap, other.nullableMap)
 				&& java.util.Objects.equals(defaultString, other.defaultString)
 				&& java.util.Objects.equals(defaultInteger, other.defaultInteger)
+				&& java.util.Objects.equals(defaultLong, other.defaultLong)
 				&& java.util.Objects.equals(defaultNullable, other.defaultNullable)
 				&& java.util.Objects.equals(referenedModel, other.referenedModel);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, java.util.Arrays.hashCode(binary), java.util.Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
+		return java.util.Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, java.util.Arrays.hashCode(binary), java.util.Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
 	}
 
 	@Override
@@ -248,6 +254,7 @@ public class Model {
 				.append("nullableMap=").append(nullableMap).append(",")
 				.append("defaultString=").append(defaultString).append(",")
 				.append("defaultInteger=").append(defaultInteger).append(",")
+				.append("defaultLong=").append(defaultLong).append(",")
 				.append("defaultNullable=").append(defaultNullable).append(",")
 				.append("referenedModel=").append(referenedModel)
 				.append("]")
@@ -576,8 +583,13 @@ public class Model {
 		return this;
 	}
 
-	public Model defaultInteger(java.lang.Long newDefaultInteger) {
+	public Model defaultInteger(java.lang.Integer newDefaultInteger) {
 		this.defaultInteger = newDefaultInteger;
+		return this;
+	}
+
+	public Model defaultLong(java.lang.Long newDefaultLong) {
+		this.defaultLong = newDefaultLong;
 		return this;
 	}
 
@@ -817,12 +829,20 @@ public class Model {
 		this.defaultString = newDefaultString;
 	}
 
-	public java.lang.Long getDefaultInteger() {
+	public java.lang.Integer getDefaultInteger() {
 		return defaultInteger;
 	}
 
-	public void setDefaultInteger(java.lang.Long newDefaultInteger) {
+	public void setDefaultInteger(java.lang.Integer newDefaultInteger) {
 		this.defaultInteger = newDefaultInteger;
+	}
+
+	public java.lang.Long getDefaultLong() {
+		return defaultLong;
+	}
+
+	public void setDefaultLong(java.lang.Long newDefaultLong) {
+		this.defaultLong = newDefaultLong;
 	}
 
 	public org.openapitools.jackson.nullable.JsonNullable<java.lang.String> getDefaultNullable() {

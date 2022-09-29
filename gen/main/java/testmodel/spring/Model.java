@@ -137,7 +137,10 @@ public class Model {
   private String defaultString = "defaultStringValue";
 
   @JsonProperty("defaultInteger")
-  private Long defaultInteger = 1234l;
+  private Integer defaultInteger = 1234;
+
+  @JsonProperty("defaultLong")
+  private Long defaultLong = 5678l;
 
   @JsonProperty("defaultNullable")
   private JsonNullable<String> defaultNullable = JsonNullable.undefined();
@@ -767,7 +770,7 @@ public class Model {
     this.defaultString = defaultString;
   }
 
-  public Model defaultInteger(Long defaultInteger) {
+  public Model defaultInteger(Integer defaultInteger) {
     this.defaultInteger = defaultInteger;
     return this;
   }
@@ -778,12 +781,31 @@ public class Model {
   */
   
   @Schema(name = "defaultInteger", required = false)
-  public Long getDefaultInteger() {
+  public Integer getDefaultInteger() {
     return defaultInteger;
   }
 
-  public void setDefaultInteger(Long defaultInteger) {
+  public void setDefaultInteger(Integer defaultInteger) {
     this.defaultInteger = defaultInteger;
+  }
+
+  public Model defaultLong(Long defaultLong) {
+    this.defaultLong = defaultLong;
+    return this;
+  }
+
+  /**
+   * Get defaultLong
+   * @return defaultLong
+  */
+  
+  @Schema(name = "defaultLong", required = false)
+  public Long getDefaultLong() {
+    return defaultLong;
+  }
+
+  public void setDefaultLong(Long defaultLong) {
+    this.defaultLong = defaultLong;
   }
 
   public Model defaultNullable(String defaultNullable) {
@@ -862,6 +884,7 @@ public class Model {
         Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
+        Objects.equals(this.defaultLong, model.defaultLong) &&
         Objects.equals(this.defaultNullable, model.defaultNullable) &&
         Objects.equals(this.referenedModel, model.referenedModel);
   }
@@ -872,7 +895,7 @@ public class Model {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -915,6 +938,7 @@ public class Model {
     sb.append("    nullableMap: ").append(toIndentedString(nullableMap)).append("\n");
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
+    sb.append("    defaultLong: ").append(toIndentedString(defaultLong)).append("\n");
     sb.append("    defaultNullable: ").append(toIndentedString(defaultNullable)).append("\n");
     sb.append("    referenedModel: ").append(toIndentedString(referenedModel)).append("\n");
     sb.append("}");
