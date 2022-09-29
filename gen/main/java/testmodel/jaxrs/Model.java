@@ -60,7 +60,8 @@ public class Model   {
   private @Valid Set<String> nullableSet = null;
   private @Valid Map<String, String> nullableMap = null;
   private @Valid String defaultString = "defaultStringValue";
-  private @Valid Long defaultInteger = 1234l;
+  private @Valid Integer defaultInteger = 1234;
+  private @Valid Long defaultLong = 5678l;
   private @Valid String defaultNullable = "defaultNullableValue";
   private @Valid EnumerationModel referenedModel;
 
@@ -797,7 +798,7 @@ public class Model   {
 
   /**
    **/
-  public Model defaultInteger(Long defaultInteger) {
+  public Model defaultInteger(Integer defaultInteger) {
     this.defaultInteger = defaultInteger;
     return this;
   }
@@ -805,13 +806,32 @@ public class Model   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("defaultInteger")
-  public Long getDefaultInteger() {
+  public Integer getDefaultInteger() {
     return defaultInteger;
   }
 
   @JsonProperty("defaultInteger")
-  public void setDefaultInteger(Long defaultInteger) {
+  public void setDefaultInteger(Integer defaultInteger) {
     this.defaultInteger = defaultInteger;
+  }
+
+  /**
+   **/
+  public Model defaultLong(Long defaultLong) {
+    this.defaultLong = defaultLong;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("defaultLong")
+  public Long getDefaultLong() {
+    return defaultLong;
+  }
+
+  @JsonProperty("defaultLong")
+  public void setDefaultLong(Long defaultLong) {
+    this.defaultLong = defaultLong;
   }
 
   /**
@@ -891,13 +911,14 @@ public class Model   {
         Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
+        Objects.equals(this.defaultLong, model.defaultLong) &&
         Objects.equals(this.defaultNullable, model.defaultNullable) &&
         Objects.equals(this.referenedModel, model.referenedModel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
   }
 
   @Override
@@ -934,6 +955,7 @@ public class Model   {
     sb.append("    nullableMap: ").append(toIndentedString(nullableMap)).append("\n");
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
+    sb.append("    defaultLong: ").append(toIndentedString(defaultLong)).append("\n");
     sb.append("    defaultNullable: ").append(toIndentedString(defaultNullable)).append("\n");
     sb.append("    referenedModel: ").append(toIndentedString(referenedModel)).append("\n");
     sb.append("}");

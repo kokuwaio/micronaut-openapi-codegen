@@ -45,6 +45,7 @@ Include in your `pom.xml`:
 * add validation annotations
 * support for One-Of interfaces
 * support for additional properties with composed schemas
+* generate example instances of the model-objects
 
 ### Config options
 
@@ -57,6 +58,7 @@ Include in your `pom.xml`:
 * openApiNullable: add container `JsonNullable` to model objects that are nullable (default `true`)
 * supportAsync: use reactivex return types, see [Reactive HTTP Request Processing](https://docs.micronaut.io/latest/guide/index.html#reactiveServer)
 * pagable: generate provider for pagable (default `false`)
+* generateExamples: generate example objects for the model, based on example and default values (default `false`)
 
 For examples see [integration tests](src/it).
 

@@ -46,6 +46,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String PAGEABLE = "pageable";
+	public static final String GENERATE_EXAMPLES = "generateExamples";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
@@ -57,6 +58,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private static final Logger LOG = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	private boolean generateApiTests = true;
+	private boolean generateExamples = false;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 	private boolean useOptional = true;
@@ -81,6 +83,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
 		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
+		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES, "Generate examples for tests.", generateExamples));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
 		// there is no documentation template yet
@@ -101,6 +104,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_OPTIONAL, useOptional);
 		additionalProperties.put(INTROSPECTED, introspected);
 		additionalProperties.put(PAGEABLE, pageable);
+		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
 
 		// add custom type mappings
 
@@ -204,6 +208,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(OPENAPI_NULLABLE)) {
 			openApiNullable = convertPropertyToBooleanAndWriteBack(OPENAPI_NULLABLE);
 		}
+		if (additionalProperties.containsKey(GENERATE_EXAMPLES)) {
+			generateExamples = convertPropertyToBooleanAndWriteBack(GENERATE_EXAMPLES);
+		}
 
 		// we do not generate projects, only api, set source and test folder
 
@@ -229,6 +236,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				apiTestTemplateFiles.put("testClient.mustache", "Client.java");
 				addSupportingFile(testFolder, invokerPackage, "HttpResponseAssertions");
 			}
+		}
+		if (generateExamples) {
+			modelTestTemplateFiles.put("testExampleObject.mustache", "Example.java");
 		}
 
 		// add type mappings for mustache
@@ -545,6 +555,96 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			return "new " + getSchemaType(schema) + "()";
 		}
 		return super.toDefaultValue(schema);
+	}
+
+	@Override
+	public String toExampleValue(Schema schema) {
+
+		// first choice: use the example, provided from the spec
+		// second choice: use the default provided by the spec
+		// special handling for enum: if no example or default is provided, use the first value
+		Optional<String> value = Optional
+				.ofNullable(schema.getExample())
+				.or(() -> Optional.ofNullable(schema.getDefault()))
+				.or(() -> Optional.ofNullable(schema.getEnum()).flatMap(e -> e.stream().findFirst()))
+				.map(Object::toString);
+
+		// third choice: set type-specific default examples
+
+		if (ModelUtils.isBooleanSchema(schema)) {
+			return value.orElse("false");
+		}
+		if (ModelUtils.isLongSchema(schema)) {
+			return value.orElse("100L") + "L";
+		}
+		if (ModelUtils.isFloatSchema(schema)) {
+			return value.orElse("12.34") + "F";
+		}
+		if (ModelUtils.isDoubleSchema(schema)) {
+			return value.orElse("43.21") + "D";
+		}
+		if (ModelUtils.isIntegerSchema(schema) || ModelUtils.isShortSchema(schema)) {
+			return value.orElse("12");
+		}
+		if (ModelUtils.isNumberSchema(schema)) {
+			return value.map(v -> "java.lang.Number.valueOf(\"" + v + "\")").orElse("12.34");
+		}
+
+		if (ModelUtils.isDateSchema(schema)) {
+			if (typeMapping.get(schema.getType()).equals("java.time.LocalDate")) {
+				return "java.time.LocalDate." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
+			} else {
+				// we cannot provide a valid example for all possible date types
+				return "null";
+			}
+		}
+		if (ModelUtils.isDateTimeSchema(schema)) {
+			if (typeMapping.get(schema.getType()).equals("java.time.Instant")) {
+				return "java.time.Instant." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
+			} else {
+				// we cannot provide a valid example for all possible date types
+				return "null";
+			}
+		}
+		if (ModelUtils.isByteArraySchema(schema) || ModelUtils.isBinarySchema(schema)) {
+			return value.orElse("\"byteArray\".getBytes()");
+		}
+		if (ModelUtils.isFileSchema(schema)) {
+			return value.orElse("\"myFile\".getBytes()");
+		}
+		if (ModelUtils.isUUIDSchema(schema)) {
+			return "java.util.UUID." + value.map(v -> "fromString(\"" + v + "\")").orElse("randomUUID()");
+		}
+		if (ModelUtils.isURISchema(schema)) {
+			return "java.net.URI.create(\"" + value.orElse("my:uri") + "\")";
+		}
+		if (ModelUtils.isEmailSchema(schema)) {
+			return '"' + value.orElse("mail@example.org") + '"';
+		}
+		if (ModelUtils.isStringSchema(schema)) {
+			return '"' + value.orElse("string") + '"';
+		}
+
+		if (ModelUtils.isMapSchema(schema)) {
+			return "java.util.Map." + value
+					.map(v -> (Map<?, ?>) new org.yaml.snakeyaml.Yaml().loadAs(v, Map.class))
+					.filter(map -> !map.isEmpty())
+					.map(map -> map.entrySet().stream()
+							.map(e -> "new java.util.AbstractMap.SimpleEntry(\""
+									+ e.getKey() + "\", \"" + e.getValue() + "\")")
+							.collect(Collectors.joining(", ")))
+					.map(map -> "ofEntries(" + map + ")")
+					.orElse("of()");
+		}
+		if (ModelUtils.isSet(schema)) {
+			return "java.util.Set.of(" + value.map(v -> v.substring(1, v.length() - 1)).orElse("") + ")";
+		}
+		if (ModelUtils.isArraySchema(schema)) {
+			return "java.util.List.of(" + value.map(v -> v.substring(1, v.length() - 1)).orElse("") + ")";
+		}
+
+		// if no example can be generated, leave it null.
+		return "null";
 	}
 
 	// internal

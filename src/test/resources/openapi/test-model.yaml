@@ -135,8 +135,12 @@ components:
           default: defaultStringValue
         defaultInteger:
           type: integer
-          format: int64
+          format: int32
           default: 1234
+        defaultLong:
+          type: integer
+          format: int64
+          default: 5678
         defaultNullable:
           type: string
           default: defaultNullableValue
