@@ -46,6 +46,7 @@
 					<generateSupportingFiles>false</generateSupportingFiles>
 					<configOptions>
 						<introspected>false</introspected>
+						<generateExamples>true</generateExamples>
 						<useBeanValidation>false</useBeanValidation>
 					</configOptions>
 					<typeMappings>

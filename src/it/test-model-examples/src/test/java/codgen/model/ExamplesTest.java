@@ -47,5 +47,4 @@ public class ExamplesTest {
 		assertDoesNotThrow(() -> SecondLevelOneModelTestExample.build(), "The example should have been built.");
 		assertDoesNotThrow(() -> SecondLevelTwoModelTestExample.build(), "The example should have been built.");
 	}
-
 }
