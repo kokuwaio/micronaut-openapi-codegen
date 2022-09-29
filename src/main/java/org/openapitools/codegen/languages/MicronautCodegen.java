@@ -58,6 +58,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private static final Logger LOG = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	private boolean generateApiTests = true;
+	private boolean generateExamples = false;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 	private boolean useOptional = true;
@@ -65,7 +66,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
 	private boolean isClient = false;
-	private boolean generateExamples = true;
 
 	public MicronautCodegen() {
 
@@ -83,9 +83,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
 		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
+		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES, "Generate examples for tests.", generateExamples));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
-		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES,
-				"Generate example instances for tests.", generateExamples));
 
 		// there is no documentation template yet
 
@@ -110,7 +109,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// add custom type mappings
 
 		typeMapping.clear();
-
 		typeMapping.put("object", java.lang.Object.class.getName());
 		typeMapping.put("AnyType", java.lang.Object.class.getName());
 		typeMapping.put("date", java.time.LocalDate.class.getName());
@@ -402,7 +400,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// see https://github.com/OpenAPITools/openapi-generator/issues/6708
 
 		codegenResponse.vendorExtensions.put(ApiResponse.class.getName(), response);
-		
+
 		return codegenResponse;
 	}
 
