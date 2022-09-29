@@ -71,6 +71,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Model.JSON_PROPERTY_NULLABLE_MAP,
   Model.JSON_PROPERTY_DEFAULT_STRING,
   Model.JSON_PROPERTY_DEFAULT_INTEGER,
+  Model.JSON_PROPERTY_DEFAULT_LONG,
   Model.JSON_PROPERTY_DEFAULT_NULLABLE,
   Model.JSON_PROPERTY_REFERENED_MODEL
 })
@@ -162,7 +163,10 @@ public class Model {
   private String defaultString = "defaultStringValue";
 
   public static final String JSON_PROPERTY_DEFAULT_INTEGER = "defaultInteger";
-  private Long defaultInteger = 1234l;
+  private Integer defaultInteger = 1234;
+
+  public static final String JSON_PROPERTY_DEFAULT_LONG = "defaultLong";
+  private Long defaultLong = 5678l;
 
   public static final String JSON_PROPERTY_DEFAULT_NULLABLE = "defaultNullable";
   private String defaultNullable = "defaultNullableValue";
@@ -1019,7 +1023,7 @@ public class Model {
   }
 
 
-  public Model defaultInteger(Long defaultInteger) {
+  public Model defaultInteger(Integer defaultInteger) {
     
     this.defaultInteger = defaultInteger;
     return this;
@@ -1034,15 +1038,42 @@ public class Model {
   @JsonProperty(JSON_PROPERTY_DEFAULT_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getDefaultInteger() {
+  public Integer getDefaultInteger() {
     return defaultInteger;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DEFAULT_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultInteger(Long defaultInteger) {
+  public void setDefaultInteger(Integer defaultInteger) {
     this.defaultInteger = defaultInteger;
+  }
+
+
+  public Model defaultLong(Long defaultLong) {
+    
+    this.defaultLong = defaultLong;
+    return this;
+  }
+
+   /**
+   * Get defaultLong
+   * @return defaultLong
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DEFAULT_LONG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Long getDefaultLong() {
+    return defaultLong;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DEFAULT_LONG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDefaultLong(Long defaultLong) {
+    this.defaultLong = defaultLong;
   }
 
 
@@ -1138,6 +1169,7 @@ public class Model {
         Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
+        Objects.equals(this.defaultLong, model.defaultLong) &&
         Objects.equals(this.defaultNullable, model.defaultNullable) &&
         Objects.equals(this.referenedModel, model.referenedModel);
   }
@@ -1148,7 +1180,7 @@ public class Model {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultNullable, referenedModel);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1191,6 +1223,7 @@ public class Model {
     sb.append("    nullableMap: ").append(toIndentedString(nullableMap)).append("\n");
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
+    sb.append("    defaultLong: ").append(toIndentedString(defaultLong)).append("\n");
     sb.append("    defaultNullable: ").append(toIndentedString(defaultNullable)).append("\n");
     sb.append("    referenedModel: ").append(toIndentedString(referenedModel)).append("\n");
     sb.append("}");
