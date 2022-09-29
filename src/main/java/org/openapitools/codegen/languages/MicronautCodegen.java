@@ -560,120 +560,91 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	@Override
 	public String toExampleValue(Schema schema) {
 
-		String exampleValue = null;
-		if (schema.getExample() != null) {
-			// first choice: use the example, provided from the spec
-			exampleValue = schema.getExample().toString();
-		} else if (schema.getDefault() != null) {
-			// second choice: use the default provided by the spec
-			exampleValue = schema.getDefault().toString();
-		} else if (schema.getEnum() != null && !schema.getEnum().isEmpty()) {
-			// special handling for enum: if no example or default is provided, use the first value
-			exampleValue = schema.getEnum().get(0).toString();
-		}
+		// first choice: use the example, provided from the spec
+		// second choice: use the default provided by the spec
+		// special handling for enum: if no example or default is provided, use the first value
+		Optional<String> value = Optional
+				.ofNullable(schema.getExample())
+				.or(() -> Optional.ofNullable(schema.getDefault()))
+				.or(() -> Optional.ofNullable(schema.getEnum()).flatMap(e -> e.stream().findFirst()))
+				.map(Object::toString);
 
 		// third choice: set type-specific default examples
+
 		if (ModelUtils.isBooleanSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("false");
-		} else if (ModelUtils.isDateSchema(schema)) {
+			return value.orElse("false");
+		}
+		if (ModelUtils.isLongSchema(schema)) {
+			return value.orElse("100L") + "L";
+		}
+		if (ModelUtils.isFloatSchema(schema)) {
+			return value.orElse("12.34") + "F";
+		}
+		if (ModelUtils.isDoubleSchema(schema)) {
+			return value.orElse("43.21") + "D";
+		}
+		if (ModelUtils.isIntegerSchema(schema) || ModelUtils.isShortSchema(schema)) {
+			return value.orElse("12");
+		}
+		if (ModelUtils.isNumberSchema(schema)) {
+			return value.map(v -> "java.lang.Number.valueOf(\"" + v + "\")").orElse("12.34");
+		}
+
+		if (ModelUtils.isDateSchema(schema)) {
 			if (typeMapping.get(schema.getType()).equals("java.time.LocalDate")) {
-				return Optional.ofNullable(exampleValue)
-						.map(ev -> String.format("java.time.LocalDate.parse(\"%s\")", ev))
-						.orElse("java.time.LocalDate.now()");
+				return "java.time.LocalDate." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
 			} else {
 				// we cannot provide a valid example for all possible date types
 				return "null";
 			}
-		} else if (ModelUtils.isDateTimeSchema(schema)) {
+		}
+		if (ModelUtils.isDateTimeSchema(schema)) {
 			if (typeMapping.get(schema.getType()).equals("java.time.Instant")) {
-				return Optional.ofNullable(exampleValue)
-						.map(ev -> String.format("java.time.Instant.parse(\"%s\")", ev))
-						.orElse("java.time.Instant.now()");
+				return "java.time.Instant." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
 			} else {
 				// we cannot provide a valid example for all possible date types
 				return "null";
 			}
-		} else if (ModelUtils.isLongSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Long.valueOf(%s)", ev))
-					.orElse("100l");
-		} else if (ModelUtils.isFloatSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Float.valueOf(%s)", ev))
-					.orElse("12.34");
-		} else if (ModelUtils.isDoubleSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Double.valueOf(%s)", ev))
-					.orElse("43.21");
-		} else if (ModelUtils.isIntegerSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("12");
-		} else if (ModelUtils.isShortSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("1");
-		} else if (ModelUtils.isNumberSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.lang.Number.valueOf(%s)", ev))
-					.orElse("12.34");
-		} else if (ModelUtils.isByteArraySchema(schema) || ModelUtils.isBinarySchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("\"byteArray\".getBytes()");
-		} else if (ModelUtils.isFileSchema(schema)) {
-			return Optional.ofNullable(exampleValue).orElse("\"myFile\".getBytes()");
-		} else if (ModelUtils.isUUIDSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.util.UUID.fromString(\"%s\")", ev))
-					.orElse("java.util.UUID.randomUUID()");
-		} else if (ModelUtils.isURISchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("java.net.URI.create(\"%s\")", ev))
-					.orElse("java.net.URI.create(\"my:uri\")");
-		} else if (ModelUtils.isEmailSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("\"%s\"", ev))
-					.orElse("\"example@mail.org\"");
-		} else if (ModelUtils.isStringSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("\"%s\"", ev))
-					.orElse("\"string\"");
-		} else if (ModelUtils.isMapSchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("%s", ev))
-					.map(this::parseYamlMapToMapString)
-					.orElse("java.util.Map.of()");
-		} else if (ModelUtils.isSet(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("%s", ev))
-					.map(this::parseYamlArrayToSetString)
-					.orElse("java.util.Set.of()");
-		} else if (ModelUtils.isArraySchema(schema)) {
-			return Optional.ofNullable(exampleValue)
-					.map(ev -> String.format("%s", ev))
-					.map(this::parseYamlArrayToListString)
-					.orElse("java.util.List.of()");
-		} else {
-			// if no example can be generated, leave it null.
-			return "null";
 		}
-	}
-
-	private String parseYamlMapToMapString(String yamlMap) {
-
-		Map<?, ?> parsedMap = new org.yaml.snakeyaml.Yaml().loadAs(yamlMap, Map.class);
-		List<String> entryList = new ArrayList<>();
-
-		for (Map.Entry<?, ?> e : parsedMap.entrySet()) {
-			entryList.add(
-					String.format("new java.util.AbstractMap.SimpleEntry(\"%s\", \"%s\")",
-							e.getKey(),
-							e.getValue()));
+		if (ModelUtils.isByteArraySchema(schema) || ModelUtils.isBinarySchema(schema)) {
+			return value.orElse("\"byteArray\".getBytes()");
 		}
-		return String.format("java.util.Map.ofEntries(%s)", String.join(", ", entryList));
-	}
+		if (ModelUtils.isFileSchema(schema)) {
+			return value.orElse("\"myFile\".getBytes()");
+		}
+		if (ModelUtils.isUUIDSchema(schema)) {
+			return "java.util.UUID." + value.map(v -> "fromString(\"" + v + "\")").orElse("randomUUID()");
+		}
+		if (ModelUtils.isURISchema(schema)) {
+			return "java.net.URI.create(\"" + value.orElse("my:uri") + "\")";
+		}
+		if (ModelUtils.isEmailSchema(schema)) {
+			return '"' + value.orElse("mail@example.org") + '"';
+		}
+		if (ModelUtils.isStringSchema(schema)) {
+			return '"' + value.orElse("string") + '"';
+		}
 
-	private String parseYamlArrayToListString(String yamlArray) {
-		return String.format("java.util.List.of(%s)", yamlArray.substring(1, yamlArray.length() - 1));
-	}
+		if (ModelUtils.isMapSchema(schema)) {
+			return "java.util.Map." + value
+					.map(v -> (Map<?, ?>) new org.yaml.snakeyaml.Yaml().loadAs(v, Map.class))
+					.filter(map -> !map.isEmpty())
+					.map(map -> map.entrySet().stream()
+							.map(e -> "new java.util.AbstractMap.SimpleEntry(\""
+									+ e.getKey() + "\", \"" + e.getValue() + "\")")
+							.collect(Collectors.joining(", ")))
+					.map(map -> "ofEntries(" + map + ")")
+					.orElse("of()");
+		}
+		if (ModelUtils.isSet(schema)) {
+			return "java.util.Set.of(" + value.map(v -> v.substring(1, v.length() - 1)).orElse("") + ")";
+		}
+		if (ModelUtils.isArraySchema(schema)) {
+			return "java.util.List.of(" + value.map(v -> v.substring(1, v.length() - 1)).orElse("") + ")";
+		}
 
-	private String parseYamlArrayToSetString(String yamlArray) {
-		return String.format("java.util.Set.of(%s)", yamlArray.substring(1, yamlArray.length() - 1));
+		// if no example can be generated, leave it null.
+		return "null";
 	}
 
 	// internal
