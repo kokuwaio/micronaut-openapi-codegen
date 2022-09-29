@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class SecondLevelOneModel implements SecondLevelModel {
+
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 	public static final java.lang.String JSON_PROPERTY_ONE = "one";
 
@@ -56,6 +57,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
 		return this;
 	}
 
+	// getter/setter
 
 	public java.lang.String getType() {
 		return type;
@@ -73,4 +75,3 @@ public class SecondLevelOneModel implements SecondLevelModel {
 		this.one = newOne;
 	}
 }
-

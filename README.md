@@ -43,6 +43,8 @@ Include in your `pom.xml`:
 * generate interfaces for api tests based on method name and return code
 * generate client interfaces with micronaut **clientId**
 * add validation annotations
+* support for One-Of interfaces
+* support for additional properties with composed schemas
 * generate example instances of the model-objects
 
 ### Config options

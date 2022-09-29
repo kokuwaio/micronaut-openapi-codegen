@@ -24,16 +24,12 @@ import org.openapitools.codegen.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.stream.Collectors;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.MediaType;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.servers.Server;
 
 import static org.openapitools.codegen.CodegenConstants.GENERATE_ALIAS_AS_MODEL;
 import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
@@ -71,6 +67,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean generateAliasAsModel = false;
 
 	public MicronautCodegen() {
+
+		// enable the supported default-codegen features
+
+		supportsAdditionalPropertiesWithComposedSchema = true;
+		useOneOfInterfaces = true;
 
 		cliOptions.clear();
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use bean validation annotations", useBeanValidation));
@@ -418,7 +419,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		objs.entrySet().removeIf(e -> e.getKey().endsWith("_allOf"));
 
-
 		Map<String, CodegenModel> allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
 			// check if composed schemas for additional properties should be handled and apply to the map if so.
@@ -427,6 +427,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 						.put("additionalPropertiesMap",
 								Map.of("keyType", "java.lang.String",
 										"valueType", model.getAdditionalProperties().getDataType()));
+			}
+
+			// check if composed schemas for additional properties should be handled and apply to the map if so.
+
+			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
+				model.getVendorExtensions().put("additionalPropertiesMap", Map.of(
+						"keyType", "java.lang.String",
+						"valueType", model.getAdditionalProperties().getDataType()));
 			}
 
 			// handle discriminator

@@ -588,6 +588,8 @@ public class Model {
 		return this;
 	}
 
+	// getter/setter
+
 
 	public java.lang.Integer getId() {
 		return id;
