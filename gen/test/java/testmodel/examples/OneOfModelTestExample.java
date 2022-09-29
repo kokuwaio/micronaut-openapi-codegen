@@ -4,8 +4,8 @@ import testmodel.examples.OneOfModel.*;
 
 public class OneOfModelTestExample {
 
-        public static OneOfModel buildOneOfModel() {
+        public static OneOfModel build() {
             // use the first found implementation as example
-            return FirstModelTestExample.buildFirstModel();
+            return FirstModelTestExample.build();
         }
 }

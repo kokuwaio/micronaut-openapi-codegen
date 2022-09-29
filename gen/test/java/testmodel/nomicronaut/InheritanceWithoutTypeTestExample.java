@@ -4,8 +4,8 @@ import testmodel.nomicronaut.InheritanceWithoutType.*;
 
 public class InheritanceWithoutTypeTestExample {
 
-        public static InheritanceWithoutType buildInheritanceWithoutType() {
+        public static InheritanceWithoutType build() {
             // use the first found implementation as example
-            return InheritanceWithoutType1TestExample.buildInheritanceWithoutType1();
+            return InheritanceWithoutType1TestExample.build();
         }
 }

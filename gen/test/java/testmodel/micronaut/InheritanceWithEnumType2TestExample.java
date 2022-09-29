@@ -4,7 +4,7 @@ import testmodel.micronaut.InheritanceWithEnumType2.*;
 
 public class InheritanceWithEnumType2TestExample {
 
-        public static InheritanceWithEnumType2 buildInheritanceWithEnumType2() {
+        public static InheritanceWithEnumType2 build() {
             InheritanceWithEnumType2 exampleInstance = new InheritanceWithEnumType2();
             //initialize fields
             exampleInstance.setE("string");

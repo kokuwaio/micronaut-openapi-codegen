@@ -4,13 +4,13 @@ import testmodel.nomicronaut.FirstModel.*;
 
 public class FirstModelTestExample {
 
-        public static FirstModel buildFirstModel() {
+        public static FirstModel build() {
             FirstModel exampleInstance = new FirstModel();
             //initialize fields
             exampleInstance.setType("string");
             exampleInstance.setFirst("string");
             exampleInstance.setSecondLevel(null);
-            exampleInstance.setSecondLevel(SecondLevelModelTestExample.buildSecondLevelModel());
+            exampleInstance.setSecondLevel(SecondLevelModelTestExample.build());
             return exampleInstance;
         }
 }

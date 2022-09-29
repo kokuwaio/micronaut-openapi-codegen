@@ -4,7 +4,7 @@ import testmodel.examples.EnumerationModel.*;
 
 public class EnumerationModelTestExample {
 
-        public static EnumerationModel buildEnumerationModel() {
+        public static EnumerationModel build() {
             EnumerationModel exampleInstance = new EnumerationModel();
             //initialize fields
             exampleInstance.setString(null);

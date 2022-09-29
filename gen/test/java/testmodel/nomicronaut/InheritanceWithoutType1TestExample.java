@@ -4,7 +4,7 @@ import testmodel.nomicronaut.InheritanceWithoutType1.*;
 
 public class InheritanceWithoutType1TestExample {
 
-        public static InheritanceWithoutType1 buildInheritanceWithoutType1() {
+        public static InheritanceWithoutType1 build() {
             InheritanceWithoutType1 exampleInstance = new InheritanceWithoutType1();
             //initialize fields
             exampleInstance.setF("string");

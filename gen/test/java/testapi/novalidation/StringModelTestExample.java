@@ -4,7 +4,7 @@ import testapi.novalidation.StringModel.*;
 
 public class StringModelTestExample {
 
-        public static StringModel buildStringModel() {
+        public static StringModel build() {
             StringModel exampleInstance = new StringModel();
             //initialize fields
             exampleInstance.setFoo("string");

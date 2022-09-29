@@ -4,8 +4,8 @@ import testmodel.examples.InheritanceWithStringType.*;
 
 public class InheritanceWithStringTypeTestExample {
 
-        public static InheritanceWithStringType buildInheritanceWithStringType() {
+        public static InheritanceWithStringType build() {
             // use the first found implementation as example
-            return InheritanceWithStringType1TestExample.buildInheritanceWithStringType1();
+            return InheritanceWithStringType1TestExample.build();
         }
 }

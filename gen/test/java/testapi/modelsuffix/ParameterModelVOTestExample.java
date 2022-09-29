@@ -4,7 +4,7 @@ import testapi.modelsuffix.ParameterModelVO.*;
 
 public class ParameterModelVOTestExample {
 
-        public static ParameterModelVO buildParameterModelVO() {
+        public static ParameterModelVO build() {
             ParameterModelVO exampleInstance = new ParameterModelVO();
             //initialize fields
             exampleInstance.setBool("string");

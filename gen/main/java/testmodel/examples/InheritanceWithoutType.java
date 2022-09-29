@@ -8,6 +8,7 @@ package testmodel.examples;
 })
 @io.micronaut.core.annotation.Introspected
 public abstract class InheritanceWithoutType {
+
 	public static final java.lang.String JSON_PROPERTY_E = "e";
 	public static final String JSON_DISCRIMINATOR = "type";
 
@@ -54,6 +55,7 @@ public abstract class InheritanceWithoutType {
 		return this;
 	}
 
+	// getter/setter
 
 	public java.lang.String getE() {
 		return e;
@@ -63,4 +65,3 @@ public abstract class InheritanceWithoutType {
 		this.e = newE;
 	}
 }
-

@@ -4,7 +4,7 @@ import testmodel.examples.SecondLevelOneModel.*;
 
 public class SecondLevelOneModelTestExample {
 
-        public static SecondLevelOneModel buildSecondLevelOneModel() {
+        public static SecondLevelOneModel build() {
             SecondLevelOneModel exampleInstance = new SecondLevelOneModel();
             //initialize fields
             exampleInstance.setType("string");

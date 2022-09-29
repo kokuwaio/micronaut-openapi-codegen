@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class InheritanceExtended {
+
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
 
@@ -58,6 +59,7 @@ public class InheritanceExtended {
 		return this;
 	}
 
+	// getter/setter
 
 	public java.lang.String getFoo() {
 		return foo;
@@ -75,4 +77,3 @@ public class InheritanceExtended {
 		this.bar = newBar;
 	}
 }
-

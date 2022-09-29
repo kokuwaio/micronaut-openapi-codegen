@@ -3,6 +3,7 @@ package testmodel.micronaut;
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.core.annotation.Introspected
 public class EnumerationModel {
+
 	public static final java.lang.String JSON_PROPERTY_STRING = "string";
 	public static final java.lang.String JSON_PROPERTY_STRING_DEFAULT = "string-default";
 	public static final java.lang.String JSON_PROPERTY_EMBEDDED = "embedded";
@@ -80,6 +81,7 @@ public class EnumerationModel {
 		return this;
 	}
 
+	// getter/setter
 
 	public EnumerationString getString() {
 		return string;
@@ -179,4 +181,3 @@ public enum EmbeddedDefault {
 	}
 }
 }
-

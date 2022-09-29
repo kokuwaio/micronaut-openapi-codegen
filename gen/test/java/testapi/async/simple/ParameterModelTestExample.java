@@ -4,7 +4,7 @@ import testapi.async.simple.ParameterModel.*;
 
 public class ParameterModelTestExample {
 
-        public static ParameterModel buildParameterModel() {
+        public static ParameterModel build() {
             ParameterModel exampleInstance = new ParameterModel();
             //initialize fields
             exampleInstance.setBool("string");

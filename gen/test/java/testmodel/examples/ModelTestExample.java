@@ -4,7 +4,7 @@ import testmodel.examples.Model.*;
 
 public class ModelTestExample {
 
-        public static Model buildModel() {
+        public static Model build() {
             Model exampleInstance = new Model();
             //initialize fields
             exampleInstance.setId(12);
@@ -38,7 +38,7 @@ public class ModelTestExample {
             exampleInstance.setDefaultInteger(java.lang.Long.valueOf(1234));
             exampleInstance.setDefaultNullable(org.openapitools.jackson.nullable.JsonNullable.of("defaultNullableValue"));
             exampleInstance.setReferenedModel(null);
-            exampleInstance.setReferenedModel(EnumerationModelTestExample.buildEnumerationModel());
+            exampleInstance.setReferenedModel(EnumerationModelTestExample.build());
             return exampleInstance;
         }
 }

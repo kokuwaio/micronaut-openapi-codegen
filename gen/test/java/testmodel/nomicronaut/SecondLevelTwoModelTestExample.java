@@ -4,7 +4,7 @@ import testmodel.nomicronaut.SecondLevelTwoModel.*;
 
 public class SecondLevelTwoModelTestExample {
 
-        public static SecondLevelTwoModel buildSecondLevelTwoModel() {
+        public static SecondLevelTwoModel build() {
             SecondLevelTwoModel exampleInstance = new SecondLevelTwoModel();
             //initialize fields
             exampleInstance.setType("string");

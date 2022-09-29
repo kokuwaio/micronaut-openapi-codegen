@@ -4,7 +4,7 @@ import testapi.packages.model.Multipart.*;
 
 public class MultipartTestExample {
 
-        public static Multipart buildMultipart() {
+        public static Multipart build() {
             Multipart exampleInstance = new Multipart();
             //initialize fields
             exampleInstance.setOrderId(12);

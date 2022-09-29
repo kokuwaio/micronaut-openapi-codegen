@@ -2,6 +2,7 @@ package testapi.types;
 
 @io.micronaut.core.annotation.Introspected
 public class ParameterModel {
+
 	public static final java.lang.String JSON_PROPERTY_BOOL = "bool";
 	public static final java.lang.String JSON_PROPERTY_STRING = "string";
 	public static final java.lang.String JSON_PROPERTY_NUMBER = "number";
@@ -196,6 +197,7 @@ public class ParameterModel {
 		return this;
 	}
 
+	// getter/setter
 
 	public java.lang.String getBool() {
 		return bool;
@@ -277,4 +279,3 @@ public class ParameterModel {
 		this.c = newC;
 	}
 }
-

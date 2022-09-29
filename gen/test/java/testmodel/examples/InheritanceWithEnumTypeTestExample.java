@@ -4,8 +4,8 @@ import testmodel.examples.InheritanceWithEnumType.*;
 
 public class InheritanceWithEnumTypeTestExample {
 
-        public static InheritanceWithEnumType buildInheritanceWithEnumType() {
+        public static InheritanceWithEnumType build() {
             // use the first found implementation as example
-            return InheritanceWithEnumType1TestExample.buildInheritanceWithEnumType1();
+            return InheritanceWithEnumType1TestExample.build();
         }
 }

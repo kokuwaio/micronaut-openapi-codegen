@@ -4,7 +4,7 @@ import testapi.nooptional.NumberModel.*;
 
 public class NumberModelTestExample {
 
-        public static NumberModel buildNumberModel() {
+        public static NumberModel build() {
             NumberModel exampleInstance = new NumberModel();
             //initialize fields
             exampleInstance.setBar(12.34);
