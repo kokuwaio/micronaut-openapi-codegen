@@ -559,17 +559,16 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	@Override
 	public String toExampleValue(Schema schema) {
-		String exampleValue = null;
 
-		// first choice: use the example, provided from the spec
+		String exampleValue = null;
 		if (schema.getExample() != null) {
+			// first choice: use the example, provided from the spec
 			exampleValue = schema.getExample().toString();
-		// second choice: use the default provided by the spec
 		} else if (schema.getDefault() != null) {
+			// second choice: use the default provided by the spec
 			exampleValue = schema.getDefault().toString();
-		// special handling for enum: if no example or default is
-		// provided, use the first value
 		} else if (schema.getEnum() != null && !schema.getEnum().isEmpty()) {
+			// special handling for enum: if no example or default is provided, use the first value
 			exampleValue = schema.getEnum().get(0).toString();
 		}
 
@@ -666,7 +665,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 							e.getKey(),
 							e.getValue()));
 		}
-		return String.format("java.util.Map.ofEntries(%s)", String.join(",", entryList));
+		return String.format("java.util.Map.ofEntries(%s)", String.join(", ", entryList));
 	}
 
 	private String parseYamlArrayToListString(String yamlArray) {

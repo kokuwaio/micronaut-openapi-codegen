@@ -4,7 +4,7 @@ import testmodel.nomicronaut.EnumerationStringDefault.*;
 
 public class EnumerationStringDefaultTestExample {
 
-        public static EnumerationStringDefault build() {
-            return EnumerationStringDefault.values()[0];
-        }
+	public static EnumerationStringDefault build() {
+		return EnumerationStringDefault.values()[0];
+	}
 }
