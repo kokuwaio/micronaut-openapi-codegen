@@ -166,8 +166,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {
-	}
+	public void postProcess() {}
 
 	@Override
 	public void processOpts() {
