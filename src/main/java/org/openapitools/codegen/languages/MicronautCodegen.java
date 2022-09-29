@@ -402,6 +402,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// see https://github.com/OpenAPITools/openapi-generator/issues/6708
 
 		codegenResponse.vendorExtensions.put(ApiResponse.class.getName(), response);
+		
 		return codegenResponse;
 	}
 
