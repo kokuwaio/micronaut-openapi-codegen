@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>@project.groupId@</groupId>
-        <artifactId>@project.artifactId@-it</artifactId>
-        <version>LOCAL-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>@project.groupId@</groupId>
+		<artifactId>@project.artifactId@-it</artifactId>
+		<version>LOCAL-SNAPSHOT</version>
+	</parent>
 
-    <artifactId>@project.artifactId@-it-test-model-additional-properties</artifactId>
+	<artifactId>@project.artifactId@-it-test-model-additional-properties</artifactId>
 
-    <dependencies>
+	<dependencies>
 
-        <!-- jackson -->
-        <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
+		<!-- jackson -->
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
 
-        <!-- test -->
-        <dependency>
-            <groupId>io.micronaut.test</groupId>
-            <artifactId>micronaut-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
+		<!-- test -->
+		<dependency>
+			<groupId>io.micronaut.test</groupId>
+			<artifactId>micronaut-test-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
-    <build>
-        <plugins>
+	<build>
+		<plugins>
 
-            <!-- generate sources from openapi spec -->
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <configuration>
-                    <inputSpec>@project.basedir@/src/test/resources/openapi/test-model.yaml</inputSpec>
-                    <generateApis>false</generateApis>
-                    <generateSupportingFiles>false</generateSupportingFiles>
-                    <configOptions>
-                        <introspected>false</introspected>
-                        <useBeanValidation>false</useBeanValidation>
-                        <openApiNullable>false</openApiNullable>
-                    </configOptions>
-                </configuration>
-            </plugin>
+			<!-- generate sources from openapi spec -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<configuration>
+					<inputSpec>@project.basedir@/src/test/resources/openapi/test-model.yaml</inputSpec>
+					<generateApis>false</generateApis>
+					<generateSupportingFiles>false</generateSupportingFiles>
+					<configOptions>
+						<introspected>false</introspected>
+						<useBeanValidation>false</useBeanValidation>
+						<openApiNullable>false</openApiNullable>
+					</configOptions>
+				</configuration>
+			</plugin>
 
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 </project>
