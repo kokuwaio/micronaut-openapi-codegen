@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import testmodel.spring.InheritanceWithEnumType;
 import testmodel.spring.InheritanceWithEnumTypeEnum;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -37,7 +38,7 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
    * @return d
   */
   
-  @Schema(name = "d", required = false)
+  @Schema(name = "d", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getD() {
     return d;
   }

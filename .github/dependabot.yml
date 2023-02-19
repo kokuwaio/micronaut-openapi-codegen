@@ -10,8 +10,9 @@ updates:
       time: "09:00"
       timezone: Europe/Berlin
     ignore:
-      # spring is used for tests
+      # spring/swagger is used for tests
       - dependency-name: org.springframework:spring-context
+      - dependency-name: io.swagger.core.v3:swagger-annotations
   - package-ecosystem: github-actions
     directory: /
     schedule:

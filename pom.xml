@@ -4,7 +4,7 @@
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>3.1.2-SNAPSHOT</version>
+	<version>3.2.0-SNAPSHOT</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -105,7 +105,7 @@
 		<version.io.kokuwa.micronaut.logging>3.0.6</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>3.8.6</version.io.micronaut>
 		<version.org.junit.jupiter>5.9.2</version.org.junit.jupiter>
-		<version.org.openapitools.generator>6.2.1</version.org.openapitools.generator>
+		<version.org.openapitools.generator>6.3.0</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
 
 	</properties>
@@ -263,6 +263,12 @@
 					<artifactId>spring-jcl</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.2.8</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

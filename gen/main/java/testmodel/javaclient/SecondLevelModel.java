@@ -20,8 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.javaclient.SecondLevelOneModel;
 import testmodel.javaclient.SecondLevelTwoModel;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -61,7 +59,6 @@ public class SecondLevelModel {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -88,7 +85,6 @@ public class SecondLevelModel {
    * @return one
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -115,7 +111,6 @@ public class SecondLevelModel {
    * @return two
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TWO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
