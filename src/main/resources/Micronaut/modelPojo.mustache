@@ -72,15 +72,9 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInCamelCase}}Item({{#isMap}}java.lang.String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
 		{{#isNullable}}
 			{{#vendorExtensions.x-jackson-nullable}}
-		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
-			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of({{{defaultValue}}});
-		}
 		this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
 			{{/vendorExtensions.x-jackson-nullable}}
 			{{^vendorExtensions.x-jackson-nullable}}
-		if (this.{{name}} == null) {
-			this.{{name}} = {{{defaultValue}}};
-		}
 		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
 			{{/vendorExtensions.x-jackson-nullable}}
 		{{/isNullable}}

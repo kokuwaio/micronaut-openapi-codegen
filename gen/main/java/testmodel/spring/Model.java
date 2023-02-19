@@ -18,6 +18,7 @@ import java.util.Set;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.format.annotation.DateTimeFormat;
 import testmodel.spring.EnumerationModel;
+import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -128,10 +129,6 @@ public class Model {
   @JsonProperty("nullableSet")
   @Valid
   private JsonNullable<Set<String>> nullableSet = JsonNullable.undefined();
-
-  @JsonProperty("nullableMap")
-  @Valid
-  private JsonNullable<Map<String, String>> nullableMap = JsonNullable.undefined();
 
   @JsonProperty("defaultString")
   private String defaultString = "defaultStringValue";
@@ -724,33 +721,6 @@ public class Model {
     this.nullableSet = nullableSet;
   }
 
-  public Model nullableMap(Map<String, String> nullableMap) {
-    this.nullableMap = JsonNullable.of(nullableMap);
-    return this;
-  }
-
-//  public Model putNullableMapItem(String key, String nullableMapItem) {
-//    if (this.nullableMap == null) {
-//      this.nullableMap = new HashMap<>();
-//    }
-//    this.nullableMap.put(key, nullableMapItem);
-//    return this;
-//  }
-
-  /**
-   * Get nullableMap
-   * @return nullableMap
-  */
-  
-  @Schema(name = "nullableMap", required = false)
-  public JsonNullable<Map<String, String>> getNullableMap() {
-    return nullableMap;
-  }
-
-  public void setNullableMap(JsonNullable<Map<String, String>> nullableMap) {
-    this.nullableMap = nullableMap;
-  }
-
   public Model defaultString(String defaultString) {
     this.defaultString = defaultString;
     return this;
@@ -868,7 +838,7 @@ public class Model {
         Objects.equals(this.number, model.number) &&
         Objects.equals(this.binary, model.binary) &&
         Arrays.equals(this.bytes, model.bytes) &&
-        Objects.equals(this.any, model.any) &&
+        equalsNullable(this.any, model.any) &&
         Objects.equals(this.array, model.array) &&
         Objects.equals(this.arrayWithExample, model.arrayWithExample) &&
         Objects.equals(this.set, model.set) &&
@@ -878,14 +848,13 @@ public class Model {
         Objects.equals(this.optionalArray, model.optionalArray) &&
         Objects.equals(this.optionalSet, model.optionalSet) &&
         Objects.equals(this.optionalMap, model.optionalMap) &&
-        Objects.equals(this.nullableString, model.nullableString) &&
-        Objects.equals(this.nullableArray, model.nullableArray) &&
-        Objects.equals(this.nullableSet, model.nullableSet) &&
-        Objects.equals(this.nullableMap, model.nullableMap) &&
+        equalsNullable(this.nullableString, model.nullableString) &&
+        equalsNullable(this.nullableArray, model.nullableArray) &&
+        equalsNullable(this.nullableSet, model.nullableSet) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
         Objects.equals(this.defaultLong, model.defaultLong) &&
-        Objects.equals(this.defaultNullable, model.defaultNullable) &&
+        equalsNullable(this.defaultNullable, model.defaultNullable) &&
         Objects.equals(this.referenedModel, model.referenedModel);
   }
 
@@ -895,7 +864,7 @@ public class Model {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), hashCodeNullable(any), array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, hashCodeNullable(nullableString), hashCodeNullable(nullableArray), hashCodeNullable(nullableSet), defaultString, defaultInteger, defaultLong, hashCodeNullable(defaultNullable), referenedModel);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -935,7 +904,6 @@ public class Model {
     sb.append("    nullableString: ").append(toIndentedString(nullableString)).append("\n");
     sb.append("    nullableArray: ").append(toIndentedString(nullableArray)).append("\n");
     sb.append("    nullableSet: ").append(toIndentedString(nullableSet)).append("\n");
-    sb.append("    nullableMap: ").append(toIndentedString(nullableMap)).append("\n");
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
     sb.append("    defaultLong: ").append(toIndentedString(defaultLong)).append("\n");
