@@ -68,7 +68,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Model.JSON_PROPERTY_NULLABLE_STRING,
   Model.JSON_PROPERTY_NULLABLE_ARRAY,
   Model.JSON_PROPERTY_NULLABLE_SET,
-  Model.JSON_PROPERTY_NULLABLE_MAP,
   Model.JSON_PROPERTY_DEFAULT_STRING,
   Model.JSON_PROPERTY_DEFAULT_INTEGER,
   Model.JSON_PROPERTY_DEFAULT_LONG,
@@ -155,9 +154,6 @@ public class Model {
 
   public static final String JSON_PROPERTY_NULLABLE_SET = "nullableSet";
   private Set<String> nullableSet = null;
-
-  public static final String JSON_PROPERTY_NULLABLE_MAP = "nullableMap";
-  private Map<String, String> nullableMap = null;
 
   public static final String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
   private String defaultString = "defaultStringValue";
@@ -961,41 +957,6 @@ public class Model {
   }
 
 
-  public Model nullableMap(Map<String, String> nullableMap) {
-    
-    this.nullableMap = nullableMap;
-    return this;
-  }
-
-  public Model putNullableMapItem(String key, String nullableMapItem) {
-    if (this.nullableMap == null) {
-      this.nullableMap = new HashMap<>();
-    }
-    this.nullableMap.put(key, nullableMapItem);
-    return this;
-  }
-
-   /**
-   * Get nullableMap
-   * @return nullableMap
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NULLABLE_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, String> getNullableMap() {
-    return nullableMap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NULLABLE_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNullableMap(Map<String, String> nullableMap) {
-    this.nullableMap = nullableMap;
-  }
-
-
   public Model defaultString(String defaultString) {
     
     this.defaultString = defaultString;
@@ -1166,7 +1127,6 @@ public class Model {
         Objects.equals(this.nullableString, model.nullableString) &&
         Objects.equals(this.nullableArray, model.nullableArray) &&
         Objects.equals(this.nullableSet, model.nullableSet) &&
-        Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
         Objects.equals(this.defaultLong, model.defaultLong) &&
@@ -1180,7 +1140,7 @@ public class Model {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1220,7 +1180,6 @@ public class Model {
     sb.append("    nullableString: ").append(toIndentedString(nullableString)).append("\n");
     sb.append("    nullableArray: ").append(toIndentedString(nullableArray)).append("\n");
     sb.append("    nullableSet: ").append(toIndentedString(nullableSet)).append("\n");
-    sb.append("    nullableMap: ").append(toIndentedString(nullableMap)).append("\n");
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
     sb.append("    defaultLong: ").append(toIndentedString(defaultLong)).append("\n");

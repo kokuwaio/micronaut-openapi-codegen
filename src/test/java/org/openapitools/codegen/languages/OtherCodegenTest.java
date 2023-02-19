@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.function.Consumer;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openapitools.codegen.CodegenConstants;
@@ -40,7 +39,6 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 	}
 
 	@DisplayName("model: spring")
-	@Disabled("generates invalid code for nullable map - check if this is a valid testcase")
 	@Test
 	void modelSpring() {
 		generateModel(SpringCodegen.class, "testmodel.spring",
