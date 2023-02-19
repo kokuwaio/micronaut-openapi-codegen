@@ -65,18 +65,17 @@
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.propertiesEncoding>ISO-8859-1</project.build.propertiesEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.parameters>true</maven.compiler.parameters>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
 		<maven.compiler.failOnWarning>true</maven.compiler.failOnWarning>
-
 		<maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
 
 		<!-- ===================================================================== -->
-		<!-- ============================= Libaries ============================== -->
+		<!-- ============================= Versions ============================== -->
 		<!-- ===================================================================== -->
 
 		<!-- plugins -->
@@ -84,8 +83,8 @@
 		<version.org.apache.maven.plugins.checkstyle>3.2.1</version.org.apache.maven.plugins.checkstyle>
 		<version.org.apache.maven.plugins.clean>3.2.0</version.org.apache.maven.plugins.clean>
 		<version.org.apache.maven.plugins.compiler>3.10.1</version.org.apache.maven.plugins.compiler>
-		<version.org.apache.maven.plugins.deploy>3.1.0</version.org.apache.maven.plugins.deploy>
 		<version.org.apache.maven.plugins.dependency>3.5.0</version.org.apache.maven.plugins.dependency>
+		<version.org.apache.maven.plugins.deploy>3.1.0</version.org.apache.maven.plugins.deploy>
 		<version.org.apache.maven.plugins.gpg>3.0.1</version.org.apache.maven.plugins.gpg>
 		<version.org.apache.maven.plugins.install>3.1.0</version.org.apache.maven.plugins.install>
 		<version.org.apache.maven.plugins.invoker>3.5.0</version.org.apache.maven.plugins.invoker>
@@ -97,7 +96,6 @@
 		<version.org.apache.maven.plugins.surefire>3.0.0-M9</version.org.apache.maven.plugins.surefire>
 		<version.org.codehaus.mojo.build-helper>3.3.0</version.org.codehaus.mojo.build-helper>
 		<version.org.codehaus.mojo.tidy>1.2.0</version.org.codehaus.mojo.tidy>
-		<version.org.openapitools.generator>6.2.1</version.org.openapitools.generator>
 		<version.org.sonatype.plugins.nexus-staging>1.6.13</version.org.sonatype.plugins.nexus-staging>
 		<version.com.puppycrawl.tools.checkstyle>10.7.0</version.com.puppycrawl.tools.checkstyle>
 		<version.io.kokuwa.checkstyle>0.5.6</version.io.kokuwa.checkstyle>
@@ -106,8 +104,8 @@
 
 		<version.io.kokuwa.micronaut.logging>3.0.5</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>3.8.5</version.io.micronaut>
-		<version.javax.annotation.api>1.3.2</version.javax.annotation.api>
 		<version.org.junit.jupiter>5.9.2</version.org.junit.jupiter>
+		<version.org.openapitools.generator>6.2.1</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.5</version.org.openapitools.jackson.nullable>
 
 	</properties>
@@ -154,16 +152,6 @@
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-api</artifactId>
 				<version>${version.org.junit.jupiter}</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.annotation</groupId>
-				<artifactId>javax.annotation-api</artifactId>
-				<version>${version.javax.annotation.api}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>5.3.25</version>
 			</dependency>
 
 		</dependencies>
@@ -222,10 +210,6 @@
 					<artifactId>micronaut-core-reactive</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>javax.annotation</groupId>
-					<artifactId>javax.annotation-api</artifactId>
-				</exclusion>
-				<exclusion>
 					<groupId>org.reactivestreams</groupId>
 					<artifactId>reactive-streams</artifactId>
 				</exclusion>
@@ -257,13 +241,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<version>5.3.25</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -409,19 +389,6 @@
 		</pluginManagement>
 		<plugins>
 
-			<!-- add source for downstream projects -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- run surefire tests -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -465,14 +432,16 @@
 					<execution>
 						<goals>
 							<goal>install</goal>
-							<goal>run</goal>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
 						</goals>
 						<configuration>
 							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
 							<parallelThreads>1C</parallelThreads>
-							<goals>test</goals>
+							<streamLogs>false</streamLogs>
 							<streamLogsOnFailures>true</streamLogsOnFailures>
 							<writeJunitReport>true</writeJunitReport>
+							<goals>test</goals>
 							<scope>none</scope>
 						</configuration>
 					</execution>
@@ -514,7 +483,7 @@
 			<build>
 				<plugins>
 
-					<!-- add soource/javadoc for downstream projects -->
+					<!-- add source/javadoc for downstream projects -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>

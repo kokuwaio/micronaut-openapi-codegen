@@ -4,7 +4,7 @@ OpenAPI code generator for Micronaut.
 
 [![License](https://img.shields.io/github/license/kokuwaio/micronaut-openapi-codegen.svg?label=License)](https://github.com/kokuwaio/micronaut-openapi-codegen/blob/main/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.kokuwa.micronaut%22%20AND%20a:%22micronaut-openapi-codegen%22)
-[![Lint](https://img.shields.io/github/workflow/status/kokuwaio/micronaut-openapi-codegen/CI/main?label=CI)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/ci.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/ci.yaml?branch=main&label=CI)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/ci.yaml)
 
 Include in your `pom.xml`:
 
@@ -115,7 +115,7 @@ public class ApplicationFactory {
 Run single test:
 
 ```sh
-mvn verify -Dinvoker.parallelThreads=1 -Dinvoker.streamLogs=true -Dinvoker.test=basic
+mvn verify -Dinvoker.parallelThreads=1 -Dinvoker.streamLogs=true -Dinvoker.test=test-api
 ```
 
 ### Dependency updates

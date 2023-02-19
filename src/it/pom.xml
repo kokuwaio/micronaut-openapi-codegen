@@ -15,13 +15,13 @@
 
 		<project.build.sourceEncoding>@project.build.sourceEncoding@</project.build.sourceEncoding>
 		<project.build.propertiesEncoding>@project.build.propertiesEncoding@</project.build.propertiesEncoding>
-		<project.reporting.outputEncoding>@project.reporting.outputEncoding@</project.reporting.outputEncoding>
 
 		<maven.compiler.source>@maven.compiler.source@</maven.compiler.source>
 		<maven.compiler.target>@maven.compiler.target@</maven.compiler.target>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
 		<maven.compiler.showDeprecation>@maven.compiler.showDeprecation@</maven.compiler.showDeprecation>
 		<maven.compiler.showWarnings>@maven.compiler.showWarnings@</maven.compiler.showWarnings>
+		<maven.compiler.failOnWarning>false</maven.compiler.failOnWarning>
 
 		<!-- ===================================================================== -->
 		<!-- ============================= Libaries ============================== -->

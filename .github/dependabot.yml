@@ -3,8 +3,21 @@ updates:
   - package-ecosystem: maven
     directory: /
     schedule:
-      interval: daily
+      interval: monthly
+      day: monday
+      # github parses time without quotes to int
+      # yamllint disable-line rule:quoted-strings
+      time: "09:00"
+      timezone: Europe/Berlin
+    ignore:
+      # spring is used for tests
+      - dependency-name: org.springframework:spring-context
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+      day: monday
+      # github parses time without quotes to int
+      # yamllint disable-line rule:quoted-strings
+      time: "09:00"
+      timezone: Europe/Berlin
