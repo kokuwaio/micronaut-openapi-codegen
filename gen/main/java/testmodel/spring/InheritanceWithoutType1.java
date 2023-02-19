@@ -36,7 +36,7 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
    * @return f
   */
   
-  @Schema(name = "f", required = false)
+  @Schema(name = "f", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getF() {
     return f;
   }

@@ -38,7 +38,7 @@ public class InheritanceExtended {
    * @return foo
   */
   @NotNull 
-  @Schema(name = "foo", required = true)
+  @Schema(name = "foo", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getFoo() {
     return foo;
   }
@@ -57,7 +57,7 @@ public class InheritanceExtended {
    * @return bar
   */
   @NotNull 
-  @Schema(name = "bar", required = true)
+  @Schema(name = "bar", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getBar() {
     return bar;
   }

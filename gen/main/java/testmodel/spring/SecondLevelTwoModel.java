@@ -38,7 +38,7 @@ public class SecondLevelTwoModel implements SecondLevelModel {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getType() {
     return type;
   }
@@ -57,7 +57,7 @@ public class SecondLevelTwoModel implements SecondLevelModel {
    * @return two
   */
   
-  @Schema(name = "two", required = false)
+  @Schema(name = "two", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getTwo() {
     return two;
   }

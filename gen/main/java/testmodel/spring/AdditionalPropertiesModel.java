@@ -38,7 +38,7 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getId() {
     return id;
   }

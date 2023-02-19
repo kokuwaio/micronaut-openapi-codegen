@@ -20,8 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.javaclient.InheritanceWithEnumType;
 import testmodel.javaclient.InheritanceWithEnumTypeEnum;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -54,7 +52,6 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
    * @return e
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -119,7 +119,7 @@ public enum EmbeddedDefaultEnum {
    * @return string
   */
   @Valid 
-  @Schema(name = "string", required = false)
+  @Schema(name = "string", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public EnumerationString getString() {
     return string;
   }
@@ -138,7 +138,7 @@ public enum EmbeddedDefaultEnum {
    * @return stringDefault
   */
   @Valid 
-  @Schema(name = "string-default", required = false)
+  @Schema(name = "string-default", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public EnumerationStringDefault getStringDefault() {
     return stringDefault;
   }
@@ -157,7 +157,7 @@ public enum EmbeddedDefaultEnum {
    * @return embedded
   */
   
-  @Schema(name = "embedded", required = false)
+  @Schema(name = "embedded", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public EmbeddedEnum getEmbedded() {
     return embedded;
   }
@@ -176,7 +176,7 @@ public enum EmbeddedDefaultEnum {
    * @return embeddedDefault
   */
   
-  @Schema(name = "embedded-default", required = false)
+  @Schema(name = "embedded-default", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public EmbeddedDefaultEnum getEmbeddedDefault() {
     return embeddedDefault;
   }

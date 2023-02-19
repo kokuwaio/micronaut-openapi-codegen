@@ -35,7 +35,7 @@ public class InheritanceSimple {
    * @return foo
   */
   @NotNull 
-  @Schema(name = "foo", required = true)
+  @Schema(name = "foo", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getFoo() {
     return foo;
   }
