@@ -71,7 +71,7 @@ public enum TypeEnum {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public TypeEnum getType() {
     return type;
   }

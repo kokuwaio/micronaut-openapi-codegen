@@ -37,7 +37,7 @@ public class InheritanceExtendedAllOf {
    * @return bar
   */
   @NotNull 
-  @Schema(name = "bar", required = true)
+  @Schema(name = "bar", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getBar() {
     return bar;
   }

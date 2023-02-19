@@ -21,8 +21,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -123,37 +121,37 @@ public class Model {
   private List<String> array = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ARRAY_WITH_EXAMPLE = "arrayWithExample";
-  private List<String> arrayWithExample = null;
+  private List<String> arrayWithExample = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SET = "set";
   private Set<String> set = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_SET_WITH_EXAMPLES = "setWithExamples";
-  private Set<String> setWithExamples = null;
+  private Set<String> setWithExamples = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_MAP = "map";
   private Map<String, String> map = new HashMap<>();
 
   public static final String JSON_PROPERTY_MAP_WITH_EXAMPLE = "mapWithExample";
-  private Map<String, String> mapWithExample = null;
+  private Map<String, String> mapWithExample = new HashMap<>();
 
   public static final String JSON_PROPERTY_OPTIONAL_ARRAY = "optionalArray";
-  private List<String> optionalArray = null;
+  private List<String> optionalArray = new ArrayList<>();
 
   public static final String JSON_PROPERTY_OPTIONAL_SET = "optionalSet";
-  private Set<String> optionalSet = null;
+  private Set<String> optionalSet = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_OPTIONAL_MAP = "optionalMap";
-  private Map<String, String> optionalMap = null;
+  private Map<String, String> optionalMap = new HashMap<>();
 
   public static final String JSON_PROPERTY_NULLABLE_STRING = "nullableString";
   private String nullableString;
 
   public static final String JSON_PROPERTY_NULLABLE_ARRAY = "nullableArray";
-  private List<String> nullableArray = null;
+  private List<String> nullableArray;
 
   public static final String JSON_PROPERTY_NULLABLE_SET = "nullableSet";
-  private Set<String> nullableSet = null;
+  private Set<String> nullableSet;
 
   public static final String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
   private String defaultString = "defaultStringValue";
@@ -184,7 +182,6 @@ public class Model {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -211,7 +208,6 @@ public class Model {
    * @return idWithExample
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "32", value = "")
   @JsonProperty(JSON_PROPERTY_ID_WITH_EXAMPLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -238,7 +234,6 @@ public class Model {
    * @return idWithDefault
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ID_WITH_DEFAULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -265,7 +260,6 @@ public class Model {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -292,7 +286,6 @@ public class Model {
    * @return nameWithExample
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "MyExampleName", value = "")
   @JsonProperty(JSON_PROPERTY_NAME_WITH_EXAMPLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -319,7 +312,6 @@ public class Model {
    * @return nameWithDefault
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "MyDefaultName", value = "")
   @JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -346,7 +338,6 @@ public class Model {
    * @return date
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -373,7 +364,6 @@ public class Model {
    * @return dateWithExample
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Wed Feb 02 01:00:00 CET 2022", value = "")
   @JsonProperty(JSON_PROPERTY_DATE_WITH_EXAMPLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -400,7 +390,6 @@ public class Model {
    * @return dateTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DATE_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -427,7 +416,6 @@ public class Model {
    * @return dateTimeWithExample
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2017-07-21T17:32:28Z", value = "")
   @JsonProperty(JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -454,7 +442,6 @@ public class Model {
    * @return number
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -481,7 +468,6 @@ public class Model {
    * @return binary
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_BINARY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -508,7 +494,6 @@ public class Model {
    * @return bytes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -535,7 +520,6 @@ public class Model {
    * @return any
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ANY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -567,7 +551,6 @@ public class Model {
    * @return array
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ARRAY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -602,7 +585,6 @@ public class Model {
    * @return arrayWithExample
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"a\",\"b\",\"b\"]", value = "")
   @JsonProperty(JSON_PROPERTY_ARRAY_WITH_EXAMPLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -634,7 +616,6 @@ public class Model {
    * @return set
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SET)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -670,7 +651,6 @@ public class Model {
    * @return setWithExamples
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"a\",\"b\",\"c\"]", value = "")
   @JsonProperty(JSON_PROPERTY_SET_WITH_EXAMPLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -703,7 +683,6 @@ public class Model {
    * @return map
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_MAP)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -738,7 +717,6 @@ public class Model {
    * @return mapWithExample
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"a\":\"b\",\"c\":\"d\"}", value = "")
   @JsonProperty(JSON_PROPERTY_MAP_WITH_EXAMPLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -773,7 +751,6 @@ public class Model {
    * @return optionalArray
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OPTIONAL_ARRAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -808,7 +785,6 @@ public class Model {
    * @return optionalSet
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OPTIONAL_SET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -844,7 +820,6 @@ public class Model {
    * @return optionalMap
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OPTIONAL_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -871,7 +846,6 @@ public class Model {
    * @return nullableString
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_NULLABLE_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -894,9 +868,6 @@ public class Model {
   }
 
   public Model addNullableArrayItem(String nullableArrayItem) {
-    if (this.nullableArray == null) {
-      this.nullableArray = new ArrayList<>();
-    }
     this.nullableArray.add(nullableArrayItem);
     return this;
   }
@@ -906,7 +877,6 @@ public class Model {
    * @return nullableArray
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_NULLABLE_ARRAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -929,9 +899,6 @@ public class Model {
   }
 
   public Model addNullableSetItem(String nullableSetItem) {
-    if (this.nullableSet == null) {
-      this.nullableSet = new LinkedHashSet<>();
-    }
     this.nullableSet.add(nullableSetItem);
     return this;
   }
@@ -941,7 +908,6 @@ public class Model {
    * @return nullableSet
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_NULLABLE_SET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -968,7 +934,6 @@ public class Model {
    * @return defaultString
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DEFAULT_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -995,7 +960,6 @@ public class Model {
    * @return defaultInteger
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DEFAULT_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -1022,7 +986,6 @@ public class Model {
    * @return defaultLong
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DEFAULT_LONG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -1049,7 +1012,6 @@ public class Model {
    * @return defaultNullable
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DEFAULT_NULLABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -1076,7 +1038,6 @@ public class Model {
    * @return referenedModel
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_REFERENED_MODEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -37,7 +37,7 @@ public class InheritanceWithEnumType1AllOf {
    * @return d
   */
   
-  @Schema(name = "d", required = false)
+  @Schema(name = "d", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getD() {
     return d;
   }

@@ -51,7 +51,7 @@ public class InheritanceWithStringType {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getType() {
     return type;
   }
@@ -70,7 +70,7 @@ public class InheritanceWithStringType {
    * @return a
   */
   
-  @Schema(name = "a", required = false)
+  @Schema(name = "a", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getA() {
     return a;
   }

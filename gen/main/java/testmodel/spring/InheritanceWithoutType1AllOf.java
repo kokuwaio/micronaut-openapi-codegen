@@ -37,7 +37,7 @@ public class InheritanceWithoutType1AllOf {
    * @return f
   */
   
-  @Schema(name = "f", required = false)
+  @Schema(name = "f", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getF() {
     return f;
   }
