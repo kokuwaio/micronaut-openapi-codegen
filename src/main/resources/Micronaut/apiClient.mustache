@@ -12,14 +12,14 @@ public interface {{classname}}Client {
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
 	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
-	{{>returnType}} {{operationIdOriginal}}({{#hasParams}}
+	{{>returnType}} {{nickname}}({{#hasParams}}
 {{>apiClientParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{#vendorExtensions.has401}}
 
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.clientPath}}}"){{^vendorExtensions.generic}}
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
-	{{>returnType}} {{operationIdOriginal}}(
+	{{>returnType}} {{nickname}}(
 			@{{type.Nullable}}
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			String authorization{{#hasParams}},
