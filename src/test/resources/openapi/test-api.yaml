@@ -3,6 +3,12 @@ info:
   title: Spec for api tests.
   version: '1'
 paths:
+  /no-operation-id:
+    get:
+      tags: [request]
+      responses:
+        204:
+          description: Ok.
   /response/void:
     get:
       operationId: voidFound

@@ -11,7 +11,7 @@ public interface {{classname}}TestClient {
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
 	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
-	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{operationIdOriginal}}({{#hasParams}}
+	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{nickname}}({{#hasParams}}
 {{>testClientParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};
 {{#vendorExtensions.has401}}
 
@@ -19,7 +19,7 @@ public interface {{classname}}TestClient {
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
 	@io.micronaut.http.annotation.Produces({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Consumes({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
-	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{operationIdOriginal}}(
+	io.micronaut.http.HttpResponse<{{^returnType}}?{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> {{nickname}}(
 			@{{type.Nullable}}
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			java.lang.String authorization{{#hasParams}},
