@@ -73,20 +73,20 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		{{#isNullable}}
 			{{#vendorExtensions.x-jackson-nullable}}
 		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
-			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of({{{defaultValue}}});
+			this.{{name}} = org.openapitools.jackson.nullable.JsonNullable.<{{{datatypeWithEnum}}}>of(new {{#isArray}}{{#uniqueItems}}{{instantiationType.set}}{{/uniqueItems}}{{^uniqueItems}}{{instantiationType.array}}{{/uniqueItems}}{{/isArray}}{{^isArray}}{{instantiationType.map}}{{/isArray}}<>());
 		}
 		this.{{name}}.get().{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
 			{{/vendorExtensions.x-jackson-nullable}}
 			{{^vendorExtensions.x-jackson-nullable}}
 		if (this.{{name}} == null) {
-			this.{{name}} = {{{defaultValue}}};
+			this.{{name}} = new {{#isArray}}{{#uniqueItems}}{{instantiationType.set}}{{/uniqueItems}}{{^uniqueItems}}{{instantiationType.array}}{{/uniqueItems}}{{/isArray}}{{^isArray}}{{instantiationType.map}}{{/isArray}}<>();
 		}
 		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
 			{{/vendorExtensions.x-jackson-nullable}}
 		{{/isNullable}}
 		{{^isNullable}}
 		if (this.{{name}} == null) {
-			this.{{name}} = {{{defaultValue}}};
+			this.{{name}} = new {{#isArray}}{{#uniqueItems}}{{instantiationType.set}}{{/uniqueItems}}{{^uniqueItems}}{{instantiationType.array}}{{/uniqueItems}}{{/isArray}}{{^isArray}}{{instantiationType.map}}{{/isArray}}<>();
 		}
 		this.{{name}}.{{#isArray}}add({{/isArray}}{{#isMap}}put(key, {{/isMap}}{{name}}Item);
 		{{/isNullable}}

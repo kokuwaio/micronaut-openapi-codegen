@@ -33,7 +33,6 @@ public class ModelTestExample {
 		exampleInstance.setNullableString(org.openapitools.jackson.nullable.JsonNullable.of("string"));
 		exampleInstance.setNullableArray(org.openapitools.jackson.nullable.JsonNullable.of(java.util.List.of()));
 		exampleInstance.setNullableSet(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Set.of()));
-		exampleInstance.setNullableMap(org.openapitools.jackson.nullable.JsonNullable.of(java.util.Map.of()));
 		exampleInstance.setDefaultString("defaultStringValue");
 		exampleInstance.setDefaultInteger(1234);
 		exampleInstance.setDefaultLong(5678L);

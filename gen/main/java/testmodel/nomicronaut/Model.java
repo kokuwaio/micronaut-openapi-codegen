@@ -28,7 +28,6 @@ public class Model {
 	public static final java.lang.String JSON_PROPERTY_NULLABLE_STRING = "nullableString";
 	public static final java.lang.String JSON_PROPERTY_NULLABLE_ARRAY = "nullableArray";
 	public static final java.lang.String JSON_PROPERTY_NULLABLE_SET = "nullableSet";
-	public static final java.lang.String JSON_PROPERTY_NULLABLE_MAP = "nullableMap";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_INTEGER = "defaultInteger";
 	public static final java.lang.String JSON_PROPERTY_DEFAULT_LONG = "defaultLong";
@@ -144,10 +143,6 @@ public class Model {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.util.Set<java.lang.String>> nullableSet = org.openapitools.jackson.nullable.JsonNullable.undefined();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NULLABLE_MAP)
-	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
-	private org.openapitools.jackson.nullable.JsonNullable<java.util.Map<String, java.lang.String>> nullableMap = org.openapitools.jackson.nullable.JsonNullable.undefined();
-
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_STRING)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String defaultString = "defaultStringValue";
@@ -206,7 +201,6 @@ public class Model {
 				&& java.util.Objects.equals(nullableString, other.nullableString)
 				&& java.util.Objects.equals(nullableArray, other.nullableArray)
 				&& java.util.Objects.equals(nullableSet, other.nullableSet)
-				&& java.util.Objects.equals(nullableMap, other.nullableMap)
 				&& java.util.Objects.equals(defaultString, other.defaultString)
 				&& java.util.Objects.equals(defaultInteger, other.defaultInteger)
 				&& java.util.Objects.equals(defaultLong, other.defaultLong)
@@ -216,7 +210,7 @@ public class Model {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, java.util.Arrays.hashCode(binary), java.util.Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
+		return java.util.Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, java.util.Arrays.hashCode(binary), java.util.Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
 	}
 
 	@Override
@@ -249,7 +243,6 @@ public class Model {
 				.append("nullableString=").append(nullableString).append(",")
 				.append("nullableArray=").append(nullableArray).append(",")
 				.append("nullableSet=").append(nullableSet).append(",")
-				.append("nullableMap=").append(nullableMap).append(",")
 				.append("defaultString=").append(defaultString).append(",")
 				.append("defaultInteger=").append(defaultInteger).append(",")
 				.append("defaultLong=").append(defaultLong).append(",")
@@ -556,26 +549,6 @@ public class Model {
 		return this;
 	}
 
-	public Model nullableMap(org.openapitools.jackson.nullable.JsonNullable<java.util.Map<String, java.lang.String>> newNullableMap) {
-		this.nullableMap = newNullableMap;
-		return this;
-	}
-	
-	public Model putNullableMapItem(java.lang.String key, java.lang.String nullableMapItem) {
-		if (this.nullableMap == null || !this.nullableMap.isPresent()) {
-			this.nullableMap = org.openapitools.jackson.nullable.JsonNullable.<java.util.Map<String, java.lang.String>>of(new java.util.HashMap<>());
-		}
-		this.nullableMap.get().put(key, nullableMapItem);
-		return this;
-	}
-
-	public Model removeNullableMapItem(java.lang.String key) {
-		if (this.nullableMap != null && this.nullableMap.isPresent()) {
-			this.nullableMap.get().remove(key);
-		}
-		return this;
-	}
-
 	public Model defaultString(java.lang.String newDefaultString) {
 		this.defaultString = newDefaultString;
 		return this;
@@ -809,14 +782,6 @@ public class Model {
 
 	public void setNullableSet(org.openapitools.jackson.nullable.JsonNullable<java.util.Set<java.lang.String>> newNullableSet) {
 		this.nullableSet = newNullableSet;
-	}
-
-	public org.openapitools.jackson.nullable.JsonNullable<java.util.Map<String, java.lang.String>> getNullableMap() {
-		return nullableMap;
-	}
-
-	public void setNullableMap(org.openapitools.jackson.nullable.JsonNullable<java.util.Map<String, java.lang.String>> newNullableMap) {
-		this.nullableMap = newNullableMap;
 	}
 
 	public java.lang.String getDefaultString() {

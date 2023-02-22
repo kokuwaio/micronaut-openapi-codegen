@@ -125,11 +125,12 @@ components:
           items:
             type: string
           uniqueItems: true
-        nullableMap:
-          type: string
-          nullable: true
-          additionalProperties:
-            type: string
+        # not supported by any codegen
+        # nullableMap:
+        #   type: string
+        #   nullable: true
+        #   additionalProperties:
+        #     type: string
         defaultString:
           type: string
           default: defaultStringValue

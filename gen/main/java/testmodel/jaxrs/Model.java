@@ -58,7 +58,6 @@ public class Model   {
   private @Valid String nullableString;
   private @Valid List<String> nullableArray = null;
   private @Valid Set<String> nullableSet = null;
-  private @Valid Map<String, String> nullableMap = null;
   private @Valid String defaultString = "defaultStringValue";
   private @Valid Integer defaultInteger = 1234;
   private @Valid Long defaultLong = 5678l;
@@ -744,41 +743,6 @@ public class Model   {
   }
   /**
    **/
-  public Model nullableMap(Map<String, String> nullableMap) {
-    this.nullableMap = nullableMap;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("nullableMap")
-  public Map<String, String> getNullableMap() {
-    return nullableMap;
-  }
-
-  @JsonProperty("nullableMap")
-  public void setNullableMap(Map<String, String> nullableMap) {
-    this.nullableMap = nullableMap;
-  }
-
-  public Model putNullableMapItem(String key, String nullableMapItem) {
-    if (this.nullableMap == null) {
-      this.nullableMap = new HashMap<>();
-    }
-
-    this.nullableMap.put(key, nullableMapItem);
-    return this;
-  }
-
-  public Model removeNullableMapItem(String nullableMapItem) {
-    if (nullableMapItem != null && this.nullableMap != null) {
-      this.nullableMap.remove(nullableMapItem);
-    }
-
-    return this;
-  }
-  /**
-   **/
   public Model defaultString(String defaultString) {
     this.defaultString = defaultString;
     return this;
@@ -908,7 +872,6 @@ public class Model   {
         Objects.equals(this.nullableString, model.nullableString) &&
         Objects.equals(this.nullableArray, model.nullableArray) &&
         Objects.equals(this.nullableSet, model.nullableSet) &&
-        Objects.equals(this.nullableMap, model.nullableMap) &&
         Objects.equals(this.defaultString, model.defaultString) &&
         Objects.equals(this.defaultInteger, model.defaultInteger) &&
         Objects.equals(this.defaultLong, model.defaultLong) &&
@@ -918,7 +881,7 @@ public class Model   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, nullableMap, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
+    return Objects.hash(id, idWithExample, idWithDefault, name, nameWithExample, nameWithDefault, date, dateWithExample, dateTime, dateTimeWithExample, number, binary, Arrays.hashCode(bytes), any, array, arrayWithExample, set, setWithExamples, map, mapWithExample, optionalArray, optionalSet, optionalMap, nullableString, nullableArray, nullableSet, defaultString, defaultInteger, defaultLong, defaultNullable, referenedModel);
   }
 
   @Override
@@ -952,7 +915,6 @@ public class Model   {
     sb.append("    nullableString: ").append(toIndentedString(nullableString)).append("\n");
     sb.append("    nullableArray: ").append(toIndentedString(nullableArray)).append("\n");
     sb.append("    nullableSet: ").append(toIndentedString(nullableSet)).append("\n");
-    sb.append("    nullableMap: ").append(toIndentedString(nullableMap)).append("\n");
     sb.append("    defaultString: ").append(toIndentedString(defaultString)).append("\n");
     sb.append("    defaultInteger: ").append(toIndentedString(defaultInteger)).append("\n");
     sb.append("    defaultLong: ").append(toIndentedString(defaultLong)).append("\n");

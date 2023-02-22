@@ -248,6 +248,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put("type.Inject", typeMapping.get("Inject"));
 		additionalProperties.put("type.Singleton", typeMapping.get("Singleton"));
 		additionalProperties.put("type.MultipartBody", typeMapping.get("MultipartBody"));
+		instantiationTypes.forEach((k, v) -> additionalProperties.put("instantiationType." + k, v));
 		Optional.ofNullable(typeMapping.get("Generated"))
 				.filter(type -> !type.isBlank())
 				.ifPresent(type -> additionalProperties.put("type.Generated", type));
