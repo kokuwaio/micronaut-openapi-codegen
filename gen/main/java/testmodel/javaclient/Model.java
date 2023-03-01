@@ -148,10 +148,10 @@ public class Model {
   private String nullableString;
 
   public static final String JSON_PROPERTY_NULLABLE_ARRAY = "nullableArray";
-  private List<String> nullableArray = null;
+  private List<String> nullableArray;
 
   public static final String JSON_PROPERTY_NULLABLE_SET = "nullableSet";
-  private Set<String> nullableSet = null;
+  private Set<String> nullableSet;
 
   public static final String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
   private String defaultString = "defaultStringValue";
@@ -868,9 +868,6 @@ public class Model {
   }
 
   public Model addNullableArrayItem(String nullableArrayItem) {
-    if (this.nullableArray == null) {
-      this.nullableArray = null;
-    }
     this.nullableArray.add(nullableArrayItem);
     return this;
   }
@@ -902,9 +899,6 @@ public class Model {
   }
 
   public Model addNullableSetItem(String nullableSetItem) {
-    if (this.nullableSet == null) {
-      this.nullableSet = null;
-    }
     this.nullableSet.add(nullableSetItem);
     return this;
   }

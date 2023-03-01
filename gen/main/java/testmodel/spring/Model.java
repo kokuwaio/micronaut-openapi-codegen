@@ -649,7 +649,7 @@ public class Model {
 
   public Model addNullableArrayItem(String nullableArrayItem) {
     if (this.nullableArray == null || !this.nullableArray.isPresent()) {
-      this.nullableArray = JsonNullable.of(null);
+      this.nullableArray = JsonNullable.of(new ArrayList<>());
     }
     this.nullableArray.get().add(nullableArrayItem);
     return this;
@@ -675,7 +675,7 @@ public class Model {
 
   public Model addNullableSetItem(String nullableSetItem) {
     if (this.nullableSet == null || !this.nullableSet.isPresent()) {
-      this.nullableSet = JsonNullable.of(null);
+      this.nullableSet = JsonNullable.of(new LinkedHashSet<>());
     }
     this.nullableSet.get().add(nullableSetItem);
     return this;

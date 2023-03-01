@@ -44,17 +44,17 @@ public class Model   {
   private @Valid byte[] bytes;
   private @Valid Object any = null;
   private @Valid List<String> array = new ArrayList<>();
-  private @Valid List<String> arrayWithExample = null;
+  private @Valid List<String> arrayWithExample = new ArrayList<>();
   private @Valid Set<String> set = new LinkedHashSet<>();
-  private @Valid Set<String> setWithExamples = null;
+  private @Valid Set<String> setWithExamples = new LinkedHashSet<>();
   private @Valid Map<String, String> map = new HashMap<>();
-  private @Valid Map<String, String> mapWithExample = null;
-  private @Valid List<String> optionalArray = null;
-  private @Valid Set<String> optionalSet = null;
-  private @Valid Map<String, String> optionalMap = null;
+  private @Valid Map<String, String> mapWithExample = new HashMap<>();
+  private @Valid List<String> optionalArray = new ArrayList<>();
+  private @Valid Set<String> optionalSet = new LinkedHashSet<>();
+  private @Valid Map<String, String> optionalMap = new HashMap<>();
   private @Valid String nullableString;
-  private @Valid List<String> nullableArray = null;
-  private @Valid Set<String> nullableSet = null;
+  private @Valid List<String> nullableArray;
+  private @Valid Set<String> nullableSet;
   private @Valid String defaultString = "defaultStringValue";
   private @Valid Integer defaultInteger = 1234;
   private @Valid Long defaultLong = 5678l;
@@ -664,7 +664,7 @@ public class Model   {
 
   public Model addNullableArrayItem(String nullableArrayItem) {
     if (this.nullableArray == null) {
-      this.nullableArray = null;
+      this.nullableArray = new ArrayList<>();
     }
 
     this.nullableArray.add(nullableArrayItem);
@@ -698,7 +698,7 @@ public class Model   {
 
   public Model addNullableSetItem(String nullableSetItem) {
     if (this.nullableSet == null) {
-      this.nullableSet = null;
+      this.nullableSet = new LinkedHashSet<>();
     }
 
     this.nullableSet.add(nullableSetItem);
