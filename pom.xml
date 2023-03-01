@@ -103,7 +103,7 @@
 		<!-- dependencies -->
 
 		<version.io.kokuwa.micronaut.logging>3.0.5</version.io.kokuwa.micronaut.logging>
-		<version.io.micronaut>3.8.5</version.io.micronaut>
+		<version.io.micronaut>3.8.6</version.io.micronaut>
 		<version.org.junit.jupiter>5.9.2</version.org.junit.jupiter>
 		<version.org.openapitools.generator>6.2.1</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.5</version.org.openapitools.jackson.nullable>
