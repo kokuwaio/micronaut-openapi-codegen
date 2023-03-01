@@ -82,7 +82,7 @@
 
 		<version.org.apache.maven.plugins.checkstyle>3.2.1</version.org.apache.maven.plugins.checkstyle>
 		<version.org.apache.maven.plugins.clean>3.2.0</version.org.apache.maven.plugins.clean>
-		<version.org.apache.maven.plugins.compiler>3.10.1</version.org.apache.maven.plugins.compiler>
+		<version.org.apache.maven.plugins.compiler>3.11.0</version.org.apache.maven.plugins.compiler>
 		<version.org.apache.maven.plugins.dependency>3.5.0</version.org.apache.maven.plugins.dependency>
 		<version.org.apache.maven.plugins.deploy>3.1.0</version.org.apache.maven.plugins.deploy>
 		<version.org.apache.maven.plugins.gpg>3.0.1</version.org.apache.maven.plugins.gpg>
@@ -97,16 +97,16 @@
 		<version.org.codehaus.mojo.build-helper>3.3.0</version.org.codehaus.mojo.build-helper>
 		<version.org.codehaus.mojo.tidy>1.2.0</version.org.codehaus.mojo.tidy>
 		<version.org.sonatype.plugins.nexus-staging>1.6.13</version.org.sonatype.plugins.nexus-staging>
-		<version.com.puppycrawl.tools.checkstyle>10.7.0</version.com.puppycrawl.tools.checkstyle>
+		<version.com.puppycrawl.tools.checkstyle>10.8.0</version.com.puppycrawl.tools.checkstyle>
 		<version.io.kokuwa.checkstyle>0.5.6</version.io.kokuwa.checkstyle>
 
 		<!-- dependencies -->
 
-		<version.io.kokuwa.micronaut.logging>3.0.5</version.io.kokuwa.micronaut.logging>
+		<version.io.kokuwa.micronaut.logging>3.0.6</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>3.8.6</version.io.micronaut>
 		<version.org.junit.jupiter>5.9.2</version.org.junit.jupiter>
 		<version.org.openapitools.generator>6.2.1</version.org.openapitools.generator>
-		<version.org.openapitools.jackson.nullable>0.2.5</version.org.openapitools.jackson.nullable>
+		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
 
 	</properties>
 
