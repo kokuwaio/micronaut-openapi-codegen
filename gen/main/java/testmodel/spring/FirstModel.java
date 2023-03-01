@@ -42,7 +42,7 @@ public class FirstModel implements OneOfModel {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getType() {
     return type;
   }
@@ -61,7 +61,7 @@ public class FirstModel implements OneOfModel {
    * @return first
   */
   
-  @Schema(name = "first", required = false)
+  @Schema(name = "first", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getFirst() {
     return first;
   }
@@ -80,7 +80,7 @@ public class FirstModel implements OneOfModel {
    * @return secondLevel
   */
   @Valid 
-  @Schema(name = "secondLevel", required = false)
+  @Schema(name = "secondLevel", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public SecondLevelModel getSecondLevel() {
     return secondLevel;
   }

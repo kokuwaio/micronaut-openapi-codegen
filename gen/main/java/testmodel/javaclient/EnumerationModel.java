@@ -20,8 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.javaclient.EnumerationString;
 import testmodel.javaclient.EnumerationStringDefault;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -137,7 +135,6 @@ public enum EmbeddedDefaultEnum {
    * @return string
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -164,7 +161,6 @@ public enum EmbeddedDefaultEnum {
    * @return stringDefault
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_STRING_DEFAULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -191,7 +187,6 @@ public enum EmbeddedDefaultEnum {
    * @return embedded
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EMBEDDED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -218,7 +213,6 @@ public enum EmbeddedDefaultEnum {
    * @return embeddedDefault
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EMBEDDED_DEFAULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

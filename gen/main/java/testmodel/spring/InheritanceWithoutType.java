@@ -48,7 +48,7 @@ public class InheritanceWithoutType {
    * @return e
   */
   
-  @Schema(name = "e", required = false)
+  @Schema(name = "e", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getE() {
     return e;
   }

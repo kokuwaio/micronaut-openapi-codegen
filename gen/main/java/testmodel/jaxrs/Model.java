@@ -692,7 +692,7 @@ public class Model   {
 
   public Model addNullableArrayItem(String nullableArrayItem) {
     if (this.nullableArray == null) {
-      this.nullableArray = new ArrayList<>();
+      this.nullableArray = null;
     }
 
     this.nullableArray.add(nullableArrayItem);
@@ -727,7 +727,7 @@ public class Model   {
 
   public Model addNullableSetItem(String nullableSetItem) {
     if (this.nullableSet == null) {
-      this.nullableSet = new LinkedHashSet<>();
+      this.nullableSet = null;
     }
 
     this.nullableSet.add(nullableSetItem);

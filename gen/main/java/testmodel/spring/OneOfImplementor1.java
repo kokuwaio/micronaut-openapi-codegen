@@ -42,7 +42,7 @@ public class OneOfImplementor1 implements OneOfInterface {
    * @return property
   */
   
-  @Schema(name = "property", required = false)
+  @Schema(name = "property", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getProperty() {
     return property;
   }
@@ -61,7 +61,7 @@ public class OneOfImplementor1 implements OneOfInterface {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getType() {
     return type;
   }
