@@ -1,12 +1,9 @@
 package testmodel.jaxrs;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.SecondLevelModel;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -31,7 +28,6 @@ public class FirstModel   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("type")
   public String getType() {
     return type;
@@ -50,7 +46,6 @@ public class FirstModel   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("first")
   public String getFirst() {
     return first;
@@ -69,7 +64,6 @@ public class FirstModel   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("secondLevel")
   public SecondLevelModel getSecondLevel() {
     return secondLevel;

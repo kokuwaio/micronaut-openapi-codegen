@@ -3,13 +3,10 @@ package testmodel.jaxrs;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.InheritanceWithEnumTypeEnum;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,7 +35,6 @@ public class InheritanceWithEnumType   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("type")
   public InheritanceWithEnumTypeEnum getType() {
     return type;

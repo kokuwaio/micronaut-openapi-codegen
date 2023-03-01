@@ -1,14 +1,11 @@
 package testmodel.jaxrs;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.Map;
 import testmodel.jaxrs.AdditionalPropertiesModelValue;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -31,7 +28,6 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;

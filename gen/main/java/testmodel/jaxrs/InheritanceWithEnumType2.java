@@ -1,13 +1,10 @@
 package testmodel.jaxrs;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.InheritanceWithEnumType;
 import testmodel.jaxrs.InheritanceWithEnumTypeEnum;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -30,7 +27,6 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType  {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("e")
   public String getE() {
     return e;

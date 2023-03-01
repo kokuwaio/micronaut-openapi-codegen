@@ -1,12 +1,9 @@
 package testmodel.jaxrs;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.InheritanceWithoutType;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,7 +26,6 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType  {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("g")
   public String getG() {
     return g;

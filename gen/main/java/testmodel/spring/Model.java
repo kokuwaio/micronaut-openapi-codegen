@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -155,7 +154,6 @@ public class Model {
    * @return id
   */
   
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Integer getId() {
     return id;
   }
@@ -174,7 +172,6 @@ public class Model {
    * @return idWithExample
   */
   
-  @Schema(name = "idWithExample", example = "32", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Integer getIdWithExample() {
     return idWithExample;
   }
@@ -193,7 +190,6 @@ public class Model {
    * @return idWithDefault
   */
   
-  @Schema(name = "idWithDefault", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Integer getIdWithDefault() {
     return idWithDefault;
   }
@@ -212,7 +208,6 @@ public class Model {
    * @return name
   */
   @NotNull @Size(max = 36) 
-  @Schema(name = "name", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getName() {
     return name;
   }
@@ -231,7 +226,6 @@ public class Model {
    * @return nameWithExample
   */
   
-  @Schema(name = "nameWithExample", example = "MyExampleName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getNameWithExample() {
     return nameWithExample;
   }
@@ -250,7 +244,6 @@ public class Model {
    * @return nameWithDefault
   */
   
-  @Schema(name = "nameWithDefault", example = "MyDefaultName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getNameWithDefault() {
     return nameWithDefault;
   }
@@ -269,7 +262,6 @@ public class Model {
    * @return date
   */
   @Valid 
-  @Schema(name = "date", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public LocalDate getDate() {
     return date;
   }
@@ -288,7 +280,6 @@ public class Model {
    * @return dateWithExample
   */
   @Valid 
-  @Schema(name = "dateWithExample", example = "Wed Feb 02 01:00:00 CET 2022", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public LocalDate getDateWithExample() {
     return dateWithExample;
   }
@@ -307,7 +298,6 @@ public class Model {
    * @return dateTime
   */
   @Valid 
-  @Schema(name = "date-time", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getDateTime() {
     return dateTime;
   }
@@ -326,7 +316,6 @@ public class Model {
    * @return dateTimeWithExample
   */
   @Valid 
-  @Schema(name = "date-timeWithExample", example = "2017-07-21T17:32:28Z", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getDateTimeWithExample() {
     return dateTimeWithExample;
   }
@@ -345,7 +334,6 @@ public class Model {
    * @return number
   */
   @Valid 
-  @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public BigDecimal getNumber() {
     return number;
   }
@@ -364,7 +352,6 @@ public class Model {
    * @return binary
   */
   @Valid 
-  @Schema(name = "binary", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public org.springframework.core.io.Resource getBinary() {
     return binary;
   }
@@ -383,7 +370,6 @@ public class Model {
    * @return bytes
   */
   
-  @Schema(name = "bytes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public byte[] getBytes() {
     return bytes;
   }
@@ -402,7 +388,6 @@ public class Model {
    * @return any
   */
   
-  @Schema(name = "any", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public JsonNullable<Object> getAny() {
     return any;
   }
@@ -426,7 +411,6 @@ public class Model {
    * @return array
   */
   @NotNull 
-  @Schema(name = "array", requiredMode = Schema.RequiredMode.REQUIRED)
   public List<String> getArray() {
     return array;
   }
@@ -453,7 +437,6 @@ public class Model {
    * @return arrayWithExample
   */
   
-  @Schema(name = "arrayWithExample", example = "[\"a\",\"b\",\"b\"]", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public List<String> getArrayWithExample() {
     return arrayWithExample;
   }
@@ -477,7 +460,6 @@ public class Model {
    * @return set
   */
   @NotNull 
-  @Schema(name = "set", requiredMode = Schema.RequiredMode.REQUIRED)
   public Set<String> getSet() {
     return set;
   }
@@ -505,7 +487,6 @@ public class Model {
    * @return setWithExamples
   */
   
-  @Schema(name = "setWithExamples", example = "[\"a\",\"b\",\"c\"]", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Set<String> getSetWithExamples() {
     return setWithExamples;
   }
@@ -530,7 +511,6 @@ public class Model {
    * @return map
   */
   @NotNull 
-  @Schema(name = "map", requiredMode = Schema.RequiredMode.REQUIRED)
   public Map<String, String> getMap() {
     return map;
   }
@@ -557,7 +537,6 @@ public class Model {
    * @return mapWithExample
   */
   
-  @Schema(name = "mapWithExample", example = "{\"a\":\"b\",\"c\":\"d\"}", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Map<String, String> getMapWithExample() {
     return mapWithExample;
   }
@@ -584,7 +563,6 @@ public class Model {
    * @return optionalArray
   */
   
-  @Schema(name = "optionalArray", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public List<String> getOptionalArray() {
     return optionalArray;
   }
@@ -611,7 +589,6 @@ public class Model {
    * @return optionalSet
   */
   
-  @Schema(name = "optionalSet", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Set<String> getOptionalSet() {
     return optionalSet;
   }
@@ -639,7 +616,6 @@ public class Model {
    * @return optionalMap
   */
   
-  @Schema(name = "optionalMap", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Map<String, String> getOptionalMap() {
     return optionalMap;
   }
@@ -658,7 +634,6 @@ public class Model {
    * @return nullableString
   */
   
-  @Schema(name = "nullableString", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public JsonNullable<String> getNullableString() {
     return nullableString;
   }
@@ -685,7 +660,6 @@ public class Model {
    * @return nullableArray
   */
   
-  @Schema(name = "nullableArray", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public JsonNullable<List<String>> getNullableArray() {
     return nullableArray;
   }
@@ -712,7 +686,6 @@ public class Model {
    * @return nullableSet
   */
   
-  @Schema(name = "nullableSet", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public JsonNullable<Set<String>> getNullableSet() {
     return nullableSet;
   }
@@ -731,7 +704,6 @@ public class Model {
    * @return defaultString
   */
   
-  @Schema(name = "defaultString", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getDefaultString() {
     return defaultString;
   }
@@ -750,7 +722,6 @@ public class Model {
    * @return defaultInteger
   */
   
-  @Schema(name = "defaultInteger", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Integer getDefaultInteger() {
     return defaultInteger;
   }
@@ -769,7 +740,6 @@ public class Model {
    * @return defaultLong
   */
   
-  @Schema(name = "defaultLong", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Long getDefaultLong() {
     return defaultLong;
   }
@@ -788,7 +758,6 @@ public class Model {
    * @return defaultNullable
   */
   
-  @Schema(name = "defaultNullable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public JsonNullable<String> getDefaultNullable() {
     return defaultNullable;
   }
@@ -807,7 +776,6 @@ public class Model {
    * @return referenedModel
   */
   @Valid 
-  @Schema(name = "referenedModel", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public EnumerationModel getReferenedModel() {
     return referenedModel;
   }

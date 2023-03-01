@@ -1,12 +1,9 @@
 package testmodel.jaxrs;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,7 +26,6 @@ public class OneOfImplementor2   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("property")
   public BigDecimal getProperty() {
     return property;

@@ -8,7 +8,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -35,7 +34,6 @@ public class InheritanceSimple {
    * @return foo
   */
   @NotNull 
-  @Schema(name = "foo", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getFoo() {
     return foo;
   }

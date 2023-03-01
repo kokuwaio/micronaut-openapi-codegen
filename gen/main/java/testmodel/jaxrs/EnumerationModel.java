@@ -1,13 +1,10 @@
 package testmodel.jaxrs;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.EnumerationString;
 import testmodel.jaxrs.EnumerationStringDefault;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -129,7 +126,6 @@ public enum EmbeddedDefaultEnum {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("string")
   public EnumerationString getString() {
     return string;
@@ -148,7 +144,6 @@ public enum EmbeddedDefaultEnum {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("string-default")
   public EnumerationStringDefault getStringDefault() {
     return stringDefault;
@@ -167,7 +162,6 @@ public enum EmbeddedDefaultEnum {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("embedded")
   public EmbeddedEnum getEmbedded() {
     return embedded;
@@ -186,7 +180,6 @@ public enum EmbeddedDefaultEnum {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("embedded-default")
   public EmbeddedDefaultEnum getEmbeddedDefault() {
     return embeddedDefault;

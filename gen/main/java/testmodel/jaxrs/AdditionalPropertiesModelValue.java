@@ -1,14 +1,11 @@
 package testmodel.jaxrs;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import testmodel.jaxrs.PropertyTypeOne;
 import testmodel.jaxrs.PropertyTypeTwo;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -79,7 +76,6 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("type")
   public TypeEnum getType() {
     return type;

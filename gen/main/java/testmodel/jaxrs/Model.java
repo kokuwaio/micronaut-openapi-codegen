@@ -1,8 +1,6 @@
 package testmodel.jaxrs;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,7 +17,6 @@ import testmodel.jaxrs.EnumerationModel;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -72,7 +69,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("id")
   public Integer getId() {
     return id;
@@ -91,7 +87,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "32", value = "")
   @JsonProperty("idWithExample")
   public Integer getIdWithExample() {
     return idWithExample;
@@ -110,7 +105,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("idWithDefault")
   public Integer getIdWithDefault() {
     return idWithDefault;
@@ -129,7 +123,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty("name")
   @NotNull
  @Size(max=36)  public String getName() {
@@ -149,7 +142,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "MyExampleName", value = "")
   @JsonProperty("nameWithExample")
   public String getNameWithExample() {
     return nameWithExample;
@@ -168,7 +160,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "MyDefaultName", value = "")
   @JsonProperty("nameWithDefault")
   public String getNameWithDefault() {
     return nameWithDefault;
@@ -187,7 +178,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("date")
   public LocalDate getDate() {
     return date;
@@ -206,7 +196,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "Wed Feb 02 01:00:00 CET 2022", value = "")
   @JsonProperty("dateWithExample")
   public LocalDate getDateWithExample() {
     return dateWithExample;
@@ -225,7 +214,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("date-time")
   public OffsetDateTime getDateTime() {
     return dateTime;
@@ -244,7 +232,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "2017-07-21T17:32:28Z", value = "")
   @JsonProperty("date-timeWithExample")
   public OffsetDateTime getDateTimeWithExample() {
     return dateTimeWithExample;
@@ -263,7 +250,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("number")
   public BigDecimal getNumber() {
     return number;
@@ -282,7 +268,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("binary")
   public File getBinary() {
     return binary;
@@ -301,7 +286,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("bytes")
   public byte[] getBytes() {
     return bytes;
@@ -320,7 +304,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("any")
   public Object getAny() {
     return any;
@@ -339,7 +322,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty("array")
   @NotNull
   public List<String> getArray() {
@@ -375,7 +357,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "[\"a\",\"b\",\"b\"]", value = "")
   @JsonProperty("arrayWithExample")
   public List<String> getArrayWithExample() {
     return arrayWithExample;
@@ -410,7 +391,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty("set")
   @NotNull
   public Set<String> getSet() {
@@ -447,7 +427,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "[\"a\",\"b\",\"c\"]", value = "")
   @JsonProperty("setWithExamples")
   public Set<String> getSetWithExamples() {
     return setWithExamples;
@@ -483,7 +462,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty("map")
   @NotNull
   public Map<String, String> getMap() {
@@ -519,7 +497,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(example = "{\"a\":\"b\",\"c\":\"d\"}", value = "")
   @JsonProperty("mapWithExample")
   public Map<String, String> getMapWithExample() {
     return mapWithExample;
@@ -554,7 +531,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("optionalArray")
   public List<String> getOptionalArray() {
     return optionalArray;
@@ -589,7 +565,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("optionalSet")
   public Set<String> getOptionalSet() {
     return optionalSet;
@@ -625,7 +600,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("optionalMap")
   public Map<String, String> getOptionalMap() {
     return optionalMap;
@@ -660,7 +634,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("nullableString")
   public String getNullableString() {
     return nullableString;
@@ -679,7 +652,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("nullableArray")
   public List<String> getNullableArray() {
     return nullableArray;
@@ -714,7 +686,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("nullableSet")
   public Set<String> getNullableSet() {
     return nullableSet;
@@ -749,7 +720,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("defaultString")
   public String getDefaultString() {
     return defaultString;
@@ -768,7 +738,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("defaultInteger")
   public Integer getDefaultInteger() {
     return defaultInteger;
@@ -787,7 +756,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("defaultLong")
   public Long getDefaultLong() {
     return defaultLong;
@@ -806,7 +774,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("defaultNullable")
   public String getDefaultNullable() {
     return defaultNullable;
@@ -825,7 +792,6 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(value = "")
   @JsonProperty("referenedModel")
   public EnumerationModel getReferenedModel() {
     return referenedModel;
