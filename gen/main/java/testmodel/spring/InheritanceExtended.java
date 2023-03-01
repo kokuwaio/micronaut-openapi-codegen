@@ -8,7 +8,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -38,7 +37,6 @@ public class InheritanceExtended {
    * @return foo
   */
   @NotNull 
-  @Schema(name = "foo", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getFoo() {
     return foo;
   }
@@ -57,7 +55,6 @@ public class InheritanceExtended {
    * @return bar
   */
   @NotNull 
-  @Schema(name = "bar", requiredMode = Schema.RequiredMode.REQUIRED)
   public String getBar() {
     return bar;
   }

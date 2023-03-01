@@ -264,12 +264,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>io.swagger.core.v3</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>2.2.8</version>
-			<scope>test</scope>
-		</dependency>
 
 	</dependencies>
 

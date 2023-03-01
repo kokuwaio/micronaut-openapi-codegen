@@ -10,19 +10,24 @@ import org.openapitools.codegen.CodegenConstants;
 import org.openapitools.codegen.DefaultCodegen;
 import org.openapitools.codegen.DefaultGenerator;
 import org.openapitools.codegen.config.CodegenConfigurator;
+import org.openapitools.codegen.languages.features.DocumentationProviderFeatures;
+import org.openapitools.codegen.languages.features.DocumentationProviderFeatures.AnnotationLibrary;
+import org.openapitools.codegen.languages.features.DocumentationProviderFeatures.DocumentationProvider;
 
 public class OtherCodegenTest extends AbstractCodegenTest {
 
 	@DisplayName("api: micronaut")
 	@Test
 	void apiMicronaut() {
-		generateApi(JavaMicronautServerCodegen.class, "testapi.micronaut", configurator -> {});
+		generateApi(JavaMicronautServerCodegen.class, "testapi.micronaut-java", configurator -> {});
 	}
 
 	@DisplayName("model: micronaut")
 	@Test
 	void modelMicronaut() {
-		generateModel(JavaMicronautServerCodegen.class, "testmodel.micronaut", configurator -> {});
+		generateModel(JavaMicronautServerCodegen.class, "testmodel.micronaut-java", configurator -> configurator
+				.addAdditionalProperty(SpringCodegen.INTERFACE_ONLY, true)
+				.addAdditionalProperty(JavaMicronautAbstractCodegen.OPT_GENERATE_SWAGGER_ANNOTATIONS, "false"));
 	}
 
 	@DisplayName("model: java")
@@ -41,8 +46,12 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 	@DisplayName("model: spring")
 	@Test
 	void modelSpring() {
-		generateModel(SpringCodegen.class, "testmodel.spring",
-				configurator -> configurator.addAdditionalProperty(SpringCodegen.INTERFACE_ONLY, true));
+		generateModel(SpringCodegen.class, "testmodel.spring", configurator -> configurator
+				.addAdditionalProperty(SpringCodegen.INTERFACE_ONLY, true)
+				.addAdditionalProperty(DocumentationProviderFeatures.DOCUMENTATION_PROVIDER,
+						DocumentationProvider.SOURCE.name())
+				.addAdditionalProperty(DocumentationProviderFeatures.ANNOTATION_LIBRARY,
+						AnnotationLibrary.NONE.name()));
 	}
 
 	static void generateApi(Class<? extends DefaultCodegen> codegen, String packageName,

@@ -11,7 +11,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -38,7 +37,6 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
    * @return e
   */
   
-  @Schema(name = "e", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getE() {
     return e;
   }

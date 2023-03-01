@@ -9,7 +9,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -42,7 +41,6 @@ public class FirstModel implements OneOfModel {
    * @return type
   */
   
-  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getType() {
     return type;
   }
@@ -61,7 +59,6 @@ public class FirstModel implements OneOfModel {
    * @return first
   */
   
-  @Schema(name = "first", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getFirst() {
     return first;
   }
@@ -80,7 +77,6 @@ public class FirstModel implements OneOfModel {
    * @return secondLevel
   */
   @Valid 
-  @Schema(name = "secondLevel", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public SecondLevelModel getSecondLevel() {
     return secondLevel;
   }

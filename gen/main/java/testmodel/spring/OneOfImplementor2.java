@@ -12,7 +12,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -42,7 +41,6 @@ public class OneOfImplementor2 implements OneOfInterface {
    * @return property
   */
   @Valid 
-  @Schema(name = "property", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public BigDecimal getProperty() {
     return property;
   }
@@ -61,7 +59,6 @@ public class OneOfImplementor2 implements OneOfInterface {
    * @return type
   */
   
-  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getType() {
     return type;
   }
