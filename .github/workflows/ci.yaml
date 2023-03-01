@@ -69,3 +69,4 @@ jobs:
         env:
           SERVER_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           SERVER_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+      - run: .github/workflows/ci-git-check.sh
