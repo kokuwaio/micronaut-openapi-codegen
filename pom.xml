@@ -105,7 +105,7 @@
 		<version.io.kokuwa.micronaut.logging>3.0.6</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>3.8.8</version.io.micronaut>
 		<version.org.junit.jupiter>5.9.2</version.org.junit.jupiter>
-		<version.org.openapitools.generator>6.4.0</version.org.openapitools.generator>
+		<version.org.openapitools.generator>6.5.0</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
 
 	</properties>
