@@ -103,3 +103,4 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
     }
 
 }
+

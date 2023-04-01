@@ -64,7 +64,6 @@ public class OneOfImplementor2 {
     this.property = property;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

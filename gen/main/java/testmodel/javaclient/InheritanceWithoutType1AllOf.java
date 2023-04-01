@@ -64,7 +64,6 @@ public class InheritanceWithoutType1AllOf {
     this.f = f;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

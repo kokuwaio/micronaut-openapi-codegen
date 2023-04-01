@@ -36,113 +36,101 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Model {
 
-  @JsonProperty("id")
   private Integer id;
 
-  @JsonProperty("idWithExample")
   private Integer idWithExample;
 
-  @JsonProperty("idWithDefault")
   private Integer idWithDefault = 32;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("nameWithExample")
   private String nameWithExample;
 
-  @JsonProperty("nameWithDefault")
   private String nameWithDefault;
 
-  @JsonProperty("date")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate date;
 
-  @JsonProperty("dateWithExample")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate dateWithExample;
 
-  @JsonProperty("date-time")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime dateTime;
 
-  @JsonProperty("date-timeWithExample")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime dateTimeWithExample;
 
-  @JsonProperty("number")
   private BigDecimal number;
 
-  @JsonProperty("binary")
   private org.springframework.core.io.Resource binary;
 
-  @JsonProperty("bytes")
   private byte[] bytes;
 
-  @JsonProperty("any")
   private JsonNullable<Object> any = JsonNullable.undefined();
 
-  @JsonProperty("array")
   @Valid
   private List<String> array = new ArrayList<>();
 
-  @JsonProperty("arrayWithExample")
   @Valid
-  private List<String> arrayWithExample = null;
+  private List<String> arrayWithExample;
 
-  @JsonProperty("set")
   @Valid
   private Set<String> set = new LinkedHashSet<>();
 
-  @JsonProperty("setWithExamples")
   @Valid
-  private Set<String> setWithExamples = null;
+  private Set<String> setWithExamples;
 
-  @JsonProperty("map")
   @Valid
   private Map<String, String> map = new HashMap<>();
 
-  @JsonProperty("mapWithExample")
   @Valid
-  private Map<String, String> mapWithExample = null;
+  private Map<String, String> mapWithExample = new HashMap<>();
 
-  @JsonProperty("optionalArray")
   @Valid
-  private List<String> optionalArray = null;
+  private List<String> optionalArray;
 
-  @JsonProperty("optionalSet")
   @Valid
-  private Set<String> optionalSet = null;
+  private Set<String> optionalSet;
 
-  @JsonProperty("optionalMap")
   @Valid
-  private Map<String, String> optionalMap = null;
+  private Map<String, String> optionalMap = new HashMap<>();
 
-  @JsonProperty("nullableString")
   private JsonNullable<String> nullableString = JsonNullable.undefined();
 
-  @JsonProperty("nullableArray")
   @Valid
   private JsonNullable<List<String>> nullableArray = JsonNullable.undefined();
 
-  @JsonProperty("nullableSet")
   @Valid
   private JsonNullable<Set<String>> nullableSet = JsonNullable.undefined();
 
-  @JsonProperty("defaultString")
   private String defaultString = "defaultStringValue";
 
-  @JsonProperty("defaultInteger")
   private Integer defaultInteger = 1234;
 
-  @JsonProperty("defaultLong")
   private Long defaultLong = 5678l;
 
-  @JsonProperty("defaultNullable")
   private JsonNullable<String> defaultNullable = JsonNullable.undefined();
 
-  @JsonProperty("referenedModel")
   private EnumerationModel referenedModel;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Model#Model(String, List<String>, Set<String>, Map<String, String>)}
+   */
+  @Deprecated
+  public Model() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Model(String name, List<String> array, Set<String> set, Map<String, String> map) {
+    this.name = name;
+    this.array = array;
+    this.set = set;
+    this.map = map;
+  }
 
   public Model id(Integer id) {
     this.id = id;
@@ -154,6 +142,7 @@ public class Model {
    * @return id
   */
   
+  @JsonProperty("id")
   public Integer getId() {
     return id;
   }
@@ -172,6 +161,7 @@ public class Model {
    * @return idWithExample
   */
   
+  @JsonProperty("idWithExample")
   public Integer getIdWithExample() {
     return idWithExample;
   }
@@ -190,6 +180,7 @@ public class Model {
    * @return idWithDefault
   */
   
+  @JsonProperty("idWithDefault")
   public Integer getIdWithDefault() {
     return idWithDefault;
   }
@@ -208,6 +199,7 @@ public class Model {
    * @return name
   */
   @NotNull @Size(max = 36) 
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -226,6 +218,7 @@ public class Model {
    * @return nameWithExample
   */
   
+  @JsonProperty("nameWithExample")
   public String getNameWithExample() {
     return nameWithExample;
   }
@@ -244,6 +237,7 @@ public class Model {
    * @return nameWithDefault
   */
   
+  @JsonProperty("nameWithDefault")
   public String getNameWithDefault() {
     return nameWithDefault;
   }
@@ -262,6 +256,7 @@ public class Model {
    * @return date
   */
   @Valid 
+  @JsonProperty("date")
   public LocalDate getDate() {
     return date;
   }
@@ -280,6 +275,7 @@ public class Model {
    * @return dateWithExample
   */
   @Valid 
+  @JsonProperty("dateWithExample")
   public LocalDate getDateWithExample() {
     return dateWithExample;
   }
@@ -298,6 +294,7 @@ public class Model {
    * @return dateTime
   */
   @Valid 
+  @JsonProperty("date-time")
   public OffsetDateTime getDateTime() {
     return dateTime;
   }
@@ -316,6 +313,7 @@ public class Model {
    * @return dateTimeWithExample
   */
   @Valid 
+  @JsonProperty("date-timeWithExample")
   public OffsetDateTime getDateTimeWithExample() {
     return dateTimeWithExample;
   }
@@ -334,6 +332,7 @@ public class Model {
    * @return number
   */
   @Valid 
+  @JsonProperty("number")
   public BigDecimal getNumber() {
     return number;
   }
@@ -352,6 +351,7 @@ public class Model {
    * @return binary
   */
   @Valid 
+  @JsonProperty("binary")
   public org.springframework.core.io.Resource getBinary() {
     return binary;
   }
@@ -370,6 +370,7 @@ public class Model {
    * @return bytes
   */
   
+  @JsonProperty("bytes")
   public byte[] getBytes() {
     return bytes;
   }
@@ -388,6 +389,7 @@ public class Model {
    * @return any
   */
   
+  @JsonProperty("any")
   public JsonNullable<Object> getAny() {
     return any;
   }
@@ -402,6 +404,9 @@ public class Model {
   }
 
   public Model addArrayItem(String arrayItem) {
+    if (this.array == null) {
+      this.array = new ArrayList<>();
+    }
     this.array.add(arrayItem);
     return this;
   }
@@ -411,6 +416,7 @@ public class Model {
    * @return array
   */
   @NotNull 
+  @JsonProperty("array")
   public List<String> getArray() {
     return array;
   }
@@ -437,6 +443,7 @@ public class Model {
    * @return arrayWithExample
   */
   
+  @JsonProperty("arrayWithExample")
   public List<String> getArrayWithExample() {
     return arrayWithExample;
   }
@@ -451,6 +458,9 @@ public class Model {
   }
 
   public Model addSetItem(String setItem) {
+    if (this.set == null) {
+      this.set = new LinkedHashSet<>();
+    }
     this.set.add(setItem);
     return this;
   }
@@ -460,6 +470,7 @@ public class Model {
    * @return set
   */
   @NotNull 
+  @JsonProperty("set")
   public Set<String> getSet() {
     return set;
   }
@@ -487,6 +498,7 @@ public class Model {
    * @return setWithExamples
   */
   
+  @JsonProperty("setWithExamples")
   public Set<String> getSetWithExamples() {
     return setWithExamples;
   }
@@ -502,6 +514,9 @@ public class Model {
   }
 
   public Model putMapItem(String key, String mapItem) {
+    if (this.map == null) {
+      this.map = new HashMap<>();
+    }
     this.map.put(key, mapItem);
     return this;
   }
@@ -511,6 +526,7 @@ public class Model {
    * @return map
   */
   @NotNull 
+  @JsonProperty("map")
   public Map<String, String> getMap() {
     return map;
   }
@@ -537,6 +553,7 @@ public class Model {
    * @return mapWithExample
   */
   
+  @JsonProperty("mapWithExample")
   public Map<String, String> getMapWithExample() {
     return mapWithExample;
   }
@@ -563,6 +580,7 @@ public class Model {
    * @return optionalArray
   */
   
+  @JsonProperty("optionalArray")
   public List<String> getOptionalArray() {
     return optionalArray;
   }
@@ -589,6 +607,7 @@ public class Model {
    * @return optionalSet
   */
   
+  @JsonProperty("optionalSet")
   public Set<String> getOptionalSet() {
     return optionalSet;
   }
@@ -616,6 +635,7 @@ public class Model {
    * @return optionalMap
   */
   
+  @JsonProperty("optionalMap")
   public Map<String, String> getOptionalMap() {
     return optionalMap;
   }
@@ -634,6 +654,7 @@ public class Model {
    * @return nullableString
   */
   
+  @JsonProperty("nullableString")
   public JsonNullable<String> getNullableString() {
     return nullableString;
   }
@@ -660,6 +681,7 @@ public class Model {
    * @return nullableArray
   */
   
+  @JsonProperty("nullableArray")
   public JsonNullable<List<String>> getNullableArray() {
     return nullableArray;
   }
@@ -686,6 +708,7 @@ public class Model {
    * @return nullableSet
   */
   
+  @JsonProperty("nullableSet")
   public JsonNullable<Set<String>> getNullableSet() {
     return nullableSet;
   }
@@ -704,6 +727,7 @@ public class Model {
    * @return defaultString
   */
   
+  @JsonProperty("defaultString")
   public String getDefaultString() {
     return defaultString;
   }
@@ -722,6 +746,7 @@ public class Model {
    * @return defaultInteger
   */
   
+  @JsonProperty("defaultInteger")
   public Integer getDefaultInteger() {
     return defaultInteger;
   }
@@ -740,6 +765,7 @@ public class Model {
    * @return defaultLong
   */
   
+  @JsonProperty("defaultLong")
   public Long getDefaultLong() {
     return defaultLong;
   }
@@ -758,6 +784,7 @@ public class Model {
    * @return defaultNullable
   */
   
+  @JsonProperty("defaultNullable")
   public JsonNullable<String> getDefaultNullable() {
     return defaultNullable;
   }
@@ -776,6 +803,7 @@ public class Model {
    * @return referenedModel
   */
   @Valid 
+  @JsonProperty("referenedModel")
   public EnumerationModel getReferenedModel() {
     return referenedModel;
   }

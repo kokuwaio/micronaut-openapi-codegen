@@ -21,10 +21,8 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class SecondLevelOneModel implements SecondLevelModel {
 
-  @JsonProperty("type")
   private String type;
 
-  @JsonProperty("one")
   private String one;
 
   public SecondLevelOneModel type(String type) {
@@ -37,6 +35,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
    * @return type
   */
   
+  @JsonProperty("type")
   public String getType() {
     return type;
   }
@@ -55,6 +54,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
    * @return one
   */
   
+  @JsonProperty("one")
   public String getOne() {
     return one;
   }

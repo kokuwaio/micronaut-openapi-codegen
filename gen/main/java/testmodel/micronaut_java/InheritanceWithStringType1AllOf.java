@@ -99,3 +99,4 @@ public class InheritanceWithStringType1AllOf {
     }
 
 }
+

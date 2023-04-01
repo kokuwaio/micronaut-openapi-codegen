@@ -21,8 +21,23 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceSimple {
 
-  @JsonProperty("foo")
   private String foo;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link InheritanceSimple#InheritanceSimple(String)}
+   */
+  @Deprecated
+  public InheritanceSimple() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public InheritanceSimple(String foo) {
+    this.foo = foo;
+  }
 
   public InheritanceSimple foo(String foo) {
     this.foo = foo;
@@ -34,6 +49,7 @@ public class InheritanceSimple {
    * @return foo
   */
   @NotNull 
+  @JsonProperty("foo")
   public String getFoo() {
     return foo;
   }

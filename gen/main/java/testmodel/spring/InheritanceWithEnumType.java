@@ -37,7 +37,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithEnumType {
 
-  @JsonProperty("type")
   private InheritanceWithEnumTypeEnum type;
 
   public InheritanceWithEnumType type(InheritanceWithEnumTypeEnum type) {
@@ -50,6 +49,7 @@ public class InheritanceWithEnumType {
    * @return type
   */
   @Valid 
+  @JsonProperty("type")
   public InheritanceWithEnumTypeEnum getType() {
     return type;
   }

@@ -22,13 +22,10 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class FirstModel implements OneOfModel {
 
-  @JsonProperty("type")
   private String type;
 
-  @JsonProperty("first")
   private String first;
 
-  @JsonProperty("secondLevel")
   private SecondLevelModel secondLevel;
 
   public FirstModel type(String type) {
@@ -41,6 +38,7 @@ public class FirstModel implements OneOfModel {
    * @return type
   */
   
+  @JsonProperty("type")
   public String getType() {
     return type;
   }
@@ -59,6 +57,7 @@ public class FirstModel implements OneOfModel {
    * @return first
   */
   
+  @JsonProperty("first")
   public String getFirst() {
     return first;
   }
@@ -77,6 +76,7 @@ public class FirstModel implements OneOfModel {
    * @return secondLevel
   */
   @Valid 
+  @JsonProperty("secondLevel")
   public SecondLevelModel getSecondLevel() {
     return secondLevel;
   }

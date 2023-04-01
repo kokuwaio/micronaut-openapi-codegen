@@ -3,7 +3,7 @@
 OpenAPI code generator for Micronaut.
 
 [![License](https://img.shields.io/github/license/kokuwaio/micronaut-openapi-codegen.svg?label=License)](https://github.com/kokuwaio/micronaut-openapi-codegen/blob/main/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.kokuwa.micronaut%22%20AND%20a:%22micronaut-openapi-codegen%22)
+[![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://central.sonatype.com/namespace/io.kokuwa.micronaut)
 [![Lint](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/ci.yaml?branch=main&label=CI)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/ci.yaml)
 
 Include in your `pom.xml`:

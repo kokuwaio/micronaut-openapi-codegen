@@ -64,7 +64,6 @@ public class InheritanceExtendedAllOf {
     this.bar = bar;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

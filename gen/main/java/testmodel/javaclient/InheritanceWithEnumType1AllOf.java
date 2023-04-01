@@ -64,7 +64,6 @@ public class InheritanceWithEnumType1AllOf {
     this.d = d;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

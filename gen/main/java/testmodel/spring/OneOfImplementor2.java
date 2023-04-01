@@ -25,10 +25,8 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class OneOfImplementor2 implements OneOfInterface {
 
-  @JsonProperty("property")
   private BigDecimal property;
 
-  @JsonProperty("type")
   private String type;
 
   public OneOfImplementor2 property(BigDecimal property) {
@@ -41,6 +39,7 @@ public class OneOfImplementor2 implements OneOfInterface {
    * @return property
   */
   @Valid 
+  @JsonProperty("property")
   public BigDecimal getProperty() {
     return property;
   }
@@ -59,6 +58,7 @@ public class OneOfImplementor2 implements OneOfInterface {
    * @return type
   */
   
+  @JsonProperty("type")
   public String getType() {
     return type;
   }

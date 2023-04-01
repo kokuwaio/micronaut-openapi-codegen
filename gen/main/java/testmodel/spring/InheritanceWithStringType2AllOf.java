@@ -23,7 +23,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithStringType2AllOf {
 
-  @JsonProperty("c")
   private String c;
 
   public InheritanceWithStringType2AllOf c(String c) {
@@ -36,6 +35,7 @@ public class InheritanceWithStringType2AllOf {
    * @return c
   */
   
+  @JsonProperty("c")
   public String getC() {
     return c;
   }

@@ -36,6 +36,11 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
   public InheritanceWithEnumType3() {
 
   }
+  @Override
+  public InheritanceWithEnumType3 type(InheritanceWithEnumTypeEnum type) {
+    this.setType(type);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

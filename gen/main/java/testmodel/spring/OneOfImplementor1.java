@@ -25,10 +25,8 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class OneOfImplementor1 implements OneOfInterface {
 
-  @JsonProperty("property")
   private String property;
 
-  @JsonProperty("type")
   private String type;
 
   public OneOfImplementor1 property(String property) {
@@ -41,6 +39,7 @@ public class OneOfImplementor1 implements OneOfInterface {
    * @return property
   */
   
+  @JsonProperty("property")
   public String getProperty() {
     return property;
   }
@@ -59,6 +58,7 @@ public class OneOfImplementor1 implements OneOfInterface {
    * @return type
   */
   
+  @JsonProperty("type")
   public String getType() {
     return type;
   }

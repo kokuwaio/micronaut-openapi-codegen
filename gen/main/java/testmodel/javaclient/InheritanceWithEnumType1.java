@@ -66,6 +66,11 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
     this.d = d;
   }
 
+  @Override
+  public InheritanceWithEnumType1 type(InheritanceWithEnumTypeEnum type) {
+    this.setType(type);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

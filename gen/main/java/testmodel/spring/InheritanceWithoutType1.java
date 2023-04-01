@@ -22,7 +22,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithoutType1 extends InheritanceWithoutType {
 
-  @JsonProperty("f")
   private String f;
 
   public InheritanceWithoutType1 f(String f) {
@@ -35,6 +34,7 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
    * @return f
   */
   
+  @JsonProperty("f")
   public String getF() {
     return f;
   }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.function.Consumer;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openapitools.codegen.CodegenConstants;
@@ -24,7 +23,6 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 	}
 
 	@DisplayName("model: micronaut")
-	@Disabled("will generate invalid code because openapi generator it self has not tests and nobody verifies this")
 	@Test
 	void modelMicronaut() {
 		generateModel(JavaMicronautServerCodegen.class, "testmodel.micronaut-java", configurator -> configurator

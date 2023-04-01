@@ -34,7 +34,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithoutType {
 
-  @JsonProperty("e")
   private String e;
 
   public InheritanceWithoutType e(String e) {
@@ -47,6 +46,7 @@ public class InheritanceWithoutType {
    * @return e
   */
   
+  @JsonProperty("e")
   public String getE() {
     return e;
   }

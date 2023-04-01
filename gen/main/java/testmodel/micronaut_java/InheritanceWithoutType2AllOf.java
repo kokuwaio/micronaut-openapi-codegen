@@ -99,3 +99,4 @@ public class InheritanceWithoutType2AllOf {
     }
 
 }
+

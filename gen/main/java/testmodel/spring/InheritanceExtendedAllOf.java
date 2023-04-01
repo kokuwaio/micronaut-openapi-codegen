@@ -23,8 +23,23 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceExtendedAllOf {
 
-  @JsonProperty("bar")
   private String bar;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link InheritanceExtendedAllOf#InheritanceExtendedAllOf(String)}
+   */
+  @Deprecated
+  public InheritanceExtendedAllOf() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public InheritanceExtendedAllOf(String bar) {
+    this.bar = bar;
+  }
 
   public InheritanceExtendedAllOf bar(String bar) {
     this.bar = bar;
@@ -36,6 +51,7 @@ public class InheritanceExtendedAllOf {
    * @return bar
   */
   @NotNull 
+  @JsonProperty("bar")
   public String getBar() {
     return bar;
   }

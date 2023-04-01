@@ -64,7 +64,6 @@ public class InheritanceWithoutType2AllOf {
     this.g = g;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

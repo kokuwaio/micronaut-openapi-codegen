@@ -227,7 +227,6 @@ public enum EmbeddedDefaultEnum {
     this.embeddedDefault = embeddedDefault;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
