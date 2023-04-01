@@ -34,10 +34,8 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithStringType {
 
-  @JsonProperty("type")
   private String type;
 
-  @JsonProperty("a")
   private String a;
 
   public InheritanceWithStringType type(String type) {
@@ -50,6 +48,7 @@ public class InheritanceWithStringType {
    * @return type
   */
   
+  @JsonProperty("type")
   public String getType() {
     return type;
   }
@@ -68,6 +67,7 @@ public class InheritanceWithStringType {
    * @return a
   */
   
+  @JsonProperty("a")
   public String getA() {
     return a;
   }

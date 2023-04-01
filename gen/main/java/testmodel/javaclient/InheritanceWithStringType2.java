@@ -65,6 +65,17 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
     this.c = c;
   }
 
+  @Override
+  public InheritanceWithStringType2 type(String type) {
+    this.setType(type);
+    return this;
+  }
+
+  @Override
+  public InheritanceWithStringType2 a(String a) {
+    this.setA(a);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -121,13 +121,13 @@ public class Model {
   private List<String> array = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ARRAY_WITH_EXAMPLE = "arrayWithExample";
-  private List<String> arrayWithExample = new ArrayList<>();
+  private List<String> arrayWithExample;
 
   public static final String JSON_PROPERTY_SET = "set";
   private Set<String> set = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_SET_WITH_EXAMPLES = "setWithExamples";
-  private Set<String> setWithExamples = new LinkedHashSet<>();
+  private Set<String> setWithExamples;
 
   public static final String JSON_PROPERTY_MAP = "map";
   private Map<String, String> map = new HashMap<>();
@@ -136,10 +136,10 @@ public class Model {
   private Map<String, String> mapWithExample = new HashMap<>();
 
   public static final String JSON_PROPERTY_OPTIONAL_ARRAY = "optionalArray";
-  private List<String> optionalArray = new ArrayList<>();
+  private List<String> optionalArray;
 
   public static final String JSON_PROPERTY_OPTIONAL_SET = "optionalSet";
-  private Set<String> optionalSet = new LinkedHashSet<>();
+  private Set<String> optionalSet;
 
   public static final String JSON_PROPERTY_OPTIONAL_MAP = "optionalMap";
   private Map<String, String> optionalMap = new HashMap<>();
@@ -542,6 +542,9 @@ public class Model {
   }
 
   public Model addArrayItem(String arrayItem) {
+    if (this.array == null) {
+      this.array = new ArrayList<>();
+    }
     this.array.add(arrayItem);
     return this;
   }
@@ -607,6 +610,9 @@ public class Model {
   }
 
   public Model addSetItem(String setItem) {
+    if (this.set == null) {
+      this.set = new LinkedHashSet<>();
+    }
     this.set.add(setItem);
     return this;
   }
@@ -868,6 +874,9 @@ public class Model {
   }
 
   public Model addNullableArrayItem(String nullableArrayItem) {
+    if (this.nullableArray == null) {
+      this.nullableArray = new ArrayList<>();
+    }
     this.nullableArray.add(nullableArrayItem);
     return this;
   }
@@ -899,6 +908,9 @@ public class Model {
   }
 
   public Model addNullableSetItem(String nullableSetItem) {
+    if (this.nullableSet == null) {
+      this.nullableSet = new LinkedHashSet<>();
+    }
     this.nullableSet.add(nullableSetItem);
     return this;
   }
@@ -1051,7 +1063,6 @@ public class Model {
   public void setReferenedModel(EnumerationModel referenedModel) {
     this.referenedModel = referenedModel;
   }
-
 
   @Override
   public boolean equals(Object o) {

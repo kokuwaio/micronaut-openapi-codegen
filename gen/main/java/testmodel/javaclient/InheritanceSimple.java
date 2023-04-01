@@ -63,7 +63,6 @@ public class InheritanceSimple {
     this.foo = foo;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -102,3 +102,4 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
     }
 
 }
+

@@ -99,3 +99,4 @@ public class InheritanceWithEnumType2AllOf {
     }
 
 }
+

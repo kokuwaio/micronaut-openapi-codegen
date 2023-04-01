@@ -65,6 +65,11 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
     this.f = f;
   }
 
+  @Override
+  public InheritanceWithoutType1 e(String e) {
+    this.setE(e);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

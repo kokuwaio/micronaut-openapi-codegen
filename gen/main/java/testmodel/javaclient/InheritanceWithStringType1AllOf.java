@@ -64,7 +64,6 @@ public class InheritanceWithStringType1AllOf {
     this.b = b;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

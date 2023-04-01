@@ -67,7 +67,6 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
     this.id = id;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

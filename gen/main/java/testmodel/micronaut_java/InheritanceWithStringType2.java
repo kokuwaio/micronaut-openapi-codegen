@@ -102,3 +102,4 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
     }
 
 }
+

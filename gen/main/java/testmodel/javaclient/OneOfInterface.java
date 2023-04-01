@@ -109,7 +109,6 @@ public class OneOfInterface {
     this.property = property;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

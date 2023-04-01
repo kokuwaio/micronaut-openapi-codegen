@@ -185,7 +185,6 @@ public class OneOfModel {
     this.two = two;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

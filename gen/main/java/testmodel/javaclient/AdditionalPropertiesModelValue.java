@@ -100,7 +100,6 @@ public enum TypeEnum {
     this.type = type;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

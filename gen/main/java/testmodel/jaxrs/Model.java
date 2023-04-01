@@ -44,13 +44,13 @@ public class Model   {
   private @Valid byte[] bytes;
   private @Valid Object any = null;
   private @Valid List<String> array = new ArrayList<>();
-  private @Valid List<String> arrayWithExample = new ArrayList<>();
+  private @Valid List<String> arrayWithExample;
   private @Valid Set<String> set = new LinkedHashSet<>();
-  private @Valid Set<String> setWithExamples = new LinkedHashSet<>();
+  private @Valid Set<String> setWithExamples;
   private @Valid Map<String, String> map = new HashMap<>();
   private @Valid Map<String, String> mapWithExample = new HashMap<>();
-  private @Valid List<String> optionalArray = new ArrayList<>();
-  private @Valid Set<String> optionalSet = new LinkedHashSet<>();
+  private @Valid List<String> optionalArray;
+  private @Valid Set<String> optionalSet;
   private @Valid Map<String, String> optionalMap = new HashMap<>();
   private @Valid String nullableString;
   private @Valid List<String> nullableArray;

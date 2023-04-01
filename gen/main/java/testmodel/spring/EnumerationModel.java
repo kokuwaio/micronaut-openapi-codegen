@@ -24,10 +24,8 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class EnumerationModel {
 
-  @JsonProperty("string")
   private EnumerationString string;
 
-  @JsonProperty("string-default")
   private EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
 
   /**
@@ -66,7 +64,6 @@ public enum EmbeddedEnum {
     }
   }
 
-  @JsonProperty("embedded")
   private EmbeddedEnum embedded;
 
   /**
@@ -105,7 +102,6 @@ public enum EmbeddedDefaultEnum {
     }
   }
 
-  @JsonProperty("embedded-default")
   private EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
 
   public EnumerationModel string(EnumerationString string) {
@@ -118,6 +114,7 @@ public enum EmbeddedDefaultEnum {
    * @return string
   */
   @Valid 
+  @JsonProperty("string")
   public EnumerationString getString() {
     return string;
   }
@@ -136,6 +133,7 @@ public enum EmbeddedDefaultEnum {
    * @return stringDefault
   */
   @Valid 
+  @JsonProperty("string-default")
   public EnumerationStringDefault getStringDefault() {
     return stringDefault;
   }
@@ -154,6 +152,7 @@ public enum EmbeddedDefaultEnum {
    * @return embedded
   */
   
+  @JsonProperty("embedded")
   public EmbeddedEnum getEmbedded() {
     return embedded;
   }
@@ -172,6 +171,7 @@ public enum EmbeddedDefaultEnum {
    * @return embeddedDefault
   */
   
+  @JsonProperty("embedded-default")
   public EmbeddedDefaultEnum getEmbeddedDefault() {
     return embeddedDefault;
   }

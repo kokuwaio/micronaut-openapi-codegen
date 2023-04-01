@@ -106,7 +106,6 @@ public class InheritanceWithStringType {
     this.a = a;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

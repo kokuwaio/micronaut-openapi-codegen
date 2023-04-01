@@ -124,7 +124,6 @@ public class FirstModel {
     this.secondLevel = secondLevel;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

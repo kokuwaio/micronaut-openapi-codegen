@@ -78,7 +78,6 @@ public class InheritanceWithEnumType {
     this.type = type;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

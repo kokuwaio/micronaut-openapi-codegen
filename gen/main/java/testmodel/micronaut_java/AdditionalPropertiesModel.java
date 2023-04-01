@@ -104,3 +104,4 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
     }
 
 }
+

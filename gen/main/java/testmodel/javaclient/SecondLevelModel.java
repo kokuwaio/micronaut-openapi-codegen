@@ -125,7 +125,6 @@ public class SecondLevelModel {
     this.two = two;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

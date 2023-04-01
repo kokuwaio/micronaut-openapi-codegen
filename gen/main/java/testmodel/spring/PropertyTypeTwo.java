@@ -57,7 +57,6 @@ public enum TypeEnum {
     }
   }
 
-  @JsonProperty("type")
   private TypeEnum type;
 
   public PropertyTypeTwo type(TypeEnum type) {
@@ -70,6 +69,7 @@ public enum TypeEnum {
    * @return type
   */
   
+  @JsonProperty("type")
   public TypeEnum getType() {
     return type;
   }

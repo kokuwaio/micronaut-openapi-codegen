@@ -21,11 +21,26 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceExtended {
 
-  @JsonProperty("foo")
   private String foo;
 
-  @JsonProperty("bar")
   private String bar;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link InheritanceExtended#InheritanceExtended(String, String)}
+   */
+  @Deprecated
+  public InheritanceExtended() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public InheritanceExtended(String foo, String bar) {
+    this.foo = foo;
+    this.bar = bar;
+  }
 
   public InheritanceExtended foo(String foo) {
     this.foo = foo;
@@ -37,6 +52,7 @@ public class InheritanceExtended {
    * @return foo
   */
   @NotNull 
+  @JsonProperty("foo")
   public String getFoo() {
     return foo;
   }
@@ -55,6 +71,7 @@ public class InheritanceExtended {
    * @return bar
   */
   @NotNull 
+  @JsonProperty("bar")
   public String getBar() {
     return bar;
   }

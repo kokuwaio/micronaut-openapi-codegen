@@ -23,7 +23,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithEnumType1AllOf {
 
-  @JsonProperty("d")
   private String d;
 
   public InheritanceWithEnumType1AllOf d(String d) {
@@ -36,6 +35,7 @@ public class InheritanceWithEnumType1AllOf {
    * @return d
   */
   
+  @JsonProperty("d")
   public String getD() {
     return d;
   }

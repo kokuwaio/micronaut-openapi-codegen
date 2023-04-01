@@ -93,7 +93,6 @@ public class InheritanceExtended {
     this.bar = bar;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
