@@ -115,6 +115,14 @@ public class HttpResponseAssertions {
 		return assertStatus(executeable, HttpStatus.CONFLICT, message);
 	}
 
+	public static <T> HttpResponse<T> assert410(Supplier<HttpResponse<T>> executeable) {
+		return assertStatus(executeable, HttpStatus.GONE);
+	}
+
+	public static <T> HttpResponse<T> assert410(Supplier<HttpResponse<T>> executeable, String message) {
+		return assertStatus(executeable, HttpStatus.GONE, message);
+	}
+
 	public static <T> HttpResponse<T> assert412(Supplier<HttpResponse<T>> executeable) {
 		return assertStatus(executeable, HttpStatus.PRECONDITION_FAILED);
 	}
