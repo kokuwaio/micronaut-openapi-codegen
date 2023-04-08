@@ -60,7 +60,7 @@ public class Model {
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.lang.String nameWithDefault;
+	private java.lang.String nameWithDefault = "MyDefaultName";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)

@@ -37,7 +37,7 @@ components:
           example: MyExampleName
         nameWithDefault:
           type: string
-          example: MyDefaultName
+          default: MyDefaultName
         date:
           type: string
           format: date
