@@ -82,10 +82,17 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(OptionalFeatures.USE_OPTIONAL, false));
 	}
 
-	@DisplayName("model with default micronaut annotations")
+	@DisplayName("model pojo with JsonNullable")
 	@Test
-	void model() {
-		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.micronaut"));
+	void modelPojoWithJsonNullable() {
+		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.micronaut_pojo_nullable"));
+	}
+
+	@DisplayName("model pojo without JsonNullable")
+	@Test
+	void modelPojoWithoutJsonNullable() {
+		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.micronaut_pojo")
+				.addAdditionalProperty(AbstractJavaCodegen.OPENAPI_NULLABLE, false));
 	}
 
 	@DisplayName("model without micronaut annotations")
