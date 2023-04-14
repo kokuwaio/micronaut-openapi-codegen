@@ -34,7 +34,7 @@ public class Model   {
   private @Valid Integer idWithDefault = 32;
   private @Valid String name;
   private @Valid String nameWithExample;
-  private @Valid String nameWithDefault;
+  private @Valid String nameWithDefault = "MyDefaultName";
   private @Valid LocalDate date;
   private @Valid LocalDate dateWithExample;
   private @Valid OffsetDateTime dateTime;

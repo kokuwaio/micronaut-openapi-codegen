@@ -46,7 +46,7 @@ public class Model {
 
   private String nameWithExample;
 
-  private String nameWithDefault;
+  private String nameWithDefault = "MyDefaultName";
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate date;

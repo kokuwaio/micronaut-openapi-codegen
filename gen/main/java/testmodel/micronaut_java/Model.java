@@ -91,7 +91,7 @@ public class Model {
     private String nameWithExample;
 
     public static final String JSON_PROPERTY_NAME_WITH_DEFAULT = "nameWithDefault";
-    private String nameWithDefault;
+    private String nameWithDefault = "MyDefaultName";
 
     public static final String JSON_PROPERTY_DATE = "date";
     private LocalDate date;
