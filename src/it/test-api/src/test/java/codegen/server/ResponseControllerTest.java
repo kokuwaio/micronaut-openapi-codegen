@@ -173,4 +173,11 @@ public class ResponseControllerTest implements ResponseApiTestSpec {
 	public void multipleResponseCodesNotFound404() {
 		assertNull(assert404(() -> client.multipleResponseCodesNotFound(false, false)).body());
 	}
+
+	@Test
+	@Override
+	public void withDefault204() {
+		assertNull(assert204(() -> client.withDefault()).body());
+	}
+
 }

@@ -78,4 +78,8 @@ public interface ResponseApiTestSpec {
 	void voidNotFound204() throws java.lang.Exception;
 
 	void voidNotFound404() throws java.lang.Exception;
+
+	// withDefault
+
+	void withDefault204() throws java.lang.Exception;
 }

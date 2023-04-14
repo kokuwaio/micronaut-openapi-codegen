@@ -110,4 +110,9 @@ public class ResponseController implements ResponseApi {
 		}
 		return multipleResponseCodes(redirect);
 	}
+
+	@Override
+	public Mono<HttpResponse<Object>> withDefault() {
+		return Mono.just(HttpResponse.noContent());
+	}
 }

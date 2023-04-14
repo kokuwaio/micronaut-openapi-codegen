@@ -110,4 +110,9 @@ public class ResponseController implements ResponseApi {
 		}
 		return multipleResponseCodes(redirect);
 	}
+
+	@Override
+	public Single<HttpResponse<Object>> withDefault() {
+		return Single.just(HttpResponse.noContent());
+	}
 }

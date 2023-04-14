@@ -259,6 +259,15 @@ paths:
                 $ref: '#/components/schemas/NumberModel'
         404:
           description: Not found.
+  /response/default:
+    get:
+      operationId: withDefault
+      tags: [response]
+      responses:
+        204:
+          description: Ok.
+        default:
+          description: Some problem.
   /mediatype/consumes-plain:
     post:
       operationId: mediatypeConsumesPlain

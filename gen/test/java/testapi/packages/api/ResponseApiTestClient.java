@@ -89,4 +89,7 @@ public interface ResponseApiTestClient {
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "found")
 			java.lang.Boolean found);
+
+	@io.micronaut.http.annotation.Get("/response/default")
+	io.micronaut.http.HttpResponse<?> withDefault();
 }
