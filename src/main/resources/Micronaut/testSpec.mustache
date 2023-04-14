@@ -3,7 +3,7 @@ package {{package}};
 /** Test for {@link {{classname}}}. */
 {{>generated}}public interface {{classname}}TestSpec { {{#operations}}{{#operation}}
 
-	// {{nickname}}{{#responses}}
+	// {{nickname}}{{#responses}}{{^isWildcard}}
 
-	void {{nickname}}{{code}}() throws java.lang.Exception;{{/responses}}{{/operation}}
+	void {{nickname}}{{code}}() throws java.lang.Exception;{{/isWildcard}}{{/responses}}{{/operation}}
 }{{/operations}}
