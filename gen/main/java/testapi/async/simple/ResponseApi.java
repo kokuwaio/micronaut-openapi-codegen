@@ -18,6 +18,7 @@ public interface ResponseApi {
 	java.lang.String PATH_SINGLE = "/response/single";
 	java.lang.String PATH_VOID_FOUND = "/response/void";
 	java.lang.String PATH_VOID_NOT_FOUND = "/response/void-not-found";
+	java.lang.String PATH_WITH_DEFAULT = "/response/default";
 
 	@io.micronaut.http.annotation.Get("/response/array-complex")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
@@ -110,4 +111,8 @@ public interface ResponseApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "found")
 			java.lang.Boolean found);
+
+	@io.micronaut.http.annotation.Get("/response/default")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
+	reactor.core.publisher.Mono<java.lang.Void> withDefault();
 }

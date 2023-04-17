@@ -103,4 +103,7 @@ public class ResponseController implements ResponseApi {
 		}
 		return multipleResponseCodes(redirect);
 	}
+
+	@Override
+	public void withDefault() {}
 }

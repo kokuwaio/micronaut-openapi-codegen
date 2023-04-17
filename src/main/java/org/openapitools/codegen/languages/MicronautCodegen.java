@@ -262,8 +262,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// warn if operation has wildcard/range responses
 
-		if (operation.responses.stream().anyMatch(CodegenResponse::isWildcard)) {
-			throw new SpecValidationException("Wildcard responses are not supported.");
+		if (operation.responses.stream().allMatch(CodegenResponse::isWildcard)) {
+			throw new SpecValidationException("Only default response is not supported.");
 		}
 		if (operation.responses.stream().anyMatch(CodegenResponse::isRange)) {
 			throw new SpecValidationException("Range responses are not supported.");

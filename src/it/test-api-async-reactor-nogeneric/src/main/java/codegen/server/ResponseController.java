@@ -103,4 +103,9 @@ public class ResponseController implements ResponseApi {
 		}
 		return multipleResponseCodes(redirect);
 	}
+
+	@Override
+	public Mono<Void> withDefault() {
+		return Mono.empty();
+	}
 }

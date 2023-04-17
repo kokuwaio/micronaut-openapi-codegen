@@ -177,4 +177,10 @@ public class ResponseClientTest implements ResponseApiTestSpec {
 	public void multipleResponseCodesNotFound404() {
 		assert404(() -> client.multipleResponseCodesNotFound(false, false));
 	}
+
+	@Test
+	@Override
+	public void withDefault204() {
+		client.withDefault();
+	}
 }
