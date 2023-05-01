@@ -2,6 +2,9 @@ package org.openapitools.codegen.languages;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openapitools.codegen.CodegenConstants;
+import org.openapitools.codegen.DefaultGenerator;
+import org.openapitools.codegen.config.CodegenConfigurator;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.OptionalFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
@@ -11,34 +14,34 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	@DisplayName("api with defaults")
 	@Test
 	void api() {
-		generate(configurator(SPEC_TEST_API, "testapi.defaults"));
+		generate(configurator(SPEC_API, "testapi.defaults"));
 	}
 
 	@DisplayName("api without validation")
 	@Test
 	void apiWithoutValidation() {
-		generate(configurator(SPEC_TEST_API, "testapi.novalidation")
+		generate(configurator(SPEC_API, "testapi.novalidation")
 				.addAdditionalProperty(BeanValidationFeatures.USE_BEANVALIDATION, false));
 	}
 
 	@DisplayName("api without optional")
 	@Test
 	void apiWithoutOptional() {
-		generate(configurator(SPEC_TEST_API, "testapi.nooptional")
+		generate(configurator(SPEC_API, "testapi.nooptional")
 				.addAdditionalProperty(OptionalFeatures.USE_OPTIONAL, false));
 	}
 
 	@DisplayName("api without generic")
 	@Test
 	void apiWithoutGeneric() {
-		generate(configurator(SPEC_TEST_API, "testapi.nogeneric")
+		generate(configurator(SPEC_API, "testapi.nogeneric")
 				.addAdditionalProperty(UseGenericResponseFeatures.USE_GENERIC_RESPONSE, false));
 	}
 
 	@DisplayName("api with model suffix")
 	@Test
 	void apiWithModelSuffix() {
-		generate(configurator(SPEC_TEST_API, "testapi.modelsuffix")
+		generate(configurator(SPEC_API, "testapi.modelsuffix")
 				.setModelNameSuffix("VO"));
 	}
 
@@ -46,7 +49,7 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	@Test
 	void apiWithPackages() {
 		var packageName = "testapi.packages";
-		generate(configurator(SPEC_TEST_API, packageName)
+		generate(configurator(SPEC_API, packageName)
 				.setPackageName(packageName + ".root")
 				.setApiPackage(packageName + ".api")
 				.setModelPackage(packageName + ".model")
@@ -56,7 +59,7 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	@DisplayName("api with custom types")
 	@Test
 	void apiWithTypes() {
-		generate(configurator(SPEC_TEST_API, "testapi.types")
+		generate(configurator(SPEC_API, "testapi.types")
 				.addAdditionalProperty(MicronautCodegen.DATETIME_RELAXED, false)
 				.addTypeMapping("DateTime", java.time.ZonedDateTime.class.getName())
 				.addTypeMapping("double", java.math.BigDecimal.class.getName())
@@ -69,14 +72,14 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	@DisplayName("api with async")
 	@Test
 	void apiWithAsyncReactor() {
-		generate(configurator(SPEC_TEST_API, "testapi.async.reactor")
+		generate(configurator(SPEC_API, "testapi.async.reactor")
 				.addAdditionalProperty(AbstractJavaCodegen.SUPPORT_ASYNC, true));
 	}
 
 	@DisplayName("api with async reactor nogeneric nooptional")
 	@Test
 	void apiWithAsyncSimple() {
-		generate(configurator(SPEC_TEST_API, "testapi.async.simple")
+		generate(configurator(SPEC_API, "testapi.async.simple")
 				.addAdditionalProperty(AbstractJavaCodegen.SUPPORT_ASYNC, true)
 				.addAdditionalProperty(UseGenericResponseFeatures.USE_GENERIC_RESPONSE, false)
 				.addAdditionalProperty(OptionalFeatures.USE_OPTIONAL, false));
@@ -85,22 +88,38 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	@DisplayName("model pojo with JsonNullable")
 	@Test
 	void modelPojoWithJsonNullable() {
-		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.micronaut_pojo_nullable"));
+		generate(configurator(SPEC_MODEL, "testmodel.micronaut_pojo_nullable"));
 	}
 
 	@DisplayName("model pojo without JsonNullable")
 	@Test
 	void modelPojoWithoutJsonNullable() {
-		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.micronaut_pojo")
+		generate(configurator(SPEC_MODEL, "testmodel.micronaut_pojo")
 				.addAdditionalProperty(AbstractJavaCodegen.OPENAPI_NULLABLE, false));
 	}
 
 	@DisplayName("model without micronaut annotations")
 	@Test
 	void modelWithoutMicronaut() {
-		generate(configurator(SPEC_TEST_MODEL_ONLY, "testmodel.nomicronaut")
+		generate(configurator(SPEC_MODEL, "testmodel.nomicronaut")
 				.addAdditionalProperty(MicronautCodegen.INTROSPECTED, false)
 				.addAdditionalProperty(MicronautCodegen.GENERATE_EXAMPLES, true)
 				.addTypeMapping("Generated", null));
+	}
+
+	static void generate(CodegenConfigurator configurator) {
+		var gen = new DefaultGenerator();
+		gen.setGenerateMetadata(false);
+		gen.setGeneratorPropertyDefault(CodegenConstants.SUPPORTING_FILES, "false");
+		gen.setGeneratorPropertyDefault(CodegenConstants.APIS, "true");
+		gen.setGeneratorPropertyDefault(CodegenConstants.MODELS, "true");
+
+		// server
+
+		gen.opts(configurator.toClientOptInput()).generate();
+
+		// client without model/supporting files
+
+		gen.opts(configurator.addAdditionalProperty(MicronautCodegen.CLIENT_ID, "id").toClientOptInput()).generate();
 	}
 }
