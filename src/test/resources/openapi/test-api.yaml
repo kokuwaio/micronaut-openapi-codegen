@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Spec for api tests.
-  version: '1'
+  version: "1"
 paths:
   /no-operation-id:
     get:
@@ -131,7 +131,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StringModel'
+                  $ref: "#/components/schemas/StringModel"
   /response/array-complex-not-found:
     get:
       operationId: arrayComplexNotFound
@@ -150,7 +150,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StringModel'
+                  $ref: "#/components/schemas/StringModel"
         404:
           description: Not found.
   /response/multiple-response-codes:
@@ -169,13 +169,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
         300:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
   /response/multiple-response-codes-not-found:
     get:
       operationId: multipleResponseCodesNotFound
@@ -197,13 +197,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
         300:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
         404:
           description: Not found.
   /response/multiple-datatypes:
@@ -222,13 +222,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
         300:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NumberModel'
+                $ref: "#/components/schemas/NumberModel"
   /response/multiple-datatypes-not-found:
     get:
       operationId: multipleDataTypesNotFound
@@ -250,13 +250,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
         300:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NumberModel'
+                $ref: "#/components/schemas/NumberModel"
         404:
           description: Not found.
   /response/default:
@@ -284,7 +284,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
   /mediatype/consumes-octet-stream:
     post:
       operationId: mediatypeConsumesOctetStream
@@ -302,7 +302,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
   /mediatype/consumes-multipart-with-fileupload:
     post:
       # see https://swagger.io/docs/specification/describing-request-body/file-upload/
@@ -332,7 +332,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Multipart'
+                $ref: "#/components/schemas/Multipart"
   /mediatype/consumes-multipart-without-fileupload:
     post:
       # see https://swagger.io/docs/specification/describing-request-body/file-upload/
@@ -358,7 +358,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Multipart'
+                $ref: "#/components/schemas/Multipart"
   /mediatype/consumes-and-produces:
     post:
       operationId: mediatypeConsumesAndProduces
@@ -376,7 +376,7 @@ paths:
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
   /mediatype/produces-with-different-model:
     get:
       operationId: mediatypeProducesDifferentModel
@@ -398,7 +398,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
             text/plain:
               schema:
                 type: string
@@ -418,10 +418,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
             application/xml:
               schema:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
   /param/path/requiredWithoutDefault/{string}:
     get:
       operationId: paramPathRequiredWithoutDefault
@@ -438,7 +438,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/requiredWithDefault/{string}:
     get:
       operationId: paramPathRequiredWithDefault
@@ -449,14 +449,14 @@ paths:
           required: true
           schema:
             type: string
-            default: "this-is-default"
+            default: this-is-default
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/with-max-length/{string}:
     get:
       operationId: paramPathWithMaxLength
@@ -474,7 +474,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/with-pattern/{string}:
     get:
       operationId: paramPathWithPattern
@@ -492,7 +492,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/with-uuid/{uuid}:
     get:
       operationId: paramPathWithUuid
@@ -510,7 +510,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/with-integer/{integer}:
     get:
       operationId: paramPathWithInteger
@@ -528,7 +528,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/with-long/{long}:
     get:
       operationId: paramPathWithLong
@@ -546,7 +546,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/with-bool/{bool}:
     get:
       operationId: paramPathWithBoolean
@@ -563,7 +563,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/overlay/{string}:
     get:
       operationId: paramPathOverlayWithString
@@ -581,7 +581,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/path/overlay/{uuid}:
     get:
       operationId: paramPathOverlayWithUuid
@@ -599,7 +599,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/multiple-lists:
     get:
       operationId: paramQueryMultipleLists
@@ -634,7 +634,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/date:
     get:
       operationId: paramQueryDate
@@ -652,7 +652,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/date-time:
     get:
       operationId: paramQueryDateTime
@@ -670,7 +670,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/number:
     get:
       operationId: paramQueryNumber
@@ -687,7 +687,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/uuid:
     get:
       operationId: paramQueryUuid
@@ -705,7 +705,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/requiredWithoutDefault:
     get:
       operationId: paramQueryRequiredWithoutDefault
@@ -722,7 +722,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
         400:
           description: Parameter missing.
   /param/query/requiredWithDefault:
@@ -735,14 +735,14 @@ paths:
           required: true
           schema:
             type: string
-            default: "this-is-default"
+            default: this-is-default
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/optionalWithoutDefault:
     get:
       operationId: paramQueryOptionalWithoutDefault
@@ -759,7 +759,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/query/optionalWithDefault:
     get:
       operationId: paramQueryOptionalWithDefault
@@ -770,14 +770,14 @@ paths:
           required: false
           schema:
             type: string
-            default: "this-is-default"
+            default: this-is-default
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/header/requiredWithoutDefault:
     get:
       operationId: paramHeaderRequiredWithoutDefault
@@ -794,7 +794,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
         400:
           description: Parameter missing.
   /param/header/requiredWithDefault:
@@ -807,14 +807,14 @@ paths:
           required: true
           schema:
             type: string
-            default: "this-is-default"
+            default: this-is-default
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/header/optionalWithoutDefault:
     get:
       operationId: paramHeaderOptionalWithoutDefault
@@ -831,7 +831,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/header/optionalWithDefault:
     get:
       operationId: paramHeaderOptionalWithDefault
@@ -842,14 +842,14 @@ paths:
           required: false
           schema:
             type: string
-            default: "this-is-default"
+            default: this-is-default
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/body/required:
     post:
       operationId: paramBodyRequired
@@ -859,14 +859,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ParameterModel'
+              $ref: "#/components/schemas/ParameterModel"
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
         400:
           description: Parameter missing.
   /param/body/optional:
@@ -878,14 +878,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ParameterModel'
+              $ref: "#/components/schemas/ParameterModel"
       responses:
         200:
           description: Ok.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /param/all/{path}:
     get:
       operationId: paramAll
@@ -920,7 +920,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParameterModel'
+                $ref: "#/components/schemas/ParameterModel"
   /validation/long/min:
     get:
       operationId: validationLongMin
@@ -1268,7 +1268,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/StringModel'
+                $ref: "#/components/schemas/StringModel"
       responses:
         204:
           description: Ok.
@@ -1283,7 +1283,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StringModel'
+              $ref: "#/components/schemas/StringModel"
       responses:
         204:
           description: Ok.
