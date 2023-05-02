@@ -13,9 +13,6 @@ rules:
   quoted-strings:
     quote-type: double
     required: only-when-needed
-    ignore: |
-      src/test/resources/openapi/test-api.yaml
-      src/test/resources/openapi/test-model.yaml
 
   # allow everything on keys
   truthy:

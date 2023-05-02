@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Spec for api tests.
-  version: '1'
+  version: "1"
 paths: {}
 components:
   schemas:
@@ -96,8 +96,8 @@ components:
           additionalProperties:
             type: string
           example:
-            a: "b"
-            c: "d"
+            a: b
+            c: d
         optionalArray:
           type: array
           items:
@@ -147,7 +147,7 @@ components:
           default: defaultNullableValue
           nullable: true
         referenedModel:
-          $ref: '#/components/schemas/EnumerationModel'
+          $ref: "#/components/schemas/EnumerationModel"
 
     ###
     ### Enumerations
@@ -157,9 +157,9 @@ components:
       type: object
       properties:
         string:
-          $ref: '#/components/schemas/EnumerationString'
+          $ref: "#/components/schemas/EnumerationString"
         string-default:
-          $ref: '#/components/schemas/EnumerationStringDefault'
+          $ref: "#/components/schemas/EnumerationStringDefault"
         embedded:
           type: string
           enum:
@@ -209,7 +209,7 @@ components:
         - foo
     InheritanceExtended:
       allOf:
-        - $ref: '#/components/schemas/InheritanceSimple'
+        - $ref: "#/components/schemas/InheritanceSimple"
         - properties:
             bar:
               type: string
@@ -224,20 +224,20 @@ components:
       discriminator:
         propertyName: type
         mapping:
-          Inheritance1: '#/components/schemas/InheritanceWithoutType1'
-          Inheritance2: '#/components/schemas/InheritanceWithoutType2'
+          Inheritance1: "#/components/schemas/InheritanceWithoutType1"
+          Inheritance2: "#/components/schemas/InheritanceWithoutType2"
       properties:
         e:
           type: string
     InheritanceWithoutType1:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithoutType'
+        - $ref: "#/components/schemas/InheritanceWithoutType"
         - properties:
             f:
               type: string
     InheritanceWithoutType2:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithoutType'
+        - $ref: "#/components/schemas/InheritanceWithoutType"
         - properties:
             g:
               type: string
@@ -250,8 +250,8 @@ components:
       discriminator:
         propertyName: type
         mapping:
-          Inheritance1: '#/components/schemas/InheritanceWithStringType1'
-          Inheritance2: '#/components/schemas/InheritanceWithStringType2'
+          Inheritance1: "#/components/schemas/InheritanceWithStringType1"
+          Inheritance2: "#/components/schemas/InheritanceWithStringType2"
       properties:
         type:
           type: string
@@ -259,13 +259,13 @@ components:
           type: string
     InheritanceWithStringType1:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithStringType'
+        - $ref: "#/components/schemas/InheritanceWithStringType"
         - properties:
             b:
               type: string
     InheritanceWithStringType2:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithStringType'
+        - $ref: "#/components/schemas/InheritanceWithStringType"
         - properties:
             c:
               type: string
@@ -284,27 +284,27 @@ components:
       discriminator:
         propertyName: type
         mapping:
-          Inheritance1: '#/components/schemas/InheritanceWithEnumType1'
-          Inheritance2: '#/components/schemas/InheritanceWithEnumType2'
-          Inheritance3: '#/components/schemas/InheritanceWithEnumType3'
+          Inheritance1: "#/components/schemas/InheritanceWithEnumType1"
+          Inheritance2: "#/components/schemas/InheritanceWithEnumType2"
+          Inheritance3: "#/components/schemas/InheritanceWithEnumType3"
       properties:
         type:
-          $ref: '#/components/schemas/InheritanceWithEnumTypeEnum'
+          $ref: "#/components/schemas/InheritanceWithEnumTypeEnum"
     InheritanceWithEnumType1:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithEnumType'
+        - $ref: "#/components/schemas/InheritanceWithEnumType"
         - properties:
             d:
               type: string
     InheritanceWithEnumType2:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithEnumType'
+        - $ref: "#/components/schemas/InheritanceWithEnumType"
         - properties:
             e:
               type: string
     InheritanceWithEnumType3:
       allOf:
-        - $ref: '#/components/schemas/InheritanceWithEnumType'
+        - $ref: "#/components/schemas/InheritanceWithEnumType"
 
     ###
     ### Multi-Level OneOf
@@ -312,8 +312,8 @@ components:
 
     OneOfModel:
       oneOf:
-        - $ref: '#/components/schemas/FirstModel'
-        - $ref: '#/components/schemas/SecondLevelModel'
+        - $ref: "#/components/schemas/FirstModel"
+        - $ref: "#/components/schemas/SecondLevelModel"
 
     FirstModel:
       type: object
@@ -323,12 +323,12 @@ components:
         first:
           type: string
         secondLevel:
-          $ref: '#/components/schemas/SecondLevelModel'
+          $ref: "#/components/schemas/SecondLevelModel"
 
     SecondLevelModel:
       oneOf:
-        - $ref: '#/components/schemas/SecondLevelOneModel'
-        - $ref: '#/components/schemas/SecondLevelTwoModel'
+        - $ref: "#/components/schemas/SecondLevelOneModel"
+        - $ref: "#/components/schemas/SecondLevelTwoModel"
 
 
     SecondLevelOneModel:
@@ -355,14 +355,14 @@ components:
       discriminator:
         propertyName: type
         mapping:
-          Implementation1: '#/components/schemas/OneOfImplementor1'
-          Implementation2: '#/components/schemas/OneOfImplementor2'
+          Implementation1: "#/components/schemas/OneOfImplementor1"
+          Implementation2: "#/components/schemas/OneOfImplementor2"
       properties:
         type:
           type: string
       oneOf:
-        - $ref: '#/components/schemas/OneOfImplementor1'
-        - $ref: '#/components/schemas/OneOfImplementor2'
+        - $ref: "#/components/schemas/OneOfImplementor1"
+        - $ref: "#/components/schemas/OneOfImplementor2"
 
     OneOfImplementor1:
       type: object
@@ -402,5 +402,5 @@ components:
           type: string
       additionalProperties:
         oneOf:
-          - $ref: '#/components/schemas/PropertyTypeOne'
-          - $ref: '#/components/schemas/PropertyTypeTwo'
+          - $ref: "#/components/schemas/PropertyTypeOne"
+          - $ref: "#/components/schemas/PropertyTypeTwo"
