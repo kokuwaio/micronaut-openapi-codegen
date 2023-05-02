@@ -85,6 +85,12 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(OptionalFeatures.USE_OPTIONAL, false));
 	}
 
+	@DisplayName("security with defaults")
+	@Test
+	void security() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.defaults"));
+	}
+
 	@DisplayName("model pojo with JsonNullable")
 	@Test
 	void modelPojoWithJsonNullable() {

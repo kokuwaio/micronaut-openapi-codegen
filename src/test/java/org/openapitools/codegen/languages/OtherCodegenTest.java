@@ -20,6 +20,12 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 		generate(JavaMicronautServerCodegen.class, SPEC_API, "testapi.micronaut-java", configurator -> {});
 	}
 
+	@DisplayName("security: micronaut")
+	@Test
+	void securityicronaut() {
+		generate(JavaMicronautServerCodegen.class, SPEC_SECURITY, "testsecurity.micronaut-java", configurator -> {});
+	}
+
 	@DisplayName("model: micronaut")
 	@Test
 	void modelMicronaut() {

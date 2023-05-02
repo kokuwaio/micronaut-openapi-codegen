@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: Spec for api tests.
+  version: "1"
+paths:
+  /anonymous:
+    get:
+      operationId: anonymous
+      tags: [security]
+      responses:
+        204:
+          description: Ok.
+  /authenticated/without-param:
+    get:
+      operationId: authenticatedWithoutParam
+      tags: [security]
+      responses:
+        204:
+          description: Ok.
+        401:
+          description: Forbidden.
+  /authenticated/with-param:
+    get:
+      operationId: authenticatedWithParam
+      tags: [security]
+      parameters:
+        - name: queryParam
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        204:
+          description: Ok.
+        401:
+          description: Forbidden.

@@ -16,6 +16,7 @@ import org.openapitools.codegen.config.CodegenConfigurator;
 public class AbstractCodegenTest {
 
 	static final String SPEC_API = "src/test/resources/openapi/test-api.yaml";
+	static final String SPEC_SECURITY = "src/test/resources/openapi/test-security.yaml";
 	static final String SPEC_MODEL = "src/test/resources/openapi/test-model.yaml";
 	static final Path SOURCE_FOLDER = Paths.get("gen/main/java");
 	static final Path TEST_FOLDER = Paths.get("gen/test/java");
