@@ -103,6 +103,7 @@
 
 		<version.io.kokuwa.micronaut.logging>3.0.6</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>3.9.1</version.io.micronaut>
+		<version.io.micronaut.security>3.11.0</version.io.micronaut.security>
 		<version.org.junit.jupiter>5.9.3</version.org.junit.jupiter>
 		<version.org.openapitools.generator>6.5.0</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
@@ -127,6 +128,11 @@
 				<groupId>io.micronaut</groupId>
 				<artifactId>micronaut-validation</artifactId>
 				<version>${version.io.micronaut}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.micronaut.security</groupId>
+				<artifactId>micronaut-security</artifactId>
+				<version>${version.io.micronaut.security}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.kokuwa.micronaut</groupId>
@@ -215,6 +221,17 @@
 				<exclusion>
 					<groupId>org.yaml</groupId>
 					<artifactId>snakeyaml</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut.security</groupId>
+			<artifactId>micronaut-security</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-http-server</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>

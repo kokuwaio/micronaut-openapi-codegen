@@ -1,7 +1,5 @@
 package org.openapitools.codegen.languages;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import java.util.function.Consumer;
 
 import org.junit.jupiter.api.DisplayName;
@@ -19,35 +17,33 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 	@DisplayName("api: micronaut")
 	@Test
 	void apiMicronaut() {
-		generateApi(JavaMicronautServerCodegen.class, "testapi.micronaut-java", configurator -> {});
+		generate(JavaMicronautServerCodegen.class, SPEC_API, "testapi.micronaut-java", configurator -> {});
 	}
 
 	@DisplayName("model: micronaut")
 	@Test
 	void modelMicronaut() {
-		generateModel(JavaMicronautServerCodegen.class, "testmodel.micronaut-java", configurator -> configurator
-				.addAdditionalProperty(SpringCodegen.INTERFACE_ONLY, true)
-				.addAdditionalProperty(JavaMicronautAbstractCodegen.OPT_GENERATE_SWAGGER_ANNOTATIONS, "false"));
+		generate(JavaMicronautServerCodegen.class, SPEC_MODEL, "testmodel.micronaut-java", configurator -> {});
 	}
 
 	@DisplayName("model: java")
 	@Test
 	void modelJava() {
-		generateModel(JavaClientCodegen.class, "testmodel.javaclient", configurator -> configurator
+		generate(JavaClientCodegen.class, SPEC_MODEL, "testmodel.javaclient", configurator -> configurator
 				.addAdditionalProperty(CodegenConstants.LIBRARY, JavaClientCodegen.JERSEY1));
 	}
 
 	@DisplayName("model: jaxrs")
 	@Test
 	void modelJaxRS() {
-		generateModel(JavaJAXRSSpecServerCodegen.class, "testmodel.jaxrs", configurator -> configurator
-				.addAdditionalProperty(JavaJAXRSSpecServerCodegen.USE_SWAGGER_ANNOTATIONS, "false"));
+		generate(JavaJAXRSSpecServerCodegen.class, SPEC_MODEL, "testmodel.jaxrs", configurator -> configurator
+				.addAdditionalProperty(JavaJAXRSSpecServerCodegen.USE_SWAGGER_ANNOTATIONS, false));
 	}
 
 	@DisplayName("model: spring")
 	@Test
 	void modelSpring() {
-		generateModel(SpringCodegen.class, "testmodel.spring", configurator -> configurator
+		generate(SpringCodegen.class, SPEC_MODEL, "testmodel.spring", configurator -> configurator
 				.addAdditionalProperty(SpringCodegen.INTERFACE_ONLY, true)
 				.addAdditionalProperty(DocumentationProviderFeatures.DOCUMENTATION_PROVIDER,
 						DocumentationProvider.SOURCE.name())
@@ -55,48 +51,31 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 						AnnotationLibrary.NONE.name()));
 	}
 
-	static void generateApi(Class<? extends DefaultCodegen> codegen, String packageName,
+	private static void generate(Class<? extends DefaultCodegen> codegen, String spec, String packageName,
 			Consumer<CodegenConfigurator> configure) {
 		var suppressAllWarnings = "@" + SuppressWarnings.class.getName() + "(\"all\")";
-		var configurator = configurator(SPEC_TEST_API, packageName)
+		var configurator = configurator(spec, packageName)
 				.setGeneratorName(getName(codegen))
-				.setInvokerPackage(packageName)
-				.setModelPackage(packageName)
-				.setApiPackage(packageName)
-				.addAdditionalProperty(AbstractJavaCodegen.ADDITIONAL_MODEL_TYPE_ANNOTATIONS, suppressAllWarnings)
-				.addAdditionalProperty(AbstractJavaCodegen.ADDITIONAL_ENUM_TYPE_ANNOTATIONS, suppressAllWarnings)
-				.addAdditionalProperty(AbstractJavaCodegen.DATE_LIBRARY, "java8");
-		configure.accept(configurator);
-		var gen = new DefaultGenerator();
-		gen.setGeneratorPropertyDefault(CodegenConstants.SUPPORTING_FILES, "false");
-		gen.setGeneratorPropertyDefault(CodegenConstants.MODEL_TESTS, "false");
-		gen.setGeneratorPropertyDefault(CodegenConstants.MODEL_DOCS, "false");
-		gen.setGeneratorPropertyDefault(CodegenConstants.GENERATE_API_TESTS, "false");
-		gen.setGeneratorPropertyDefault(CodegenConstants.GENERATE_API_DOCS, "false");
-		gen.setGenerateMetadata(false);
-		gen.opts(configurator.toClientOptInput()).generate();
-	}
-
-	static void generateModel(Class<? extends DefaultCodegen> codegen, String packageName,
-			Consumer<CodegenConfigurator> configure) {
-		var suppressAllWarnings = "@" + SuppressWarnings.class.getName() + "(\"all\")";
-		var configurator = configurator(SPEC_TEST_MODEL_ONLY, packageName)
-				.setGeneratorName(assertDoesNotThrow(() -> codegen.getDeclaredConstructor().newInstance().getName()))
 				.setInvokerPackage(packageName)
 				.setModelPackage(packageName)
 				.setApiPackage(packageName)
 				.addAdditionalProperty(CodegenConstants.HIDE_GENERATION_TIMESTAMP, true)
 				.addAdditionalProperty(CodegenConstants.LEGACY_DISCRIMINATOR_BEHAVIOR, true)
 				.addAdditionalProperty(CodegenConstants.USE_ONEOF_DISCRIMINATOR_LOOKUP, true)
+				.addAdditionalProperty(JavaMicronautAbstractCodegen.OPT_REACTIVE, false)
+				.addAdditionalProperty(JavaMicronautAbstractCodegen.OPT_GENERATE_SWAGGER_ANNOTATIONS, false)
 				.addAdditionalProperty(AbstractJavaCodegen.ADDITIONAL_MODEL_TYPE_ANNOTATIONS, suppressAllWarnings)
 				.addAdditionalProperty(AbstractJavaCodegen.ADDITIONAL_ENUM_TYPE_ANNOTATIONS, suppressAllWarnings)
 				.addAdditionalProperty(AbstractJavaCodegen.DATE_LIBRARY, "java8");
 		configure.accept(configurator);
 		var gen = new DefaultGenerator();
 		gen.setGeneratorPropertyDefault(CodegenConstants.SUPPORTING_FILES, "false");
-		gen.setGeneratorPropertyDefault(CodegenConstants.MODEL_TESTS, "false");
 		gen.setGeneratorPropertyDefault(CodegenConstants.MODEL_DOCS, "false");
+		gen.setGeneratorPropertyDefault(CodegenConstants.MODEL_TESTS, "false");
 		gen.setGeneratorPropertyDefault(CodegenConstants.MODELS, "true");
+		gen.setGeneratorPropertyDefault(CodegenConstants.API_DOCS, "false");
+		gen.setGeneratorPropertyDefault(CodegenConstants.API_TESTS, "false");
+		gen.setGeneratorPropertyDefault(CodegenConstants.APIS, "true");
 		gen.setGenerateMetadata(false);
 		gen.opts(configurator.toClientOptInput()).generate();
 	}
