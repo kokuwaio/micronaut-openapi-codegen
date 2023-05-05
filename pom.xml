@@ -4,7 +4,7 @@
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>3.2.3-SNAPSHOT</version>
+	<version>3.3.0-SNAPSHOT</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -298,7 +298,7 @@
 						<configLocation>checkstyle.xml</configLocation>
 						<suppressionsLocation>checkstyle-suppression.xml</suppressionsLocation>
 						<includeTestSourceDirectory>true</includeTestSourceDirectory>
-						<excludes>**/testapi/**/*,**/testmodel/**/*</excludes>
+						<excludes>**/testapi/**/*,**/testmodel/**/*,**/testsecurity/**/*</excludes>
 					</configuration>
 					<dependencies>
 						<dependency>
