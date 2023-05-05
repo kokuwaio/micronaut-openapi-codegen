@@ -91,6 +91,21 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 		generate(configurator(SPEC_SECURITY, "testsecurity.defaults"));
 	}
 
+	@DisplayName("security with custom types")
+	@Test
+	void securityWithAuthentication() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.auth")
+				.addAdditionalProperty(MicronautCodegen.GENERATE_AUTHENTICATION, true));
+	}
+
+	@DisplayName("security with custom types")
+	@Test
+	void securityWithTypes() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.types")
+				.addAdditionalProperty(MicronautCodegen.GENERATE_AUTHENTICATION, true)
+				.addTypeMapping("Authentication", java.security.Principal.class.getName()));
+	}
+
 	@DisplayName("model pojo with JsonNullable")
 	@Test
 	void modelPojoWithJsonNullable() {

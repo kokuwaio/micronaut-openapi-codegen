@@ -46,6 +46,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String INTROSPECTED = "introspected";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String PAGEABLE = "pageable";
+	public static final String GENERATE_AUTHENTICATION = "generateAuthentication";
 	public static final String GENERATE_EXAMPLES = "generateExamples";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
@@ -58,6 +59,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private static final Logger LOG = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	private boolean generateApiTests = true;
+	private boolean generateAuthentication = false;
 	private boolean generateExamples = false;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
@@ -83,6 +85,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
 		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
+		cliOptions.add(CliOption.newBoolean(GENERATE_AUTHENTICATION,
+				"Generate authentication into apis with return code 401.", generateAuthentication));
 		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES, "Generate examples for tests.", generateExamples));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 
@@ -104,6 +108,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_OPTIONAL, useOptional);
 		additionalProperties.put(INTROSPECTED, introspected);
 		additionalProperties.put(PAGEABLE, pageable);
+		additionalProperties.put(GENERATE_AUTHENTICATION, generateAuthentication);
 		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
 
 		// add custom type mappings
@@ -134,6 +139,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("URL", java.net.URL.class.getName());
 		typeMapping.put("file", "byte[]");
 		typeMapping.put("ByteArray", "byte[]");
+		typeMapping.put("Authentication", "io.micronaut.security.authentication.Authentication");
 		typeMapping.put("MultipartBody", "io.micronaut.http.client.multipart.MultipartBody");
 		typeMapping.put("fileUpload", "io.micronaut.http.multipart.CompletedFileUpload");
 		typeMapping.put("asyncFileUpload", "io.micronaut.http.multipart.StreamingFileUpload");
@@ -156,6 +162,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		reservedWords.remove("file");
 		reservedWords.remove("list");
+		reservedWords.add("authentication");
 	}
 
 	@Override
@@ -208,6 +215,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(OPENAPI_NULLABLE)) {
 			openApiNullable = convertPropertyToBooleanAndWriteBack(OPENAPI_NULLABLE);
 		}
+		if (additionalProperties.containsKey(GENERATE_AUTHENTICATION)) {
+			generateAuthentication = convertPropertyToBooleanAndWriteBack(GENERATE_AUTHENTICATION);
+		}
 		if (additionalProperties.containsKey(GENERATE_EXAMPLES)) {
 			generateExamples = convertPropertyToBooleanAndWriteBack(GENERATE_EXAMPLES);
 		}
@@ -243,6 +253,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// add type mappings for mustache
 
+		additionalProperties.put("type.Authentication", typeMapping.get("Authentication"));
 		additionalProperties.put("type.Nullable", typeMapping.get("Nullable"));
 		additionalProperties.put("type.Nonnull", typeMapping.get("Nonnull"));
 		additionalProperties.put("type.Inject", typeMapping.get("Inject"));

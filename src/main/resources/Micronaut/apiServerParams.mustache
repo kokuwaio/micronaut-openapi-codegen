@@ -1,4 +1,6 @@
-{{#allParams}}{{#required}}			@{{type.Nonnull}}
+{{#vendorExtensions.has401}}{{#generateAuthentication}}			@{{type.Nonnull}}
+			{{type.Authentication}} authentication{{#hasParams}},
+{{/hasParams}}{{/generateAuthentication}}{{/vendorExtensions.has401}}{{#allParams}}{{#required}}			@{{type.Nonnull}}
 {{/required}}{{^required}}{{^useOptional}}			@{{type.Nullable}}
 {{/useOptional}}{{#useOptional}}			@{{type.Nonnull}}
 {{/useOptional}}{{/required}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
