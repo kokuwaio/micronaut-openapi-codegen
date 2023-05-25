@@ -40,6 +40,38 @@ public interface ParameterApiTestClient {
 			@io.micronaut.http.annotation.Body
 			ParameterModel parameterModel);
 
+	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Consumes({ "application/json" })
+	io.micronaut.http.HttpResponse<ParameterModel> paramCookieOptionalWithDefault(
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
+			java.lang.String string);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithoutDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Consumes({ "application/json" })
+	io.micronaut.http.HttpResponse<ParameterModel> paramCookieOptionalWithoutDefault(
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
+			java.lang.String string);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Consumes({ "application/json" })
+	io.micronaut.http.HttpResponse<ParameterModel> paramCookieRequiredWithDefault(
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
+			java.lang.String string);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithoutDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Consumes({ "application/json" })
+	io.micronaut.http.HttpResponse<ParameterModel> paramCookieRequiredWithoutDefault(
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
+			java.lang.String string);
+
 	@io.micronaut.http.annotation.Get("/param/header/optionalWithDefault")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })

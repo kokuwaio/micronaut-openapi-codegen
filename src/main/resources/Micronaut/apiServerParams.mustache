@@ -6,7 +6,8 @@
 {{/useOptional}}{{/required}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isFormParam}}			@io.micronaut.http.annotation.Part(value = "{{baseName}}")
 {{/isFormParam}}{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isArray}}(value = "{{baseName}}"{{^isContainer}}{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}}{{/isContainer}}){{/isArray}}
-{{/isQueryParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
+{{/isQueryParam}}{{#isCookieParam}}			@io.micronaut.http.annotation.CookieValue(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
+{{/isCookieParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isHeaderParam}}{{>apiParamValidation}}			{{#defaultValue}}{{{dataType}}}{{/defaultValue}}{{^defaultValue}}{{#required}}{{{dataType}}}{{/required}}{{^required}}{{#useOptional}}java.util.Optional<{{{dataType}}}>{{/useOptional}}{{^useOptional}}{{{dataType}}}{{/useOptional}}{{/required}}{{/defaultValue}} {{paramName}}{{^-last}},
 {{/-last}}{{/allParams}}

@@ -223,6 +223,39 @@ public class ParameterClientTest implements ParameterApiTestSpec {
 
 	@Test
 	@Override
+	public void paramCookieOptionalWithDefault200() {
+		assertEquals(STRING, client.paramCookieOptionalWithDefault(STRING).getString());
+		assertEquals(STRING_DEFAULT, client.paramCookieOptionalWithDefault(null).getString());
+	}
+
+	@Test
+	@Override
+	public void paramCookieOptionalWithoutDefault200() {
+		assertEquals(STRING, client.paramCookieOptionalWithoutDefault(STRING).getString());
+		assertEquals(null, client.paramCookieOptionalWithoutDefault(null).getString());
+	}
+
+	@Test
+	@Override
+	public void paramCookieRequiredWithDefault200() {
+		assertEquals(STRING, client.paramCookieRequiredWithDefault(STRING).getString());
+		assertEquals(STRING_DEFAULT, client.paramCookieRequiredWithDefault(null).getString());
+	}
+
+	@Test
+	@Override
+	public void paramCookieRequiredWithoutDefault200() {
+		assertEquals(STRING, client.paramCookieRequiredWithoutDefault(STRING).getString());
+	}
+
+	@Test
+	@Override
+	public void paramCookieRequiredWithoutDefault400() {
+		assertThrows(IllegalArgumentException.class, () -> client.paramCookieRequiredWithoutDefault(null));
+	}
+
+	@Test
+	@Override
 	public void paramAll200() {
 		var expected = new ParameterModel()
 				.string(UUID.randomUUID().toString())

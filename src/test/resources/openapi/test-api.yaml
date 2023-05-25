@@ -850,6 +850,78 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ParameterModel"
+  /param/cookie/requiredWithoutDefault:
+    get:
+      operationId: paramCookieRequiredWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: cookie
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParameterModel"
+        400:
+          description: Parameter missing.
+  /param/cookie/requiredWithDefault:
+    get:
+      operationId: paramCookieRequiredWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: cookie
+          required: true
+          schema:
+            type: string
+            default: this-is-default
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParameterModel"
+  /param/cookie/optionalWithoutDefault:
+    get:
+      operationId: paramCookieOptionalWithoutDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: cookie
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParameterModel"
+  /param/cookie/optionalWithDefault:
+    get:
+      operationId: paramCookieOptionalWithDefault
+      tags: [parameter]
+      parameters:
+        - name: string
+          in: cookie
+          required: false
+          schema:
+            type: string
+            default: this-is-default
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParameterModel"
   /param/body/required:
     post:
       operationId: paramBodyRequired

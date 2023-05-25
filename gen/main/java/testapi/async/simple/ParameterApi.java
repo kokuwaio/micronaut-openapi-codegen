@@ -7,6 +7,10 @@ public interface ParameterApi {
 	java.lang.String PATH_PARAM_ALL = "/param/all/{path}";
 	java.lang.String PATH_PARAM_BODY_OPTIONAL = "/param/body/optional";
 	java.lang.String PATH_PARAM_BODY_REQUIRED = "/param/body/required";
+	java.lang.String PATH_PARAM_COOKIE_OPTIONAL_WITH_DEFAULT = "/param/cookie/optionalWithDefault";
+	java.lang.String PATH_PARAM_COOKIE_OPTIONAL_WITHOUT_DEFAULT = "/param/cookie/optionalWithoutDefault";
+	java.lang.String PATH_PARAM_COOKIE_REQUIRED_WITH_DEFAULT = "/param/cookie/requiredWithDefault";
+	java.lang.String PATH_PARAM_COOKIE_REQUIRED_WITHOUT_DEFAULT = "/param/cookie/requiredWithoutDefault";
 	java.lang.String PATH_PARAM_HEADER_OPTIONAL_WITH_DEFAULT = "/param/header/optionalWithDefault";
 	java.lang.String PATH_PARAM_HEADER_OPTIONAL_WITHOUT_DEFAULT = "/param/header/optionalWithoutDefault";
 	java.lang.String PATH_PARAM_HEADER_REQUIRED_WITH_DEFAULT = "/param/header/requiredWithDefault";
@@ -67,6 +71,38 @@ public interface ParameterApi {
 			@io.micronaut.http.annotation.Body
 			@javax.validation.Valid
 			ParameterModel parameterModel);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Produces({ "application/json" })
+	reactor.core.publisher.Mono<ParameterModel> paramCookieOptionalWithDefault(
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string", defaultValue = "this-is-default")
+			java.lang.String string);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithoutDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Produces({ "application/json" })
+	reactor.core.publisher.Mono<ParameterModel> paramCookieOptionalWithoutDefault(
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
+			java.lang.String string);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Produces({ "application/json" })
+	reactor.core.publisher.Mono<ParameterModel> paramCookieRequiredWithDefault(
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.CookieValue(value = "string", defaultValue = "this-is-default")
+			java.lang.String string);
+
+	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithoutDefault")
+	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
+	@io.micronaut.http.annotation.Produces({ "application/json" })
+	reactor.core.publisher.Mono<ParameterModel> paramCookieRequiredWithoutDefault(
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.CookieValue(value = "string")
+			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/header/optionalWithDefault")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
