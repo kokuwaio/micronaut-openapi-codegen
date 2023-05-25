@@ -95,6 +95,74 @@ public class ParameterController {
 
 
     /**
+     * paramCookieOptionalWithDefault
+     *
+     * @param string  (optional, default to this-is-default)
+     * @return ParameterModel
+     */
+    @Get(uri="/param/cookie/optionalWithDefault")
+    @Produces(value = {"application/json"})
+    @Secured({SecurityRule.IS_ANONYMOUS})
+    public ParameterModel paramCookieOptionalWithDefault(
+        @CookieValue(value="string", defaultValue="this-is-default") @Nullable String string
+    ) {
+        // TODO implement paramCookieOptionalWithDefault();
+        throw new HttpStatusException(HttpStatus.NOT_IMPLEMENTED, null);
+    }
+
+
+    /**
+     * paramCookieOptionalWithoutDefault
+     *
+     * @param string  (optional)
+     * @return ParameterModel
+     */
+    @Get(uri="/param/cookie/optionalWithoutDefault")
+    @Produces(value = {"application/json"})
+    @Secured({SecurityRule.IS_ANONYMOUS})
+    public ParameterModel paramCookieOptionalWithoutDefault(
+        @CookieValue(value="string") @Nullable String string
+    ) {
+        // TODO implement paramCookieOptionalWithoutDefault();
+        throw new HttpStatusException(HttpStatus.NOT_IMPLEMENTED, null);
+    }
+
+
+    /**
+     * paramCookieRequiredWithDefault
+     *
+     * @param string  (required)
+     * @return ParameterModel
+     */
+    @Get(uri="/param/cookie/requiredWithDefault")
+    @Produces(value = {"application/json"})
+    @Secured({SecurityRule.IS_ANONYMOUS})
+    public ParameterModel paramCookieRequiredWithDefault(
+        @CookieValue(value="string", defaultValue="this-is-default") @NotNull String string
+    ) {
+        // TODO implement paramCookieRequiredWithDefault();
+        throw new HttpStatusException(HttpStatus.NOT_IMPLEMENTED, null);
+    }
+
+
+    /**
+     * paramCookieRequiredWithoutDefault
+     *
+     * @param string  (required)
+     * @return ParameterModel
+     */
+    @Get(uri="/param/cookie/requiredWithoutDefault")
+    @Produces(value = {"application/json"})
+    @Secured({SecurityRule.IS_ANONYMOUS})
+    public ParameterModel paramCookieRequiredWithoutDefault(
+        @CookieValue(value="string") @NotNull String string
+    ) {
+        // TODO implement paramCookieRequiredWithoutDefault();
+        throw new HttpStatusException(HttpStatus.NOT_IMPLEMENTED, null);
+    }
+
+
+    /**
      * paramHeaderOptionalWithDefault
      *
      * @param string  (optional, default to this-is-default)

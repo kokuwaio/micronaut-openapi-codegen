@@ -18,6 +18,24 @@ public interface ParameterApiTestSpec {
 
 	void paramBodyRequired400() throws java.lang.Exception;
 
+	// paramCookieOptionalWithDefault
+
+	void paramCookieOptionalWithDefault200() throws java.lang.Exception;
+
+	// paramCookieOptionalWithoutDefault
+
+	void paramCookieOptionalWithoutDefault200() throws java.lang.Exception;
+
+	// paramCookieRequiredWithDefault
+
+	void paramCookieRequiredWithDefault200() throws java.lang.Exception;
+
+	// paramCookieRequiredWithoutDefault
+
+	void paramCookieRequiredWithoutDefault200() throws java.lang.Exception;
+
+	void paramCookieRequiredWithoutDefault400() throws java.lang.Exception;
+
 	// paramHeaderOptionalWithDefault
 
 	void paramHeaderOptionalWithDefault200() throws java.lang.Exception;

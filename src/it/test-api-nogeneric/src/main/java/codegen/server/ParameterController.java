@@ -145,6 +145,26 @@ public class ParameterController implements ParameterApi {
 	}
 
 	@Override
+	public ParameterModel paramCookieOptionalWithDefault(String string) {
+		return new ParameterModel().string(string);
+	}
+
+	@Override
+	public ParameterModel paramCookieOptionalWithoutDefault(Optional<String> string) {
+		return new ParameterModel().string(string.orElse(null));
+	}
+
+	@Override
+	public ParameterModel paramCookieRequiredWithDefault(String string) {
+		return new ParameterModel().string(string);
+	}
+
+	@Override
+	public ParameterModel paramCookieRequiredWithoutDefault(String string) {
+		return new ParameterModel().string(string);
+	}
+
+	@Override
 	public ParameterModel paramAll(String path, UUID uuid, Optional<LocalDate> date, Optional<Integer> integer) {
 		return new ParameterModel()
 				.string(path)
