@@ -77,6 +77,7 @@ public interface ParameterApi {
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieOptionalWithDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string", defaultValue = "this-is-default")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithoutDefault")
@@ -84,6 +85,7 @@ public interface ParameterApi {
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieOptionalWithoutDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithDefault")
@@ -91,6 +93,7 @@ public interface ParameterApi {
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieRequiredWithDefault(
 			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.CookieValue(value = "string", defaultValue = "this-is-default")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithoutDefault")
@@ -98,6 +101,7 @@ public interface ParameterApi {
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieRequiredWithoutDefault(
 			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/header/optionalWithDefault")

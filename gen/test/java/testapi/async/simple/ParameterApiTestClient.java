@@ -45,6 +45,7 @@ public interface ParameterApiTestClient {
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModel> paramCookieOptionalWithDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithoutDefault")
@@ -52,6 +53,7 @@ public interface ParameterApiTestClient {
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModel> paramCookieOptionalWithoutDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithDefault")
@@ -59,6 +61,7 @@ public interface ParameterApiTestClient {
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModel> paramCookieRequiredWithDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithoutDefault")
@@ -66,6 +69,7 @@ public interface ParameterApiTestClient {
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModel> paramCookieRequiredWithoutDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/header/optionalWithDefault")

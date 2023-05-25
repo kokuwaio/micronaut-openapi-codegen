@@ -41,24 +41,28 @@ public interface ParameterApiTestClient {
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramCookieOptionalWithDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithoutDefault")
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramCookieOptionalWithoutDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithDefault")
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramCookieRequiredWithDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithoutDefault")
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramCookieRequiredWithoutDefault(
 			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/header/optionalWithDefault")
