@@ -803,7 +803,7 @@ paths:
       tags: [parameter]
       parameters:
         - name: string
-          in: query
+          in: header
           required: true
           schema:
             type: string

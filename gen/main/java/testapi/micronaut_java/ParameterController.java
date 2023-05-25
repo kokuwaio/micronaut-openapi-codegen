@@ -138,7 +138,7 @@ public class ParameterController {
     @Produces(value = {"application/json"})
     @Secured({SecurityRule.IS_ANONYMOUS})
     public ParameterModel paramHeaderRequiredWithDefault(
-        @QueryValue(value="string", defaultValue="this-is-default") @NotNull String string
+        @Header(value="string", defaultValue="this-is-default") @NotNull String string
     ) {
         // TODO implement paramHeaderRequiredWithDefault();
         throw new HttpStatusException(HttpStatus.NOT_IMPLEMENTED, null);
