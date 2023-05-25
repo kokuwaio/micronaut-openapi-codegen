@@ -87,7 +87,7 @@ public interface ParameterApiClient {
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	ParameterModel paramHeaderRequiredWithDefault(
 			@io.micronaut.core.annotation.Nullable
-			@io.micronaut.http.annotation.QueryValue(value = "string")
+			@io.micronaut.http.annotation.Header(value = "string")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get("/param/header/requiredWithoutDefault")
