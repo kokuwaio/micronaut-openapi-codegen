@@ -2,10 +2,15 @@ name: Release
 
 on: workflow_dispatch
 
+env:
+  MAVEN_ARGS: --batch-mode --color=always --no-transfer-progress --settings=.github/settings.xml
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: git config --global user.name "${{ vars.KOKUWA_IO_BOT_NAME }}"
+      - run: git config --global user.email "${{ vars.KOKUWA_IO_BOT_EMAIL }}"
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GIT_ACTION_TOKEN }}
@@ -25,10 +30,11 @@ jobs:
           server-password: SERVER_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
-      - run: mvn -B -ntp dependency:go-offline
-      - run: mvn -B -ntp release:prepare
-      - run: mvn -B -ntp release:perform
+      - run: mvn $MAVEN_ARGS dependency:go-offline
+      - run: mvn $MAVEN_ARGS release:prepare -Darguments="$MAVEN_ARGS"
+      - run: mvn $MAVEN_ARGS release:perform -Darguments="$MAVEN_ARGS"
         env:
           SERVER_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           SERVER_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+          GIT_ACTION_TOKEN: ${{ secrets.GIT_ACTION_TOKEN }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
