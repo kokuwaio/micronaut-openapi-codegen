@@ -101,7 +101,6 @@
 
 		<!-- dependencies -->
 
-		<version.io.kokuwa.micronaut.logging>3.2.0</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>3.9.2</version.io.micronaut>
 		<version.io.micronaut.security>3.11.0</version.io.micronaut.security>
 		<version.org.junit.jupiter>5.9.3</version.org.junit.jupiter>
@@ -133,11 +132,6 @@
 				<groupId>io.micronaut.security</groupId>
 				<artifactId>micronaut-security</artifactId>
 				<version>${version.io.micronaut.security}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.kokuwa.micronaut</groupId>
-				<artifactId>micronaut-logging</artifactId>
-				<version>${version.io.kokuwa.micronaut.logging}</version>
 			</dependency>
 
 			<!-- openapi -->
