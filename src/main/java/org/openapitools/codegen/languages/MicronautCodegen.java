@@ -3,6 +3,7 @@ package org.openapitools.codegen.languages;
 import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
 import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
+import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER_DESC;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -89,6 +90,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				"Generate authentication into apis with return code 401.", generateAuthentication));
 		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES, "Generate examples for tests.", generateExamples));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
+		cliOptions.add(CliOption.newString(SOURCE_FOLDER, SOURCE_FOLDER_DESC));
+		cliOptions.add(CliOption.newString("testFolder", "test folder for generated code"));
 
 		// there is no documentation template yet
 
