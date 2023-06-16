@@ -29,7 +29,6 @@
 
 		<!-- dependencies -->
 
-		<version.io.kokuwa.micronaut.logging>@version.io.kokuwa.micronaut.logging@</version.io.kokuwa.micronaut.logging>
 		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
 		<version.org.openapitools.generator>@version.org.openapitools.generator@</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
@@ -54,11 +53,6 @@
 				<version>${version.io.micronaut}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>io.kokuwa.micronaut</groupId>
-				<artifactId>micronaut-logging</artifactId>
-				<version>${version.io.kokuwa.micronaut.logging}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.openapitools</groupId>
