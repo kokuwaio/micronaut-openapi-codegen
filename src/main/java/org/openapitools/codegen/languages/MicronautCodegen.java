@@ -6,9 +6,6 @@ import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER_DESC;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -117,29 +114,29 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// add custom type mappings
 
 		typeMapping.clear();
-		typeMapping.put("object", java.lang.Object.class.getName());
-		typeMapping.put("AnyType", java.lang.Object.class.getName());
-		typeMapping.put("date", java.time.LocalDate.class.getName());
-		typeMapping.put("DateTime", java.time.Instant.class.getName());
-		typeMapping.put("array", java.util.List.class.getName());
-		typeMapping.put("map", java.util.Map.class.getName());
-		typeMapping.put("set", java.util.Set.class.getName());
-		typeMapping.put("boolean", java.lang.Boolean.class.getName());
-		typeMapping.put("string", java.lang.String.class.getName());
-		typeMapping.put("int", java.lang.Integer.class.getName());
-		typeMapping.put("integer", java.lang.Integer.class.getName());
-		typeMapping.put("Integer", java.lang.Integer.class.getName());
-		typeMapping.put("long", java.lang.Long.class.getName());
-		typeMapping.put("Long", java.lang.Long.class.getName());
-		typeMapping.put("float", java.lang.Float.class.getName());
-		typeMapping.put("Float", java.lang.Float.class.getName());
-		typeMapping.put("double", java.lang.Double.class.getName());
-		typeMapping.put("Double", java.lang.Double.class.getName());
-		typeMapping.put("number", java.lang.Double.class.getName());
-		typeMapping.put("BigDecimal", java.lang.Double.class.getName());
-		typeMapping.put("UUID", java.util.UUID.class.getName());
-		typeMapping.put("URI", java.net.URI.class.getName());
-		typeMapping.put("URL", java.net.URL.class.getName());
+		typeMapping.put("object", "java.lang.Object");
+		typeMapping.put("AnyType", "java.lang.Object");
+		typeMapping.put("date", "java.time.LocalDate");
+		typeMapping.put("DateTime", "java.time.Instant");
+		typeMapping.put("array", "java.util.List");
+		typeMapping.put("map", "java.util.Map");
+		typeMapping.put("set", "java.util.Set");
+		typeMapping.put("boolean", "java.lang.Boolean");
+		typeMapping.put("string", "java.lang.String");
+		typeMapping.put("int", "java.lang.Integer");
+		typeMapping.put("integer", "java.lang.Integer");
+		typeMapping.put("Integer", "java.lang.Integer");
+		typeMapping.put("long", "java.lang.Long");
+		typeMapping.put("Long", "java.lang.Long");
+		typeMapping.put("float", "java.lang.Float");
+		typeMapping.put("Float", "java.lang.Float");
+		typeMapping.put("double", "java.lang.Double");
+		typeMapping.put("Double", "java.lang.Double");
+		typeMapping.put("number", "java.lang.Double");
+		typeMapping.put("BigDecimal", "java.lang.Double");
+		typeMapping.put("UUID", "java.util.UUID");
+		typeMapping.put("URI", "java.net.URI");
+		typeMapping.put("URL", "java.net.URL");
 		typeMapping.put("file", "byte[]");
 		typeMapping.put("ByteArray", "byte[]");
 		typeMapping.put("Authentication", "io.micronaut.security.authentication.Authentication");
@@ -156,9 +153,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		typeMapping.put("Inject", "jakarta.inject.Inject");
 		typeMapping.put("Singleton", "jakarta.inject.Singleton");
 		instantiationTypes.clear();
-		instantiationTypes.put("array", ArrayList.class.getName());
-		instantiationTypes.put("map", HashMap.class.getName());
-		instantiationTypes.put("set", LinkedHashSet.class.getName());
+		instantiationTypes.put("array", "java.util.ArrayList");
+		instantiationTypes.put("map", "java.util.HashMap");
+		instantiationTypes.put("set", "java.util.LinkedHashSet");
 		importMapping.clear();
 
 		// allow list and file as variables
@@ -351,7 +348,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				if (isVoid) {
 					var asyncCompletable = typeMapping.get("asyncCompletable");
 					if ("reactor.core.publisher.Mono".equals(asyncCompletable)) {
-						extensions.put("asyncContainer", asyncCompletable + "<" + java.lang.Void.class.getName() + ">");
+						extensions.put("asyncContainer", asyncCompletable + "<java.lang.Void>");
 					} else {
 						extensions.put("asyncContainer", asyncCompletable);
 					}
@@ -427,7 +424,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		objs.entrySet().removeIf(e -> e.getKey().endsWith("_allOf"));
 
-		Map<String, CodegenModel> allModels = getAllModels(objs);
+		var allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
 
 			// check if composed schemas for additional properties should be handled and apply to the map if so.
@@ -471,7 +468,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				}
 				subModel.vars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
 
-				Map<String, Object> extensions = subModel.getVendorExtensions();
+				var extensions = subModel.getVendorExtensions();
 				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
 				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
 				switch (discriminator.getPropertyType()) {
@@ -508,14 +505,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
 		super.postProcessModelProperty(model, property);
 
-		if (openApiNullable && Boolean.FALSE.equals(property.required) && Boolean.TRUE.equals(property.isNullable)) {
+		if (openApiNullable && !property.required && property.isNullable) {
 			property.getVendorExtensions().put("x-jackson-nullable", true);
 		}
 	}
 
 	@Override
 	public boolean isDataTypeString(String dataType) {
-		return List.of(String.class.getSimpleName(), String.class.getName()).contains(dataType);
+		return List.of("java.lang.String", "String").contains(dataType);
 	}
 
 	// enum
@@ -532,16 +529,16 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	@Override
 	public String toEnumValue(String value, String datatype) {
-		if (List.of("int", Integer.class.getSimpleName(), Integer.class.getName()).contains(datatype)) {
+		if (List.of("int", "Integer", "java.lang.Integer").contains(datatype)) {
 			return value;
 		}
-		if (List.of("long", Long.class.getSimpleName(), Long.class.getName()).contains(datatype)) {
+		if (List.of("long", "Long", "java.lang.Long").contains(datatype)) {
 			return value + "L";
 		}
-		if (List.of("float", Float.class.getSimpleName(), Float.class.getName()).contains(datatype)) {
+		if (List.of("float", "Float", "java.lang.Float").contains(datatype)) {
 			return value + "F";
 		}
-		if (List.of("double", Double.class.getSimpleName(), Double.class.getName()).contains(datatype)) {
+		if (List.of("double", "Double", "java.lang.Double").contains(datatype)) {
 			return value + "D";
 		}
 		return super.toEnumValue(value, datatype);
@@ -606,7 +603,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 
 		if (ModelUtils.isDateSchema(schema)) {
-			if (typeMapping.get(schema.getType()).equals("java.time.LocalDate")) {
+			if ("java.time.LocalDate".equals(typeMapping.get(schema.getType()))) {
 				return "java.time.LocalDate." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
 			} else {
 				// we cannot provide a valid example for all possible date types
@@ -614,7 +611,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			}
 		}
 		if (ModelUtils.isDateTimeSchema(schema)) {
-			if (typeMapping.get(schema.getType()).equals("java.time.Instant")) {
+			if ("java.time.Instant".equals(typeMapping.get(schema.getType()))) {
 				return "java.time.Instant." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
 			} else {
 				// we cannot provide a valid example for all possible date types
