@@ -2,6 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>io.kokuwa.maven</groupId>
+		<artifactId>maven-parent</artifactId>
+		<version>0.6.7</version>
+		<relativePath/>
+	</parent>
+
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
@@ -16,8 +23,9 @@
 	</organization>
 	<licenses>
 		<license>
-			<name>Apache License 2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
@@ -29,6 +37,10 @@
 			<email>stephan@grayc.de</email>
 			<organization>GrayC GmbH</organization>
 			<organizationUrl>https://grayc.de</organizationUrl>
+			<timezone>Europe/Berlin</timezone>
+			<roles>
+				<role>Lead Developer</role>
+			</roles>
 		</developer>
 	</developers>
 
@@ -46,16 +58,6 @@
 		<system>github</system>
 		<url>https://github.com/kokuwaio/micronaut-openapi-codegen/actions</url>
 	</ciManagement>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-	</distributionManagement>
 
 	<properties>
 
@@ -63,46 +65,17 @@
 		<!-- ============================== Build ================================ -->
 		<!-- ===================================================================== -->
 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.parameters>true</maven.compiler.parameters>
-		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
-		<maven.compiler.failOnWarning>true</maven.compiler.failOnWarning>
-		<maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+		<maven.compiler.compilerArgument>-Xlint:all,-processing,-unchecked,-rawtypes,-serial</maven.compiler.compilerArgument>
+
+		<checkstyle.excludes>**/testapi/**/*,**/testmodel/**/*,**/testsecurity/**/*</checkstyle.excludes>
 
 		<!-- ===================================================================== -->
 		<!-- ============================= Versions ============================== -->
 		<!-- ===================================================================== -->
 
-		<!-- plugins -->
-
-		<version.org.apache.maven.plugins.checkstyle>3.2.2</version.org.apache.maven.plugins.checkstyle>
-		<version.org.apache.maven.plugins.clean>3.2.0</version.org.apache.maven.plugins.clean>
-		<version.org.apache.maven.plugins.compiler>3.11.0</version.org.apache.maven.plugins.compiler>
-		<version.org.apache.maven.plugins.dependency>3.5.0</version.org.apache.maven.plugins.dependency>
-		<version.org.apache.maven.plugins.deploy>3.1.1</version.org.apache.maven.plugins.deploy>
-		<version.org.apache.maven.plugins.gpg>3.0.1</version.org.apache.maven.plugins.gpg>
-		<version.org.apache.maven.plugins.install>3.1.1</version.org.apache.maven.plugins.install>
-		<version.org.apache.maven.plugins.invoker>3.5.1</version.org.apache.maven.plugins.invoker>
-		<version.org.apache.maven.plugins.javadoc>3.5.0</version.org.apache.maven.plugins.javadoc>
-		<version.org.apache.maven.plugins.jar>3.3.0</version.org.apache.maven.plugins.jar>
-		<version.org.apache.maven.plugins.release>3.0.0</version.org.apache.maven.plugins.release>
-		<version.org.apache.maven.plugins.resources>3.3.1</version.org.apache.maven.plugins.resources>
-		<version.org.apache.maven.plugins.source>3.2.1</version.org.apache.maven.plugins.source>
-		<version.org.apache.maven.plugins.surefire>3.0.0</version.org.apache.maven.plugins.surefire>
-		<version.org.codehaus.mojo.build-helper>3.3.0</version.org.codehaus.mojo.build-helper>
-		<version.org.codehaus.mojo.tidy>1.2.0</version.org.codehaus.mojo.tidy>
-		<version.org.sonatype.plugins.nexus-staging>1.6.13</version.org.sonatype.plugins.nexus-staging>
-		<version.com.puppycrawl.tools.checkstyle>10.10.0</version.com.puppycrawl.tools.checkstyle>
-		<version.io.kokuwa.checkstyle>0.5.6</version.io.kokuwa.checkstyle>
-
-		<!-- dependencies -->
-
-		<version.io.kokuwa.micronaut.logging>3.0.6</version.io.kokuwa.micronaut.logging>
-		<version.io.micronaut>3.9.1</version.io.micronaut>
+		<version.io.micronaut>3.9.3</version.io.micronaut>
 		<version.io.micronaut.security>3.11.0</version.io.micronaut.security>
 		<version.org.junit.jupiter>5.9.3</version.org.junit.jupiter>
 		<version.org.openapitools.generator>6.6.0</version.org.openapitools.generator>
@@ -110,63 +83,13 @@
 
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-
-			<!-- micronaut -->
-			<dependency>
-				<groupId>io.micronaut</groupId>
-				<artifactId>micronaut-http</artifactId>
-				<version>${version.io.micronaut}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.micronaut</groupId>
-				<artifactId>micronaut-http-client-core</artifactId>
-				<version>${version.io.micronaut}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.micronaut</groupId>
-				<artifactId>micronaut-validation</artifactId>
-				<version>${version.io.micronaut}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.micronaut.security</groupId>
-				<artifactId>micronaut-security</artifactId>
-				<version>${version.io.micronaut.security}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.kokuwa.micronaut</groupId>
-				<artifactId>micronaut-logging</artifactId>
-				<version>${version.io.kokuwa.micronaut.logging}</version>
-			</dependency>
-
-			<!-- openapi -->
-			<dependency>
-				<groupId>org.openapitools</groupId>
-				<artifactId>openapi-generator</artifactId>
-				<version>${version.org.openapitools.generator}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openapitools</groupId>
-				<artifactId>jackson-databind-nullable</artifactId>
-				<version>${version.org.openapitools.jackson.nullable}</version>
-			</dependency>
-
-			<!-- test -->
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>${version.org.junit.jupiter}</version>
-			</dependency>
-
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 
 		<!-- micronaut -->
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http</artifactId>
+			<version>${version.io.micronaut}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>io.micronaut</groupId>
@@ -188,7 +111,20 @@
 		</dependency>
 		<dependency>
 			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-core</artifactId>
+			<version>${version.io.micronaut}</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http-client-core</artifactId>
+			<version>${version.io.micronaut}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -200,14 +136,39 @@
 					<artifactId>micronaut-runtime</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>org.reactivestreams</groupId>
-					<artifactId>reactive-streams</artifactId>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.projectreactor</groupId>
+					<artifactId>reactor-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-inject</artifactId>
+			<version>${version.io.micronaut}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.yaml</groupId>
+					<artifactId>snakeyaml</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-validation</artifactId>
+			<version>${version.io.micronaut}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -215,8 +176,20 @@
 					<artifactId>micronaut-core-reactive</artifactId>
 				</exclusion>
 				<exclusion>
+					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-inject</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.projectreactor</groupId>
+					<artifactId>reactor-core</artifactId>
+				</exclusion>
+				<exclusion>
 					<groupId>org.reactivestreams</groupId>
 					<artifactId>reactive-streams</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>org.yaml</groupId>
@@ -227,11 +200,28 @@
 		<dependency>
 			<groupId>io.micronaut.security</groupId>
 			<artifactId>micronaut-security</artifactId>
+			<version>${version.io.micronaut.security}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-inject</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.micronaut</groupId>
 					<artifactId>micronaut-http-server</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-validation</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-http</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.reactivestreams</groupId>
+					<artifactId>reactive-streams</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -240,11 +230,13 @@
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>openapi-generator</artifactId>
+			<version>${version.org.openapitools.generator}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
+			<version>${version.org.openapitools.jackson.nullable}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -258,6 +250,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
+			<version>${version.org.junit.jupiter}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -288,125 +281,6 @@
 	</dependencies>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.checkstyle}</version>
-					<configuration>
-						<configLocation>checkstyle.xml</configLocation>
-						<suppressionsLocation>checkstyle-suppression.xml</suppressionsLocation>
-						<includeTestSourceDirectory>true</includeTestSourceDirectory>
-						<excludes>**/testapi/**/*,**/testmodel/**/*,**/testsecurity/**/*</excludes>
-					</configuration>
-					<dependencies>
-						<dependency>
-							<groupId>com.puppycrawl.tools</groupId>
-							<artifactId>checkstyle</artifactId>
-							<version>${version.com.puppycrawl.tools.checkstyle}</version>
-						</dependency>
-						<dependency>
-							<groupId>io.kokuwa</groupId>
-							<artifactId>maven-parent</artifactId>
-							<version>${version.io.kokuwa.checkstyle}</version>
-							<type>zip</type>
-							<classifier>checkstyle</classifier>
-						</dependency>
-					</dependencies>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.clean}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.compiler}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.dependency}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.deploy}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-gpg-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.gpg}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-install-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.install}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-invoker-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.invoker}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.jar}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.javadoc}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.release}</version>
-					<configuration>
-						<tagNameFormat>@{project.version}</tagNameFormat>
-						<releaseProfiles>release</releaseProfiles>
-						<localCheckout>true</localCheckout>
-						<signTag>true</signTag>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.resources}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.source}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.surefire}</version>
-					<configuration>
-						<failIfNoTests>true</failIfNoTests>
-						<parallel>all</parallel>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>${version.org.codehaus.mojo.build-helper}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>tidy-maven-plugin</artifactId>
-					<version>${version.org.codehaus.mojo.tidy}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.sonatype.plugins</groupId>
-					<artifactId>nexus-staging-maven-plugin</artifactId>
-					<version>${version.org.sonatype.plugins.nexus-staging}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 
 			<!-- run surefire tests -->
@@ -456,104 +330,12 @@
 							<goal>verify</goal>
 						</goals>
 						<configuration>
-							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-							<parallelThreads>1C</parallelThreads>
-							<streamLogs>false</streamLogs>
-							<streamLogsOnFailures>true</streamLogsOnFailures>
-							<writeJunitReport>true</writeJunitReport>
-							<goals>test</goals>
-							<scope>none</scope>
+							<parallelThreads>0.5C</parallelThreads>
 						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- fail if any pom is dirty -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tidy-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- fail if checkstyle reports problems -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
 					</execution>
 				</executions>
 			</plugin>
 
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-
-					<!-- add source/javadoc for downstream projects -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-					<!-- sign documents before upload -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-					<!-- autoclose sonatype nexus repo -->
-					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>sonatype-nexus</serverId>
-							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
-						</configuration>
-					</plugin>
-
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

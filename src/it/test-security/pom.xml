@@ -31,11 +31,6 @@
 			<artifactId>micronaut-security-jwt</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.kokuwa.micronaut</groupId>
-			<artifactId>micronaut-logging</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 
 		<!-- test -->
 		<dependency>

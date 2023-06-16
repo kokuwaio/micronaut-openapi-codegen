@@ -2,25 +2,13 @@ version: 2
 updates:
   - package-ecosystem: maven
     directory: /
-    open-pull-requests-limit: 20
     schedule:
-      interval: monthly
-      day: monday
-      # github parses time without quotes to int
-      # yamllint disable-line rule:quoted-strings
-      time: "09:00"
-      timezone: Europe/Berlin
+      interval: daily
     ignore:
-      # spring/swagger is used for tests
+      # spring is used for tests
       - dependency-name: org.springframework:spring-context
-      - dependency-name: io.swagger.core.v3:swagger-annotations
   - package-ecosystem: github-actions
     directory: /
-    open-pull-requests-limit: 10
     schedule:
       interval: monthly
       day: monday
-      # github parses time without quotes to int
-      # yamllint disable-line rule:quoted-strings
-      time: "09:00"
-      timezone: Europe/Berlin
