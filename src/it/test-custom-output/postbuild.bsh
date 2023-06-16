@@ -1,0 +1,14 @@
+File file = new File(basedir, "gen/main/java/foo/StringModel.java" );
+if (!file.isFile()) {
+    throw new FileNotFoundException("Could not find generated test file: " + file);
+}
+
+File file = new File(basedir, "gen/main/java/codegen/server/RequestApi.java");
+if (!file.isFile()) {
+    throw new FileNotFoundException("Could not find generated api file: " + file);
+}
+
+File file = new File(basedir, "gen/test/java/codegen/server/RequestApiTestClient.java");
+if (!file.isFile()) {
+    throw new FileNotFoundException("Could not find generated test file: " + file);
+}

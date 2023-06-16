@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.kokuwa.micronaut</groupId>
+		<artifactId>micronaut-openapi-codegen-it</artifactId>
+		<version>LOCAL-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>micronaut-openapi-codegen-it-test-custom-output</artifactId>
+
+	<dependencies>
+
+		<!-- micronaut -->
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-client</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- generate sources from openapi spec -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>openapi-generate-client</id>
+						<phase />
+					</execution>
+				</executions>
+				<configuration>
+					<modelPackage>foo</modelPackage>
+					<inputSpec>@project.basedir@/src/test/resources/openapi/test-api.yaml</inputSpec>
+					<cleanupOutput>true</cleanupOutput>
+					<output>${project.basedir}/gen</output>
+					<configOptions>
+						<sourceFolder>main/java</sourceFolder>
+						<testFolder>test/java</testFolder>
+						<useBeanValidation>false</useBeanValidation>
+					</configOptions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
