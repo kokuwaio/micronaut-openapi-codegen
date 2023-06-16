@@ -4,7 +4,7 @@ OpenAPI code generator for Micronaut.
 
 [![License](https://img.shields.io/github/license/kokuwaio/micronaut-openapi-codegen.svg?label=License)](https://github.com/kokuwaio/micronaut-openapi-codegen/blob/main/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://central.sonatype.com/namespace/io.kokuwa.micronaut)
-[![Lint](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/ci.yaml?branch=main&label=CI)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/ci.yaml)
+[![Build](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/build.yaml?label=Build)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/build.yaml)
 
 Include in your `pom.xml`:
 
@@ -108,35 +108,3 @@ public class ApplicationFactory {
 
 * no project (e.g. `pom.xml`) is generated, only interfaces to implement
 * no support for java <11
-
-## Build & Release
-
-### Test
-
-Run single test:
-
-```sh
-mvn verify -Dinvoker.parallelThreads=1 -Dinvoker.streamLogs=true -Dinvoker.test=test-api
-```
-
-### Dependency updates
-
-Display dependency updates:
-
-```sh
-mvn versions:display-property-updates -U
-```
-
-Update dependencies:
-
-```sh
-mvn versions:update-properties
-```
-
-### Release locally
-
-Run:
-
-```sh
-mvn release:prepare release:perform release:clean -B
-```
