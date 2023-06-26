@@ -18,7 +18,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
 {{/vars}}
-{{#vendorExtensions.additionalPropertiesMap}}	private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}},{{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
+{{#vendorExtensions.additionalPropertiesMap}}	private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
 
 {{/vendorExtensions.additionalPropertiesMap}}{{#discriminator}}	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();
@@ -115,12 +115,12 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 	}{{/isContainer}}
 {{/vars}}{{#vendorExtensions.additionalPropertiesMap}}
 	@com.fasterxml.jackson.annotation.JsonAnyGetter
-	public java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}},{{{vendorExtensions.additionalPropertiesMap.valueType}}}> getAdditionalProperties() {
+	public java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> getAdditionalProperties() {
 		return additionalProperties;
 	}
 
 	@com.fasterxml.jackson.annotation.JsonAnySetter
-	public void setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap.keyType}}} propertyKey,{{{vendorExtensions.additionalPropertiesMap.valueType}}} value) {
+	public void setAdditionalProperties({{{vendorExtensions.additionalPropertiesMap.keyType}}} propertyKey, {{{vendorExtensions.additionalPropertiesMap.valueType}}} value) {
 		if (this.additionalProperties == null) {
 					this.additionalProperties = new java.util.HashMap<>();
 				}
