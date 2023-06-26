@@ -468,7 +468,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				}
 				subModel.vars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
 
-				var extensions = subModel.getVendorExtensions();
+				var extensions = subModel.vendorExtensions;
 				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
 				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
 				switch (discriminator.getPropertyType()) {
@@ -512,53 +512,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	@Override
 	public boolean isDataTypeString(String dataType) {
-		return List.of("java.lang.String", "String").contains(dataType);
-	}
-
-	// enum
-
-	@Override
-	public String toEnumName(CodegenProperty property) {
-		return property.nameInCamelCase;
-	}
-
-	@Override
-	public String toEnumVarName(String value, String datatype) {
-		return super.toEnumVarName(value, datatype.replace("java.lang.", ""));
-	}
-
-	@Override
-	public String toEnumValue(String value, String datatype) {
-		if (List.of("int", "Integer", "java.lang.Integer").contains(datatype)) {
-			return value;
-		}
-		if (List.of("long", "Long", "java.lang.Long").contains(datatype)) {
-			return value + "L";
-		}
-		if (List.of("float", "Float", "java.lang.Float").contains(datatype)) {
-			return value + "F";
-		}
-		if (List.of("double", "Double", "java.lang.Double").contains(datatype)) {
-			return value + "D";
-		}
-		return super.toEnumValue(value, datatype);
-	}
-
-	// setter
-
-	@Override
-	public void setUseBeanValidation(boolean useBeanValidation) {
-		this.useBeanValidation = useBeanValidation;
-	}
-
-	@Override
-	public void setUseGenericResponse(boolean useGenericResponse) {
-		this.useGenericResponse = useGenericResponse;
-	}
-
-	@Override
-	public void setUseOptional(boolean useOptional) {
-		this.useOptional = useOptional;
+		return "java.lang.String".equals(dataType) || "String".equals(dataType);
 	}
 
 	@Override
@@ -657,6 +611,52 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// if no example can be generated, leave it null.
 		return "null";
+	}
+
+	// enum
+
+	@Override
+	public String toEnumName(CodegenProperty property) {
+		return property.nameInCamelCase;
+	}
+
+	@Override
+	public String toEnumVarName(String value, String datatype) {
+		return super.toEnumVarName(value, datatype.replace("java.lang.", ""));
+	}
+
+	@Override
+	public String toEnumValue(String value, String datatype) {
+		if (List.of("int", "Integer", "java.lang.Integer").contains(datatype)) {
+			return value;
+		}
+		if (List.of("long", "Long", "java.lang.Long").contains(datatype)) {
+			return value + "L";
+		}
+		if (List.of("float", "Float", "java.lang.Float").contains(datatype)) {
+			return value + "F";
+		}
+		if (List.of("double", "Double", "java.lang.Double").contains(datatype)) {
+			return value + "D";
+		}
+		return super.toEnumValue(value, datatype);
+	}
+
+	// setter
+
+	@Override
+	public void setUseBeanValidation(boolean useBeanValidation) {
+		this.useBeanValidation = useBeanValidation;
+	}
+
+	@Override
+	public void setUseGenericResponse(boolean useGenericResponse) {
+		this.useGenericResponse = useGenericResponse;
+	}
+
+	@Override
+	public void setUseOptional(boolean useOptional) {
+		this.useOptional = useOptional;
 	}
 
 	// internal
