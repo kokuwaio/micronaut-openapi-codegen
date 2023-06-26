@@ -8,7 +8,7 @@ public class AdditionalPropertiesModel {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String id;
 
-	private java.util.Map<java.lang.String,AdditionalPropertiesModelValue> additionalProperties;
+	private java.util.Map<java.lang.String, AdditionalPropertiesModelValue> additionalProperties;
 
 	// methods
 
@@ -46,12 +46,12 @@ public class AdditionalPropertiesModel {
 	}
 
 	@com.fasterxml.jackson.annotation.JsonAnyGetter
-	public java.util.Map<java.lang.String,AdditionalPropertiesModelValue> getAdditionalProperties() {
+	public java.util.Map<java.lang.String, AdditionalPropertiesModelValue> getAdditionalProperties() {
 		return additionalProperties;
 	}
 
 	@com.fasterxml.jackson.annotation.JsonAnySetter
-	public void setAdditionalProperties(java.lang.String propertyKey,AdditionalPropertiesModelValue value) {
+	public void setAdditionalProperties(java.lang.String propertyKey, AdditionalPropertiesModelValue value) {
 		if (this.additionalProperties == null) {
 					this.additionalProperties = new java.util.HashMap<>();
 				}
