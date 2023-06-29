@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.kokuwa.maven</groupId>
 		<artifactId>maven-parent</artifactId>
-		<version>0.6.7</version>
+		<version>0.6.9</version>
 		<relativePath />
 	</parent>
 
@@ -68,8 +68,6 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.compilerArgument>-Xlint:all,-processing,-unchecked,-rawtypes,-serial</maven.compiler.compilerArgument>
-
-		<checkstyle.excludes>**/testapi/**/*,**/testmodel/**/*,**/testsecurity/**/*</checkstyle.excludes>
 
 		<!-- ===================================================================== -->
 		<!-- ============================= Versions ============================== -->
