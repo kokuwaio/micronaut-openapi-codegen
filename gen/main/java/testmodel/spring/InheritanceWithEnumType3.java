@@ -24,11 +24,11 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 
+
   public InheritanceWithEnumType3 type(InheritanceWithEnumTypeEnum type) {
     super.setType(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -420,10 +420,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public Map<String, ModelsMap> updateAllModels(Map<String, ModelsMap> objs) {
 		var superObjs = super.updateAllModels(objs);
 
-		// remove AllOf
-
-		objs.entrySet().removeIf(e -> e.getKey().endsWith("_allOf"));
-
 		var allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
 

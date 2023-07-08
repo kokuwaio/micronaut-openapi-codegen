@@ -4,8 +4,6 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import java.util.HashMap;
-import java.util.Map;
 import testmodel.spring.AdditionalPropertiesModelValue;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -16,13 +14,17 @@ import javax.validation.constraints.*;
 import java.util.*;
 import javax.annotation.Generated;
 
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 /**
  * AdditionalPropertiesModel
  */
 @java.lang.SuppressWarnings("all")
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropertiesModelValue> {
+public class AdditionalPropertiesModel {
 
   private String id;
 
@@ -44,6 +46,43 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
   public void setId(String id) {
     this.id = id;
   }
+    /**
+    * A container for additional, undeclared properties.
+    * This is a holder for any undeclared properties as specified with
+    * the 'additionalProperties' keyword in the OAS document.
+    */
+    private Map<String, AdditionalPropertiesModelValue> additionalProperties;
+
+    /**
+    * Set the additional (undeclared) property with the specified name and value.
+    * If the property does not already exist, create it otherwise replace it.
+    */
+    @JsonAnySetter
+    public AdditionalPropertiesModel putAdditionalProperty(String key, AdditionalPropertiesModelValue value) {
+        if (this.additionalProperties == null) {
+            this.additionalProperties = new HashMap<String, AdditionalPropertiesModelValue>();
+        }
+        this.additionalProperties.put(key, value);
+        return this;
+    }
+
+    /**
+    * Return the additional (undeclared) property.
+    */
+    @JsonAnyGetter
+    public Map<String, AdditionalPropertiesModelValue> getAdditionalProperties() {
+        return additionalProperties;
+    }
+
+    /**
+    * Return the additional (undeclared) property with the specified name.
+    */
+    public AdditionalPropertiesModelValue getAdditionalProperty(String key) {
+        if (this.additionalProperties == null) {
+            return null;
+        }
+        return this.additionalProperties.get(key);
+    }
 
   @Override
   public boolean equals(Object o) {
@@ -55,20 +94,21 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
     }
     AdditionalPropertiesModel additionalPropertiesModel = (AdditionalPropertiesModel) o;
     return Objects.equals(this.id, additionalPropertiesModel.id) &&
-        super.equals(o);
+    Objects.equals(this.additionalProperties, additionalPropertiesModel.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, super.hashCode());
+    return Objects.hash(id, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdditionalPropertiesModel {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

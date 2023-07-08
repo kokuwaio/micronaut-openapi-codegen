@@ -23,11 +23,6 @@ public class InheritanceSimple {
 
   private String foo;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link InheritanceSimple#InheritanceSimple(String)}
-   */
-  @Deprecated
   public InheritanceSimple() {
     super();
   }

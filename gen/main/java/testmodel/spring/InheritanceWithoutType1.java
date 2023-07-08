@@ -43,11 +43,11 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
     this.f = f;
   }
 
+
   public InheritanceWithoutType1 e(String e) {
     super.setE(e);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
