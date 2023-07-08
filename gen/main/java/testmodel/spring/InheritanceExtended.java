@@ -25,11 +25,6 @@ public class InheritanceExtended {
 
   private String bar;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link InheritanceExtended#InheritanceExtended(String, String)}
-   */
-  @Deprecated
   public InheritanceExtended() {
     super();
   }

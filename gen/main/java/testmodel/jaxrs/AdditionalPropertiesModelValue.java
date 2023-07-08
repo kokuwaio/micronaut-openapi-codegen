@@ -21,7 +21,7 @@ public class AdditionalPropertiesModelValue   {
   @java.lang.SuppressWarnings("all")
 public enum TypeEnum {
 
-    TWO(String.valueOf("two"));
+    ONE(String.valueOf("one")), TWO(String.valueOf("two"));
 
 
     private String value;

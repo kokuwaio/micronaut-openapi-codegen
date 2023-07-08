@@ -45,11 +45,11 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
     this.e = e;
   }
 
+
   public InheritanceWithEnumType2 type(InheritanceWithEnumTypeEnum type) {
     super.setType(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

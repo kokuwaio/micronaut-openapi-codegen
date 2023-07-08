@@ -43,6 +43,7 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
     this.c = c;
   }
 
+
   public InheritanceWithStringType2 type(String type) {
     super.setType(type);
     return this;
@@ -52,7 +53,6 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
     super.setA(a);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -40,6 +40,7 @@ public class AdditionalPropertiesModelValue {
      */
     @java.lang.SuppressWarnings("all")
     public enum TypeEnum {
+        ONE("one"),
         TWO("two");
 
         private String value;

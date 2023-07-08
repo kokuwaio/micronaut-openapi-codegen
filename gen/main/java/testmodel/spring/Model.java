@@ -113,11 +113,6 @@ public class Model {
 
   private EnumerationModel referenedModel;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Model#Model(String, List<String>, Set<String>, Map<String, String>)}
-   */
-  @Deprecated
   public Model() {
     super();
   }
