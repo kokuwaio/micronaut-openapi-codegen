@@ -43,7 +43,7 @@
 					<generateApis>false</generateApis>
 					<generateSupportingFiles>false</generateSupportingFiles>
 					<configOptions>
-						<introspected>false</introspected>
+						<serdeable>false</serdeable>
 						<generateExamples>true</generateExamples>
 						<useBeanValidation>false</useBeanValidation>
 					</configOptions>

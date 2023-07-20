@@ -7,7 +7,7 @@ package testmodel.micronaut_pojo_nullable;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3")
 })
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public abstract class InheritanceWithEnumType {
 
 	public static final java.lang.String JSON_DISCRIMINATOR = "type";

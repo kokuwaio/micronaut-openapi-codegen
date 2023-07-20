@@ -1,7 +1,7 @@
 package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
 
 	public static final java.lang.String JSON_PROPERTY_D = "d";

@@ -1,7 +1,7 @@
 package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class EnumerationModel {
 
 	public static final java.lang.String JSON_PROPERTY_STRING = "string";
@@ -115,7 +115,6 @@ public class EnumerationModel {
 		this.embeddedDefault = newEmbeddedDefault;
 	}
 
-@io.micronaut.core.annotation.Introspected
 public enum Embedded {
 
 	FIRST("first"),
@@ -148,7 +147,6 @@ public enum Embedded {
 	}
 }
 
-@io.micronaut.core.annotation.Introspected
 public enum EmbeddedDefault {
 
 	THREE("three"),

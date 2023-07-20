@@ -1,6 +1,6 @@
 package testapi.types;
 
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class StringModel {
 
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
