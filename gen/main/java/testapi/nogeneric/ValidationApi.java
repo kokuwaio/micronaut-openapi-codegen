@@ -31,7 +31,7 @@ public interface ValidationApi {
 	void validationDoubleMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "number")
-			@javax.validation.constraints.DecimalMax(value = "4", inclusive = false)
+			@jakarta.validation.constraints.DecimalMax(value = "4", inclusive = false)
 			java.lang.Double number);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_DOUBLE_MIN)
@@ -39,7 +39,7 @@ public interface ValidationApi {
 	void validationDoubleMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "number")
-			@javax.validation.constraints.DecimalMin(value = "3", inclusive = false)
+			@jakarta.validation.constraints.DecimalMin(value = "3", inclusive = false)
 			java.lang.Double number);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_DOUBLE_RANGE)
@@ -47,8 +47,8 @@ public interface ValidationApi {
 	void validationDoubleRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "number")
-			@javax.validation.constraints.DecimalMin(value = "3", inclusive = true)
-			@javax.validation.constraints.DecimalMax(value = "4", inclusive = true)
+			@jakarta.validation.constraints.DecimalMin(value = "3", inclusive = true)
+			@jakarta.validation.constraints.DecimalMax(value = "4", inclusive = true)
 			java.lang.Double number);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_FLOAT_MAX)
@@ -56,7 +56,7 @@ public interface ValidationApi {
 	void validationFloatMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "number")
-			@javax.validation.constraints.DecimalMax(value = "4", inclusive = false)
+			@jakarta.validation.constraints.DecimalMax(value = "4", inclusive = false)
 			java.lang.Float number);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_FLOAT_MIN)
@@ -64,7 +64,7 @@ public interface ValidationApi {
 	void validationFloatMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "number")
-			@javax.validation.constraints.DecimalMin(value = "3", inclusive = false)
+			@jakarta.validation.constraints.DecimalMin(value = "3", inclusive = false)
 			java.lang.Float number);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_FLOAT_RANGE)
@@ -72,8 +72,8 @@ public interface ValidationApi {
 	void validationFloatRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "number")
-			@javax.validation.constraints.DecimalMin(value = "3", inclusive = true)
-			@javax.validation.constraints.DecimalMax(value = "4", inclusive = true)
+			@jakarta.validation.constraints.DecimalMin(value = "3", inclusive = true)
+			@jakarta.validation.constraints.DecimalMax(value = "4", inclusive = true)
 			java.lang.Float number);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_INTEGER_MAX)
@@ -81,7 +81,7 @@ public interface ValidationApi {
 	void validationIntegerMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@javax.validation.constraints.Max(4)
+			@jakarta.validation.constraints.Max(4)
 			java.lang.Integer integer);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_INTEGER_MIN)
@@ -89,7 +89,7 @@ public interface ValidationApi {
 	void validationIntegerMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@javax.validation.constraints.Min(3)
+			@jakarta.validation.constraints.Min(3)
 			java.lang.Integer integer);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_INTEGER_RANGE)
@@ -97,8 +97,8 @@ public interface ValidationApi {
 	void validationIntegerRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@javax.validation.constraints.Min(3)
-			@javax.validation.constraints.Max(4)
+			@jakarta.validation.constraints.Min(3)
+			@jakarta.validation.constraints.Max(4)
 			java.lang.Integer integer);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LIST_MAX)
@@ -106,7 +106,7 @@ public interface ValidationApi {
 	void validationListMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
-			@javax.validation.constraints.Size(max = 4)
+			@jakarta.validation.constraints.Size(max = 4)
 			java.util.List<java.lang.Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LIST_MIN)
@@ -114,7 +114,7 @@ public interface ValidationApi {
 	void validationListMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
-			@javax.validation.constraints.Size(min = 3)
+			@jakarta.validation.constraints.Size(min = 3)
 			java.util.List<java.lang.Integer> list);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_MODEL)
@@ -123,7 +123,7 @@ public interface ValidationApi {
 	void validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			@javax.validation.Valid
+			@jakarta.validation.Valid
 			java.util.List<StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_RANGE)
@@ -131,7 +131,7 @@ public interface ValidationApi {
 	void validationListRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
-			@javax.validation.constraints.Size(min = 3, max = 4)
+			@jakarta.validation.constraints.Size(min = 3, max = 4)
 			java.util.List<java.lang.Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LONG_MAX)
@@ -139,7 +139,7 @@ public interface ValidationApi {
 	void validationLongMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@javax.validation.constraints.Max(4)
+			@jakarta.validation.constraints.Max(4)
 			java.lang.Long integer);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LONG_MIN)
@@ -147,7 +147,7 @@ public interface ValidationApi {
 	void validationLongMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@javax.validation.constraints.Min(3)
+			@jakarta.validation.constraints.Min(3)
 			java.lang.Long integer);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LONG_RANGE)
@@ -155,8 +155,8 @@ public interface ValidationApi {
 	void validationLongRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@javax.validation.constraints.Min(3)
-			@javax.validation.constraints.Max(4)
+			@jakarta.validation.constraints.Min(3)
+			@jakarta.validation.constraints.Max(4)
 			java.lang.Long integer);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_MODEL)
@@ -165,7 +165,7 @@ public interface ValidationApi {
 	void validationModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			@javax.validation.Valid
+			@jakarta.validation.Valid
 			StringModel stringModel);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_STRING_MAX)
@@ -173,7 +173,7 @@ public interface ValidationApi {
 	void validationStringMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "string")
-			@javax.validation.constraints.Size(max = 4)
+			@jakarta.validation.constraints.Size(max = 4)
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_STRING_MIN)
@@ -181,7 +181,7 @@ public interface ValidationApi {
 	void validationStringMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "string")
-			@javax.validation.constraints.Size(min = 3)
+			@jakarta.validation.constraints.Size(min = 3)
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_STRING_PATTERN)
@@ -189,7 +189,7 @@ public interface ValidationApi {
 	void validationStringPattern(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "string")
-			@javax.validation.constraints.Pattern(regexp = "[a-z]{3,5}")
+			@jakarta.validation.constraints.Pattern(regexp = "[a-z]{3,5}")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_STRING_RANGE)
@@ -197,6 +197,6 @@ public interface ValidationApi {
 	void validationStringRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "string")
-			@javax.validation.constraints.Size(min = 3, max = 4)
+			@jakarta.validation.constraints.Size(min = 3, max = 4)
 			java.lang.String string);
 }

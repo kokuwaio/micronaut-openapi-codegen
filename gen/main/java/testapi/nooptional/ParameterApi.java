@@ -57,7 +57,7 @@ public interface ParameterApi {
 	io.micronaut.http.HttpResponse<ParameterModel> paramBodyOptional(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.Body
-			@javax.validation.Valid
+			@jakarta.validation.Valid
 			ParameterModel parameterModel);
 
 	@io.micronaut.http.annotation.Post(PATH_PARAM_BODY_REQUIRED)
@@ -66,7 +66,7 @@ public interface ParameterApi {
 	io.micronaut.http.HttpResponse<ParameterModel> paramBodyRequired(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			@javax.validation.Valid
+			@jakarta.validation.Valid
 			ParameterModel parameterModel);
 
 	@io.micronaut.http.annotation.Get(PATH_PARAM_COOKIE_OPTIONAL_WITH_DEFAULT)
@@ -130,7 +130,7 @@ public interface ParameterApi {
 	io.micronaut.http.HttpResponse<ParameterModel> paramPathOverlayWithString(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.PathVariable(value = "string")
-			@javax.validation.constraints.Size(max = 10)
+			@jakarta.validation.constraints.Size(max = 10)
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_OVERLAY_WITH_UUID)
@@ -180,7 +180,7 @@ public interface ParameterApi {
 	io.micronaut.http.HttpResponse<ParameterModel> paramPathWithMaxLength(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.PathVariable(value = "string")
-			@javax.validation.constraints.Size(max = 5)
+			@jakarta.validation.constraints.Size(max = 5)
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_PATTERN)
@@ -188,7 +188,7 @@ public interface ParameterApi {
 	io.micronaut.http.HttpResponse<ParameterModel> paramPathWithPattern(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.PathVariable(value = "string")
-			@javax.validation.constraints.Pattern(regexp = "[0-9][a-z]")
+			@jakarta.validation.constraints.Pattern(regexp = "[0-9][a-z]")
 			java.lang.String string);
 
 	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_UUID)

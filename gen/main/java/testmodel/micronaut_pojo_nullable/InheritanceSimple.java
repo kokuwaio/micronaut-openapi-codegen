@@ -6,7 +6,7 @@ public class InheritanceSimple {
 
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 
-	@javax.validation.constraints.NotNull
+	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String foo;
