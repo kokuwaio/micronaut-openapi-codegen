@@ -139,7 +139,7 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	@Test
 	void modelWithoutMicronaut() {
 		generate(configurator(SPEC_MODEL, "testmodel.nomicronaut")
-				.addAdditionalProperty(MicronautCodegen.INTROSPECTED, false)
+				.addAdditionalProperty(MicronautCodegen.SERDEABLE, false)
 				.addAdditionalProperty(MicronautCodegen.GENERATE_EXAMPLES, true)
 				.addTypeMapping("Generated", null));
 	}

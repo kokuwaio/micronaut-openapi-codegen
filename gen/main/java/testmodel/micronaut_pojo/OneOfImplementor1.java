@@ -1,7 +1,7 @@
 package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class OneOfImplementor1 implements OneOfInterface {
 
 	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";

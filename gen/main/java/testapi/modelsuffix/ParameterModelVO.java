@@ -1,7 +1,7 @@
 package testapi.modelsuffix;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class ParameterModelVO {
 
 	public static final java.lang.String JSON_PROPERTY_BOOL = "bool";

@@ -39,7 +39,7 @@
 					<generateApis>false</generateApis>
 					<generateSupportingFiles>false</generateSupportingFiles>
 					<configOptions>
-						<introspected>false</introspected>
+						<serdeable>false</serdeable>
 						<useBeanValidation>false</useBeanValidation>
 						<openApiNullable>false</openApiNullable>
 					</configOptions>

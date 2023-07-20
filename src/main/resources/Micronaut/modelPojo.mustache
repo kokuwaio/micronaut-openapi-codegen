@@ -4,8 +4,8 @@
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"){{^-last}},{{/-last}}
 	{{/discriminator.mappedModels}}
 })
-{{/discriminator}}{{#introspected}}@io.micronaut.core.annotation.Introspected
-{{/introspected}}
+{{/discriminator}}{{#serdeable}}@io.micronaut.serde.annotation.Serdeable
+{{/serdeable}}
 public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parentModel.interfaces}}{{#parent}} extends {{{parent}}}{{/parent}}{{/parentModel.interfaces}}{{#vendorExtensions.x-implements}}{{#-first}} implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}} {
 
 {{#vars}}

@@ -1,7 +1,7 @@
 package testapi.nogeneric;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class StringModel {
 
 	public static final java.lang.String JSON_PROPERTY_FOO = "foo";

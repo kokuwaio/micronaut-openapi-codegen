@@ -41,7 +41,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		implements BeanValidationFeatures, UseGenericResponseFeatures, OptionalFeatures {
 
 	public static final String CLIENT_ID = "clientId";
-	public static final String INTROSPECTED = "introspected";
+	public static final String SERDEABLE = "serdeable";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String PAGEABLE = "pageable";
 	public static final String GENERATE_AUTHENTICATION = "generateAuthentication";
@@ -63,7 +63,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 	private boolean useOptional = true;
-	private boolean introspected = true;
+	private boolean serdeable = true;
 	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
 
@@ -78,7 +78,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use bean validation annotations", useBeanValidation));
 		cliOptions.add(CliOption.newBoolean(USE_GENERIC_RESPONSE, "Use generic response", useGenericResponse));
 		cliOptions.add(CliOption.newBoolean(USE_OPTIONAL, "Use Optional<T> instead of @Nullable.", useOptional));
-		cliOptions.add(CliOption.newBoolean(INTROSPECTED, "Add @Introspected to models", introspected));
+		cliOptions.add(CliOption.newBoolean(SERDEABLE, "Add @Serdeable to models", serdeable));
 		cliOptions.add(CliOption.newBoolean(SUPPORT_ASYNC, "Use async responses", supportAsync));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
@@ -106,7 +106,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(USE_BEANVALIDATION, useBeanValidation);
 		additionalProperties.put(USE_GENERIC_RESPONSE, useGenericResponse);
 		additionalProperties.put(USE_OPTIONAL, useOptional);
-		additionalProperties.put(INTROSPECTED, introspected);
+		additionalProperties.put(SERDEABLE, serdeable);
 		additionalProperties.put(PAGEABLE, pageable);
 		additionalProperties.put(GENERATE_AUTHENTICATION, generateAuthentication);
 		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
@@ -197,8 +197,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(USE_OPTIONAL)) {
 			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL);
 		}
-		if (additionalProperties.containsKey(INTROSPECTED)) {
-			introspected = convertPropertyToBooleanAndWriteBack(INTROSPECTED);
+		if (additionalProperties.containsKey(SERDEABLE)) {
+			serdeable = convertPropertyToBooleanAndWriteBack(SERDEABLE);
 		}
 		if (additionalProperties.containsKey(DATETIME_RELAXED)) {
 			dateTimeRelaxed = convertPropertyToBooleanAndWriteBack(DATETIME_RELAXED);

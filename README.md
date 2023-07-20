@@ -50,7 +50,7 @@ Include in your `pom.xml`:
 ### Config options
 
 * clientId: id for generated clients (if no client id is provided no interface will be generated)
-* introspected: add `@io.micronaut.core.annotation.Introspected` to models (default `true`)
+* serdeable: add `@io.micronaut.serde.annotation.Serdeable` to models (default `true`)
 * dateTimeRelaxed: add type registrar for relaxed time converter (default `true`)
 * useBeanValidation: generate validation annotations (default `true`)
 * useGenericResponse: return generic container or specific model, e.g. `Model` vs. `HttpResponse<Model>` (default `true`)

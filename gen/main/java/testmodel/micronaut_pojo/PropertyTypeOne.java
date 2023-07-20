@@ -1,7 +1,7 @@
 package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
+@io.micronaut.serde.annotation.Serdeable
 public class PropertyTypeOne implements AdditionalPropertiesModelValue {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
@@ -55,7 +55,6 @@ public class PropertyTypeOne implements AdditionalPropertiesModelValue {
 		this.type = newType;
 	}
 
-@io.micronaut.core.annotation.Introspected
 public enum Type {
 
 	ONE("one");

@@ -1,7 +1,6 @@
 package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.core.annotation.Introspected
 public enum InheritanceWithEnumTypeEnum {
 
 	INHERITANCE1("Inheritance1"),
