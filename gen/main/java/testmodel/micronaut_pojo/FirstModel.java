@@ -16,7 +16,7 @@ public class FirstModel implements OneOfModel {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String first;
 
-	@javax.validation.Valid
+	@jakarta.validation.Valid
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_SECOND_LEVEL)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private SecondLevelModel secondLevel;

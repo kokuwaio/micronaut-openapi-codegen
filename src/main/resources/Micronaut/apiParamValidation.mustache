@@ -1,16 +1,16 @@
-{{#useBeanValidation}}{{#isBodyParam}}{{#isModel}}			@javax.validation.Valid
-{{/isModel}}{{#isContainer}}			@javax.validation.Valid
-{{/isContainer}}{{/isBodyParam}}{{#pattern}}			@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
-{{/pattern}}{{#required}}{{/required}}{{#minimum}}{{#isInteger}}			@javax.validation.constraints.Min({{minimum}})
-{{/isInteger}}{{#isLong}}			@javax.validation.constraints.Min({{minimum}})
-{{/isLong}}{{^isInteger}}{{^isLong}}			@javax.validation.constraints.DecimalMin(value = "{{minimum}}", inclusive = {{#exclusiveMinimum}}false{{/exclusiveMinimum}}{{^exclusiveMinimum}}true{{/exclusiveMinimum}})
-{{/isLong}}{{/isInteger}}{{/minimum}}{{#maximum}}{{#isInteger}}			@javax.validation.constraints.Max({{maximum}})
-{{/isInteger}}{{#isLong}}			@javax.validation.constraints.Max({{maximum}})
-{{/isLong}}{{^isInteger}}{{^isLong}}			@javax.validation.constraints.DecimalMax(value = "{{maximum}}", inclusive = {{#exclusiveMaximum}}false{{/exclusiveMaximum}}{{^exclusiveMaximum}}true{{/exclusiveMaximum}})
-{{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}			@javax.validation.constraints.Size(min = {{minLength}})
-{{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}			@javax.validation.constraints.Size(max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}			@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
-{{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}			@javax.validation.constraints.Size(min = {{minItems}})
-{{/maxItems}}{{/minItems}}{{^minItems}}{{#maxItems}}			@javax.validation.constraints.Size(max = {{maxItems}})
-{{/maxItems}}{{/minItems}}{{#minItems}}{{#maxItems}}			@javax.validation.constraints.Size(min = {{minItems}}, max = {{maxItems}})
+{{#useBeanValidation}}{{#isBodyParam}}{{#isModel}}			@jakarta.validation.Valid
+{{/isModel}}{{#isContainer}}			@jakarta.validation.Valid
+{{/isContainer}}{{/isBodyParam}}{{#pattern}}			@jakarta.validation.constraints.Pattern(regexp = "{{{pattern}}}")
+{{/pattern}}{{#required}}{{/required}}{{#minimum}}{{#isInteger}}			@jakarta.validation.constraints.Min({{minimum}})
+{{/isInteger}}{{#isLong}}			@jakarta.validation.constraints.Min({{minimum}})
+{{/isLong}}{{^isInteger}}{{^isLong}}			@jakarta.validation.constraints.DecimalMin(value = "{{minimum}}", inclusive = {{#exclusiveMinimum}}false{{/exclusiveMinimum}}{{^exclusiveMinimum}}true{{/exclusiveMinimum}})
+{{/isLong}}{{/isInteger}}{{/minimum}}{{#maximum}}{{#isInteger}}			@jakarta.validation.constraints.Max({{maximum}})
+{{/isInteger}}{{#isLong}}			@jakarta.validation.constraints.Max({{maximum}})
+{{/isLong}}{{^isInteger}}{{^isLong}}			@jakarta.validation.constraints.DecimalMax(value = "{{maximum}}", inclusive = {{#exclusiveMaximum}}false{{/exclusiveMaximum}}{{^exclusiveMaximum}}true{{/exclusiveMaximum}})
+{{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}			@jakarta.validation.constraints.Size(min = {{minLength}})
+{{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}			@jakarta.validation.constraints.Size(max = {{maxLength}})
+{{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}			@jakarta.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
+{{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}			@jakarta.validation.constraints.Size(min = {{minItems}})
+{{/maxItems}}{{/minItems}}{{^minItems}}{{#maxItems}}			@jakarta.validation.constraints.Size(max = {{maxItems}})
+{{/maxItems}}{{/minItems}}{{#minItems}}{{#maxItems}}			@jakarta.validation.constraints.Size(min = {{minItems}}, max = {{maxItems}})
 {{/maxItems}}{{/minItems}}{{/useBeanValidation}}
