@@ -467,6 +467,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 					LOG.warn("{} added missing sub model {}", model.name, subModel.name);
 				}
 				subModel.vars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
+				subModel.allVars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
 
 				var extensions = subModel.vendorExtensions;
 				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());

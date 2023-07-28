@@ -15,7 +15,7 @@ public class {{classname}}TestExample {
 		{{^discriminator}}
 		{{classname}} exampleInstance = new {{classname}}();
 		//initialize fields
-		{{#vars}}
+		{{#allVars}}
 		{{#isEnum}}
 		exampleInstance.set{{nameInCamelCase}}({{datatypeWithEnum}}.toEnum({{{example}}}));
 		{{/isEnum}}
@@ -30,7 +30,7 @@ public class {{classname}}TestExample {
 		exampleInstance.set{{nameInCamelCase}}({{>testExampleObjectPropertyExample}});
 		{{/isModel}}
 		{{/isEnum}}
-		{{/vars}}
+		{{/allVars}}
 		return exampleInstance;
 		{{/discriminator}}
 		{{#discriminator}}
