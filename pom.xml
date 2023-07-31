@@ -73,7 +73,7 @@
 		<!-- ============================= Versions ============================== -->
 		<!-- ===================================================================== -->
 
-		<version.io.micronaut>3.9.4</version.io.micronaut>
+		<version.io.micronaut>3.10.0</version.io.micronaut>
 		<version.io.micronaut.security>3.11.1</version.io.micronaut.security>
 		<version.org.junit.jupiter>5.10.0</version.org.junit.jupiter>
 		<version.org.openapitools.generator>6.6.0</version.org.openapitools.generator>
