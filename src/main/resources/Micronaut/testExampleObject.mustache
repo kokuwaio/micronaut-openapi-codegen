@@ -1,11 +1,9 @@
 package {{package}};
-
 {{#models}}
-import {{importPath}}.*;
 
 public class {{classname}}TestExample {
+{{#model}}
 
-	{{#model}}
 	public static {{classname}} build() {
 		{{#isEnum}}
 		return {{classname}}.values()[0];
@@ -14,10 +12,9 @@ public class {{classname}}TestExample {
 		{{^vendorExtensions.x-is-one-of-interface}}
 		{{^discriminator}}
 		{{classname}} exampleInstance = new {{classname}}();
-		//initialize fields
 		{{#allVars}}
 		{{#isEnum}}
-		exampleInstance.set{{nameInCamelCase}}({{datatypeWithEnum}}.toEnum({{{example}}}));
+		exampleInstance.set{{nameInCamelCase}}({{classname}}.{{datatypeWithEnum}}.toEnum({{{example}}}));
 		{{/isEnum}}
 		{{#isModel}}
 		{{^isPrimitiveType}}
@@ -36,7 +33,6 @@ public class {{classname}}TestExample {
 		{{#discriminator}}
 		{{#discriminator.mappedModels}}
 		{{#-first}}
-		// use the first found implementation as example
 		return {{{modelName}}}TestExample.build();
 		{{/-first}}
 		{{/discriminator.mappedModels}}
@@ -47,25 +43,21 @@ public class {{classname}}TestExample {
 		{{^discriminator}}
 		{{#interfaceModels}}
 		{{#-first}}
-		// use the first found implementation as example
 		return {{{classname}}}TestExample.build();
 		{{/-first}}
 		{{/interfaceModels}}
 		{{^interfaceModels}}
-		// there are no known downstream models.
 		return null;
 		{{/interfaceModels}}
 		{{/discriminator}}
 		{{#discriminator}}
 		{{#discriminator.mappedModels}}
 		{{#-first}}
-		// use the first found implementation as example
 		return {{{modelName}}}TestExample.build();
 		{{/-first}}
 		{{/discriminator.mappedModels}}
 		{{/discriminator}}
 		{{/vendorExtensions.x-is-one-of-interface}}
-	}
-	{{/model}}
+	}{{/model}}
 }
 {{/models}}

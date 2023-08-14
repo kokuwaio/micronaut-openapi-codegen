@@ -1,12 +1,9 @@
 package testmodel.nomicronaut;
 
-import testmodel.nomicronaut.Model.*;
-
 public class ModelTestExample {
 
 	public static Model build() {
 		Model exampleInstance = new Model();
-		//initialize fields
 		exampleInstance.setId(12);
 		exampleInstance.setIdWithExample(32);
 		exampleInstance.setIdWithDefault(32);

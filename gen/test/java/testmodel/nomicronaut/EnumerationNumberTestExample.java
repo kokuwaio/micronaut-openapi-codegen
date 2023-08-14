@@ -1,7 +1,5 @@
 package testmodel.nomicronaut;
 
-import testmodel.nomicronaut.EnumerationNumber.*;
-
 public class EnumerationNumberTestExample {
 
 	public static EnumerationNumber build() {
