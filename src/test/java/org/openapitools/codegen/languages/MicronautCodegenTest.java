@@ -50,6 +50,7 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	void apiWithPackages() {
 		var packageName = "testapi.packages";
 		generate(configurator(SPEC_API, packageName)
+				.addAdditionalProperty(MicronautCodegen.GENERATE_EXAMPLES, true)
 				.setPackageName(packageName + ".root")
 				.setApiPackage(packageName + ".api")
 				.setModelPackage(packageName + ".model")
