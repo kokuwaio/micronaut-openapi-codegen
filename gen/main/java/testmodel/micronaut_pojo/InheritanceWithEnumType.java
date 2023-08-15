@@ -5,12 +5,12 @@ package testmodel.micronaut_pojo;
 @com.fasterxml.jackson.annotation.JsonSubTypes({
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType1.class, name = "Inheritance1"),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
-	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3"),
+	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3")
 })
 @io.micronaut.core.annotation.Introspected
 public abstract class InheritanceWithEnumType {
 
-	public static final String JSON_DISCRIMINATOR = "type";
+	public static final java.lang.String JSON_DISCRIMINATOR = "type";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	public abstract InheritanceWithEnumTypeEnum getType();

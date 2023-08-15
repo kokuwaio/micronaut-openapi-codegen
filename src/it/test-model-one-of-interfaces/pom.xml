@@ -14,10 +14,6 @@
 
 		<!-- jackson -->
 		<dependency>
-			<groupId>jakarta.annotation</groupId>
-			<artifactId>jakarta.annotation-api</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 		</dependency>
@@ -47,6 +43,9 @@
 						<useBeanValidation>false</useBeanValidation>
 						<openApiNullable>false</openApiNullable>
 					</configOptions>
+					<typeMappings>
+						<typeMapping>Generated=</typeMapping>
+					</typeMappings>
 				</configuration>
 			</plugin>
 

@@ -7,7 +7,7 @@ package testmodel.nomicronaut;
 })
 public interface OneOfInterface {
 
-	String JSON_DISCRIMINATOR = "type"; 
+	java.lang.String JSON_DISCRIMINATOR = "type";
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	java.lang.String getType();

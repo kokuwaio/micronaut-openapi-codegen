@@ -330,7 +330,6 @@ components:
         - $ref: "#/components/schemas/SecondLevelOneModel"
         - $ref: "#/components/schemas/SecondLevelTwoModel"
 
-
     SecondLevelOneModel:
       type: object
       properties:
@@ -350,6 +349,7 @@ components:
     ##
     ## OneOf with discriminator
     ##
+
     OneOfInterface:
       type: object
       discriminator:
@@ -379,6 +379,7 @@ components:
     ##
     ## Model with additional properties
     ##
+
     PropertyTypeOne:
       type: object
       properties:
@@ -394,7 +395,6 @@ components:
           type: string
           enum:
             - two
-
     AdditionalPropertiesModel:
       type: object
       properties:
