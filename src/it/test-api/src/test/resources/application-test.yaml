@@ -12,8 +12,3 @@ micronaut:
 jackson:
   serialization:
     indentOutput: true
-
-logger:
-  levels:
-    codegen: TRACE
-    io.micronaut: INFO
