@@ -6,6 +6,9 @@ import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER_DESC;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,6 +27,7 @@ import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.features.BeanValidationFeatures;
 import org.openapitools.codegen.languages.features.OptionalFeatures;
 import org.openapitools.codegen.languages.features.UseGenericResponseFeatures;
+import org.openapitools.codegen.model.ModelMap;
 import org.openapitools.codegen.model.ModelsMap;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.openapitools.codegen.utils.StringUtils;
@@ -430,6 +434,57 @@ public class MicronautCodegen extends AbstractJavaCodegen
 						"valueType", model.getAdditionalProperties().getDataType()));
 			}
 
+			// oneOf handling
+
+			if (model.oneOf != null && !model.oneOf.isEmpty()) {
+				model.children = model.oneOf.stream().map(allModels::get).collect(Collectors.toList());
+				model.hasChildren = true;
+				model.interfaceModels.removeAll(model.children);
+				for (var child : model.children) {
+					if (child.interfaceModels == null) {
+						child.interfaceModels = new ArrayList<>();
+					}
+					child.interfaceModels.add(model);
+				}
+				model.allVars = new ArrayList<>();
+				model.vars = new ArrayList<>();
+				model.hasVars = false;
+			}
+
+			// model all parents as interfaces
+
+			model.parent = null;
+			model.parentModel = null;
+			model.parentSchema = null;
+			model.parentVars = List.of();
+			model.allParents = List.of();
+			if (model.interfaceModels != null) {
+				for (var interfaceModel : model.interfaceModels) {
+
+					// add missing children
+					if (interfaceModel.children == null) {
+						interfaceModel.children = new ArrayList<>();
+					}
+					if (!interfaceModel.children.contains(model)) {
+						LOG.debug("Add model " + model.name + " as children to " + interfaceModel.name + ".");
+						interfaceModel.children.add(model);
+						interfaceModel.hasChildren = true;
+					}
+
+					// strip parent vars from vars
+					model.vars.removeIf(property -> {
+						var remove = interfaceModel.allVars.stream()
+								.map(CodegenProperty::getBaseName)
+								.anyMatch(property.getBaseName()::equals);
+						if (remove) {
+							LOG.debug("Remove property " + property.getBaseName() + " from " + model.name
+									+ " because already present on " + interfaceModel.name + ".");
+						}
+						return remove;
+					});
+				}
+			}
+
 			// handle discriminator
 
 			var discriminator = model.discriminator;
@@ -456,11 +511,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 							model.name, discriminator.getPropertyName(), mappedModel.getModelName());
 					continue;
 				}
-				if (subModel.parentModel == null) {
-					subModel.parentModel = model;
-					subModel.parent = model.getClassname();
-					LOG.warn("{} added missing sub model {}", model.name, subModel.name);
-				}
 				subModel.vars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
 				subModel.allVars.removeIf(property -> property.getName().equals(discriminator.getPropertyName()));
 
@@ -474,6 +524,31 @@ public class MicronautCodegen extends AbstractJavaCodegen
 					default -> discriminator.getPropertyType() + "." + toEnumVarName(mappedModel.getMappingName(), "");
 				});
 			}
+		}
+
+		// add default classes
+
+		for (var model : allModels.values()) {
+			if (model.hasChildren && model.discriminator == null && model.oneOf.isEmpty()) {
+
+				var suffix = "Default";
+				var copy = copy(model);
+				copy.name = model.name + suffix;
+				copy.classname = model.classname + suffix;
+				copy.classFilename = model.classFilename + suffix;
+				copy.children = null;
+				copy.hasChildren = false;
+				copy.interfaces = List.of(model.name);
+				copy.interfaceModels = List.of(model);
+				copy.vars = List.of();
+
+				var obj = new ModelsMap();
+				obj.putAll(superObjs.get(model.name));
+				obj.put("classname", copy.classname);
+				obj.setModels(List.of(new ModelMap(Map.of("model", copy))));
+				superObjs.put(model.name + "Default", obj);
+			}
+
 		}
 
 		return superObjs;
@@ -655,5 +730,90 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (!supportingFiles.contains(supportingFile)) {
 			supportingFiles.add(supportingFile);
 		}
+	}
+
+	private CodegenModel copy(CodegenModel model) {
+		var copy = new CodegenModel();
+
+		copy.additionalPropertiesType = model.additionalPropertiesType;
+		copy.allMandatory = model.allMandatory == null ? null : new HashSet<>(model.allMandatory);
+		copy.allOf = model.allOf == null ? null : new HashSet<>(model.allOf);
+		copy.allowableValues = model.allowableValues == null ? null : Map.copyOf(model.allowableValues);
+		copy.allParents = model.allParents == null ? null : new ArrayList<>(model.allParents);
+		copy.allVars = model.allVars == null ? null : new ArrayList<>(model.allVars);
+		copy.anyOf = model.anyOf == null ? null : new HashSet<>(model.anyOf);
+		copy.arrayModelType = model.arrayModelType;
+		copy.children = model.children == null ? null : new ArrayList<>(model.children);
+		copy.classFilename = model.classFilename;
+		copy.classname = model.classname;
+		copy.classVarName = model.classVarName;
+		copy.dataType = model.dataType;
+		copy.defaultValue = model.defaultValue;
+		copy.description = model.description;
+		copy.discriminator = model.discriminator;
+		copy.emptyVars = model.emptyVars;
+		copy.externalDocumentation = model.externalDocumentation;
+		copy.hasChildren = model.hasChildren;
+		copy.hasEnums = model.hasEnums;
+		copy.hasMoreModels = model.hasMoreModels;
+		copy.hasOnlyReadOnly = model.hasOnlyReadOnly;
+		copy.hasOptional = model.hasOptional;
+		copy.hasRequired = model.hasRequired;
+		copy.hasValidation = model.hasValidation;
+		copy.hasVars = model.hasVars;
+		copy.imports = model.imports == null ? null : new HashSet<>(model.imports);
+		copy.interfaceModels = model.interfaceModels == null ? null : new ArrayList<>(model.interfaceModels);
+		copy.interfaces = model.interfaces == null ? null : new ArrayList<>(model.interfaces);
+		copy.isAdditionalPropertiesTrue = model.isAdditionalPropertiesTrue;
+		copy.isAlias = model.isAdditionalPropertiesTrue;
+		copy.isArray = model.isAdditionalPropertiesTrue;
+		copy.isBoolean = model.isAdditionalPropertiesTrue;
+		copy.isDate = model.isAdditionalPropertiesTrue;
+		copy.isDateTime = model.isAdditionalPropertiesTrue;
+		copy.isDecimal = model.isAdditionalPropertiesTrue;
+		copy.isDeprecated = model.isAdditionalPropertiesTrue;
+		copy.isDouble = model.isAdditionalPropertiesTrue;
+		copy.isEnum = model.isAdditionalPropertiesTrue;
+		copy.isFloat = model.isAdditionalPropertiesTrue;
+		copy.isInteger = model.isAdditionalPropertiesTrue;
+		copy.isLong = model.isAdditionalPropertiesTrue;
+		copy.isMap = model.isAdditionalPropertiesTrue;
+		copy.isNull = model.isAdditionalPropertiesTrue;
+		copy.isNullable = model.isAdditionalPropertiesTrue;
+		copy.isNumber = model.isAdditionalPropertiesTrue;
+		copy.isNumeric = model.isAdditionalPropertiesTrue;
+		copy.isPrimitiveType = model.isAdditionalPropertiesTrue;
+		copy.isShort = model.isAdditionalPropertiesTrue;
+		copy.isString = model.isAdditionalPropertiesTrue;
+		copy.isUnboundedInteger = model.isAdditionalPropertiesTrue;
+		copy.isVoid = model.isAdditionalPropertiesTrue;
+		copy.mandatory = model.mandatory;
+		copy.modelJson = model.modelJson;
+		copy.name = model.name;
+		copy.nonNullableVars = model.nonNullableVars == null ? null : new ArrayList<>(model.nonNullableVars);
+		copy.oneOf = model.oneOf == null ? null : new HashSet<>(model.oneOf);
+		copy.optionalVars = model.optionalVars == null ? null : new ArrayList<>(model.optionalVars);
+		copy.parent = model.parent;
+		copy.parentModel = model.parentModel;
+		copy.parentRequiredVars = model.parentRequiredVars == null ? null : new ArrayList<>(model.parentRequiredVars);
+		copy.parentSchema = model.parentSchema;
+		copy.parentVars = model.parentVars == null ? null : new ArrayList<>(model.parentVars);
+		copy.readOnlyVars = model.readOnlyVars == null ? null : new ArrayList<>(model.readOnlyVars);
+		copy.readWriteVars = model.readWriteVars == null ? null : new ArrayList<>(model.readWriteVars);
+		copy.requiredVars = model.requiredVars == null ? null : new ArrayList<>(model.requiredVars);
+		copy.testCases = model.testCases == null ? null : new HashMap<>(model.testCases);
+		copy.title = model.title;
+		copy.unescapedDescription = model.unescapedDescription;
+		copy.vars = model.vars == null ? null : new ArrayList<>(model.vars);
+		copy.vendorExtensions = model.vendorExtensions == null ? null : new HashMap<>(model.vendorExtensions);
+		copy.xmlName = model.xmlName;
+		copy.xmlNamespace = model.xmlNamespace;
+		copy.xmlPrefix = model.xmlPrefix;
+
+		copy.setIsAnyType(model.getIsAnyType());
+		copy.setIsModel(model.getIsModel());
+		copy.setIsUuid(model.getIsUuid());
+
+		return copy;
 	}
 }

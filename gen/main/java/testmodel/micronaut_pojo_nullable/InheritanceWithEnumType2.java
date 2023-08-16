@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
+public class InheritanceWithEnumType2 implements InheritanceWithEnumType {
 
 	public static final java.lang.String JSON_PROPERTY_E = "e";
 
@@ -26,20 +26,18 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
 			return false;
 		}
 		InheritanceWithEnumType2 other = (InheritanceWithEnumType2) object;
-		return java.util.Objects.equals(e, other.e)
-				&& super.equals(object);
+		return java.util.Objects.equals(e, other.e);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(e, super.hashCode());
+		return java.util.Objects.hash(e);
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("InheritanceWithEnumType2[")
-				.append("super").append(super.toString())
 				.append("e=").append(e)
 				.append("]")
 				.toString();
