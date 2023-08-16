@@ -59,10 +59,10 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
 		{{/vars}}		.append("]")
 				.toString();
-	}
+	}{{#vars}}{{#-first}}
 
 	// fluent
-	{{#vars}}
+{{/-first}}
 
 	public {{classname}} {{name}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
 		this.{{name}} = new{{nameInCamelCase}};
@@ -126,9 +126,8 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 				}
 		this.additionalProperties.put(propertyKey, value);
 	}
-{{/vendorExtensions.additionalPropertiesMap}}
-
-	// getter/setter{{#vars}}
+{{/vendorExtensions.additionalPropertiesMap}}{{#vars}}{{#-first}}
+	// getter/setter{{/-first}}
 
 	public {{>modelPropertyType}} {{getter}}() {
 		return {{name}};

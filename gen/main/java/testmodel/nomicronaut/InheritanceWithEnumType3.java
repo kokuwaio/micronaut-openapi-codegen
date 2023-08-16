@@ -34,8 +34,4 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 				.append("]")
 				.toString();
 	}
-
-	// fluent
-
-	// getter/setter
 }
