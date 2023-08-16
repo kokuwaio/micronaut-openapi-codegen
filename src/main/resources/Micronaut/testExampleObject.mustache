@@ -9,8 +9,14 @@ public class {{classname}}TestExample {
 		return {{classname}}.values()[0];
 		{{/isEnum}}
 		{{^isEnum}}
-		{{^vendorExtensions.x-is-one-of-interface}}
-		{{^discriminator}}
+		{{#hasChildren}}
+		{{#children}}
+		{{#-first}}
+		return {{{classname}}}TestExample.build();
+		{{/-first}}
+		{{/children}}
+		{{/hasChildren}}
+		{{^hasChildren}}
 		{{classname}} exampleInstance = new {{classname}}();
 		{{#allVars}}
 		{{#isEnum}}
@@ -29,35 +35,9 @@ public class {{classname}}TestExample {
 		{{/isEnum}}
 		{{/allVars}}
 		return exampleInstance;
-		{{/discriminator}}
-		{{#discriminator}}
-		{{#discriminator.mappedModels}}
-		{{#-first}}
-		return {{{modelName}}}TestExample.build();
-		{{/-first}}
-		{{/discriminator.mappedModels}}
-		{{/discriminator}}
-		{{/vendorExtensions.x-is-one-of-interface}}
+		{{/hasChildren}}
 		{{/isEnum}}
-		{{#vendorExtensions.x-is-one-of-interface}}
-		{{^discriminator}}
-		{{#interfaceModels}}
-		{{#-first}}
-		return {{{classname}}}TestExample.build();
-		{{/-first}}
-		{{/interfaceModels}}
-		{{^interfaceModels}}
-		return null;
-		{{/interfaceModels}}
-		{{/discriminator}}
-		{{#discriminator}}
-		{{#discriminator.mappedModels}}
-		{{#-first}}
-		return {{{modelName}}}TestExample.build();
-		{{/-first}}
-		{{/discriminator.mappedModels}}
-		{{/discriminator}}
-		{{/vendorExtensions.x-is-one-of-interface}}
-	}{{/model}}
+	}
+	{{/model}}
 }
 {{/models}}

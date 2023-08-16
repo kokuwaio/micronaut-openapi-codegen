@@ -1,7 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
-
+public class InheritanceWithEnumType3 implements InheritanceWithEnumType {
 
 	@Override
 	public InheritanceWithEnumTypeEnum getType() {
@@ -30,7 +29,6 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("InheritanceWithEnumType3[")
-				.append("super").append(super.toString())
 				.append("]")
 				.toString();
 	}

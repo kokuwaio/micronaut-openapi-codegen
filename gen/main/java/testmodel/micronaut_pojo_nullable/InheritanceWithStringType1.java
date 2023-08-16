@@ -2,9 +2,13 @@ package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceWithStringType1 extends InheritanceWithStringType {
+public class InheritanceWithStringType1 implements InheritanceWithStringType {
 
 	public static final java.lang.String JSON_PROPERTY_B = "b";
+
+	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_A)
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.lang.String a;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_B)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -26,20 +30,20 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
 			return false;
 		}
 		InheritanceWithStringType1 other = (InheritanceWithStringType1) object;
-		return java.util.Objects.equals(b, other.b)
-				&& super.equals(object);
+		return java.util.Objects.equals(a, other.a)
+				&& java.util.Objects.equals(b, other.b);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(b, super.hashCode());
+		return java.util.Objects.hash(a, b);
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("InheritanceWithStringType1[")
-				.append("super").append(super.toString())
+				.append("a=").append(a).append(",")
 				.append("b=").append(b)
 				.append("]")
 				.toString();
@@ -47,12 +51,25 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
 
 	// fluent
 
+	public InheritanceWithStringType1 a(java.lang.String newA) {
+		this.a = newA;
+		return this;
+	}
+
 	public InheritanceWithStringType1 b(java.lang.String newB) {
 		this.b = newB;
 		return this;
 	}
 
 	// getter/setter
+
+	public java.lang.String getA() {
+		return a;
+	}
+
+	public void setA(java.lang.String newA) {
+		this.a = newA;
+	}
 
 	public java.lang.String getB() {
 		return b;

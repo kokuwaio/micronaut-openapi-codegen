@@ -24,20 +24,18 @@ public class OneOfImplementor1 implements OneOfInterface {
 			return false;
 		}
 		OneOfImplementor1 other = (OneOfImplementor1) object;
-		return java.util.Objects.equals(property, other.property)
-				&& super.equals(object);
+		return java.util.Objects.equals(property, other.property);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(property, super.hashCode());
+		return java.util.Objects.hash(property);
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("OneOfImplementor1[")
-				.append("super").append(super.toString())
 				.append("property=").append(property)
 				.append("]")
 				.toString();

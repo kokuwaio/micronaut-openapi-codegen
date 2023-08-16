@@ -2,9 +2,8 @@ package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceExtended {
+public class InheritanceExtended implements InheritanceSimple {
 
-	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
 	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
 
 	@jakarta.validation.constraints.NotNull

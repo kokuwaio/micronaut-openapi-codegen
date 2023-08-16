@@ -1,29 +1,18 @@
-{{^vendorExtensions.x-is-one-of-interface}}{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = {{classname}}.JSON_DISCRIMINATOR)
-@com.fasterxml.jackson.annotation.JsonSubTypes({
-	{{#discriminator.mappedModels}}
-	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"){{^-last}},{{/-last}}
-	{{/discriminator.mappedModels}}
-})
-{{/discriminator}}{{#serdeable}}@io.micronaut.serde.annotation.Serdeable
+{{#serdeable}}@io.micronaut.serde.annotation.Serdeable
 {{/serdeable}}
-public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parentModel.interfaces}}{{#parent}} extends {{{parent}}}{{/parent}}{{/parentModel.interfaces}}{{#vendorExtensions.x-implements}}{{#-first}} implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}} {
+public class {{classname}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
+{{#vars}}{{#-first}}
+{{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
+{{/vars}}
 
-{{#vars}}
-	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
-{{/vars}}{{#discriminator}}	public static final java.lang.String JSON_DISCRIMINATOR = "{{propertyBaseName}}";
-{{/discriminator}}
-
-{{#vars}}{{#description}}	/** {{description}} */
+{{#allVars}}{{#description}}	/** {{description}} */
 {{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
 	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
-{{/vars}}
+{{/allVars}}
 {{#vendorExtensions.additionalPropertiesMap}}	private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
 
-{{/vendorExtensions.additionalPropertiesMap}}{{#discriminator}}	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
-	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();
-
-{{/discriminator}}{{#vendorExtensions.discriminatorPropertyValue}}	@Override
+{{/vendorExtensions.additionalPropertiesMap}}{{#vendorExtensions.discriminatorPropertyValue}}	@Override
 	public {{vendorExtensions.discriminatorPropertyType}} {{vendorExtensions.discriminatorPropertyGetter}}() {
 		return {{{vendorExtensions.discriminatorPropertyValue}}};
 	}
@@ -38,28 +27,26 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-{{^vars}}{{#discriminator}}		{{classname}} other = ({{classname}}) object;
-{{/discriminator}}{{/vars}}{{#vars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
-{{/-last}}{{/vars}}		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
+{{^allVars}}{{#discriminator}}		{{classname}} other = ({{classname}}) object;
+{{/discriminator}}{{/allVars}}{{#allVars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
+{{/-last}}{{/allVars}}		return {{^allVars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/allVars}}{{#allVars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
 				&& {{/-last}}{{#-last}}{{#discriminator}}
-				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}}{{#parent}}
-				&& super.equals(object){{/parent}};{{/-last}}{{/vars}}
+				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}};{{/-last}}{{/allVars}}
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash({{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
+		return java.util.Objects.hash({{^allVars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/allVars}}{{#allVars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{/-last}}{{/allVars}});
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
-				.append("{{classname}}["){{#parent}}
-				.append("super").append(super.toString()){{/parent}}
-		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
-		{{/vars}}		.append("]")
+				.append("{{classname}}[")
+		{{#allVars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
+		{{/allVars}}		.append("]")
 				.toString();
-	}{{#vars}}{{#-first}}
+	}{{#allVars}}{{#-first}}
 
 	// fluent
 {{/-first}}
@@ -113,7 +100,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		{{/isNullable}}
 		return this;
 	}{{/isContainer}}
-{{/vars}}{{#vendorExtensions.additionalPropertiesMap}}
+{{/allVars}}{{#vendorExtensions.additionalPropertiesMap}}
 	@com.fasterxml.jackson.annotation.JsonAnyGetter
 	public java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> getAdditionalProperties() {
 		return additionalProperties;
@@ -126,7 +113,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 				}
 		this.additionalProperties.put(propertyKey, value);
 	}
-{{/vendorExtensions.additionalPropertiesMap}}{{#vars}}{{#-first}}
+{{/vendorExtensions.additionalPropertiesMap}}{{#allVars}}{{#-first}}
 	// getter/setter{{/-first}}
 
 	public {{>modelPropertyType}} {{getter}}() {
@@ -135,27 +122,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 
 	public void {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
 		this.{{name}} = new{{nameInCamelCase}};
-	}{{/vars}}{{#vars}}{{#isEnum}}
+	}{{/allVars}}{{#allVars}}{{#isEnum}}
 
-{{>modelEnum}}{{/isEnum}}{{/vars}}
-}{{/vendorExtensions.x-is-one-of-interface}}{{#vendorExtensions.x-is-one-of-interface}}{{^discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION, visible = true)
-{{#interfaces}}
-{{#-first}}@com.fasterxml.jackson.annotation.JsonSubTypes({
-	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{{.}}}.class),{{/-first}}{{^-first}}{{^-last}}	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{{.}}}.class),{{/-last}}{{/-first}}{{#-last}}	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{{.}}}.class)
-}){{/-last}}
-{{/interfaces}}
-{{/discriminator}}{{#discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = {{classname}}.JSON_DISCRIMINATOR)
-@com.fasterxml.jackson.annotation.JsonSubTypes({
-	{{#discriminator.mappedModels}}
-	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = {{modelName}}.class, name = "{{^vendorExtensions.x-discriminator-value}}{{mappingName}}{{/vendorExtensions.x-discriminator-value}}{{#vendorExtensions.x-discriminator-value}}{{{vendorExtensions.x-discriminator-value}}}{{/vendorExtensions.x-discriminator-value}}"),
-	{{/discriminator.mappedModels}}
-})
-{{/discriminator}}
-public interface {{classname}}{{#vendorExtensions.x-implements}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}}{{^discriminator}} {}{{/discriminator}}{{#discriminator}} {
-{{#discriminator}}
-
-	java.lang.String JSON_DISCRIMINATOR = "{{propertyBaseName}}";{{/discriminator}}
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
-	{{discriminator.propertyType}} {{discriminator.propertyGetter}}();
-}{{/discriminator}}{{/vendorExtensions.x-is-one-of-interface}}
+{{>modelEnum}}{{/isEnum}}{{/allVars}}
+}
