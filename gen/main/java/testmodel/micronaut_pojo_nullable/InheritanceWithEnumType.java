@@ -41,8 +41,4 @@ public abstract class InheritanceWithEnumType {
 				.append("]")
 				.toString();
 	}
-
-	// fluent
-
-	// getter/setter
 }
