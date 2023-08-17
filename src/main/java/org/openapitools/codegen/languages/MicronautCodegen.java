@@ -49,11 +49,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
-	private static final String UUID_PATTERN = "[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
-			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
-			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
-			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]"
-			+ "-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]";
+	private static final String UUID_PATTERN = """
+			[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]\
+			-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]\
+			-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]\
+			-[a-f0-9][a-f0-9][a-f0-9][a-f0-9]\
+			-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]""";
 	private static final Logger LOG = LoggerFactory.getLogger(MicronautCodegen.class);
 
 	private boolean generateApiTests = true;
@@ -280,8 +281,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// get responses for considering repsonse type
 
-		var responses = operation.responses.stream().filter(r -> r.is2xx || r.is3xx).collect(Collectors.toList());
-		var responsesCodes = responses.stream().map(r -> Integer.parseInt(r.code)).collect(Collectors.toList());
+		var responses = operation.responses.stream().filter(r -> r.is2xx || r.is3xx).toList();
+		var responsesCodes = responses.stream().map(r -> Integer.parseInt(r.code)).toList();
 		var responseGeneric = useGenericResponse;
 		var dataTypes = responses.stream().map(r -> r.dataType).collect(Collectors.toSet());
 
@@ -373,7 +374,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		// for handle client/server specific path
 
 		var clientPath = operation.path;
-		var queryParamsWithArray = operation.queryParams.stream().filter(p -> p.isArray).collect(Collectors.toList());
+		var queryParamsWithArray = operation.queryParams.stream().filter(p -> p.isArray).toList();
 		if (!queryParamsWithArray.isEmpty()) {
 			clientPath = operation.path + "?"
 					+ queryParamsWithArray.stream().map(p -> "{&" + p.baseName + "*}").collect(Collectors.joining());
@@ -466,20 +467,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				var extensions = subModel.vendorExtensions;
 				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
 				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
-				switch (discriminator.getPropertyType()) {
-					case "java.lang.String":
-						extensions.put("discriminatorPropertyValue", '"' + mappedModel.getMappingName() + '"');
-						break;
-					case "java.lang.Long":
-					case "java.lang.Integer":
-					case "java.lang.Double":
-					case "java.lang.Float":
-						extensions.put("discriminatorPropertyValue", mappedModel.getMappingName());
-						break;
-					default:
-						extensions.put("discriminatorPropertyValue", discriminator.getPropertyType() + "."
-								+ toEnumVarName(mappedModel.getMappingName(), ""));
-				}
+				extensions.put("discriminatorPropertyValue", switch (discriminator.getPropertyType()) {
+					case "java.lang.String" -> '"' + mappedModel.getMappingName() + '"';
+					case "java.lang.Long", "java.lang.Integer" -> mappedModel.getMappingName();
+					case "java.lang.Double", "java.lang.Float" -> mappedModel.getMappingName();
+					default -> discriminator.getPropertyType() + "." + toEnumVarName(mappedModel.getMappingName(), "");
+				});
 			}
 		}
 
