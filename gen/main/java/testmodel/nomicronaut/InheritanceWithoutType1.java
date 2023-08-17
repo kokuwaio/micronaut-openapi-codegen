@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceWithoutType1 implements InheritanceWithoutType {
+public final class InheritanceWithoutType1 implements InheritanceWithoutType {
 
 	public static final java.lang.String JSON_PROPERTY_F = "f";
 

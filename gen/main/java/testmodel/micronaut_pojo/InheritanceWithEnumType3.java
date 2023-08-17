@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceWithEnumType3 implements InheritanceWithEnumType {
+public final class InheritanceWithEnumType3 implements InheritanceWithEnumType {
 
 	@Override
 	public InheritanceWithEnumTypeEnum getType() {

@@ -6,7 +6,7 @@
 })
 {{/discriminator}}{{^discriminator}}@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = {{classname}}Default.class)
 {{/discriminator}}
-public interface {{classname}}{{#interfaces}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/interfaces}} {
+public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#interfaces}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/interfaces}}{{#sealed}} permits {{#children}}{{name}}{{^-last}}, {{/-last}}{{/children}}{{/sealed}} {
 {{#discriminator}}
 
 	java.lang.String JSON_DISCRIMINATOR = "{{propertyBaseName}}";{{/discriminator}}{{#vars}}
@@ -42,7 +42,7 @@ public interface {{classname}}{{#interfaces}}{{#-first}} extends {{{.}}}{{/-firs
 	{{/discriminator.mappedModels}}
 })
 {{/discriminator}}
-public interface {{classname}}{{#vendorExtensions.x-implements}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}}{{^discriminator}} {}{{/discriminator}}{{#discriminator}} {
+public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#vendorExtensions.x-implements}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}}{{#sealed}} permits {{#children}}{{name}}{{^-last}}, {{/-last}}{{/children}}{{/sealed}}{{^discriminator}} {}{{/discriminator}}{{#discriminator}} {
 {{#discriminator}}
 
 	java.lang.String JSON_DISCRIMINATOR = "{{propertyBaseName}}";{{/discriminator}}

@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class OneOfImplementor1 implements OneOfInterface {
+public final class OneOfImplementor1 implements OneOfInterface {
 
 	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";
 

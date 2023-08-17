@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class FirstModel implements OneOfModel {
+public final class FirstModel implements OneOfModel {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 	public static final java.lang.String JSON_PROPERTY_FIRST = "first";

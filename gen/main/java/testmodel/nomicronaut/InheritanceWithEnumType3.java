@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceWithEnumType3 implements InheritanceWithEnumType {
+public final class InheritanceWithEnumType3 implements InheritanceWithEnumType {
 
 	@Override
 	public InheritanceWithEnumTypeEnum getType() {

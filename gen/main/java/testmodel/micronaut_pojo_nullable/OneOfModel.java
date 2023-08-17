@@ -6,4 +6,4 @@ package testmodel.micronaut_pojo_nullable;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = FirstModel.class),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecondLevelModel.class)
 })
-public interface OneOfModel {}
+public sealed interface OneOfModel permits FirstModel, SecondLevelModel {}

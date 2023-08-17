@@ -60,6 +60,7 @@ Include in your `pom.xml`:
 * pagable: generate provider for pagable (default `false`)
 * generateExamples: generate example objects for the model, based on example and default values (default `false`)
 * generateAuthentication: generate Àuthentication into controller interfaces if response code 401 is present (default `false`)
+* sealed: generate sealed interfaces (default `true`)
 
 For examples see [integration tests](src/it).
 

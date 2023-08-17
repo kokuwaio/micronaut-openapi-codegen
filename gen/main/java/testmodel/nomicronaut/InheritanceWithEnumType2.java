@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceWithEnumType2 implements InheritanceWithEnumType {
+public final class InheritanceWithEnumType2 implements InheritanceWithEnumType {
 
 	public static final java.lang.String JSON_PROPERTY_E = "e";
 

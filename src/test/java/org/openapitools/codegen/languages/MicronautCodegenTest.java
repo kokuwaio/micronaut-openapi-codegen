@@ -135,6 +135,13 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(AbstractJavaCodegen.OPENAPI_NULLABLE, false));
 	}
 
+	@DisplayName("model pojo without sealed")
+	@Test
+	void modelPojoWithoutSealed() {
+		generate(configurator(SPEC_MODEL, "testmodel.micronaut_pojo_unsealed")
+				.addAdditionalProperty(MicronautCodegen.SEALED, false));
+	}
+
 	@DisplayName("model without micronaut annotations")
 	@Test
 	void modelWithoutMicronaut() {

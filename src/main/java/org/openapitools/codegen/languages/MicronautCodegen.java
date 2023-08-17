@@ -50,6 +50,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String PAGEABLE = "pageable";
 	public static final String GENERATE_AUTHENTICATION = "generateAuthentication";
 	public static final String GENERATE_EXAMPLES = "generateExamples";
+	public static final String SEALED = "sealed";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
@@ -70,6 +71,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean serdeable = true;
 	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
+	private boolean sealed = true;
 
 	public MicronautCodegen() {
 
@@ -86,6 +88,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(SUPPORT_ASYNC, "Use async responses", supportAsync));
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
+		cliOptions.add(CliOption.newBoolean(SEALED, "Seal interfaces.", sealed));
 		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
 		cliOptions.add(CliOption.newBoolean(GENERATE_AUTHENTICATION,
 				"Generate authentication into apis with return code 401.", generateAuthentication));
@@ -114,6 +117,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(PAGEABLE, pageable);
 		additionalProperties.put(GENERATE_AUTHENTICATION, generateAuthentication);
 		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
+		additionalProperties.put(SEALED, sealed);
 
 		// add custom type mappings
 
@@ -209,6 +213,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(PAGEABLE)) {
 			pageable = convertPropertyToBooleanAndWriteBack(PAGEABLE);
+		}
+		if (additionalProperties.containsKey(SEALED)) {
+			sealed = convertPropertyToBooleanAndWriteBack(SEALED);
 		}
 		if (additionalProperties.containsKey(SUPPORT_ASYNC)) {
 			supportAsync = convertPropertyToBooleanAndWriteBack(SUPPORT_ASYNC);
@@ -547,6 +554,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				obj.put("classname", copy.classname);
 				obj.setModels(List.of(new ModelMap(Map.of("model", copy))));
 				superObjs.put(model.name + "Default", obj);
+
+				// add as children for sealed classes
+				model.children.add(copy);
 			}
 
 		}

@@ -5,4 +5,4 @@ package testmodel.nomicronaut;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = PropertyTypeOne.class),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = PropertyTypeTwo.class)
 })
-public interface AdditionalPropertiesModelValue {}
+public sealed interface AdditionalPropertiesModelValue permits PropertyTypeOne, PropertyTypeTwo {}
