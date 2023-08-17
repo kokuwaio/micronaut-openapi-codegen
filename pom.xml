@@ -67,7 +67,6 @@
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.compilerArgument>-Xlint:all,-processing,-unchecked,-rawtypes,-serial</maven.compiler.compilerArgument>
 
 		<invoker.parallelThreads>0.5C</invoker.parallelThreads>
 
@@ -307,12 +306,14 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>generated-code</id>
 						<phase>test</phase>
 						<goals>
 							<goal>testCompile</goal>
 						</goals>
 						<configuration>
 							<skip>${skipTests}</skip>
+							<compilerArgument>-Xlint:all,-unchecked,-rawtypes,-serial</compilerArgument>
 						</configuration>
 					</execution>
 				</executions>
