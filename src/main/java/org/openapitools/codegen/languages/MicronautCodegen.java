@@ -65,7 +65,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean introspected = true;
 	private boolean dateTimeRelaxed = true;
 	private boolean pageable = false;
-	private boolean isClient = false;
 
 	public MicronautCodegen() {
 
@@ -230,11 +229,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		sourceFolder = getOrDefault.apply(SOURCE_FOLDER, projectFolder + File.separator + "openapi");
 		testFolder = getOrDefault.apply("testFolder", projectTestFolder + File.separator + "openapi");
 		modelNameSuffix = getOrDefault.apply(MODEL_NAME_SUFFIX, modelNameSuffix);
-		isClient = additionalProperties.containsKey(CLIENT_ID);
 
 		// add files to generate
 
-		if (isClient) {
+		if (additionalProperties.containsKey(CLIENT_ID)) {
 			apiTemplateFiles.put("apiClient.mustache", "Client.java");
 		} else {
 			apiTemplateFiles.put("apiServer.mustache", ".java");
@@ -556,18 +554,16 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (ModelUtils.isDateSchema(schema)) {
 			if ("java.time.LocalDate".equals(typeMapping.get(schema.getType()))) {
 				return "java.time.LocalDate." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
-			} else {
-				// we cannot provide a valid example for all possible date types
-				return "null";
 			}
+			// we cannot provide a valid example for all possible date types
+			return "null";
 		}
 		if (ModelUtils.isDateTimeSchema(schema)) {
 			if ("java.time.Instant".equals(typeMapping.get(schema.getType()))) {
 				return "java.time.Instant." + value.map(v -> "parse(\"" + v + "\")").orElse("now()");
-			} else {
-				// we cannot provide a valid example for all possible date types
-				return "null";
 			}
+			// we cannot provide a valid example for all possible date types
+			return "null";
 		}
 		if (ModelUtils.isByteArraySchema(schema) || ModelUtils.isBinarySchema(schema)) {
 			return value.orElse("\"byteArray\".getBytes()");
