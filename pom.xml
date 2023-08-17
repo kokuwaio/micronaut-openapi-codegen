@@ -74,25 +74,51 @@
 		<!-- ============================= Versions ============================== -->
 		<!-- ===================================================================== -->
 
-		<version.io.micronaut>3.10.1</version.io.micronaut>
-		<version.io.micronaut.security>3.11.1</version.io.micronaut.security>
-		<version.org.junit.jupiter>5.10.0</version.org.junit.jupiter>
+		<version.io.micronaut.platform>4.0.4</version.io.micronaut.platform>
 		<version.org.openapitools.generator>7.0.0-beta</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
 
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.micronaut.platform</groupId>
+				<artifactId>micronaut-platform</artifactId>
+				<version>${version.io.micronaut.platform}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
+
+		<!-- openapi -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator</artifactId>
+			<version>${version.org.openapitools.generator}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>${version.org.openapitools.jackson.nullable}</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- micronaut -->
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http</artifactId>
-			<version>${version.io.micronaut}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-inject</artifactId>
+					<artifactId>micronaut-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.micronaut</groupId>
+					<artifactId>micronaut-context-propagation</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>io.micronaut</groupId>
@@ -111,136 +137,11 @@
 		<dependency>
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-core</artifactId>
-			<version>${version.io.micronaut}</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-http-client-core</artifactId>
-			<version>${version.io.micronaut}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-core-reactive</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-runtime</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.projectreactor</groupId>
-					<artifactId>reactor-core</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-inject</artifactId>
-			<version>${version.io.micronaut}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.yaml</groupId>
-					<artifactId>snakeyaml</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut</groupId>
-			<artifactId>micronaut-validation</artifactId>
-			<version>${version.io.micronaut}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-core-reactive</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-inject</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.projectreactor</groupId>
-					<artifactId>reactor-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.reactivestreams</groupId>
-					<artifactId>reactive-streams</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.yaml</groupId>
-					<artifactId>snakeyaml</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.micronaut.security</groupId>
-			<artifactId>micronaut-security</artifactId>
-			<version>${version.io.micronaut.security}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-inject</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-http-server</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-validation</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.micronaut</groupId>
-					<artifactId>micronaut-http</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.reactivestreams</groupId>
-					<artifactId>reactive-streams</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- openapi -->
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>openapi-generator</artifactId>
-			<version>${version.org.openapitools.generator}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-databind-nullable</artifactId>
-			<version>${version.org.openapitools.jackson.nullable}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -249,21 +150,49 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>${version.org.junit.jupiter}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<!-- generated sources -->
 		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
-			<version>3.0.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-client-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut.security</groupId>
+			<artifactId>micronaut-security</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut.serde</groupId>
+			<artifactId>micronaut-serde-api</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>5.3.25</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -320,6 +249,7 @@
 							<goal>testCompile</goal>
 						</goals>
 						<configuration>
+							<compilerArgument>-Xlint:none</compilerArgument>
 							<skip>${skipTests}</skip>
 							<compilerArgument>-Xlint:all,-unchecked,-rawtypes,-serial</compilerArgument>
 						</configuration>

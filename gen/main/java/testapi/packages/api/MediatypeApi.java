@@ -33,7 +33,6 @@ public interface MediatypeApi {
 			@io.micronaut.http.annotation.Part(value = "userId")
 			java.lang.Integer userId,
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.Part(value = "file")
 			io.micronaut.http.multipart.CompletedFileUpload file);
 
 	@io.micronaut.http.annotation.Post(PATH_MEDIATYPE_CONSUMES_MULTIPART_WITHOUT_FILE_UPLOAD)

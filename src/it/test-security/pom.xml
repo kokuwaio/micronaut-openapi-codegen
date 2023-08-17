@@ -31,6 +31,10 @@
 			<artifactId>micronaut-security-jwt</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.micronaut.serde</groupId>
+			<artifactId>micronaut-serde-jackson</artifactId>
+		</dependency>
 
 		<!-- test -->
 		<dependency>
@@ -53,7 +57,7 @@
 						<path>
 							<groupId>io.micronaut</groupId>
 							<artifactId>micronaut-inject-java</artifactId>
-							<version>${version.io.micronaut}</version>
+							<version>${version.io.micronaut.platform}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -80,6 +84,9 @@
 				<configuration>
 					<modelPackage>codegen.server</modelPackage>
 					<inputSpec>@project.basedir@/src/test/resources/openapi/test-security.yaml</inputSpec>
+					<configOptions>
+						<useBeanValidation>false</useBeanValidation>
+					</configOptions>
 				</configuration>
 			</plugin>
 

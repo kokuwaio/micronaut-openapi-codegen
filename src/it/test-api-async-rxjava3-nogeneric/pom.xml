@@ -27,6 +27,10 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.micronaut.serde</groupId>
+			<artifactId>micronaut-serde-jackson</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>io.micronaut.xml</groupId>
 			<artifactId>micronaut-jackson-xml</artifactId>
 			<scope>runtime</scope>
@@ -81,7 +85,12 @@
 						<path>
 							<groupId>io.micronaut</groupId>
 							<artifactId>micronaut-inject-java</artifactId>
-							<version>${version.io.micronaut}</version>
+							<version>${version.io.micronaut.platform}</version>
+						</path>
+						<path>
+							<groupId>io.micronaut.serde</groupId>
+							<artifactId>micronaut-serde-processor</artifactId>
+							<version>${version.io.micronaut.serde}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
