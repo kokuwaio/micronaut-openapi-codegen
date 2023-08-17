@@ -86,16 +86,31 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(OptionalFeatures.USE_OPTIONAL, false));
 	}
 
-	@DisplayName("security with defaults")
+	@DisplayName("security with defaults for server")
 	@Test
-	void security() {
-		generate(configurator(SPEC_SECURITY, "testsecurity.defaults"));
+	void securityServer() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.defaults.server"));
 	}
 
-	@DisplayName("security with custom types")
+	@DisplayName("security with defaults for client")
 	@Test
-	void securityWithAuthentication() {
-		generate(configurator(SPEC_SECURITY, "testsecurity.auth")
+	void securityClient() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.defaults.client")
+				.addAdditionalProperty(MicronautCodegen.CLIENT_ID, "test"));
+	}
+
+	@DisplayName("security with authentication for client")
+	@Test
+	void securityWithAuthenticationClient() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.auth.client")
+				.addAdditionalProperty(MicronautCodegen.CLIENT_ID, "test")
+				.addAdditionalProperty(MicronautCodegen.GENERATE_AUTHENTICATION, true));
+	}
+
+	@DisplayName("security with authentication for server")
+	@Test
+	void securityWithAuthenticationServer() {
+		generate(configurator(SPEC_SECURITY, "testsecurity.auth.server")
 				.addAdditionalProperty(MicronautCodegen.GENERATE_AUTHENTICATION, true));
 	}
 

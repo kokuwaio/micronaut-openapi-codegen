@@ -27,7 +27,7 @@ public interface ParameterApiClient {
 	java.lang.String PATH_PARAM_PATH_WITH_UUID = "/param/path/with-uuid/{uuid}";
 	java.lang.String PATH_PARAM_QUERY_DATE = "/param/query/date";
 	java.lang.String PATH_PARAM_QUERY_DATE_TIME = "/param/query/date-time";
-	java.lang.String PATH_PARAM_QUERY_MULTIPLE_LISTS = "/param/query/multiple-lists";
+	java.lang.String PATH_PARAM_QUERY_MULTIPLE_LISTS = "/param/query/multiple-lists?{&a*}{&b*}{&c*}";
 	java.lang.String PATH_PARAM_QUERY_NUMBER = "/param/query/number";
 	java.lang.String PATH_PARAM_QUERY_OPTIONAL_WITH_DEFAULT = "/param/query/optionalWithDefault";
 	java.lang.String PATH_PARAM_QUERY_OPTIONAL_WITHOUT_DEFAULT = "/param/query/optionalWithoutDefault";
@@ -35,7 +35,7 @@ public interface ParameterApiClient {
 	java.lang.String PATH_PARAM_QUERY_REQUIRED_WITHOUT_DEFAULT = "/param/query/requiredWithoutDefault";
 	java.lang.String PATH_PARAM_QUERY_UUID = "/param/query/uuid";
 
-	@io.micronaut.http.annotation.Get("/param/all/{path}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_ALL)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramAll(
@@ -52,7 +52,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Header(value = "integer")
 			java.lang.Integer integer);
 
-	@io.micronaut.http.annotation.Post("/param/body/optional")
+	@io.micronaut.http.annotation.Post(PATH_PARAM_BODY_OPTIONAL)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
@@ -61,7 +61,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Body
 			ParameterModel parameterModel);
 
-	@io.micronaut.http.annotation.Post("/param/body/required")
+	@io.micronaut.http.annotation.Post(PATH_PARAM_BODY_REQUIRED)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
@@ -70,7 +70,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Body
 			ParameterModel parameterModel);
 
-	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_COOKIE_OPTIONAL_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieOptionalWithDefault(
@@ -78,7 +78,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/cookie/optionalWithoutDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_COOKIE_OPTIONAL_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieOptionalWithoutDefault(
@@ -86,7 +86,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_COOKIE_REQUIRED_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieRequiredWithDefault(
@@ -94,7 +94,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/cookie/requiredWithoutDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_COOKIE_REQUIRED_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramCookieRequiredWithoutDefault(
@@ -102,7 +102,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.CookieValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/header/optionalWithDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_HEADER_OPTIONAL_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramHeaderOptionalWithDefault(
@@ -110,7 +110,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Header(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/header/optionalWithoutDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_HEADER_OPTIONAL_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramHeaderOptionalWithoutDefault(
@@ -118,7 +118,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Header(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/header/requiredWithDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_HEADER_REQUIRED_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramHeaderRequiredWithDefault(
@@ -126,7 +126,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Header(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/header/requiredWithoutDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_HEADER_REQUIRED_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramHeaderRequiredWithoutDefault(
@@ -134,7 +134,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.Header(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/path/overlay/{string}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_OVERLAY_WITH_STRING)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathOverlayWithString(
@@ -142,7 +142,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/path/overlay/{uuid}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_OVERLAY_WITH_UUID)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathOverlayWithUuid(
@@ -150,7 +150,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "uuid")
 			java.util.UUID uuid);
 
-	@io.micronaut.http.annotation.Get("/param/path/requiredWithDefault/{string}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_REQUIRED_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathRequiredWithDefault(
@@ -158,7 +158,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/path/requiredWithoutDefault/{string}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_REQUIRED_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathRequiredWithoutDefault(
@@ -166,7 +166,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/path/with-bool/{bool}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_BOOLEAN)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathWithBoolean(
@@ -174,7 +174,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "bool")
 			java.lang.Boolean bool);
 
-	@io.micronaut.http.annotation.Get("/param/path/with-integer/{integer}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_INTEGER)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathWithInteger(
@@ -182,7 +182,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "integer")
 			java.lang.Integer integer);
 
-	@io.micronaut.http.annotation.Get("/param/path/with-long/{long}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_LONG)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathWithLong(
@@ -190,7 +190,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "long")
 			java.lang.Long _long);
 
-	@io.micronaut.http.annotation.Get("/param/path/with-max-length/{string}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_MAX_LENGTH)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathWithMaxLength(
@@ -198,7 +198,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/path/with-pattern/{string}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_PATTERN)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathWithPattern(
@@ -206,7 +206,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/path/with-uuid/{uuid}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_PATH_WITH_UUID)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramPathWithUuid(
@@ -214,7 +214,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.PathVariable(value = "uuid")
 			java.util.UUID uuid);
 
-	@io.micronaut.http.annotation.Get("/param/query/date")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_DATE)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryDate(
@@ -222,7 +222,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "date")
 			java.time.LocalDate date);
 
-	@io.micronaut.http.annotation.Get("/param/query/date-time")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_DATE_TIME)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryDateTime(
@@ -230,7 +230,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "date")
 			java.time.Instant date);
 
-	@io.micronaut.http.annotation.Get("/param/query/multiple-lists?{&a*}{&b*}{&c*}")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_MULTIPLE_LISTS)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryMultipleLists(
@@ -244,7 +244,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "c")
 			java.util.List<java.lang.Integer> c);
 
-	@io.micronaut.http.annotation.Get("/param/query/number")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_NUMBER)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryNumber(
@@ -252,7 +252,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "date")
 			java.lang.Double date);
 
-	@io.micronaut.http.annotation.Get("/param/query/optionalWithDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_OPTIONAL_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryOptionalWithDefault(
@@ -260,7 +260,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/query/optionalWithoutDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_OPTIONAL_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryOptionalWithoutDefault(
@@ -268,7 +268,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/query/requiredWithDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_REQUIRED_WITH_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryRequiredWithDefault(
@@ -276,7 +276,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/query/requiredWithoutDefault")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_REQUIRED_WITHOUT_DEFAULT)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryRequiredWithoutDefault(
@@ -284,7 +284,7 @@ public interface ParameterApiClient {
 			@io.micronaut.http.annotation.QueryValue(value = "string")
 			java.lang.String string);
 
-	@io.micronaut.http.annotation.Get("/param/query/uuid")
+	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_UUID)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<ParameterModel> paramQueryUuid(

@@ -1,4 +1,4 @@
-package testsecurity.defaults;
+package testsecurity.defaults.server;
 
 /** Test for {@link SecurityApi}. */
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")

@@ -63,6 +63,20 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>openapi-generate-client</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<configOptions>
+								<clientId>test-client</clientId>
+								<generateAuthentication>true</generateAuthentication>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 				<configuration>
 					<modelPackage>codegen.server</modelPackage>
 					<inputSpec>@project.basedir@/src/test/resources/openapi/test-security.yaml</inputSpec>

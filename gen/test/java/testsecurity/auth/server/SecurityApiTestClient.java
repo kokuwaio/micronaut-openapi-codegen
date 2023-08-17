@@ -1,4 +1,4 @@
-package testsecurity.auth;
+package testsecurity.auth.server;
 
 /** Test client for {@link SecurityApi}. **/
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
@@ -11,22 +11,15 @@ public interface SecurityApiTestClient {
 	@io.micronaut.http.annotation.Get("/authenticated/with-param")
 	io.micronaut.http.HttpResponse<?> authenticatedWithParam(
 			@io.micronaut.core.annotation.Nullable
-			@io.micronaut.http.annotation.QueryValue(value = "queryParam")
-			java.lang.String queryParam);
-
-	@io.micronaut.http.annotation.Get("/authenticated/with-param")
-	io.micronaut.http.HttpResponse<?> authenticatedWithParam(
-			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
 			java.lang.String authorization,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "queryParam")
 			java.lang.String queryParam);
-	@io.micronaut.http.annotation.Get("/authenticated/without-param")
-	io.micronaut.http.HttpResponse<?> authenticatedWithoutParam();
 
 	@io.micronaut.http.annotation.Get("/authenticated/without-param")
 	io.micronaut.http.HttpResponse<?> authenticatedWithoutParam(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.Header(io.micronaut.http.HttpHeaders.AUTHORIZATION)
-			java.lang.String authorization);}
+			java.lang.String authorization);
+}

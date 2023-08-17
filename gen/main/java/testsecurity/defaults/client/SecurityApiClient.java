@@ -1,8 +1,8 @@
-package testsecurity.types;
+package testsecurity.defaults.client;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.validation.Validated
-public interface SecurityApi {
+@io.micronaut.http.client.annotation.Client(id = "id")
+public interface SecurityApiClient {
 
 	java.lang.String PATH_ANONYMOUS = "/anonymous";
 	java.lang.String PATH_AUTHENTICATED_WITH_PARAM = "/authenticated/with-param";
@@ -13,11 +13,9 @@ public interface SecurityApi {
 
 	@io.micronaut.http.annotation.Get(PATH_AUTHENTICATED_WITH_PARAM)
 	io.micronaut.http.HttpResponse<Object> authenticatedWithParam(
-			@io.micronaut.core.annotation.NonNull
-			java.security.Principal authentication,
-			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "queryParam")
-			java.util.Optional<java.lang.String> queryParam);
+			java.lang.String queryParam);
 
 	@io.micronaut.http.annotation.Get(PATH_AUTHENTICATED_WITHOUT_PARAM)
 	io.micronaut.http.HttpResponse<Object> authenticatedWithoutParam();

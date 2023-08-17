@@ -1,4 +1,4 @@
-package testsecurity.types;
+package testsecurity.auth.server;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.validation.Validated
@@ -14,7 +14,7 @@ public interface SecurityApi {
 	@io.micronaut.http.annotation.Get(PATH_AUTHENTICATED_WITH_PARAM)
 	io.micronaut.http.HttpResponse<Object> authenticatedWithParam(
 			@io.micronaut.core.annotation.NonNull
-			java.security.Principal authentication,
+			io.micronaut.security.authentication.Authentication authentication,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "queryParam")
 			java.util.Optional<java.lang.String> queryParam);
