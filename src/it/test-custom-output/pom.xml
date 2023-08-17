@@ -17,6 +17,10 @@
 			<groupId>io.micronaut</groupId>
 			<artifactId>micronaut-http-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.micronaut.serde</groupId>
+			<artifactId>micronaut-serde-jackson</artifactId>
+		</dependency>
 
 	</dependencies>
 
