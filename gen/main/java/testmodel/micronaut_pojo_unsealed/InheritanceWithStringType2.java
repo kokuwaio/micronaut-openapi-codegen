@@ -4,13 +4,11 @@ package testmodel.micronaut_pojo_unsealed;
 @io.micronaut.serde.annotation.Serdeable
 public class InheritanceWithStringType2 implements InheritanceWithStringType {
 
-	public static final java.lang.String JSON_PROPERTY_C = "c";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_A)
+	@com.fasterxml.jackson.annotation.JsonProperty("a")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String a;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_C)
+	@com.fasterxml.jackson.annotation.JsonProperty("c")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String c;
 

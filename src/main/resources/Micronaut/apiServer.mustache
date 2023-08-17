@@ -3,11 +3,10 @@ package {{package}};
 {{#isModelImport}}import {{modelPackage}}.*;
 
 {{/isModelImport}}{{>generated}}{{#useBeanValidation}}@io.micronaut.validation.Validated
-{{/useBeanValidation}}public interface {{classname}} {
-{{#operations}}{{#operation}}
-	java.lang.String PATH_{{vendorExtensions.operationIdUpperCase}} = "{{{vendorExtensions.serverPath}}}";{{/operation}}{{/operations}}{{#operations}}{{#operation}}
+{{/useBeanValidation}}public interface {{classname}} {{curly}}{{#generateConstants}}{{#operations}}{{#operation}}
+	java.lang.String PATH_{{vendorExtensions.operationIdUpperCase}} = "{{vendorExtensions.serverPath}}";{{/operation}}{{/operations}}{{/generateConstants}}{{#operations}}{{#operation}}
 
-	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}(PATH_{{vendorExtensions.operationIdUpperCase}}){{^vendorExtensions.generic}}
+	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}({{#generateConstants}}PATH_{{vendorExtensions.operationIdUpperCase}}{{/generateConstants}}{{^generateConstants}}"{{{vendorExtensions.serverPath}}}"{{/generateConstants}}){{^vendorExtensions.generic}}
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.{{vendorExtensions.status}}){{/vendorExtensions.generic}}{{#hasConsumes}}
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}

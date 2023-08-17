@@ -1,9 +1,10 @@
 {{#serdeable}}@io.micronaut.serde.annotation.Serdeable
 {{/serdeable}}
 public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class {{classname}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
-{{#vars}}{{#-first}}
+{{#generateConstants}}{{#vars}}{{#-first}}
 {{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
 {{/vars}}
+{{/generateConstants}}
 
 {{#allVars}}{{#description}}	/** {{description}} */
 {{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}

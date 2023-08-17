@@ -70,6 +70,13 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addInstantiationType("map", java.util.TreeMap.class.getName()));
 	}
 
+	@DisplayName("api with constants")
+	@Test
+	void apiWithConstants() {
+		generate(configurator(SPEC_API, "testapi.constants")
+				.addAdditionalProperty(MicronautCodegen.GENERATE_CONSTANTS, true));
+	}
+
 	@DisplayName("api with async")
 	@Test
 	void apiWithAsyncReactor() {
@@ -142,12 +149,27 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(MicronautCodegen.SEALED, false));
 	}
 
+	@DisplayName("model pojo with constants")
+	@Test
+	void modelPojoWithConstants() {
+		generate(configurator(SPEC_MODEL, "testmodel.micronaut_pojo_constants")
+				.addAdditionalProperty(MicronautCodegen.GENERATE_CONSTANTS, true));
+	}
+
 	@DisplayName("model records without JsonNullable")
 	@Test
 	void modelRecordsWithoutJsonNullable() {
 		generate(configurator(SPEC_MODEL, "testmodel.micronaut_record")
 				.addAdditionalProperty(AbstractJavaCodegen.OPENAPI_NULLABLE, false)
 				.addAdditionalProperty(MicronautCodegen.RECORD, true));
+	}
+
+	@DisplayName("model records with constants")
+	@Test
+	void modelRecordsWithConstants() {
+		generate(configurator(SPEC_MODEL, "testmodel.micronaut_record_constants")
+				.addAdditionalProperty(MicronautCodegen.RECORD, true)
+				.addAdditionalProperty(MicronautCodegen.GENERATE_CONSTANTS, true));
 	}
 
 	@DisplayName("model without micronaut annotations")

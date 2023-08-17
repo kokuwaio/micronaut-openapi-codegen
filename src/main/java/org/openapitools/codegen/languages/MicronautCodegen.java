@@ -51,6 +51,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String RECORD = "record";
 	public static final String GENERATE_AUTHENTICATION = "generateAuthentication";
 	public static final String GENERATE_EXAMPLES = "generateExamples";
+	public static final String GENERATE_CONSTANTS = "generateConstants";
 	public static final String SEALED = "sealed";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
@@ -66,6 +67,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean generateApiTests = true;
 	private boolean generateAuthentication = false;
 	private boolean generateExamples = false;
+	private boolean generateConstants = false;
 	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 	private boolean useOptional = true;
@@ -96,6 +98,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(GENERATE_AUTHENTICATION,
 				"Generate authentication into apis with return code 401.", generateAuthentication));
 		cliOptions.add(CliOption.newBoolean(GENERATE_EXAMPLES, "Generate examples for tests.", generateExamples));
+		cliOptions.add(CliOption.newBoolean(GENERATE_CONSTANTS, "Generate model/api constants.", generateConstants));
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newString(SOURCE_FOLDER, SOURCE_FOLDER_DESC));
 		cliOptions.add(CliOption.newString("testFolder", "test folder for generated code"));
@@ -120,8 +123,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(PAGEABLE, pageable);
 		additionalProperties.put(GENERATE_AUTHENTICATION, generateAuthentication);
 		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
+		additionalProperties.put(GENERATE_CONSTANTS, generateConstants);
 		additionalProperties.put(SEALED, sealed);
 		additionalProperties.put(RECORD, record);
+		additionalProperties.put("curly", "{");
 
 		// add custom type mappings
 
@@ -238,6 +243,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(GENERATE_EXAMPLES)) {
 			generateExamples = convertPropertyToBooleanAndWriteBack(GENERATE_EXAMPLES);
+		}
+		if (additionalProperties.containsKey(GENERATE_CONSTANTS)) {
+			generateConstants = convertPropertyToBooleanAndWriteBack(GENERATE_CONSTANTS);
 		}
 
 		// we do not generate projects, only api, set source and test folder

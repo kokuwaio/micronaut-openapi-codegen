@@ -4,24 +4,19 @@ package testmodel.micronaut_pojo;
 @io.micronaut.serde.annotation.Serdeable
 public class EnumerationModel {
 
-	public static final java.lang.String JSON_PROPERTY_STRING = "string";
-	public static final java.lang.String JSON_PROPERTY_STRING_DEFAULT = "string-default";
-	public static final java.lang.String JSON_PROPERTY_EMBEDDED = "embedded";
-	public static final java.lang.String JSON_PROPERTY_EMBEDDED_DEFAULT = "embedded-default";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_STRING)
+	@com.fasterxml.jackson.annotation.JsonProperty("string")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private EnumerationString string;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_STRING_DEFAULT)
+	@com.fasterxml.jackson.annotation.JsonProperty("string-default")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_EMBEDDED)
+	@com.fasterxml.jackson.annotation.JsonProperty("embedded")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private Embedded embedded;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_EMBEDDED_DEFAULT)
+	@com.fasterxml.jackson.annotation.JsonProperty("embedded-default")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private EmbeddedDefault embeddedDefault = EmbeddedDefault.FOUR;
 

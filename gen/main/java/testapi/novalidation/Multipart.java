@@ -4,24 +4,19 @@ package testapi.novalidation;
 @io.micronaut.serde.annotation.Serdeable
 public class Multipart {
 
-	public static final java.lang.String JSON_PROPERTY_ORDER_ID = "orderId";
-	public static final java.lang.String JSON_PROPERTY_USER_ID = "userId";
-	public static final java.lang.String JSON_PROPERTY_FILE_NAME = "fileName";
-	public static final java.lang.String JSON_PROPERTY_FILE = "file";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ORDER_ID)
+	@com.fasterxml.jackson.annotation.JsonProperty("orderId")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer orderId;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_USER_ID)
+	@com.fasterxml.jackson.annotation.JsonProperty("userId")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer userId;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FILE_NAME)
+	@com.fasterxml.jackson.annotation.JsonProperty("fileName")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String fileName;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FILE)
+	@com.fasterxml.jackson.annotation.JsonProperty("file")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private byte[] file;
 

@@ -2,9 +2,7 @@ package testmodel.nomicronaut;
 
 public final class OneOfImplementor1 implements OneOfInterface {
 
-	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_PROPERTY)
+	@com.fasterxml.jackson.annotation.JsonProperty("property")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String property;
 

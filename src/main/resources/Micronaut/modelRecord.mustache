@@ -3,15 +3,16 @@
 
 {{#description}}	/** {{description}} */
 {{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
-	{{>modelPropertyType}} {{name}}{{^-last}},{{/-last}}{{/allVars}}){{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
+	{{>modelPropertyType}} {{name}}{{^-last}},{{/-last}}{{/allVars}}){{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {{curly}}{{#generateConstants}}
 {{#vars}}{{#-first}}
-{{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";{{^-last}}
-{{/-last}}{{/vars}}{{#vendorExtensions.discriminatorPropertyValue}}
+{{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
+{{/vars}}{{/generateConstants}}{{#vendorExtensions.discriminatorPropertyValue}}{{^generateConstants}}
+{{/generateConstants}}
 
 	@Override
 	public {{vendorExtensions.discriminatorPropertyType}} {{vendorExtensions.discriminatorPropertyName}}() {
 		return {{{vendorExtensions.discriminatorPropertyValue}}};
-	}{{/vendorExtensions.discriminatorPropertyValue}}{{#allVars}}{{#isEnum}}
-
-{{>modelEnum}}{{/isEnum}}{{/allVars}}
-}
+	}
+{{/vendorExtensions.discriminatorPropertyValue}}{{#allVars}}{{#isEnum}}
+{{>modelEnum}}{{#-last}}
+{{/-last}}{{/isEnum}}{{/allVars}}}

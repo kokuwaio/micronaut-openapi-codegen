@@ -2,165 +2,133 @@ package testmodel.nomicronaut;
 
 public class Model {
 
-	public static final java.lang.String JSON_PROPERTY_ID = "id";
-	public static final java.lang.String JSON_PROPERTY_ID_WITH_EXAMPLE = "idWithExample";
-	public static final java.lang.String JSON_PROPERTY_ID_WITH_DEFAULT = "idWithDefault";
-	public static final java.lang.String JSON_PROPERTY_NAME = "name";
-	public static final java.lang.String JSON_PROPERTY_NAME_WITH_EXAMPLE = "nameWithExample";
-	public static final java.lang.String JSON_PROPERTY_NAME_WITH_DEFAULT = "nameWithDefault";
-	public static final java.lang.String JSON_PROPERTY_DATE = "date";
-	public static final java.lang.String JSON_PROPERTY_DATE_WITH_EXAMPLE = "dateWithExample";
-	public static final java.lang.String JSON_PROPERTY_DATE_TIME = "date-time";
-	public static final java.lang.String JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE = "date-timeWithExample";
-	public static final java.lang.String JSON_PROPERTY_NUMBER = "number";
-	public static final java.lang.String JSON_PROPERTY_BINARY = "binary";
-	public static final java.lang.String JSON_PROPERTY_BYTES = "bytes";
-	public static final java.lang.String JSON_PROPERTY_ANY = "any";
-	public static final java.lang.String JSON_PROPERTY_ARRAY = "array";
-	public static final java.lang.String JSON_PROPERTY_ARRAY_WITH_EXAMPLE = "arrayWithExample";
-	public static final java.lang.String JSON_PROPERTY_SET = "set";
-	public static final java.lang.String JSON_PROPERTY_SET_WITH_EXAMPLES = "setWithExamples";
-	public static final java.lang.String JSON_PROPERTY_MAP = "map";
-	public static final java.lang.String JSON_PROPERTY_MAP_WITH_EXAMPLE = "mapWithExample";
-	public static final java.lang.String JSON_PROPERTY_OPTIONAL_ARRAY = "optionalArray";
-	public static final java.lang.String JSON_PROPERTY_OPTIONAL_SET = "optionalSet";
-	public static final java.lang.String JSON_PROPERTY_OPTIONAL_MAP = "optionalMap";
-	public static final java.lang.String JSON_PROPERTY_NULLABLE_STRING = "nullableString";
-	public static final java.lang.String JSON_PROPERTY_NULLABLE_ARRAY = "nullableArray";
-	public static final java.lang.String JSON_PROPERTY_NULLABLE_SET = "nullableSet";
-	public static final java.lang.String JSON_PROPERTY_DEFAULT_STRING = "defaultString";
-	public static final java.lang.String JSON_PROPERTY_DEFAULT_INTEGER = "defaultInteger";
-	public static final java.lang.String JSON_PROPERTY_DEFAULT_LONG = "defaultLong";
-	public static final java.lang.String JSON_PROPERTY_DEFAULT_NULLABLE = "defaultNullable";
-	public static final java.lang.String JSON_PROPERTY_REFERENED_MODEL = "referenedModel";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID)
+	@com.fasterxml.jackson.annotation.JsonProperty("id")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer id;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("idWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer idWithExample;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID_WITH_DEFAULT)
+	@com.fasterxml.jackson.annotation.JsonProperty("idWithDefault")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer idWithDefault = 32;
 
 	@jakarta.validation.constraints.NotNull
 	@jakarta.validation.constraints.Size(max = 36)
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NAME)
+	@com.fasterxml.jackson.annotation.JsonProperty("name")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String name;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NAME_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("nameWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String nameWithExample;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
+	@com.fasterxml.jackson.annotation.JsonProperty("nameWithDefault")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String nameWithDefault = "MyDefaultName";
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE)
+	@com.fasterxml.jackson.annotation.JsonProperty("date")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.LocalDate date;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("dateWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.LocalDate dateWithExample;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_TIME)
+	@com.fasterxml.jackson.annotation.JsonProperty("date-time")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.Instant dateTime;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("date-timeWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.Instant dateTimeWithExample;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NUMBER)
+	@com.fasterxml.jackson.annotation.JsonProperty("number")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double number;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BINARY)
+	@com.fasterxml.jackson.annotation.JsonProperty("binary")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private byte[] binary;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BYTES)
+	@com.fasterxml.jackson.annotation.JsonProperty("bytes")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private byte[] bytes;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ANY)
+	@com.fasterxml.jackson.annotation.JsonProperty("any")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.lang.Object> any = org.openapitools.jackson.nullable.JsonNullable.of(null);
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ARRAY)
+	@com.fasterxml.jackson.annotation.JsonProperty("array")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.util.List<java.lang.String> array = new java.util.ArrayList<>();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ARRAY_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("arrayWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.lang.String> arrayWithExample;
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_SET)
+	@com.fasterxml.jackson.annotation.JsonProperty("set")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.util.Set<java.lang.String> set = new java.util.LinkedHashSet<>();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_SET_WITH_EXAMPLES)
+	@com.fasterxml.jackson.annotation.JsonProperty("setWithExamples")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.Set<java.lang.String> setWithExamples;
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_MAP)
+	@com.fasterxml.jackson.annotation.JsonProperty("map")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.util.Map<String, java.lang.String> map = new java.util.HashMap<>();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_MAP_WITH_EXAMPLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("mapWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.Map<String, java.lang.String> mapWithExample;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_OPTIONAL_ARRAY)
+	@com.fasterxml.jackson.annotation.JsonProperty("optionalArray")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.lang.String> optionalArray;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_OPTIONAL_SET)
+	@com.fasterxml.jackson.annotation.JsonProperty("optionalSet")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.Set<java.lang.String> optionalSet;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_OPTIONAL_MAP)
+	@com.fasterxml.jackson.annotation.JsonProperty("optionalMap")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.Map<String, java.lang.String> optionalMap;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NULLABLE_STRING)
+	@com.fasterxml.jackson.annotation.JsonProperty("nullableString")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.lang.String> nullableString = org.openapitools.jackson.nullable.JsonNullable.undefined();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NULLABLE_ARRAY)
+	@com.fasterxml.jackson.annotation.JsonProperty("nullableArray")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.util.List<java.lang.String>> nullableArray = org.openapitools.jackson.nullable.JsonNullable.undefined();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NULLABLE_SET)
+	@com.fasterxml.jackson.annotation.JsonProperty("nullableSet")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.util.Set<java.lang.String>> nullableSet = org.openapitools.jackson.nullable.JsonNullable.undefined();
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_STRING)
+	@com.fasterxml.jackson.annotation.JsonProperty("defaultString")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String defaultString = "defaultStringValue";
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_INTEGER)
+	@com.fasterxml.jackson.annotation.JsonProperty("defaultInteger")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer defaultInteger = 1234;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_LONG)
+	@com.fasterxml.jackson.annotation.JsonProperty("defaultLong")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Long defaultLong = 5678l;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DEFAULT_NULLABLE)
+	@com.fasterxml.jackson.annotation.JsonProperty("defaultNullable")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.lang.String> defaultNullable = org.openapitools.jackson.nullable.JsonNullable.of("defaultNullableValue");
 
 	@jakarta.validation.Valid
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_REFERENED_MODEL)
+	@com.fasterxml.jackson.annotation.JsonProperty("referenedModel")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private EnumerationModel referenedModel;
 

@@ -33,6 +33,7 @@
 					<generateSupportingFiles>false</generateSupportingFiles>
 					<configOptions>
 						<serdeable>false</serdeable>
+						<generateConstants>false</generateConstants>
 						<useBeanValidation>false</useBeanValidation>
 					</configOptions>
 					<typeMappings>

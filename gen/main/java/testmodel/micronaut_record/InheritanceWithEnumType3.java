@@ -4,7 +4,6 @@ package testmodel.micronaut_record;
 @io.micronaut.serde.annotation.Serdeable
 public record InheritanceWithEnumType3() implements InheritanceWithEnumType {
 
-
 	@Override
 	public InheritanceWithEnumTypeEnum type() {
 		return InheritanceWithEnumTypeEnum.INHERITANCE3;

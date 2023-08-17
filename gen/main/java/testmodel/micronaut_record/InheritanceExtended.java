@@ -5,14 +5,11 @@ package testmodel.micronaut_record;
 public record InheritanceExtended(
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)
+	@com.fasterxml.jackson.annotation.JsonProperty("foo")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	java.lang.String foo,
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BAR)
+	@com.fasterxml.jackson.annotation.JsonProperty("bar")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
-	java.lang.String bar) implements InheritanceSimple {
-
-	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
-}
+	java.lang.String bar) implements InheritanceSimple {}

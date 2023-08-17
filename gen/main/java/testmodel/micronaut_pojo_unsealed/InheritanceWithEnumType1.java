@@ -4,9 +4,7 @@ package testmodel.micronaut_pojo_unsealed;
 @io.micronaut.serde.annotation.Serdeable
 public class InheritanceWithEnumType1 implements InheritanceWithEnumType {
 
-	public static final java.lang.String JSON_PROPERTY_D = "d";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_D)
+	@com.fasterxml.jackson.annotation.JsonProperty("d")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String d;
 
