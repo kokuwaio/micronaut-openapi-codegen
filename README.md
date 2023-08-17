@@ -4,7 +4,7 @@ OpenAPI code generator for Micronaut.
 
 [![License](https://img.shields.io/github/license/kokuwaio/micronaut-openapi-codegen.svg?label=License)](https://github.com/kokuwaio/micronaut-openapi-codegen/blob/main/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://central.sonatype.com/namespace/io.kokuwa.micronaut)
-[![Build](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/build.yaml?label=Build)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/build.yaml)
+[![Build](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/build.yaml?branch=3.x&label=Build)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/build.yaml?query=branch%3A3.x)
 
 Include in your `pom.xml`:
 
@@ -87,7 +87,7 @@ Do not forget to add the dependency to `pom.xml`:
 <dependency>
  <groupId>org.openapitools</groupId>
  <artifactId>jackson-databind-nullable</artifactId>
- <version>0.2.2</version>
+ <version>0.2.6</version>
 </dependency>
 ```
 
