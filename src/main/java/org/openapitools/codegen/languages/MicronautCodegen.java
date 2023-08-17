@@ -511,7 +511,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public String toDefaultValue(Schema schema) {
+	public String toDefaultValue(@SuppressWarnings("rawtypes") Schema schema) {
 		if (ModelUtils.isGenerateAliasAsModel() && schema.get$ref() != null) {
 			return "new " + getSchemaType(schema) + "()";
 		}
@@ -519,11 +519,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public String toExampleValue(Schema schema) {
+	public String toExampleValue(@SuppressWarnings("rawtypes") Schema schema) {
 
 		// first choice: use the example, provided from the spec
 		// second choice: use the default provided by the spec
 		// special handling for enum: if no example or default is provided, use the first value
+		@SuppressWarnings("unchecked")
 		Optional<String> value = Optional
 				.ofNullable(schema.getExample())
 				.or(() -> Optional.ofNullable(schema.getDefault()))
