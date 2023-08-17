@@ -5,7 +5,7 @@ package testmodel.nomicronaut;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OneOfImplementor1.class, name = "Implementation1"),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OneOfImplementor2.class, name = "Implementation2"),
 })
-public interface OneOfInterface {
+public sealed interface OneOfInterface permits OneOfImplementor1, OneOfImplementor2 {
 
 	java.lang.String JSON_DISCRIMINATOR = "type";
 

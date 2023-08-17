@@ -7,7 +7,7 @@ package testmodel.micronaut_pojo;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType2.class, name = "Inheritance2"),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3")
 })
-public interface InheritanceWithEnumType {
+public sealed interface InheritanceWithEnumType permits InheritanceWithEnumType1, InheritanceWithEnumType2, InheritanceWithEnumType3 {
 
 	java.lang.String JSON_DISCRIMINATOR = "type";
 

@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class FirstModel implements OneOfModel {
+public final class FirstModel implements OneOfModel {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 	public static final java.lang.String JSON_PROPERTY_FIRST = "first";

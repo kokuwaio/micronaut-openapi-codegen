@@ -6,7 +6,7 @@ package testmodel.micronaut_pojo;
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithStringType1.class, name = "Inheritance1"),
 	@com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InheritanceWithStringType2.class, name = "Inheritance2")
 })
-public interface InheritanceWithStringType {
+public sealed interface InheritanceWithStringType permits InheritanceWithStringType1, InheritanceWithStringType2 {
 
 	java.lang.String JSON_DISCRIMINATOR = "type";
 	java.lang.String JSON_PROPERTY_A = "a";

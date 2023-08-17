@@ -46,6 +46,8 @@
 						<serdeable>false</serdeable>
 						<useBeanValidation>false</useBeanValidation>
 						<openApiNullable>false</openApiNullable>
+						<!-- otherwise instanceof checks will not compile -->
+						<sealed>false</sealed>
 					</configOptions>
 					<typeMappings>
 						<typeMapping>Generated=</typeMapping>

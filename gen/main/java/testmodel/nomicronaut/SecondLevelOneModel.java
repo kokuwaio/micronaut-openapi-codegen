@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class SecondLevelOneModel implements SecondLevelModel {
+public final class SecondLevelOneModel implements SecondLevelModel {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 	public static final java.lang.String JSON_PROPERTY_ONE = "one";

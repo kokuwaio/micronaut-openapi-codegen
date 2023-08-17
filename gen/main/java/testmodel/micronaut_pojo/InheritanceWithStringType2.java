@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceWithStringType2 implements InheritanceWithStringType {
+public final class InheritanceWithStringType2 implements InheritanceWithStringType {
 
 	public static final java.lang.String JSON_PROPERTY_C = "c";
 

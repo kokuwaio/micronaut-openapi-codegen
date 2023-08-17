@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class PropertyTypeOne implements AdditionalPropertiesModelValue {
+public final class PropertyTypeOne implements AdditionalPropertiesModelValue {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 

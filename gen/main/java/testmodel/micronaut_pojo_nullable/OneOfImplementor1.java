@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class OneOfImplementor1 implements OneOfInterface {
+public final class OneOfImplementor1 implements OneOfInterface {
 
 	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";
 

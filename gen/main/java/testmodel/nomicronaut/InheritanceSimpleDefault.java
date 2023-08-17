@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceSimpleDefault implements InheritanceSimple {
+public final class InheritanceSimpleDefault implements InheritanceSimple {
 
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)

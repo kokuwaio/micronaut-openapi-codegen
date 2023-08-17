@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceWithStringType2 implements InheritanceWithStringType {
+public final class InheritanceWithStringType2 implements InheritanceWithStringType {
 
 	public static final java.lang.String JSON_PROPERTY_C = "c";
 

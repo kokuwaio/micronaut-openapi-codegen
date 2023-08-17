@@ -1,6 +1,6 @@
 package testmodel.nomicronaut;
 
-public class InheritanceExtended implements InheritanceSimple {
+public final class InheritanceExtended implements InheritanceSimple {
 
 	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
 

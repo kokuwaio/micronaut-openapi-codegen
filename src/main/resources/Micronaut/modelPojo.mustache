@@ -1,6 +1,6 @@
 {{#serdeable}}@io.micronaut.serde.annotation.Serdeable
 {{/serdeable}}
-public class {{classname}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
+public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class {{classname}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
 {{#vars}}{{#-first}}
 {{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
 {{/vars}}

@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceSimpleDefault implements InheritanceSimple {
+public final class InheritanceSimpleDefault implements InheritanceSimple {
 
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)

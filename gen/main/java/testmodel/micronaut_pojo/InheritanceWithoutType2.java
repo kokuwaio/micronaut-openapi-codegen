@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class InheritanceWithoutType2 implements InheritanceWithoutType {
+public final class InheritanceWithoutType2 implements InheritanceWithoutType {
 
 	public static final java.lang.String JSON_PROPERTY_G = "g";
 

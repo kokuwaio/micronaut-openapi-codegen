@@ -2,7 +2,7 @@ package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class SecondLevelTwoModel implements SecondLevelModel {
+public final class SecondLevelTwoModel implements SecondLevelModel {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 	public static final java.lang.String JSON_PROPERTY_TWO = "two";
