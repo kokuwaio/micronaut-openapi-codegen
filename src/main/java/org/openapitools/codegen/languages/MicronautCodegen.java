@@ -48,6 +48,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String SERDEABLE = "serdeable";
 	public static final String DATETIME_RELAXED = "dateTimeRelaxed";
 	public static final String PAGEABLE = "pageable";
+	public static final String RECORD = "record";
 	public static final String GENERATE_AUTHENTICATION = "generateAuthentication";
 	public static final String GENERATE_EXAMPLES = "generateExamples";
 	public static final String SEALED = "sealed";
@@ -70,6 +71,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean useOptional = true;
 	private boolean serdeable = true;
 	private boolean dateTimeRelaxed = true;
+	private boolean record = false;
 	private boolean pageable = false;
 	private boolean sealed = true;
 
@@ -89,6 +91,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newBoolean(DATETIME_RELAXED, "Relaxed parsing of datetimes.", dateTimeRelaxed));
 		cliOptions.add(CliOption.newBoolean(PAGEABLE, "Generate provider for pageable (mironaut-data).", pageable));
 		cliOptions.add(CliOption.newBoolean(SEALED, "Seal interfaces.", sealed));
+		cliOptions.add(CliOption.newBoolean(RECORD, "Generate records instead of pojos.", record));
 		cliOptions.add(CliOption.newBoolean(OPENAPI_NULLABLE, "Enable OpenAPI Jackson Nullable", openApiNullable));
 		cliOptions.add(CliOption.newBoolean(GENERATE_AUTHENTICATION,
 				"Generate authentication into apis with return code 401.", generateAuthentication));
@@ -118,6 +121,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(GENERATE_AUTHENTICATION, generateAuthentication);
 		additionalProperties.put(GENERATE_EXAMPLES, generateExamples);
 		additionalProperties.put(SEALED, sealed);
+		additionalProperties.put(RECORD, record);
 
 		// add custom type mappings
 
@@ -216,6 +220,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(SEALED)) {
 			sealed = convertPropertyToBooleanAndWriteBack(SEALED);
+		}
+		if (additionalProperties.containsKey(RECORD)) {
+			record = convertPropertyToBooleanAndWriteBack(RECORD);
 		}
 		if (additionalProperties.containsKey(SUPPORT_ASYNC)) {
 			supportAsync = convertPropertyToBooleanAndWriteBack(SUPPORT_ASYNC);
@@ -523,6 +530,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 				var extensions = subModel.vendorExtensions;
 				extensions.put("discriminatorPropertyGetter", discriminator.getPropertyGetter());
+				extensions.put("discriminatorPropertyName", discriminator.getPropertyName());
 				extensions.put("discriminatorPropertyType", discriminator.getPropertyType());
 				extensions.put("discriminatorPropertyValue", switch (discriminator.getPropertyType()) {
 					case "java.lang.String" -> '"' + mappedModel.getMappingName() + '"';

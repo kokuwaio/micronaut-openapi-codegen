@@ -61,6 +61,7 @@ Include in your `pom.xml`:
 * generateExamples: generate example objects for the model, based on example and default values (default `false`)
 * generateAuthentication: generate Àuthentication into controller interfaces if response code 401 is present (default `false`)
 * sealed: generate sealed interfaces (default `true`)
+* record: generate records instead of pojos (default `false`)
 
 For examples see [integration tests](src/it).
 
