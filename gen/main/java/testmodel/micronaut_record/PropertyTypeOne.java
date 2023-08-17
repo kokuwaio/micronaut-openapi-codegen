@@ -4,12 +4,9 @@ package testmodel.micronaut_record;
 @io.micronaut.serde.annotation.Serdeable
 public record PropertyTypeOne(
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TYPE)
+	@com.fasterxml.jackson.annotation.JsonProperty("type")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	Type type) implements AdditionalPropertiesModelValue {
-
-	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
-
 public enum Type {
 
 	ONE("one");

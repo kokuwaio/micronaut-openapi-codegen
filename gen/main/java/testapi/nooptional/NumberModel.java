@@ -4,9 +4,7 @@ package testapi.nooptional;
 @io.micronaut.serde.annotation.Serdeable
 public class NumberModel {
 
-	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BAR)
+	@com.fasterxml.jackson.annotation.JsonProperty("bar")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double bar;
 

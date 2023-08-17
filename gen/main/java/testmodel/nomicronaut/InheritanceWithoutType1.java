@@ -2,13 +2,11 @@ package testmodel.nomicronaut;
 
 public final class InheritanceWithoutType1 implements InheritanceWithoutType {
 
-	public static final java.lang.String JSON_PROPERTY_F = "f";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_E)
+	@com.fasterxml.jackson.annotation.JsonProperty("e")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String e;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_F)
+	@com.fasterxml.jackson.annotation.JsonProperty("f")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String f;
 

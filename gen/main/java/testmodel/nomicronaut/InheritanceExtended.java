@@ -2,15 +2,13 @@ package testmodel.nomicronaut;
 
 public final class InheritanceExtended implements InheritanceSimple {
 
-	public static final java.lang.String JSON_PROPERTY_BAR = "bar";
-
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)
+	@com.fasterxml.jackson.annotation.JsonProperty("foo")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String foo;
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BAR)
+	@com.fasterxml.jackson.annotation.JsonProperty("bar")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String bar;
 

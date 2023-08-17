@@ -4,14 +4,11 @@ package testmodel.micronaut_pojo_nullable;
 @io.micronaut.serde.annotation.Serdeable
 public final class SecondLevelOneModel implements SecondLevelModel {
 
-	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
-	public static final java.lang.String JSON_PROPERTY_ONE = "one";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TYPE)
+	@com.fasterxml.jackson.annotation.JsonProperty("type")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String type;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ONE)
+	@com.fasterxml.jackson.annotation.JsonProperty("one")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String one;
 

@@ -5,8 +5,6 @@ package testmodel.micronaut_record;
 public record InheritanceSimpleDefault(
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)
+	@com.fasterxml.jackson.annotation.JsonProperty("foo")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
-	java.lang.String foo) implements InheritanceSimple {
-
-}
+	java.lang.String foo) implements InheritanceSimple {}

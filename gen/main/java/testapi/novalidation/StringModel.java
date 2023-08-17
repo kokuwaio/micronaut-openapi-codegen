@@ -4,9 +4,7 @@ package testapi.novalidation;
 @io.micronaut.serde.annotation.Serdeable
 public class StringModel {
 
-	public static final java.lang.String JSON_PROPERTY_FOO = "foo";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)
+	@com.fasterxml.jackson.annotation.JsonProperty("foo")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String foo;
 

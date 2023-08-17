@@ -4,9 +4,6 @@ package testmodel.micronaut_record;
 @io.micronaut.serde.annotation.Serdeable
 public record AdditionalPropertiesModel(
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ID)
+	@com.fasterxml.jackson.annotation.JsonProperty("id")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	java.lang.String id) {
-
-	public static final java.lang.String JSON_PROPERTY_ID = "id";
-}
+	java.lang.String id) {}

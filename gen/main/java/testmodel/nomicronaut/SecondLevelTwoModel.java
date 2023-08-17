@@ -2,14 +2,11 @@ package testmodel.nomicronaut;
 
 public final class SecondLevelTwoModel implements SecondLevelModel {
 
-	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
-	public static final java.lang.String JSON_PROPERTY_TWO = "two";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TYPE)
+	@com.fasterxml.jackson.annotation.JsonProperty("type")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String type;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TWO)
+	@com.fasterxml.jackson.annotation.JsonProperty("two")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String two;
 

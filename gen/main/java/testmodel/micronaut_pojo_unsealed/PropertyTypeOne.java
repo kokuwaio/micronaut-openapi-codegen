@@ -4,9 +4,7 @@ package testmodel.micronaut_pojo_unsealed;
 @io.micronaut.serde.annotation.Serdeable
 public class PropertyTypeOne implements AdditionalPropertiesModelValue {
 
-	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TYPE)
+	@com.fasterxml.jackson.annotation.JsonProperty("type")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private Type type;
 

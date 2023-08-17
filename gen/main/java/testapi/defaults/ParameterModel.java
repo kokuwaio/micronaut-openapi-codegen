@@ -4,54 +4,43 @@ package testapi.defaults;
 @io.micronaut.serde.annotation.Serdeable
 public class ParameterModel {
 
-	public static final java.lang.String JSON_PROPERTY_BOOL = "bool";
-	public static final java.lang.String JSON_PROPERTY_STRING = "string";
-	public static final java.lang.String JSON_PROPERTY_NUMBER = "number";
-	public static final java.lang.String JSON_PROPERTY_INTEGER = "integer";
-	public static final java.lang.String JSON_PROPERTY_UUID = "uuid";
-	public static final java.lang.String JSON_PROPERTY_DATE = "date";
-	public static final java.lang.String JSON_PROPERTY_DATE_TIME = "dateTime";
-	public static final java.lang.String JSON_PROPERTY_A = "a";
-	public static final java.lang.String JSON_PROPERTY_B = "b";
-	public static final java.lang.String JSON_PROPERTY_C = "c";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_BOOL)
+	@com.fasterxml.jackson.annotation.JsonProperty("bool")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String bool;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_STRING)
+	@com.fasterxml.jackson.annotation.JsonProperty("string")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String string;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_NUMBER)
+	@com.fasterxml.jackson.annotation.JsonProperty("number")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double number;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_INTEGER)
+	@com.fasterxml.jackson.annotation.JsonProperty("integer")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Integer integer;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_UUID)
+	@com.fasterxml.jackson.annotation.JsonProperty("uuid")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.UUID uuid;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE)
+	@com.fasterxml.jackson.annotation.JsonProperty("date")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.LocalDate date;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_DATE_TIME)
+	@com.fasterxml.jackson.annotation.JsonProperty("dateTime")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.time.Instant dateTime;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_A)
+	@com.fasterxml.jackson.annotation.JsonProperty("a")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.lang.String> a;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_B)
+	@com.fasterxml.jackson.annotation.JsonProperty("b")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.util.UUID> b;
 
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_C)
+	@com.fasterxml.jackson.annotation.JsonProperty("c")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.lang.Integer> c;
 

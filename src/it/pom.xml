@@ -189,6 +189,9 @@
 					<output>${project.build.directory}</output>
 					<ignoreFileOverride>${project.basedir}/../.openapi-generator</ignoreFileOverride>
 					<packageName>codegen</packageName>
+					<configOptions>
+						<generateConstants>true</generateConstants>
+					</configOptions>
 				</configuration>
 				<dependencies>
 					<dependency>

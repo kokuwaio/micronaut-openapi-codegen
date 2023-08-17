@@ -5,7 +5,7 @@ package testmodel.micronaut_pojo;
 public final class InheritanceSimpleDefault implements InheritanceSimple {
 
 	@jakarta.validation.constraints.NotNull
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_FOO)
+	@com.fasterxml.jackson.annotation.JsonProperty("foo")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
 	private java.lang.String foo;
 

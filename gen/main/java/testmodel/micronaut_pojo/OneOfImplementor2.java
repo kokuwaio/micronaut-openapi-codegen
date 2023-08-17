@@ -4,9 +4,7 @@ package testmodel.micronaut_pojo;
 @io.micronaut.serde.annotation.Serdeable
 public final class OneOfImplementor2 implements OneOfInterface {
 
-	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";
-
-	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_PROPERTY)
+	@com.fasterxml.jackson.annotation.JsonProperty("property")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double property;
 
