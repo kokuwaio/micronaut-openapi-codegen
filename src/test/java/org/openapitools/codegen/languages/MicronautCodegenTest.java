@@ -142,6 +142,14 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(MicronautCodegen.SEALED, false));
 	}
 
+	@DisplayName("model records without JsonNullable")
+	@Test
+	void modelRecordsWithoutJsonNullable() {
+		generate(configurator(SPEC_MODEL, "testmodel.micronaut_record")
+				.addAdditionalProperty(AbstractJavaCodegen.OPENAPI_NULLABLE, false)
+				.addAdditionalProperty(MicronautCodegen.RECORD, true));
+	}
+
 	@DisplayName("model without micronaut annotations")
 	@Test
 	void modelWithoutMicronaut() {

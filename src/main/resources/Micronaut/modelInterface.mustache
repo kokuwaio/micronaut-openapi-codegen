@@ -13,7 +13,7 @@ public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#interfaces}}{{#-fi
 	java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";{{/vars}}{{#discriminator}}
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
-	{{discriminator.propertyType}} {{discriminator.propertyGetter}}();{{/discriminator}}{{#vendorExtensions.additionalPropertiesMap}}
+	{{discriminator.propertyType}} {{^record}}{{discriminator.propertyGetter}}{{/record}}{{#record}}{{propertyName}}{{/record}}();{{/discriminator}}{{#vendorExtensions.additionalPropertiesMap}}
 	@com.fasterxml.jackson.annotation.JsonAnyGetter
 	java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> getAdditionalProperties();
 
@@ -22,11 +22,13 @@ public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#interfaces}}{{#-fi
 {{/vendorExtensions.additionalPropertiesMap}}{{#hasVars}}{{#vars}}
 
 {{#description}}	/** {{description}} */
-{{/description}}{{>modelPropertyJackson}}
+{{/description}}{{^record}}{{>modelPropertyJackson}}
 	{{>modelPropertyType}} {{getter}}();
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_{{nameInSnakeCase}})
-	void {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}});{{/vars}}{{#vars}}{{#isEnum}}
+	void {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}});{{/record}}{{#record}}
+{{>modelPropertyJackson}}
+	{{>modelPropertyType}} {{name}}();{{/record}}{{/vars}}{{#vars}}{{#isEnum}}
 
 {{>modelEnum}}{{/isEnum}}{{/vars}}{{/hasVars}}
 }{{/vendorExtensions.x-is-one-of-interface}}{{#vendorExtensions.x-is-one-of-interface}}{{^discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION, visible = true)
@@ -48,5 +50,5 @@ public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#vendorExtensions.x
 	java.lang.String JSON_DISCRIMINATOR = "{{propertyBaseName}}";{{/discriminator}}
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
-	{{discriminator.propertyType}} {{discriminator.propertyGetter}}();
+	{{discriminator.propertyType}} {{^record}}{{discriminator.propertyGetter}}{{/record}}{{#record}}{{propertyName}}{{/record}}();
 }{{/discriminator}}{{/vendorExtensions.x-is-one-of-interface}}
