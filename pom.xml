@@ -11,7 +11,7 @@
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>3.4.3-SNAPSHOT</version>
+	<version>4.0.0-SNAPSHOT</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -65,8 +65,8 @@
 		<!-- ============================== Build ================================ -->
 		<!-- ===================================================================== -->
 
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 
 		<invoker.parallelThreads>0.5C</invoker.parallelThreads>
 
@@ -252,6 +252,8 @@
 			<version>${version.org.junit.jupiter}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- generated sources -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
