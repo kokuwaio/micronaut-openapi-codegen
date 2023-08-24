@@ -27,11 +27,14 @@ public interface MediatypeApi {
 			@io.micronaut.core.annotation.NonNull
 			io.micronaut.http.multipart.CompletedFileUpload file);
 
-	@io.micronaut.http.annotation.Post("/mediatype/consumes-multipart-without-fileupload")
+	@io.micronaut.http.annotation.Post("/mediatype/consumes-multipart-without-fileupload/{test_path_parameter}")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
 	@io.micronaut.http.annotation.Consumes({ "multipart/form-data" })
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	Multipart mediatypeConsumesMultipartWithoutFileUpload(
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.PathVariable(value = "test_path_parameter")
+			java.lang.String testPathParameter,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Part(value = "orderId")
 			java.lang.Integer orderId,

@@ -42,7 +42,10 @@ public class MediaTypeController implements MediatypeApi {
 	}
 
 	@Override
-	public Mono<Multipart> mediatypeConsumesMultipartWithoutFileUpload(Integer orderId, Integer userId) {
+	public Mono<Multipart> mediatypeConsumesMultipartWithoutFileUpload(
+			String path,
+			Integer orderId,
+			Integer userId) {
 		return Mono.just(new Multipart().orderId(orderId).userId(userId));
 	}
 
