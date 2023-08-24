@@ -6,7 +6,7 @@ public interface MediatypeApiClient {
 
 	java.lang.String PATH_MEDIATYPE_CONSUMES_AND_PRODUCES = "/mediatype/consumes-and-produces";
 	java.lang.String PATH_MEDIATYPE_CONSUMES_MULTIPART_WITH_FILE_UPLOAD = "/mediatype/consumes-multipart-with-fileupload";
-	java.lang.String PATH_MEDIATYPE_CONSUMES_MULTIPART_WITHOUT_FILE_UPLOAD = "/mediatype/consumes-multipart-without-fileupload";
+	java.lang.String PATH_MEDIATYPE_CONSUMES_MULTIPART_WITHOUT_FILE_UPLOAD = "/mediatype/consumes-multipart-without-fileupload/{test_path_parameter}";
 	java.lang.String PATH_MEDIATYPE_CONSUMES_OCTET_STREAM = "/mediatype/consumes-octet-stream";
 	java.lang.String PATH_MEDIATYPE_CONSUMES_PLAIN = "/mediatype/consumes-plain";
 	java.lang.String PATH_MEDIATYPE_PRODUCES_DIFFERENT_MODEL = "/mediatype/produces-with-different-model";
@@ -32,6 +32,9 @@ public interface MediatypeApiClient {
 	@io.micronaut.http.annotation.Produces({ "multipart/form-data" })
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	reactor.core.publisher.Mono<io.micronaut.http.HttpResponse<Multipart>> mediatypeConsumesMultipartWithoutFileUpload(
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.PathVariable(value = "test_path_parameter")
+			java.lang.String testPathParameter,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
 			io.micronaut.http.client.multipart.MultipartBody multipart);

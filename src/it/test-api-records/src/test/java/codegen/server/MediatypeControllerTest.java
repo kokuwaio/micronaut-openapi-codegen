@@ -70,7 +70,7 @@ public class MediatypeControllerTest implements MediatypeApiTestSpec {
 				.addPart("orderId", String.valueOf(expected.orderId()))
 				.addPart("userId", String.valueOf(expected.userId()))
 				.build();
-		assertEquals(expected, assert200(() -> client.mediatypeConsumesMultipartWithoutFileUpload(body)).body());
+		assertEquals(expected, assert200(() -> client.mediatypeConsumesMultipartWithoutFileUpload("p", body)).body());
 	}
 
 	@Test

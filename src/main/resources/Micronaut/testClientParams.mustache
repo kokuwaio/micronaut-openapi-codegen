@@ -1,5 +1,4 @@
-{{#isMultipart}}			@io.micronaut.http.annotation.Body
-			{{type.MultipartBody}} multipart{{/isMultipart}}{{^isMultipart}}{{#allParams}}{{^isPathParam}}			@{{type.Nullable}}
+{{#allParams}}{{^isFormParam}}{{^isPathParam}}			@{{type.Nullable}}
 {{/isPathParam}}{{#isPathParam}}			@{{type.Nonnull}}
 {{/isPathParam}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(value = "{{baseName}}")
@@ -7,4 +6,6 @@
 {{/isQueryParam}}{{#isCookieParam}}			@io.micronaut.http.annotation.CookieValue(value = "{{baseName}}")
 {{/isCookieParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header(value = "{{baseName}}")
 {{/isHeaderParam}}			{{{dataType}}} {{paramName}}{{^-last}},
-{{/-last}}{{/allParams}}{{/isMultipart}}
+{{/-last}}{{/isFormParam}}{{/allParams}}{{#isMultipart}}{{#vendorExtensions.hasOtherThanMultipart}},
+{{/vendorExtensions.hasOtherThanMultipart}}			@io.micronaut.http.annotation.Body
+			{{type.MultipartBody}} multipart{{/isMultipart}}
