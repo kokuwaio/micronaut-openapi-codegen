@@ -20,10 +20,13 @@ public interface MediatypeApiTestClient {
 			@io.micronaut.http.annotation.Body
 			io.micronaut.http.client.multipart.MultipartBody multipart);
 
-	@io.micronaut.http.annotation.Post("/mediatype/consumes-multipart-without-fileupload")
+	@io.micronaut.http.annotation.Post("/mediatype/consumes-multipart-without-fileupload/{test_path_parameter}")
 	@io.micronaut.http.annotation.Produces({ "multipart/form-data" })
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<MultipartVO> mediatypeConsumesMultipartWithoutFileUpload(
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.PathVariable(value = "test_path_parameter")
+			java.lang.String testPathParameter,
 			@io.micronaut.http.annotation.Body
 			io.micronaut.http.client.multipart.MultipartBody multipart);
 

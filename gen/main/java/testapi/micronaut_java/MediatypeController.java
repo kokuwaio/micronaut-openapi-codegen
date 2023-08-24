@@ -76,15 +76,17 @@ public class MediatypeController {
     /**
      * mediatypeConsumesMultipartWithoutFileUpload
      *
+     * @param testPathParameter  (required)
      * @param orderId  (required)
      * @param userId  (required)
      * @return Multipart
      */
-    @Post(uri="/mediatype/consumes-multipart-without-fileupload")
+    @Post(uri="/mediatype/consumes-multipart-without-fileupload/{test_path_parameter}")
     @Produces(value = {"application/json"})
     @Consumes(value = {"multipart/form-data"})
     @Secured({SecurityRule.IS_ANONYMOUS})
     public Multipart mediatypeConsumesMultipartWithoutFileUpload(
+        @PathVariable(value="test_path_parameter") @NotNull String testPathParameter, 
         @NotNull Integer orderId, 
         @NotNull Integer userId
     ) {
