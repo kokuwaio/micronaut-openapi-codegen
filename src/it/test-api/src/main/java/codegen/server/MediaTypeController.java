@@ -39,7 +39,10 @@ public class MediaTypeController implements MediatypeApi {
 	}
 
 	@Override
-	public HttpResponse<Multipart> mediatypeConsumesMultipartWithoutFileUpload(Integer orderId, Integer userId) {
+	public HttpResponse<Multipart> mediatypeConsumesMultipartWithoutFileUpload(
+			String path,
+			Integer orderId,
+			Integer userId) {
 		return HttpResponse.ok(new Multipart().orderId(orderId).userId(userId));
 	}
 

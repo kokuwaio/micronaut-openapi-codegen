@@ -333,7 +333,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Multipart"
-  /mediatype/consumes-multipart-without-fileupload:
+  /mediatype/consumes-multipart-without-fileupload/{test_path_parameter}:
+    parameters:
+      - name: test_path_parameter
+        in: path
+        required: true
+        schema:
+          type: string
     post:
       # see https://swagger.io/docs/specification/describing-request-body/file-upload/
       operationId: mediatypeConsumesMultipartWithoutFileUpload

@@ -50,7 +50,7 @@ public class MediatypeClientTest implements MediatypeApiTestSpec {
 				.addPart("orderId", String.valueOf(expected.getOrderId()))
 				.addPart("userId", String.valueOf(expected.getUserId()))
 				.build();
-		assertEquals(expected, client.mediatypeConsumesMultipartWithoutFileUpload(body).blockingGet());
+		assertEquals(expected, client.mediatypeConsumesMultipartWithoutFileUpload("p", body).blockingGet());
 	}
 
 	@Test

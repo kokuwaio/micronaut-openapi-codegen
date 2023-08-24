@@ -399,6 +399,11 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		extensions.put("serverPath", serverPath);
 
+		// helper for mustache: has any non form param this is required
+
+		extensions.put("hasOtherThanMultipart",
+				operation.allParams.stream().anyMatch(p -> !p.isFormParam && !p.required));
+
 		return operation;
 	}
 
