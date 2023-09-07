@@ -1,0 +1,21 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/303>
+  version: "1"
+paths: {}
+components:
+  schemas:
+    EmbeddedValue:
+      type: object
+      properties:
+        type:
+          type: string
+    MapConstruct:
+      type: object
+      additionalProperties:
+        $ref: "#/components/schemas/EmbeddedValue"
+    Base:
+      type: object
+      properties:
+        mapOfStuff:
+          $ref: "#/components/schemas/MapConstruct"
