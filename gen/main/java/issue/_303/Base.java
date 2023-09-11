@@ -8,7 +8,7 @@ public class Base {
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_MAP_OF_STUFF)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private MapConstruct mapOfStuff = new java.util.HashMap<>();
+	private MapConstruct mapOfStuff = new MapConstruct();
 
 	// methods
 
