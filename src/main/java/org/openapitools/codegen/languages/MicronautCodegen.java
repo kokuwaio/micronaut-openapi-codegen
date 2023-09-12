@@ -610,6 +610,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
+	public String toDefaultValue(CodegenProperty property, @SuppressWarnings("rawtypes") Schema schema) {
+		if (ModelUtils.isGenerateAliasAsModel() && schema.get$ref() != null) {
+			return "new " + getSchemaType(schema) + "()";
+		}
+		return super.toDefaultValue(property, schema);
+	}
+
+	@Override
 	public String toDefaultValue(@SuppressWarnings("rawtypes") Schema schema) {
 		if (ModelUtils.isGenerateAliasAsModel() && schema.get$ref() != null) {
 			return "new " + getSchemaType(schema) + "()";
