@@ -26,7 +26,7 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 
 
   public InheritanceWithEnumType3 type(InheritanceWithEnumTypeEnum type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
   @Override

@@ -45,7 +45,7 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
 
 
   public InheritanceWithoutType2 e(String e) {
-    super.setE(e);
+    super.e(e);
     return this;
   }
   @Override
