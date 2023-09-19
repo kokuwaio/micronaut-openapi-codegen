@@ -66,7 +66,7 @@ public class Model {
 
   private byte[] bytes;
 
-  private JsonNullable<Object> any = JsonNullable.undefined();
+  private JsonNullable<Object> any = JsonNullable.<Object>undefined();
 
   @Valid
   private List<String> array = new ArrayList<>();
@@ -95,13 +95,13 @@ public class Model {
   @Valid
   private Map<String, String> optionalMap = new HashMap<>();
 
-  private JsonNullable<String> nullableString = JsonNullable.undefined();
+  private JsonNullable<String> nullableString = JsonNullable.<String>undefined();
 
   @Valid
-  private JsonNullable<List<String>> nullableArray = JsonNullable.undefined();
+  private JsonNullable<List<String>> nullableArray = JsonNullable.<List<String>>undefined();
 
   @Valid
-  private JsonNullable<Set<String>> nullableSet = JsonNullable.undefined();
+  private JsonNullable<Set<String>> nullableSet = JsonNullable.<Set<String>>undefined();
 
   private String defaultString = "defaultStringValue";
 
@@ -109,7 +109,7 @@ public class Model {
 
   private Long defaultLong = 5678l;
 
-  private JsonNullable<String> defaultNullable = JsonNullable.undefined();
+  private JsonNullable<String> defaultNullable = JsonNullable.<String>undefined();
 
   private EnumerationModel referenedModel;
 
