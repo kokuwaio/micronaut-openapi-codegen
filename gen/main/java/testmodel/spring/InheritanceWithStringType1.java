@@ -45,12 +45,12 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
 
 
   public InheritanceWithStringType1 type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
 
   public InheritanceWithStringType1 a(String a) {
-    super.setA(a);
+    super.a(a);
     return this;
   }
   @Override
