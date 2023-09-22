@@ -1,6 +1,5 @@
-{{#isModel}}	@jakarta.validation.Valid
-{{/isModel}}{{#isContainer}}{{#mostInnerItems.isModel}}{{^isNullable}}{{^jacksonDatabindNullable}}	@jakarta.validation.Valid
-{{/jacksonDatabindNullable}}{{/isNullable}}{{/mostInnerItems.isModel}}{{/isContainer}}{{#required}}{{^isNullable}}	@jakarta.validation.constraints.NotNull
+{{#isModel}}{{^isContainer}}	@jakarta.validation.Valid
+{{/isContainer}}{{/isModel}}{{#required}}{{^isNullable}}	@jakarta.validation.constraints.NotNull
 {{/isNullable}}{{/required}}{{#pattern}}	@jakarta.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#minimum}}	@jakarta.validation.constraints.{{#isDouble}}DecimalMin("{{minimum}}"){{/isDouble}}{{#isFloat}}DecimalMin("{{minimum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Min({{minimum}}){{/isDouble}}{{/isFloat}}
 {{/minimum}}{{#maximum}}	@jakarta.validation.constraints.{{#isDouble}}DecimalMax("{{maximum}}"){{/isDouble}}{{#isFloat}}DecimalMax("{{maximum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Max({{maximum}}){{/isDouble}}{{/isFloat}}

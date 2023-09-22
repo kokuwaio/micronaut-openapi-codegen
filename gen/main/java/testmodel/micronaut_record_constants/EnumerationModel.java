@@ -4,18 +4,22 @@ package testmodel.micronaut_record_constants;
 @io.micronaut.serde.annotation.Serdeable
 public record EnumerationModel(
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_STRING)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	EnumerationString string,
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_STRING_DEFAULT)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	EnumerationStringDefault stringDefault,
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_EMBEDDED)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	Embedded embedded,
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_EMBEDDED_DEFAULT)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	EmbeddedDefault embeddedDefault) {

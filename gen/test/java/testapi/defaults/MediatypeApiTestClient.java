@@ -2,7 +2,7 @@ package testapi.defaults;
 
 /** Test client for {@link MediatypeApi}. **/
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface MediatypeApiTestClient {
 
 	@io.micronaut.http.annotation.Post("/mediatype/consumes-and-produces")

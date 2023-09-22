@@ -2,7 +2,7 @@ package testsecurity.defaults.server;
 
 /** Test client for {@link SecurityApi}. **/
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface SecurityApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/anonymous")
