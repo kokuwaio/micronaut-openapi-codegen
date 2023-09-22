@@ -2,7 +2,8 @@
 {{/serdeable}}public record {{classname}}({{#allVars}}
 
 {{#description}}	/** {{description}} */
-{{/description}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
+{{/description}}{{^required}}	@io.micronaut.core.annotation.Nullable
+{{/required}}{{#useBeanValidation}}{{>modelPropertyValidation}}{{/useBeanValidation}}{{>modelPropertyJackson}}
 	{{>modelPropertyType}} {{name}}{{^-last}},{{/-last}}{{/allVars}}){{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {{curly}}{{#generateConstants}}
 {{#vars}}{{#-first}}
 {{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";

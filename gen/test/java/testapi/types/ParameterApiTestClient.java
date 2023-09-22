@@ -1,7 +1,7 @@
 package testapi.types;
 
 /** Test client for {@link ParameterApi}. **/
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface ParameterApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/param/all/{path}")

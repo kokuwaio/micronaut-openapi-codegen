@@ -4,6 +4,7 @@ package testmodel.micronaut_record;
 @io.micronaut.serde.annotation.Serdeable
 public record OneOfImplementor1(
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("property")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	java.lang.String property) implements OneOfInterface {

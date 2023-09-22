@@ -4,6 +4,7 @@ package testmodel.micronaut_record_constants;
 @io.micronaut.serde.annotation.Serdeable
 public record InheritanceWithEnumType2(
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_E)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	java.lang.String e) implements InheritanceWithEnumType {

@@ -1,7 +1,7 @@
 package testapi.types;
 
 /** Test client for {@link ValidationApi}. **/
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface ValidationApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/validation/double/max")

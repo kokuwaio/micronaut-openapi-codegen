@@ -4,7 +4,7 @@ import testapi.packages.model.*;
 
 /** Test client for {@link ResponseApi}. **/
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface ResponseApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/response/array-complex")

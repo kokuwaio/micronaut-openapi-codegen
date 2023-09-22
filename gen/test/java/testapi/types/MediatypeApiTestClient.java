@@ -1,7 +1,7 @@
 package testapi.types;
 
 /** Test client for {@link MediatypeApi}. **/
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface MediatypeApiTestClient {
 
 	@io.micronaut.http.annotation.Post("/mediatype/consumes-and-produces")

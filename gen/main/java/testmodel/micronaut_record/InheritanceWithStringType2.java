@@ -4,10 +4,12 @@ package testmodel.micronaut_record;
 @io.micronaut.serde.annotation.Serdeable
 public record InheritanceWithStringType2(
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("a")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	java.lang.String a,
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("c")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	java.lang.String c) implements InheritanceWithStringType {

@@ -4,6 +4,7 @@ package testmodel.micronaut_record_constants;
 @io.micronaut.serde.annotation.Serdeable
 public record PropertyTypeTwo(
 
+	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_TYPE)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	Type type) implements AdditionalPropertiesModelValue {
