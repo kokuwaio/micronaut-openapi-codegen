@@ -28,23 +28,26 @@ public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-{{^allVars}}{{#discriminator}}		{{classname}} other = ({{classname}}) object;
-{{/discriminator}}{{/allVars}}{{#allVars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
-{{/-last}}{{/allVars}}		return {{^allVars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/allVars}}{{#allVars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
+{{^allVars}}{{^discriminator}}{{#vendorExtensions.additionalPropertiesMap}}		{{classname}} other = ({{classname}}) object;
+{{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{#discriminator}}{{^vendorExtensions.additionalPropertiesMap}}		{{classname}} other = ({{classname}}) object;
+{{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{/allVars}}{{#allVars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
+{{/-last}}{{/allVars}}		return {{#vendorExtensions.additionalPropertiesMap}}java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
+				&& {{/vendorExtensions.additionalPropertiesMap}}{{^allVars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/allVars}}{{#allVars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
 				&& {{/-last}}{{#-last}}{{#discriminator}}
 				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}};{{/-last}}{{/allVars}}
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash({{^allVars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/allVars}}{{#allVars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{/-last}}{{/allVars}});
+		return java.util.Objects.hash({{#vendorExtensions.additionalPropertiesMap}}this.additionalProperties{{#vars}}, {{/vars}}{{/vendorExtensions.additionalPropertiesMap}}{{^allVars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/allVars}}{{#allVars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{/-last}}{{/allVars}});
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("{{classname}}[")
-		{{#allVars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
+		{{#vendorExtensions.additionalPropertiesMap}}		.append("additionalProperties=").append(this.additionalProperties)
+		{{/vendorExtensions.additionalPropertiesMap}}{{#allVars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
 		{{/allVars}}		.append("]")
 				.toString();
 	}{{#allVars}}{{#-first}}
