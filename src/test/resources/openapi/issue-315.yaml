@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/315>
+  version: "1"
+paths: {}
+components:
+  schemas:
+    Credential:
+      type: object
+      properties:
+        dummy:
+          type: string
+    ServiceScopes:
+      type: object
+      additionalProperties:
+        $ref: "#/components/schemas/ServiceScopesEntry"
+    ServiceScopesEntry:
+      type: array
+      items:
+        $ref: "#/components/schemas/Credential"
