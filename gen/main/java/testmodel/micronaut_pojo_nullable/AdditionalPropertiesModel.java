@@ -23,18 +23,20 @@ public class AdditionalPropertiesModel {
 			return false;
 		}
 		AdditionalPropertiesModel other = (AdditionalPropertiesModel) object;
-		return java.util.Objects.equals(id, other.id);
+		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
+				&& java.util.Objects.equals(id, other.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(id);
+		return java.util.Objects.hash(this.additionalProperties, id);
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("AdditionalPropertiesModel[")
+				.append("additionalProperties=").append(this.additionalProperties)
 				.append("id=").append(id)
 				.append("]")
 				.toString();
