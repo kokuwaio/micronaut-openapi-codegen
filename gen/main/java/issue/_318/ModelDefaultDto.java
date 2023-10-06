@@ -2,7 +2,7 @@ package issue._318;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class ModelDtoDefault {
+public final class ModelDefaultDto implements ModelDto {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("test")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -18,7 +18,7 @@ public class ModelDtoDefault {
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-		ModelDtoDefault other = (ModelDtoDefault) object;
+		ModelDefaultDto other = (ModelDefaultDto) object;
 		return java.util.Objects.equals(test, other.test);
 	}
 
@@ -30,7 +30,7 @@ public class ModelDtoDefault {
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
-				.append("ModelDtoDefault[")
+				.append("ModelDefaultDto[")
 				.append("test=").append(test)
 				.append("]")
 				.toString();
@@ -38,7 +38,7 @@ public class ModelDtoDefault {
 
 	// fluent
 
-	public ModelDtoDefault test(java.lang.String newTest) {
+	public ModelDefaultDto test(java.lang.String newTest) {
 		this.test = newTest;
 		return this;
 	}

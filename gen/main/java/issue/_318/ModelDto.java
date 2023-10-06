@@ -1,8 +1,8 @@
 package issue._318;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = ModelDtoDefault.class)
-public sealed interface ModelDto permits UsedAllOf, ModelDefault {
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = ModelDefaultDto.class)
+public sealed interface ModelDto permits UsedAllOfDto, ModelDefaultDto {
 
 
 	@com.fasterxml.jackson.annotation.JsonProperty("test")
