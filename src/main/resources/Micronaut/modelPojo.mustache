@@ -38,9 +38,11 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-{{^vars}}{{#discriminator}}		{{classname}} other = ({{classname}}) object;
-{{/discriminator}}{{/vars}}{{#vars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
-{{/-last}}{{/vars}}		return {{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
+{{^vars}}{{^discriminator}}{{#vendorExtensions.additionalPropertiesMap}}		{{classname}} other = ({{classname}}) object;
+{{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{#discriminator}}{{^vendorExtensions.additionalPropertiesMap}}		{{classname}} other = ({{classname}}) object;
+{{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{/vars}}{{#vars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
+{{/-last}}{{/vars}}		return {{#vendorExtensions.additionalPropertiesMap}}java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
+				&& {{/vendorExtensions.additionalPropertiesMap}}{{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
 				&& {{/-last}}{{#-last}}{{#discriminator}}
 				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}}{{#parent}}
 				&& super.equals(object){{/parent}};{{/-last}}{{/vars}}
@@ -48,7 +50,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash({{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
+		return java.util.Objects.hash({{#vendorExtensions.additionalPropertiesMap}}this.additionalProperties{{#vars}}, {{/vars}}{{/vendorExtensions.additionalPropertiesMap}}{{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
 	}
 
 	@Override
@@ -56,7 +58,8 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		return new java.lang.StringBuilder()
 				.append("{{classname}}["){{#parent}}
 				.append("super").append(super.toString()){{/parent}}
-		{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
+		{{#vendorExtensions.additionalPropertiesMap}}		.append("additionalProperties=").append(this.additionalProperties)
+		{{/vendorExtensions.additionalPropertiesMap}}{{#vars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
 		{{/vars}}		.append("]")
 				.toString();
 	}{{#vars}}{{#-first}}

@@ -17,18 +17,21 @@ public class MapConstruct {
 		if (object == null || getClass() != object.getClass()) {
 			return false;
 		}
-		return super.equals(object);
+		MapConstruct other = (MapConstruct) object;
+		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
+				&& super.equals(object);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash();
+		return java.util.Objects.hash(this.additionalProperties);
 	}
 
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("MapConstruct[")
+				.append("additionalProperties=").append(this.additionalProperties)
 				.append("]")
 				.toString();
 	}
