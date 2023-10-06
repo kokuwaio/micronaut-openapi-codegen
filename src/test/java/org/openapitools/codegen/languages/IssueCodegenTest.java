@@ -20,6 +20,12 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator("src/test/resources/openapi/issue-315.yaml", "issue._315").setGenerateAliasAsModel(true));
 	}
 
+	@DisplayName("model with suffix")
+	@Test
+	void modelWithSuffix() {
+		generate(configurator("src/test/resources/openapi/issue-318.yaml", "issue._318").setModelNameSuffix("Dto"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);
