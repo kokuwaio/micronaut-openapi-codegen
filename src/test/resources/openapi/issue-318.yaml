@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/318>
+  version: "1"
+paths:
+  /test:
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsedAllOf"
+components:
+  schemas:
+    UsedAllOf:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/Model"
+    Model:
+      type: object
+      properties:
+        test:
+          type: string
