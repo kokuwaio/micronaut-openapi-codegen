@@ -30,7 +30,7 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(g, super.hashCode());
+		return 31 * super.hashCode() + java.util.Objects.hash(g, super.hashCode());
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class ServiceScopesEntry extends java.util.ArrayList<Credential> {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash();
+		return 31 * super.hashCode() + java.util.Objects.hash();
 	}
 
 	@Override

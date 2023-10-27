@@ -30,7 +30,7 @@ public class OneOfImplementor1 implements OneOfInterface {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(property, super.hashCode());
+		return 31 * super.hashCode() + java.util.Objects.hash(property, super.hashCode());
 	}
 
 	@Override

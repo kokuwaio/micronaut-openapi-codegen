@@ -25,7 +25,7 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash();
+		return 31 * super.hashCode() + java.util.Objects.hash();
 	}
 
 	@Override
