@@ -32,7 +32,7 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
 
 	@Override
 	public int hashCode() {
-		return 31 * super.hashCode() + java.util.Objects.hash(b, super.hashCode());
+		return java.util.Objects.hash(b, super.hashCode());
 	}
 
 	@Override

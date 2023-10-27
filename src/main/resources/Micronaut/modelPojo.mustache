@@ -50,7 +50,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 
 	@Override
 	public int hashCode() {
-		return {{#parent}}31 * super.hashCode() + {{/parent}}java.util.Objects.hash({{#vendorExtensions.additionalPropertiesMap}}this.additionalProperties{{#vars}}, {{/vars}}{{/vendorExtensions.additionalPropertiesMap}}{{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{#parent}}, super.hashCode(){{/parent}}{{/-last}}{{/vars}});
+		return java.util.Objects.hash({{#vendorExtensions.additionalPropertiesMap}}this.additionalProperties{{#vars}}, {{/vars}}{{/vendorExtensions.additionalPropertiesMap}}{{^vars}}{{#discriminator}}{{discriminator.propertyGetter}}(){{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}{{name}}{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays.hashCode({{name}}){{/isByteArray}}{{#isFile}}java.util.Arrays.hashCode({{name}}){{/isFile}}{{^-last}}, {{/-last}}{{#-last}}{{#discriminator}}, {{discriminator.propertyGetter}}(){{/discriminator}}{{/-last}}{{/vars}}{{#parent}}{{#vars}}, {{/vars}}super.hashCode(){{/parent}});
 	}
 
 	@Override
