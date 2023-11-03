@@ -5,7 +5,8 @@ package issue._303;
 public class MapConstruct {
 
 
-	private java.util.Map<java.lang.String, EmbeddedValue> additionalProperties;
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    private java.util.Map<java.lang.String, EmbeddedValue> additionalProperties;
 
 	// methods
 
@@ -18,8 +19,7 @@ public class MapConstruct {
 			return false;
 		}
 		MapConstruct other = (MapConstruct) object;
-		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
-				&& super.equals(object);
+		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties);
 	}
 
 	@Override

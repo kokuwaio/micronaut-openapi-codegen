@@ -18,7 +18,8 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
 {{/vars}}
-{{#vendorExtensions.additionalPropertiesMap}}	private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
+{{#vendorExtensions.additionalPropertiesMap}}    @com.fasterxml.jackson.annotation.JsonIgnore
+    private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
 
 {{/vendorExtensions.additionalPropertiesMap}}{{#discriminator}}	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();
@@ -41,8 +42,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 {{^vars}}{{^discriminator}}{{#vendorExtensions.additionalPropertiesMap}}		{{classname}} other = ({{classname}}) object;
 {{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{#discriminator}}{{^vendorExtensions.additionalPropertiesMap}}		{{classname}} other = ({{classname}}) object;
 {{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{/vars}}{{#vars}}{{#-last}}		{{classname}} other = ({{classname}}) object;
-{{/-last}}{{/vars}}		return {{#vendorExtensions.additionalPropertiesMap}}java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
-				&& {{/vendorExtensions.additionalPropertiesMap}}{{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}super.equals(object);{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
+{{/-last}}{{/vars}}		return {{#vendorExtensions.additionalPropertiesMap}}java.util.Objects.equals(this.additionalProperties, other.additionalProperties){{#vars}}{{#-last}} && {{/-last}}{{/vars}}{{/vendorExtensions.additionalPropertiesMap}}{{^vars}}{{#discriminator}}java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}());{{/discriminator}}{{^discriminator}}{{#vendorExtensions.additionalPropertiesMap}};{{/vendorExtensions.additionalPropertiesMap}}{{^vendorExtensions.additionalPropertiesMap}}super.equals(object);{{/vendorExtensions.additionalPropertiesMap}}{{/discriminator}}{{/vars}}{{#vars}}{{^isFile}}{{^isByteArray}}java.util.Objects{{/isByteArray}}{{/isFile}}{{#isByteArray}}java.util.Arrays{{/isByteArray}}{{#isFile}}java.util.Arrays{{/isFile}}.equals({{name}}, other.{{name}}){{^-last}}
 				&& {{/-last}}{{#-last}}{{#discriminator}}
 				&& java.util.Objects.equals({{discriminator.propertyGetter}}(), other.{{discriminator.propertyGetter}}()){{/discriminator}}{{#parent}}
 				&& super.equals(object){{/parent}};{{/-last}}{{/vars}}
