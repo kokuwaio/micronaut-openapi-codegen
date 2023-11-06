@@ -72,7 +72,7 @@
 		<!-- ============================= Versions ============================== -->
 		<!-- ===================================================================== -->
 
-		<version.io.micronaut.platform>4.1.5</version.io.micronaut.platform>
+		<version.io.micronaut.platform>4.1.6</version.io.micronaut.platform>
 		<version.org.openapitools.generator>7.0.1</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
 
