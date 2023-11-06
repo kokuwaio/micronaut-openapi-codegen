@@ -5,7 +5,6 @@ package issue._303;
 public class MapConstruct {
 
 
-    @com.fasterxml.jackson.annotation.JsonIgnore
     private java.util.Map<java.lang.String, EmbeddedValue> additionalProperties;
 
 	// methods

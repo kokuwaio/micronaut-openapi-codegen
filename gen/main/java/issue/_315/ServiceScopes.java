@@ -5,7 +5,6 @@ package issue._315;
 public class ServiceScopes {
 
 
-    @com.fasterxml.jackson.annotation.JsonIgnore
     private java.util.Map<java.lang.String, ServiceScopesEntry> additionalProperties;
 
 	// methods

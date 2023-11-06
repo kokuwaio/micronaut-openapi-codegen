@@ -18,8 +18,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 	private {{>modelPropertyType}} {{name}}{{>modelPropertyDefault}};
 
 {{/vars}}
-{{#vendorExtensions.additionalPropertiesMap}}    @com.fasterxml.jackson.annotation.JsonIgnore
-    private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
+{{#vendorExtensions.additionalPropertiesMap}}    private java.util.Map<{{{vendorExtensions.additionalPropertiesMap.keyType}}}, {{{vendorExtensions.additionalPropertiesMap.valueType}}}> additionalProperties;
 
 {{/vendorExtensions.additionalPropertiesMap}}{{#discriminator}}	@com.fasterxml.jackson.annotation.JsonProperty(JSON_DISCRIMINATOR)
 	public abstract {{discriminator.propertyType}} {{discriminator.propertyGetter}}();

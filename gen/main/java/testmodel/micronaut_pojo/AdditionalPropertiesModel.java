@@ -10,7 +10,6 @@ public class AdditionalPropertiesModel {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String id;
 
-    @com.fasterxml.jackson.annotation.JsonIgnore
     private java.util.Map<java.lang.String, AdditionalPropertiesModelValue> additionalProperties;
 
 	// methods
