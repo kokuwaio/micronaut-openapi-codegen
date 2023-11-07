@@ -10,7 +10,7 @@ public class AdditionalPropertiesModel {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.String id;
 
-	private java.util.Map<java.lang.String, AdditionalPropertiesModelValue> additionalProperties;
+    private java.util.Map<java.lang.String, AdditionalPropertiesModelValue> additionalProperties;
 
 	// methods
 
@@ -23,8 +23,7 @@ public class AdditionalPropertiesModel {
 			return false;
 		}
 		AdditionalPropertiesModel other = (AdditionalPropertiesModel) object;
-		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
-				&& java.util.Objects.equals(id, other.id);
+		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties) && java.util.Objects.equals(id, other.id);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ package issue._315;
 public class ServiceScopes {
 
 
-	private java.util.Map<java.lang.String, ServiceScopesEntry> additionalProperties;
+    private java.util.Map<java.lang.String, ServiceScopesEntry> additionalProperties;
 
 	// methods
 
@@ -18,8 +18,7 @@ public class ServiceScopes {
 			return false;
 		}
 		ServiceScopes other = (ServiceScopes) object;
-		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties)
-				&& super.equals(object);
+		return java.util.Objects.equals(this.additionalProperties, other.additionalProperties);
 	}
 
 	@Override
