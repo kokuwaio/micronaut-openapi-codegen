@@ -4,7 +4,7 @@ package {{package}};
 
 {{/isModelImport}}
 /** Test client for {@link {{classname}}}. **/
-{{>generated}}@io.micronaut.http.client.annotation.Client("/")
+{{>generated}}@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface {{classname}}TestClient {
 {{#operations}}{{#operation}}
 	@io.micronaut.http.annotation.{{vendorExtensions.httpMethod}}("{{{vendorExtensions.clientPath}}}"){{^vendorExtensions.generic}}

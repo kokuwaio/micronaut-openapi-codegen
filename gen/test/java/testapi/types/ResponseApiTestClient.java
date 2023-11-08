@@ -1,7 +1,7 @@
 package testapi.types;
 
 /** Test client for {@link ResponseApi}. **/
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface ResponseApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/response/array-complex")

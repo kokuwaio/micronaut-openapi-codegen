@@ -1,7 +1,7 @@
 package testapi.types;
 
 /** Test client for {@link RequestApi}. **/
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface RequestApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/no-operation-id")

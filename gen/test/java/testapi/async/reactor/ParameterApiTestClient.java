@@ -2,7 +2,7 @@ package testapi.async.reactor;
 
 /** Test client for {@link ParameterApi}. **/
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-@io.micronaut.http.client.annotation.Client("/")
+@io.micronaut.http.client.annotation.Client("${micronaut.http.services.test.clientId:/}")
 public interface ParameterApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/param/all/{path}")
