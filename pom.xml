@@ -11,7 +11,7 @@
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>3.4.8-SNAPSHOT</version>
+	<version>3.4.8</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -48,7 +48,7 @@
 		<url>https://github.com/kokuwaio/micronaut-openapi-codegen</url>
 		<connection>scm:git:https://github.com/kokuwaio/micronaut-openapi-codegen.git</connection>
 		<developerConnection>scm:git:https://github.com/kokuwaio/micronaut-openapi-codegen.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>3.4.8</tag>
 	</scm>
 	<issueManagement>
 		<system>github</system>
