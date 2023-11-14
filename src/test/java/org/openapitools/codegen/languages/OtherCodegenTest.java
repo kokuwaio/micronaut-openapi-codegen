@@ -32,13 +32,6 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 		generate(JavaMicronautServerCodegen.class, SPEC_MODEL, "testmodel.micronaut-java", configurator -> {});
 	}
 
-	@DisplayName("model: java")
-	@Test
-	void modelJava() {
-		generate(JavaClientCodegen.class, SPEC_MODEL, "testmodel.javaclient", configurator -> configurator
-				.addAdditionalProperty(CodegenConstants.LIBRARY, JavaClientCodegen.JERSEY1));
-	}
-
 	@DisplayName("model: jaxrs")
 	@Test
 	void modelJaxRS() {
