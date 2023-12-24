@@ -1,0 +1,342 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/331>
+  version: "1"
+paths:
+  /complex:
+    get:
+      operationId: complex
+      parameters:
+        - name: array
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/ModelComplex"
+        - name: set
+          in: query
+          schema:
+            type: array
+            uniqueItems: true
+            items:
+              $ref: "#/components/schemas/ModelComplex"
+      responses:
+        204:
+          description: OK
+  /string:
+    get:
+      operationId: string
+      parameters:
+        - name: withoutValidation
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithoutValidation"
+        - name: withEmail
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithEmail"
+        - name: withPattern
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithPattern"
+        - name: withMinimum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithMinimum"
+        - name: withMaximum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithMaximum"
+        - name: withMinimumAndMaximum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithMinimumAndMaximum"
+      responses:
+        204:
+          description: OK
+  /integer:
+    get:
+      operationId: integer
+      parameters:
+        - name: withoutValidation
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/IntegerWithoutValidation"
+        - name: withMinimum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/IntegerWithMinimum"
+        - name: withMaximum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/IntegerWithMaximum"
+        - name: withMinimumAndMaximum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/IntegerWithMinimumAndMaximum"
+      responses:
+        204:
+          description: OK
+  /number:
+    get:
+      operationId: number
+      parameters:
+        - name: withoutValidation
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithoutValidation"
+        - name: withMinimum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithMinimum"
+        - name: withMinimumExclusiveFalse
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithMinimumExclusiveFalse"
+        - name: withMinimumExclusiveTrue
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithMinimumExclusiveTrue"
+        - name: withMaximum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithMaximum"
+        - name: withMaximumExclusiveFalse
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithMaximumExclusiveFalse"
+        - name: withMaximumExclusiveTrue
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/NumberWithMaximumExclusiveTrue"
+      responses:
+        204:
+          description: OK
+components:
+  schemas:
+    ModelPage:
+      type: object
+      properties:
+        array:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModelComplex"
+        set:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: "#/components/schemas/ModelComplex"
+    ModelComplex:
+      type: object
+      properties:
+        string:
+          $ref: "#/components/schemas/StringWithMaximum"
+        stringWithoutValidation:
+          $ref: "#/components/schemas/StringWithoutValidation"
+        stringWithEmail:
+          $ref: "#/components/schemas/StringWithEmail"
+        stringWithPattern:
+          $ref: "#/components/schemas/StringWithPattern"
+        stringWithMinimum:
+          $ref: "#/components/schemas/StringWithMinimum"
+        stringWithMaximum:
+          $ref: "#/components/schemas/StringWithMaximum"
+        stringWithMinimumAndMaximum:
+          $ref: "#/components/schemas/StringWithMinimumAndMaximum"
+        integerWithoutValidation:
+          $ref: "#/components/schemas/IntegerWithoutValidation"
+        integerWithMinimum:
+          $ref: "#/components/schemas/IntegerWithMinimum"
+        integerWithMaximum:
+          $ref: "#/components/schemas/IntegerWithMaximum"
+        integerWithMinimumAndMaximum:
+          $ref: "#/components/schemas/IntegerWithMinimumAndMaximum"
+        numberWithoutValidation:
+          $ref: "#/components/schemas/NumberWithoutValidation"
+        numberWithMinimum:
+          $ref: "#/components/schemas/NumberWithMinimum"
+        numberWithMinimumExclusiveFalse:
+          $ref: "#/components/schemas/NumberWithMinimumExclusiveFalse"
+        numberWithMinimumExclusiveTrue:
+          $ref: "#/components/schemas/NumberWithMinimumExclusiveTrue"
+        numberWithMaximum:
+          $ref: "#/components/schemas/NumberWithMaximum"
+        numberWithMaximumExclusiveFalse:
+          $ref: "#/components/schemas/NumberWithMaximumExclusiveFalse"
+        numberWithMaximumExclusiveTrue:
+          $ref: "#/components/schemas/NumberWithMaximumExclusiveTrue"
+    ModelString:
+      type: object
+      properties:
+        withoutValidation:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithoutValidation"
+        withEmail:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithEmail"
+        withPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithPattern"
+        withMinimum:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithMinimum"
+        withMaximum:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithMaximum"
+        withMinimumAndMaximum:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithMinimumAndMaximum"
+    ModelInteger:
+      type: object
+      properties:
+        withoutValidation:
+          type: array
+          items:
+            $ref: "#/components/schemas/IntegerWithoutValidation"
+        withMinimum:
+          type: array
+          items:
+            $ref: "#/components/schemas/IntegerWithMinimum"
+        withMaximum:
+          type: array
+          items:
+            $ref: "#/components/schemas/IntegerWithMaximum"
+        withMinimumAndMaximum:
+          type: array
+          items:
+            $ref: "#/components/schemas/IntegerWithMinimumAndMaximum"
+    ModelNumber:
+      type: object
+      properties:
+        withoutValidation:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithoutValidation"
+        withMinimum:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithMinimum"
+        withMinimumExclusiveFalse:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithMinimumExclusiveFalse"
+        withMinimumExclusiveTrue:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithMinimumExclusiveTrue"
+        withMaximum:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithMaximum"
+        withMaximumExclusiveFalse:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithMaximumExclusiveFalse"
+        withMaximumExclusiveTrue:
+          type: array
+          items:
+            $ref: "#/components/schemas/NumberWithMaximumExclusiveTrue"
+    StringWithoutValidation:
+      type: string
+      nullable: true
+    StringWithEmail:
+      type: string
+      format: email
+    StringWithPattern:
+      type: string
+      pattern: ^\.[0-9]{3}$
+    StringWithMinimum:
+      type: string
+      minLength: 3
+    StringWithMaximum:
+      type: string
+      maxLength: 4
+    StringWithMinimumAndMaximum:
+      type: string
+      minLength: 3
+      maxLength: 4
+    IntegerWithoutValidation:
+      type: integer
+      nullable: true
+    IntegerWithMinimum:
+      type: integer
+      minimum: 3
+    IntegerWithMaximum:
+      type: integer
+      maximum: 4
+    IntegerWithMinimumAndMaximum:
+      type: integer
+      minimum: 3
+      maximum: 4
+    NumberWithoutValidation:
+      type: number
+      format: double
+      nullable: true
+    NumberWithMinimum:
+      type: number
+      format: double
+      minimum: 3.11111
+    NumberWithMinimumExclusiveFalse:
+      type: number
+      format: double
+      minimum: 3.11112
+      exclusiveMinimum: false
+    NumberWithMinimumExclusiveTrue:
+      type: number
+      format: double
+      minimum: 3.11113
+      exclusiveMinimum: true
+    NumberWithMaximum:
+      type: number
+      format: double
+      maximum: 4.22221
+    NumberWithMaximumExclusiveFalse:
+      type: number
+      format: double
+      maximum: 4.22222
+      exclusiveMaximum: false
+    NumberWithMaximumExclusiveTrue:
+      type: number
+      format: double
+      maximum: 4.22223
+      exclusiveMaximum: true
