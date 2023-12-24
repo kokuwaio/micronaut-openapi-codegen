@@ -217,7 +217,7 @@ public class ValidationController {
     @Consumes(value = {"application/json"})
     @Secured({SecurityRule.IS_ANONYMOUS})
     public void validationListModel(
-        @Body @NotNull List<StringModel> stringModel
+        @Body @NotNull List<@Valid StringModel> stringModel
     ) {
         // TODO implement validationListModel();
         throw new HttpStatusException(HttpStatus.NOT_IMPLEMENTED, null);

@@ -109,7 +109,7 @@ public interface ValidationApiClient {
 	void validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			java.util.List<StringModel> stringModel);
+			java.util.List<@jakarta.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_RANGE)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)

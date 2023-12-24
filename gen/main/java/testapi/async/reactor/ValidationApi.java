@@ -89,8 +89,7 @@ public interface ValidationApi {
 	reactor.core.publisher.Mono<io.micronaut.http.HttpResponse<Object>> validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			@jakarta.validation.Valid
-			java.util.List<StringModel> stringModel);
+			java.util.List<@jakarta.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post("/validation/list/range")
 	reactor.core.publisher.Mono<io.micronaut.http.HttpResponse<Object>> validationListRange(
