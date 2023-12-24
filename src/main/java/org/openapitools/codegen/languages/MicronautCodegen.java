@@ -499,6 +499,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (dateTimeRelaxed && (parameter.isDate || parameter.isDateTime)) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
+
+		parameter.dataType = parameter.dataType.replace("@Valid", "@javax.validation.Valid");
 	}
 
 	@Override
