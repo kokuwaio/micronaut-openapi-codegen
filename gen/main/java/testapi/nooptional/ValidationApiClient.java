@@ -97,7 +97,7 @@ public interface ValidationApiClient {
 	io.micronaut.http.HttpResponse<Object> validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			java.util.List<StringModel> stringModel);
+			java.util.List<@javax.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_RANGE)
 	io.micronaut.http.HttpResponse<Object> validationListRange(
