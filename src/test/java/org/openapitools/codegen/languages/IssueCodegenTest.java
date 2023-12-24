@@ -20,6 +20,12 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator("src/test/resources/openapi/issue-315.yaml", "issue._315").setGenerateAliasAsModel(true));
 	}
 
+	@DisplayName("model with additional properties and multiple properties generate invalid hashcode/equals")
+	@Test
+	void modelWithAdditionapPropertiesAndMultipleProperties() {
+		generate(configurator("src/test/resources/openapi/issue-336.yaml", "issue._336").setGenerateAliasAsModel(true));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);
