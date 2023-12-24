@@ -76,7 +76,7 @@ public interface ValidationApiTestClient {
 	io.micronaut.http.HttpResponse<?> validationListModel(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.Body
-			java.util.List<StringModelVO> stringModelVO);
+			java.util.List<@jakarta.validation.Valid StringModelVO> stringModelVO);
 
 	@io.micronaut.http.annotation.Post("/validation/list/range?{&list*}")
 	io.micronaut.http.HttpResponse<?> validationListRange(

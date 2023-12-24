@@ -1,6 +1,5 @@
 {{#useBeanValidation}}{{#isBodyParam}}{{#isModel}}			@jakarta.validation.Valid
-{{/isModel}}{{#isContainer}}			@jakarta.validation.Valid
-{{/isContainer}}{{/isBodyParam}}{{#pattern}}			@jakarta.validation.constraints.Pattern(regexp = "{{{pattern}}}")
+{{/isModel}}{{/isBodyParam}}{{#pattern}}			@jakarta.validation.constraints.Pattern(regexp = "{{{pattern}}}")
 {{/pattern}}{{#required}}{{/required}}{{#minimum}}{{#isInteger}}			@jakarta.validation.constraints.Min({{minimum}})
 {{/isInteger}}{{#isLong}}			@jakarta.validation.constraints.Min({{minimum}})
 {{/isLong}}{{^isInteger}}{{^isLong}}			@jakarta.validation.constraints.DecimalMin(value = "{{minimum}}", inclusive = {{#exclusiveMinimum}}false{{/exclusiveMinimum}}{{^exclusiveMinimum}}true{{/exclusiveMinimum}})
