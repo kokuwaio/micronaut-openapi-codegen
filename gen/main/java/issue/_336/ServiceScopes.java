@@ -34,7 +34,7 @@ public class ServiceScopes {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(this.additionalProperties, , foo, bar);
+		return java.util.Objects.hash(this.additionalProperties, foo, bar);
 	}
 
 	@Override
