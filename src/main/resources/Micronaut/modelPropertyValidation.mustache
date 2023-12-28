@@ -1,9 +1,13 @@
 {{#isModel}}{{^isContainer}}	@jakarta.validation.Valid
 {{/isContainer}}{{/isModel}}{{#required}}{{^isNullable}}	@jakarta.validation.constraints.NotNull
 {{/isNullable}}{{/required}}{{#pattern}}	@jakarta.validation.constraints.Pattern(regexp = "{{{pattern}}}")
-{{/pattern}}{{#minimum}}	@jakarta.validation.constraints.{{#isDouble}}DecimalMin("{{minimum}}"){{/isDouble}}{{#isFloat}}DecimalMin("{{minimum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Min({{minimum}}){{/isDouble}}{{/isFloat}}
-{{/minimum}}{{#maximum}}	@jakarta.validation.constraints.{{#isDouble}}DecimalMax("{{maximum}}"){{/isDouble}}{{#isFloat}}DecimalMax("{{maximum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Max({{maximum}}){{/isDouble}}{{/isFloat}}
-{{/maximum}}{{#minLength}}{{^maxLength}}	@jakarta.validation.constraints.Size(min = {{minLength}})
+{{/pattern}}{{#minimum}}{{#isInteger}}	@jakarta.validation.constraints.Min({{minimum}})
+{{/isInteger}}{{#isLong}}	@jakarta.validation.constraints.Min({{minimum}})
+{{/isLong}}{{^isInteger}}{{^isLong}}	@jakarta.validation.constraints.DecimalMin(value = "{{minimum}}", inclusive = {{#exclusiveMinimum}}false{{/exclusiveMinimum}}{{^exclusiveMinimum}}true{{/exclusiveMinimum}})
+{{/isLong}}{{/isInteger}}{{/minimum}}{{#maximum}}{{#isInteger}}	@jakarta.validation.constraints.Max({{maximum}})
+{{/isInteger}}{{#isLong}}	@jakarta.validation.constraints.Max({{maximum}})
+{{/isLong}}{{^isInteger}}{{^isLong}}	@jakarta.validation.constraints.DecimalMax(value = "{{maximum}}", inclusive = {{#exclusiveMaximum}}false{{/exclusiveMaximum}}{{^exclusiveMaximum}}true{{/exclusiveMaximum}})
+{{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}	@jakarta.validation.constraints.Size(min = {{minLength}})
 {{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}	@jakarta.validation.constraints.Size(max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}	@jakarta.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}	@jakarta.validation.constraints.Size(min = {{minItems}})
