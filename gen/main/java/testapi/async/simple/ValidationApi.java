@@ -85,7 +85,7 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@jakarta.validation.constraints.Size(max = 4)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get("/validation/list/min")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
@@ -93,7 +93,7 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@jakarta.validation.constraints.Size(min = 3)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Post("/validation/list/model")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
@@ -101,7 +101,7 @@ public interface ValidationApi {
 	reactor.core.publisher.Mono<java.lang.Void> validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			java.util.List<@jakarta.validation.Valid StringModel> stringModel);
+			java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post("/validation/list/range")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
@@ -109,7 +109,7 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@jakarta.validation.constraints.Size(min = 3, max = 4)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get("/validation/long/max")
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)

@@ -78,22 +78,22 @@ public record Model(
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty("array")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
-	java.util.List<java.lang.String> array,
+	java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> array,
 
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("arrayWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	java.util.List<java.lang.String> arrayWithExample,
+	java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> arrayWithExample,
 
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty("set")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
-	java.util.Set<java.lang.String> set,
+	java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> set,
 
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("setWithExamples")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	java.util.Set<java.lang.String> setWithExamples,
+	java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> setWithExamples,
 
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty("map")
@@ -108,12 +108,12 @@ public record Model(
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("optionalArray")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	java.util.List<java.lang.String> optionalArray,
+	java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> optionalArray,
 
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("optionalSet")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	java.util.Set<java.lang.String> optionalSet,
+	java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> optionalSet,
 
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("optionalMap")
@@ -128,12 +128,12 @@ public record Model(
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("nullableArray")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
-	java.util.List<java.lang.String> nullableArray,
+	java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> nullableArray,
 
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("nullableSet")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
-	java.util.Set<java.lang.String> nullableSet,
+	java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> nullableSet,
 
 	@io.micronaut.core.annotation.Nullable
 	@com.fasterxml.jackson.annotation.JsonProperty("defaultString")

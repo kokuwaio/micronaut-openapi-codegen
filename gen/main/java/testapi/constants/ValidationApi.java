@@ -96,28 +96,28 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@jakarta.validation.constraints.Size(max = 4)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LIST_MIN)
 	io.micronaut.http.HttpResponse<Object> validationListMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@jakarta.validation.constraints.Size(min = 3)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_MODEL)
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<Object> validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			java.util.List<@jakarta.validation.Valid StringModel> stringModel);
+			java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_RANGE)
 	io.micronaut.http.HttpResponse<Object> validationListRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@jakarta.validation.constraints.Size(min = 3, max = 4)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LONG_MAX)
 	io.micronaut.http.HttpResponse<Object> validationLongMax(

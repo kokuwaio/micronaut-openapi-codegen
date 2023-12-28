@@ -6,11 +6,11 @@ public class ModelPage {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("array")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid ModelComplex> array;
+	private java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> array;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("set")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.Set<@jakarta.validation.Valid ModelComplex> set;
+	private java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> set;
 
 	// methods
 
@@ -44,7 +44,7 @@ public class ModelPage {
 
 	// fluent
 
-	public ModelPage array(java.util.List<@jakarta.validation.Valid ModelComplex> newArray) {
+	public ModelPage array(java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> newArray) {
 		this.array = newArray;
 		return this;
 	}
@@ -64,7 +64,7 @@ public class ModelPage {
 		return this;
 	}
 
-	public ModelPage set(java.util.Set<@jakarta.validation.Valid ModelComplex> newSet) {
+	public ModelPage set(java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> newSet) {
 		this.set = newSet;
 		return this;
 	}
@@ -86,19 +86,19 @@ public class ModelPage {
 
 	// getter/setter
 
-	public java.util.List<@jakarta.validation.Valid ModelComplex> getArray() {
+	public java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> getArray() {
 		return array;
 	}
 
-	public void setArray(java.util.List<@jakarta.validation.Valid ModelComplex> newArray) {
+	public void setArray(java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> newArray) {
 		this.array = newArray;
 	}
 
-	public java.util.Set<@jakarta.validation.Valid ModelComplex> getSet() {
+	public java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> getSet() {
 		return set;
 	}
 
-	public void setSet(java.util.Set<@jakarta.validation.Valid ModelComplex> newSet) {
+	public void setSet(java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> newSet) {
 		this.set = newSet;
 	}
 }

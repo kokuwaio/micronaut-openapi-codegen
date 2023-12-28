@@ -65,20 +65,20 @@ public class Model {
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty("array")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
-	private java.util.List<java.lang.String> array = new java.util.ArrayList<>();
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> array = new java.util.ArrayList<>();
 
 	@com.fasterxml.jackson.annotation.JsonProperty("arrayWithExample")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.lang.String> arrayWithExample;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> arrayWithExample;
 
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty("set")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.ALWAYS)
-	private java.util.Set<java.lang.String> set = new java.util.LinkedHashSet<>();
+	private java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> set = new java.util.LinkedHashSet<>();
 
 	@com.fasterxml.jackson.annotation.JsonProperty("setWithExamples")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.Set<java.lang.String> setWithExamples;
+	private java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> setWithExamples;
 
 	@jakarta.validation.constraints.NotNull
 	@com.fasterxml.jackson.annotation.JsonProperty("map")
@@ -91,11 +91,11 @@ public class Model {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("optionalArray")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.lang.String> optionalArray;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> optionalArray;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("optionalSet")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.Set<java.lang.String> optionalSet;
+	private java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> optionalSet;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("optionalMap")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -107,11 +107,11 @@ public class Model {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("nullableArray")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
-	private java.util.List<java.lang.String> nullableArray;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> nullableArray;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("nullableSet")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
-	private java.util.Set<java.lang.String> nullableSet;
+	private java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> nullableSet;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("defaultString")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -294,7 +294,7 @@ public class Model {
 		return this;
 	}
 
-	public Model array(java.util.List<java.lang.String> newArray) {
+	public Model array(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newArray) {
 		this.array = newArray;
 		return this;
 	}
@@ -314,7 +314,7 @@ public class Model {
 		return this;
 	}
 
-	public Model arrayWithExample(java.util.List<java.lang.String> newArrayWithExample) {
+	public Model arrayWithExample(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newArrayWithExample) {
 		this.arrayWithExample = newArrayWithExample;
 		return this;
 	}
@@ -334,7 +334,7 @@ public class Model {
 		return this;
 	}
 
-	public Model set(java.util.Set<java.lang.String> newSet) {
+	public Model set(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newSet) {
 		this.set = newSet;
 		return this;
 	}
@@ -354,7 +354,7 @@ public class Model {
 		return this;
 	}
 
-	public Model setWithExamples(java.util.Set<java.lang.String> newSetWithExamples) {
+	public Model setWithExamples(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newSetWithExamples) {
 		this.setWithExamples = newSetWithExamples;
 		return this;
 	}
@@ -414,7 +414,7 @@ public class Model {
 		return this;
 	}
 
-	public Model optionalArray(java.util.List<java.lang.String> newOptionalArray) {
+	public Model optionalArray(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newOptionalArray) {
 		this.optionalArray = newOptionalArray;
 		return this;
 	}
@@ -434,7 +434,7 @@ public class Model {
 		return this;
 	}
 
-	public Model optionalSet(java.util.Set<java.lang.String> newOptionalSet) {
+	public Model optionalSet(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newOptionalSet) {
 		this.optionalSet = newOptionalSet;
 		return this;
 	}
@@ -479,7 +479,7 @@ public class Model {
 		return this;
 	}
 
-	public Model nullableArray(java.util.List<java.lang.String> newNullableArray) {
+	public Model nullableArray(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newNullableArray) {
 		this.nullableArray = newNullableArray;
 		return this;
 	}
@@ -499,7 +499,7 @@ public class Model {
 		return this;
 	}
 
-	public Model nullableSet(java.util.Set<java.lang.String> newNullableSet) {
+	public Model nullableSet(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newNullableSet) {
 		this.nullableSet = newNullableSet;
 		return this;
 	}
@@ -658,35 +658,35 @@ public class Model {
 		this.any = newAny;
 	}
 
-	public java.util.List<java.lang.String> getArray() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> getArray() {
 		return array;
 	}
 
-	public void setArray(java.util.List<java.lang.String> newArray) {
+	public void setArray(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newArray) {
 		this.array = newArray;
 	}
 
-	public java.util.List<java.lang.String> getArrayWithExample() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> getArrayWithExample() {
 		return arrayWithExample;
 	}
 
-	public void setArrayWithExample(java.util.List<java.lang.String> newArrayWithExample) {
+	public void setArrayWithExample(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newArrayWithExample) {
 		this.arrayWithExample = newArrayWithExample;
 	}
 
-	public java.util.Set<java.lang.String> getSet() {
+	public java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> getSet() {
 		return set;
 	}
 
-	public void setSet(java.util.Set<java.lang.String> newSet) {
+	public void setSet(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newSet) {
 		this.set = newSet;
 	}
 
-	public java.util.Set<java.lang.String> getSetWithExamples() {
+	public java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> getSetWithExamples() {
 		return setWithExamples;
 	}
 
-	public void setSetWithExamples(java.util.Set<java.lang.String> newSetWithExamples) {
+	public void setSetWithExamples(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newSetWithExamples) {
 		this.setWithExamples = newSetWithExamples;
 	}
 
@@ -706,19 +706,19 @@ public class Model {
 		this.mapWithExample = newMapWithExample;
 	}
 
-	public java.util.List<java.lang.String> getOptionalArray() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> getOptionalArray() {
 		return optionalArray;
 	}
 
-	public void setOptionalArray(java.util.List<java.lang.String> newOptionalArray) {
+	public void setOptionalArray(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newOptionalArray) {
 		this.optionalArray = newOptionalArray;
 	}
 
-	public java.util.Set<java.lang.String> getOptionalSet() {
+	public java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> getOptionalSet() {
 		return optionalSet;
 	}
 
-	public void setOptionalSet(java.util.Set<java.lang.String> newOptionalSet) {
+	public void setOptionalSet(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newOptionalSet) {
 		this.optionalSet = newOptionalSet;
 	}
 
@@ -738,19 +738,19 @@ public class Model {
 		this.nullableString = newNullableString;
 	}
 
-	public java.util.List<java.lang.String> getNullableArray() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> getNullableArray() {
 		return nullableArray;
 	}
 
-	public void setNullableArray(java.util.List<java.lang.String> newNullableArray) {
+	public void setNullableArray(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newNullableArray) {
 		this.nullableArray = newNullableArray;
 	}
 
-	public java.util.Set<java.lang.String> getNullableSet() {
+	public java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> getNullableSet() {
 		return nullableSet;
 	}
 
-	public void setNullableSet(java.util.Set<java.lang.String> newNullableSet) {
+	public void setNullableSet(java.util.Set<java.lang.@jakarta.validation.constraints.NotNull String> newNullableSet) {
 		this.nullableSet = newNullableSet;
 	}
 

@@ -6,19 +6,19 @@ public class ModelInteger {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withoutValidation")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Integer> withoutValidation;
+	private java.util.List<java.lang.Integer> withoutValidation;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Integer> withMinimum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) Integer> withMinimum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMaximum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Integer> withMaximum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Max(4) Integer> withMaximum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimumAndMaximum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Integer> withMinimumAndMaximum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) @jakarta.validation.constraints.Max(4) Integer> withMinimumAndMaximum;
 
 	// methods
 
@@ -56,7 +56,7 @@ public class ModelInteger {
 
 	// fluent
 
-	public ModelInteger withoutValidation(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithoutValidation) {
+	public ModelInteger withoutValidation(java.util.List<java.lang.Integer> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
 		return this;
 	}
@@ -76,7 +76,7 @@ public class ModelInteger {
 		return this;
 	}
 
-	public ModelInteger withMinimum(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithMinimum) {
+	public ModelInteger withMinimum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) Integer> newWithMinimum) {
 		this.withMinimum = newWithMinimum;
 		return this;
 	}
@@ -96,7 +96,7 @@ public class ModelInteger {
 		return this;
 	}
 
-	public ModelInteger withMaximum(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithMaximum) {
+	public ModelInteger withMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Max(4) Integer> newWithMaximum) {
 		this.withMaximum = newWithMaximum;
 		return this;
 	}
@@ -116,7 +116,7 @@ public class ModelInteger {
 		return this;
 	}
 
-	public ModelInteger withMinimumAndMaximum(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithMinimumAndMaximum) {
+	public ModelInteger withMinimumAndMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) @jakarta.validation.constraints.Max(4) Integer> newWithMinimumAndMaximum) {
 		this.withMinimumAndMaximum = newWithMinimumAndMaximum;
 		return this;
 	}
@@ -138,35 +138,35 @@ public class ModelInteger {
 
 	// getter/setter
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Integer> getWithoutValidation() {
+	public java.util.List<java.lang.Integer> getWithoutValidation() {
 		return withoutValidation;
 	}
 
-	public void setWithoutValidation(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithoutValidation) {
+	public void setWithoutValidation(java.util.List<java.lang.Integer> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Integer> getWithMinimum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) Integer> getWithMinimum() {
 		return withMinimum;
 	}
 
-	public void setWithMinimum(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithMinimum) {
+	public void setWithMinimum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) Integer> newWithMinimum) {
 		this.withMinimum = newWithMinimum;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Integer> getWithMaximum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Max(4) Integer> getWithMaximum() {
 		return withMaximum;
 	}
 
-	public void setWithMaximum(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithMaximum) {
+	public void setWithMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Max(4) Integer> newWithMaximum) {
 		this.withMaximum = newWithMaximum;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Integer> getWithMinimumAndMaximum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) @jakarta.validation.constraints.Max(4) Integer> getWithMinimumAndMaximum() {
 		return withMinimumAndMaximum;
 	}
 
-	public void setWithMinimumAndMaximum(java.util.List<@jakarta.validation.Valid java.lang.Integer> newWithMinimumAndMaximum) {
+	public void setWithMinimumAndMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Min(3) @jakarta.validation.constraints.Max(4) Integer> newWithMinimumAndMaximum) {
 		this.withMinimumAndMaximum = newWithMinimumAndMaximum;
 	}
 }
