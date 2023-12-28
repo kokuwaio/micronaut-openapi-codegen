@@ -6,31 +6,31 @@ public class ModelNumber {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withoutValidation")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withoutValidation;
+	private java.util.List<java.lang.Double> withoutValidation;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withMinimum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11111", inclusive = true) Double> withMinimum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimumExclusiveFalse")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withMinimumExclusiveFalse;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11112", inclusive = true) Double> withMinimumExclusiveFalse;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimumExclusiveTrue")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withMinimumExclusiveTrue;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11113", inclusive = false) Double> withMinimumExclusiveTrue;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMaximum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withMaximum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22221", inclusive = true) Double> withMaximum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMaximumExclusiveFalse")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withMaximumExclusiveFalse;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22222", inclusive = true) Double> withMaximumExclusiveFalse;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMaximumExclusiveTrue")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.Double> withMaximumExclusiveTrue;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22223", inclusive = false) Double> withMaximumExclusiveTrue;
 
 	// methods
 
@@ -74,7 +74,7 @@ public class ModelNumber {
 
 	// fluent
 
-	public ModelNumber withoutValidation(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithoutValidation) {
+	public ModelNumber withoutValidation(java.util.List<java.lang.Double> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
 		return this;
 	}
@@ -94,7 +94,7 @@ public class ModelNumber {
 		return this;
 	}
 
-	public ModelNumber withMinimum(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMinimum) {
+	public ModelNumber withMinimum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11111", inclusive = true) Double> newWithMinimum) {
 		this.withMinimum = newWithMinimum;
 		return this;
 	}
@@ -114,7 +114,7 @@ public class ModelNumber {
 		return this;
 	}
 
-	public ModelNumber withMinimumExclusiveFalse(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMinimumExclusiveFalse) {
+	public ModelNumber withMinimumExclusiveFalse(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11112", inclusive = true) Double> newWithMinimumExclusiveFalse) {
 		this.withMinimumExclusiveFalse = newWithMinimumExclusiveFalse;
 		return this;
 	}
@@ -134,7 +134,7 @@ public class ModelNumber {
 		return this;
 	}
 
-	public ModelNumber withMinimumExclusiveTrue(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMinimumExclusiveTrue) {
+	public ModelNumber withMinimumExclusiveTrue(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11113", inclusive = false) Double> newWithMinimumExclusiveTrue) {
 		this.withMinimumExclusiveTrue = newWithMinimumExclusiveTrue;
 		return this;
 	}
@@ -154,7 +154,7 @@ public class ModelNumber {
 		return this;
 	}
 
-	public ModelNumber withMaximum(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMaximum) {
+	public ModelNumber withMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22221", inclusive = true) Double> newWithMaximum) {
 		this.withMaximum = newWithMaximum;
 		return this;
 	}
@@ -174,7 +174,7 @@ public class ModelNumber {
 		return this;
 	}
 
-	public ModelNumber withMaximumExclusiveFalse(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMaximumExclusiveFalse) {
+	public ModelNumber withMaximumExclusiveFalse(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22222", inclusive = true) Double> newWithMaximumExclusiveFalse) {
 		this.withMaximumExclusiveFalse = newWithMaximumExclusiveFalse;
 		return this;
 	}
@@ -194,7 +194,7 @@ public class ModelNumber {
 		return this;
 	}
 
-	public ModelNumber withMaximumExclusiveTrue(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMaximumExclusiveTrue) {
+	public ModelNumber withMaximumExclusiveTrue(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22223", inclusive = false) Double> newWithMaximumExclusiveTrue) {
 		this.withMaximumExclusiveTrue = newWithMaximumExclusiveTrue;
 		return this;
 	}
@@ -216,59 +216,59 @@ public class ModelNumber {
 
 	// getter/setter
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithoutValidation() {
+	public java.util.List<java.lang.Double> getWithoutValidation() {
 		return withoutValidation;
 	}
 
-	public void setWithoutValidation(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithoutValidation) {
+	public void setWithoutValidation(java.util.List<java.lang.Double> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithMinimum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11111", inclusive = true) Double> getWithMinimum() {
 		return withMinimum;
 	}
 
-	public void setWithMinimum(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMinimum) {
+	public void setWithMinimum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11111", inclusive = true) Double> newWithMinimum) {
 		this.withMinimum = newWithMinimum;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithMinimumExclusiveFalse() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11112", inclusive = true) Double> getWithMinimumExclusiveFalse() {
 		return withMinimumExclusiveFalse;
 	}
 
-	public void setWithMinimumExclusiveFalse(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMinimumExclusiveFalse) {
+	public void setWithMinimumExclusiveFalse(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11112", inclusive = true) Double> newWithMinimumExclusiveFalse) {
 		this.withMinimumExclusiveFalse = newWithMinimumExclusiveFalse;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithMinimumExclusiveTrue() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11113", inclusive = false) Double> getWithMinimumExclusiveTrue() {
 		return withMinimumExclusiveTrue;
 	}
 
-	public void setWithMinimumExclusiveTrue(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMinimumExclusiveTrue) {
+	public void setWithMinimumExclusiveTrue(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMin(value = "3.11113", inclusive = false) Double> newWithMinimumExclusiveTrue) {
 		this.withMinimumExclusiveTrue = newWithMinimumExclusiveTrue;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithMaximum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22221", inclusive = true) Double> getWithMaximum() {
 		return withMaximum;
 	}
 
-	public void setWithMaximum(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMaximum) {
+	public void setWithMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22221", inclusive = true) Double> newWithMaximum) {
 		this.withMaximum = newWithMaximum;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithMaximumExclusiveFalse() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22222", inclusive = true) Double> getWithMaximumExclusiveFalse() {
 		return withMaximumExclusiveFalse;
 	}
 
-	public void setWithMaximumExclusiveFalse(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMaximumExclusiveFalse) {
+	public void setWithMaximumExclusiveFalse(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22222", inclusive = true) Double> newWithMaximumExclusiveFalse) {
 		this.withMaximumExclusiveFalse = newWithMaximumExclusiveFalse;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.Double> getWithMaximumExclusiveTrue() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22223", inclusive = false) Double> getWithMaximumExclusiveTrue() {
 		return withMaximumExclusiveTrue;
 	}
 
-	public void setWithMaximumExclusiveTrue(java.util.List<@jakarta.validation.Valid java.lang.Double> newWithMaximumExclusiveTrue) {
+	public void setWithMaximumExclusiveTrue(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.DecimalMax(value = "4.22223", inclusive = false) Double> newWithMaximumExclusiveTrue) {
 		this.withMaximumExclusiveTrue = newWithMaximumExclusiveTrue;
 	}
 }

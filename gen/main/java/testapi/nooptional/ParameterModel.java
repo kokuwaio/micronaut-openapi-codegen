@@ -34,15 +34,15 @@ public class ParameterModel {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("a")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.lang.String> a;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> a;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("b")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.util.UUID> b;
+	private java.util.List<java.util.@jakarta.validation.constraints.NotNull UUID> b;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("c")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.lang.Integer> c;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> c;
 
 	// methods
 
@@ -127,7 +127,7 @@ public class ParameterModel {
 		return this;
 	}
 
-	public ParameterModel a(java.util.List<java.lang.String> newA) {
+	public ParameterModel a(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newA) {
 		this.a = newA;
 		return this;
 	}
@@ -147,7 +147,7 @@ public class ParameterModel {
 		return this;
 	}
 
-	public ParameterModel b(java.util.List<java.util.UUID> newB) {
+	public ParameterModel b(java.util.List<java.util.@jakarta.validation.constraints.NotNull UUID> newB) {
 		this.b = newB;
 		return this;
 	}
@@ -167,7 +167,7 @@ public class ParameterModel {
 		return this;
 	}
 
-	public ParameterModel c(java.util.List<java.lang.Integer> newC) {
+	public ParameterModel c(java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> newC) {
 		this.c = newC;
 		return this;
 	}
@@ -245,27 +245,27 @@ public class ParameterModel {
 		this.dateTime = newDateTime;
 	}
 
-	public java.util.List<java.lang.String> getA() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> getA() {
 		return a;
 	}
 
-	public void setA(java.util.List<java.lang.String> newA) {
+	public void setA(java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> newA) {
 		this.a = newA;
 	}
 
-	public java.util.List<java.util.UUID> getB() {
+	public java.util.List<java.util.@jakarta.validation.constraints.NotNull UUID> getB() {
 		return b;
 	}
 
-	public void setB(java.util.List<java.util.UUID> newB) {
+	public void setB(java.util.List<java.util.@jakarta.validation.constraints.NotNull UUID> newB) {
 		this.b = newB;
 	}
 
-	public java.util.List<java.lang.Integer> getC() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> getC() {
 		return c;
 	}
 
-	public void setC(java.util.List<java.lang.Integer> newC) {
+	public void setC(java.util.List<java.lang.@jakarta.validation.constraints.NotNull Integer> newC) {
 		this.c = newC;
 	}
 }

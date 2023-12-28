@@ -6,27 +6,27 @@ public class ModelString {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withoutValidation")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.String> withoutValidation;
+	private java.util.List<java.lang.String> withoutValidation;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withEmail")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.String> withEmail;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String> withEmail;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withPattern")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.String> withPattern;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Pattern(regexp = "^\\.[0-9]{3}$") String> withPattern;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.String> withMinimum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3) String> withMinimum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMaximum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.String> withMaximum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(max = 4) String> withMaximum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withMinimumAndMaximum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.Valid java.lang.String> withMinimumAndMaximum;
+	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3, max = 4) String> withMinimumAndMaximum;
 
 	// methods
 
@@ -68,7 +68,7 @@ public class ModelString {
 
 	// fluent
 
-	public ModelString withoutValidation(java.util.List<@jakarta.validation.Valid java.lang.String> newWithoutValidation) {
+	public ModelString withoutValidation(java.util.List<java.lang.String> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
 		return this;
 	}
@@ -88,7 +88,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withEmail(java.util.List<@jakarta.validation.Valid java.lang.String> newWithEmail) {
+	public ModelString withEmail(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String> newWithEmail) {
 		this.withEmail = newWithEmail;
 		return this;
 	}
@@ -108,7 +108,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withPattern(java.util.List<@jakarta.validation.Valid java.lang.String> newWithPattern) {
+	public ModelString withPattern(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Pattern(regexp = "^\\.[0-9]{3}$") String> newWithPattern) {
 		this.withPattern = newWithPattern;
 		return this;
 	}
@@ -128,7 +128,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withMinimum(java.util.List<@jakarta.validation.Valid java.lang.String> newWithMinimum) {
+	public ModelString withMinimum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3) String> newWithMinimum) {
 		this.withMinimum = newWithMinimum;
 		return this;
 	}
@@ -148,7 +148,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withMaximum(java.util.List<@jakarta.validation.Valid java.lang.String> newWithMaximum) {
+	public ModelString withMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(max = 4) String> newWithMaximum) {
 		this.withMaximum = newWithMaximum;
 		return this;
 	}
@@ -168,7 +168,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withMinimumAndMaximum(java.util.List<@jakarta.validation.Valid java.lang.String> newWithMinimumAndMaximum) {
+	public ModelString withMinimumAndMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3, max = 4) String> newWithMinimumAndMaximum) {
 		this.withMinimumAndMaximum = newWithMinimumAndMaximum;
 		return this;
 	}
@@ -190,51 +190,51 @@ public class ModelString {
 
 	// getter/setter
 
-	public java.util.List<@jakarta.validation.Valid java.lang.String> getWithoutValidation() {
+	public java.util.List<java.lang.String> getWithoutValidation() {
 		return withoutValidation;
 	}
 
-	public void setWithoutValidation(java.util.List<@jakarta.validation.Valid java.lang.String> newWithoutValidation) {
+	public void setWithoutValidation(java.util.List<java.lang.String> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.String> getWithEmail() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String> getWithEmail() {
 		return withEmail;
 	}
 
-	public void setWithEmail(java.util.List<@jakarta.validation.Valid java.lang.String> newWithEmail) {
+	public void setWithEmail(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String> newWithEmail) {
 		this.withEmail = newWithEmail;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.String> getWithPattern() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Pattern(regexp = "^\\.[0-9]{3}$") String> getWithPattern() {
 		return withPattern;
 	}
 
-	public void setWithPattern(java.util.List<@jakarta.validation.Valid java.lang.String> newWithPattern) {
+	public void setWithPattern(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Pattern(regexp = "^\\.[0-9]{3}$") String> newWithPattern) {
 		this.withPattern = newWithPattern;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.String> getWithMinimum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3) String> getWithMinimum() {
 		return withMinimum;
 	}
 
-	public void setWithMinimum(java.util.List<@jakarta.validation.Valid java.lang.String> newWithMinimum) {
+	public void setWithMinimum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3) String> newWithMinimum) {
 		this.withMinimum = newWithMinimum;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.String> getWithMaximum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(max = 4) String> getWithMaximum() {
 		return withMaximum;
 	}
 
-	public void setWithMaximum(java.util.List<@jakarta.validation.Valid java.lang.String> newWithMaximum) {
+	public void setWithMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(max = 4) String> newWithMaximum) {
 		this.withMaximum = newWithMaximum;
 	}
 
-	public java.util.List<@jakarta.validation.Valid java.lang.String> getWithMinimumAndMaximum() {
+	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3, max = 4) String> getWithMinimumAndMaximum() {
 		return withMinimumAndMaximum;
 	}
 
-	public void setWithMinimumAndMaximum(java.util.List<@jakarta.validation.Valid java.lang.String> newWithMinimumAndMaximum) {
+	public void setWithMinimumAndMaximum(java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Size(min = 3, max = 4) String> newWithMinimumAndMaximum) {
 		this.withMinimumAndMaximum = newWithMinimumAndMaximum;
 	}
 }
