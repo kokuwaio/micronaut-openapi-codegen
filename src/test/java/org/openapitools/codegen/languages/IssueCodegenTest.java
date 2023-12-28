@@ -26,6 +26,14 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator("src/test/resources/openapi/issue-336.yaml", "issue._336").setGenerateAliasAsModel(true));
 	}
 
+	@DisplayName("model with arrays items with validation")
+	@Test
+	void modelWithArrayItemsWithValidation() {
+		var configurator = configurator("src/test/resources/openapi/issue-331.yaml", "issue._331");
+		generate(configurator);
+		generate(configurator.addAdditionalProperty("clientId", "test"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);
