@@ -61,32 +61,32 @@ public class ModelComplex {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT)
 	private org.openapitools.jackson.nullable.JsonNullable<java.lang.Double> numberWithoutValidation = org.openapitools.jackson.nullable.JsonNullable.undefined();
 
-	@jakarta.validation.constraints.DecimalMin("3.11111")
+	@jakarta.validation.constraints.DecimalMin(value = "3.11111", inclusive = true)
 	@com.fasterxml.jackson.annotation.JsonProperty("numberWithMinimum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double numberWithMinimum;
 
-	@jakarta.validation.constraints.DecimalMin("3.11112")
+	@jakarta.validation.constraints.DecimalMin(value = "3.11112", inclusive = true)
 	@com.fasterxml.jackson.annotation.JsonProperty("numberWithMinimumExclusiveFalse")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double numberWithMinimumExclusiveFalse;
 
-	@jakarta.validation.constraints.DecimalMin("3.11113")
+	@jakarta.validation.constraints.DecimalMin(value = "3.11113", inclusive = false)
 	@com.fasterxml.jackson.annotation.JsonProperty("numberWithMinimumExclusiveTrue")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double numberWithMinimumExclusiveTrue;
 
-	@jakarta.validation.constraints.DecimalMax("4.22221")
+	@jakarta.validation.constraints.DecimalMax(value = "4.22221", inclusive = true)
 	@com.fasterxml.jackson.annotation.JsonProperty("numberWithMaximum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double numberWithMaximum;
 
-	@jakarta.validation.constraints.DecimalMax("4.22222")
+	@jakarta.validation.constraints.DecimalMax(value = "4.22222", inclusive = true)
 	@com.fasterxml.jackson.annotation.JsonProperty("numberWithMaximumExclusiveFalse")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double numberWithMaximumExclusiveFalse;
 
-	@jakarta.validation.constraints.DecimalMax("4.22223")
+	@jakarta.validation.constraints.DecimalMax(value = "4.22223", inclusive = false)
 	@com.fasterxml.jackson.annotation.JsonProperty("numberWithMaximumExclusiveTrue")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.lang.Double numberWithMaximumExclusiveTrue;
