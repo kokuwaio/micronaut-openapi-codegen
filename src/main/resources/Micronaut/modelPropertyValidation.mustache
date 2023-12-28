@@ -1,10 +1,13 @@
-{{#isModel}}	@javax.validation.Valid
-{{/isModel}}{{#isContainer}}{{#mostInnerItems.isModel}}{{^isNullable}}{{^jacksonDatabindNullable}}	@javax.validation.Valid
-{{/jacksonDatabindNullable}}{{/isNullable}}{{/mostInnerItems.isModel}}{{/isContainer}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
+{{#isModel}}{{^isContainer}}	@javax.validation.Valid
+{{/isContainer}}{{/isModel}}{{#required}}{{^isNullable}}	@javax.validation.constraints.NotNull
 {{/isNullable}}{{/required}}{{#pattern}}	@javax.validation.constraints.Pattern(regexp = "{{{pattern}}}")
-{{/pattern}}{{#minimum}}	@javax.validation.constraints.{{#isDouble}}DecimalMin("{{minimum}}"){{/isDouble}}{{#isFloat}}DecimalMin("{{minimum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Min({{minimum}}){{/isDouble}}{{/isFloat}}
-{{/minimum}}{{#maximum}}	@javax.validation.constraints.{{#isDouble}}DecimalMax("{{maximum}}"){{/isDouble}}{{#isFloat}}DecimalMax("{{maximum}}"){{/isFloat}}{{^isFloat}}{{^isDouble}}Max({{maximum}}){{/isDouble}}{{/isFloat}}
-{{/maximum}}{{#minLength}}{{^maxLength}}	@javax.validation.constraints.Size(min = {{minLength}})
+{{/pattern}}{{#minimum}}{{#isInteger}}	@javax.validation.constraints.Min({{minimum}})
+{{/isInteger}}{{#isLong}}	@javax.validation.constraints.Min({{minimum}})
+{{/isLong}}{{^isInteger}}{{^isLong}}	@javax.validation.constraints.DecimalMin(value = "{{minimum}}", inclusive = {{#exclusiveMinimum}}false{{/exclusiveMinimum}}{{^exclusiveMinimum}}true{{/exclusiveMinimum}})
+{{/isLong}}{{/isInteger}}{{/minimum}}{{#maximum}}{{#isInteger}}	@javax.validation.constraints.Max({{maximum}})
+{{/isInteger}}{{#isLong}}	@javax.validation.constraints.Max({{maximum}})
+{{/isLong}}{{^isInteger}}{{^isLong}}	@javax.validation.constraints.DecimalMax(value = "{{maximum}}", inclusive = {{#exclusiveMaximum}}false{{/exclusiveMaximum}}{{^exclusiveMaximum}}true{{/exclusiveMaximum}})
+{{/isLong}}{{/isInteger}}{{/maximum}}{{#minLength}}{{^maxLength}}	@javax.validation.constraints.Size(min = {{minLength}})
 {{/maxLength}}{{/minLength}}{{^minLength}}{{#maxLength}}	@javax.validation.constraints.Size(max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minLength}}{{#maxLength}}	@javax.validation.constraints.Size(min = {{minLength}}, max = {{maxLength}})
 {{/maxLength}}{{/minLength}}{{#minItems}}{{^maxItems}}	@javax.validation.constraints.Size(min = {{minItems}})

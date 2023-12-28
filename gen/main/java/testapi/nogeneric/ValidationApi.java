@@ -107,7 +107,7 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@javax.validation.constraints.Size(max = 4)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LIST_MIN)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
@@ -115,7 +115,7 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@javax.validation.constraints.Size(min = 3)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_MODEL)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
@@ -123,7 +123,7 @@ public interface ValidationApi {
 	void validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			java.util.List<@javax.validation.Valid StringModel> stringModel);
+			java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_RANGE)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)
@@ -131,7 +131,7 @@ public interface ValidationApi {
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
 			@javax.validation.constraints.Size(min = 3, max = 4)
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LONG_MAX)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.NO_CONTENT)

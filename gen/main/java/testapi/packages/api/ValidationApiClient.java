@@ -86,26 +86,26 @@ public interface ValidationApiClient {
 	io.micronaut.http.HttpResponse<Object> validationListMax(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "list")
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LIST_MIN)
 	io.micronaut.http.HttpResponse<Object> validationListMin(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "list")
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_MODEL)
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	io.micronaut.http.HttpResponse<Object> validationListModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			java.util.List<@javax.validation.Valid StringModel> stringModel);
+			java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringModel> stringModel);
 
 	@io.micronaut.http.annotation.Post(PATH_VALIDATION_LIST_RANGE)
 	io.micronaut.http.HttpResponse<Object> validationListRange(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "list")
-			java.util.List<java.lang.Integer> list);
+			java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> list);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_LONG_MAX)
 	io.micronaut.http.HttpResponse<Object> validationLongMax(
