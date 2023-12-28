@@ -7,15 +7,13 @@ public class ModelPage {
 	public static final java.lang.String JSON_PROPERTY_ARRAY = "array";
 	public static final java.lang.String JSON_PROPERTY_SET = "set";
 
-	@javax.validation.Valid
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_ARRAY)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@javax.validation.Valid ModelComplex> array;
+	private java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> array;
 
-	@javax.validation.Valid
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_SET)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.Set<@javax.validation.Valid ModelComplex> set;
+	private java.util.Set<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> set;
 
 	// methods
 
@@ -49,7 +47,7 @@ public class ModelPage {
 
 	// fluent
 
-	public ModelPage array(java.util.List<@javax.validation.Valid ModelComplex> newArray) {
+	public ModelPage array(java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> newArray) {
 		this.array = newArray;
 		return this;
 	}
@@ -69,7 +67,7 @@ public class ModelPage {
 		return this;
 	}
 
-	public ModelPage set(java.util.Set<@javax.validation.Valid ModelComplex> newSet) {
+	public ModelPage set(java.util.Set<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> newSet) {
 		this.set = newSet;
 		return this;
 	}
@@ -91,19 +89,19 @@ public class ModelPage {
 
 	// getter/setter
 
-	public java.util.List<@javax.validation.Valid ModelComplex> getArray() {
+	public java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> getArray() {
 		return array;
 	}
 
-	public void setArray(java.util.List<@javax.validation.Valid ModelComplex> newArray) {
+	public void setArray(java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> newArray) {
 		this.array = newArray;
 	}
 
-	public java.util.Set<@javax.validation.Valid ModelComplex> getSet() {
+	public java.util.Set<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> getSet() {
 		return set;
 	}
 
-	public void setSet(java.util.Set<@javax.validation.Valid ModelComplex> newSet) {
+	public void setSet(java.util.Set<@javax.validation.constraints.NotNull @javax.validation.Valid ModelComplex> newSet) {
 		this.set = newSet;
 	}
 }

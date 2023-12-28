@@ -6,6 +6,7 @@ import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER_DESC;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -33,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
@@ -499,8 +501,17 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (dateTimeRelaxed && (parameter.isDate || parameter.isDateTime)) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
+		parameter.vendorExtensions.put("x-datatype-without-validation", removeValidation(parameter.dataType));
+	}
 
-		parameter.dataType = parameter.dataType.replace("@Valid", "@javax.validation.Valid");
+	@Override
+	public void postProcessResponseWithProperty(CodegenResponse response, CodegenProperty property) {
+		if (property != null && property.dataType != null && property.dataType.contains("@javax.validation")) {
+			property.dataType = removeValidation(property.dataType);
+		}
+		if (response != null && response.dataType != null && response.dataType.contains("@javax.validation")) {
+			response.dataType = removeValidation(response.dataType);
+		}
 	}
 
 	@Override
@@ -510,13 +521,26 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (openApiNullable && !property.required && property.isNullable) {
 			property.getVendorExtensions().put("x-jackson-nullable", true);
 		}
-
-		property.datatypeWithEnum = property.datatypeWithEnum.replace("@Valid", "@javax.validation.Valid");
 	}
 
 	@Override
 	public boolean isDataTypeString(String dataType) {
 		return "java.lang.String".equals(dataType) || "String".equals(dataType);
+	}
+
+	@Override
+	public String getTypeDeclaration(@SuppressWarnings("rawtypes") Schema p) {
+		var schema = unaliasSchema(p);
+		var target = ModelUtils.isGenerateAliasAsModel() ? p : schema;
+		if (useBeanValidation && ModelUtils.isArraySchema(target)) {
+			var items = unaliasSchema(getSchemaItems((ArraySchema) target));
+			var itemType = getTypeDeclaration(items);
+			var annotations = getBeanValidation(items).stream().map(n -> n + " ").collect(Collectors.joining());
+			var index = itemType.lastIndexOf(".");
+			return getSchemaType(target) + "<" + (index == -1 ? annotations + itemType
+					: (itemType.substring(0, index + 1) + annotations + itemType.substring(index + 1))) + ">";
+		}
+		return super.getTypeDeclaration(p);
 	}
 
 	@Override
@@ -679,5 +703,62 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (!supportingFiles.contains(supportingFile)) {
 			supportingFiles.add(supportingFile);
 		}
+	}
+
+	private List<String> getBeanValidation(Schema<?> schema) {
+		var annotations = new ArrayList<String>();
+		if (!ModelUtils.isNullable(schema)) {
+			annotations.add("@javax.validation.constraints.NotNull");
+		}
+		if (ModelUtils.isStringSchema(schema)
+				&& !ModelUtils.isByteArraySchema(schema)
+				&& !ModelUtils.isBinarySchema(schema)) {
+			if (schema.getPattern() != null && !schema.getPattern().isBlank()) {
+				annotations.add("@javax.validation.constraints.Pattern("
+						+ "regexp = \"" + schema.getPattern().replace("\\", "\\\\") + "\")");
+			}
+			if (ModelUtils.isEmailSchema(schema)) {
+				annotations.add("@javax.validation.constraints.Email");
+			}
+			if (schema.getMinLength() != null && schema.getMaxLength() != null) {
+				annotations.add("@javax.validation.constraints.Size("
+						+ "min = " + schema.getMinLength() + ", "
+						+ "max = " + schema.getMaxLength() + ")");
+			} else if (schema.getMinLength() != null) {
+				annotations.add("@javax.validation.constraints.Size(min = " + schema.getMinLength() + ")");
+			} else if (schema.getMaxLength() != null) {
+				annotations.add("@javax.validation.constraints.Size(max = " + schema.getMaxLength() + ")");
+			}
+		} else if (ModelUtils.isNumberSchema(schema)) {
+			if (schema.getMinimum() != null) {
+				annotations.add("@javax.validation.constraints.DecimalMin("
+						+ "value = \"" + schema.getMinimum() + "\", "
+						+ "inclusive = " + !Optional.ofNullable(schema.getExclusiveMinimum()).orElse(false) + ")");
+			}
+			if (schema.getMaximum() != null) {
+				annotations.add("@javax.validation.constraints.DecimalMax("
+						+ "value = \"" + schema.getMaximum() + "\", "
+						+ "inclusive = " + !Optional.ofNullable(schema.getExclusiveMaximum()).orElse(false) + ")");
+			}
+		} else if (ModelUtils.isIntegerSchema(schema)) {
+			if (schema.getMinimum() != null) {
+				annotations.add("@javax.validation.constraints.Min(" + schema.getMinimum().longValue() + ")");
+			}
+			if (schema.getMaximum() != null) {
+				annotations.add("@javax.validation.constraints.Max(" + schema.getMaximum().longValue() + ")");
+			}
+		} else if (ModelUtils.isTypeObjectSchema(schema) || schema.getType() == null) {
+			annotations.add("@javax.validation.Valid");
+		}
+		return annotations;
+	}
+
+	private String removeValidation(String dataType) {
+		var tmp = dataType;
+		tmp = tmp.replace("@javax.validation.Valid ", "");
+		tmp = tmp.replace("@javax.validation.constraints.NotNull ", "");
+		tmp = tmp.replace("@javax.validation.constraints.Email ", "");
+		return tmp.replaceAll(
+				"@javax\\.validation\\.constraints\\.(Pattern|Size|DecimalMin|DecimalMax|Min|Max)\\(.*\\) ", "");
 	}
 }

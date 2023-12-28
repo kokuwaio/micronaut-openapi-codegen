@@ -45,15 +45,15 @@ public class ParameterModelVO {
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_A)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.lang.String> a;
+	private java.util.List<java.lang.@javax.validation.constraints.NotNull String> a;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_B)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.util.UUID> b;
+	private java.util.List<java.util.@javax.validation.constraints.NotNull UUID> b;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_C)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<java.lang.Integer> c;
+	private java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> c;
 
 	// methods
 
@@ -138,7 +138,7 @@ public class ParameterModelVO {
 		return this;
 	}
 
-	public ParameterModelVO a(java.util.List<java.lang.String> newA) {
+	public ParameterModelVO a(java.util.List<java.lang.@javax.validation.constraints.NotNull String> newA) {
 		this.a = newA;
 		return this;
 	}
@@ -158,7 +158,7 @@ public class ParameterModelVO {
 		return this;
 	}
 
-	public ParameterModelVO b(java.util.List<java.util.UUID> newB) {
+	public ParameterModelVO b(java.util.List<java.util.@javax.validation.constraints.NotNull UUID> newB) {
 		this.b = newB;
 		return this;
 	}
@@ -178,7 +178,7 @@ public class ParameterModelVO {
 		return this;
 	}
 
-	public ParameterModelVO c(java.util.List<java.lang.Integer> newC) {
+	public ParameterModelVO c(java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> newC) {
 		this.c = newC;
 		return this;
 	}
@@ -256,27 +256,27 @@ public class ParameterModelVO {
 		this.dateTime = newDateTime;
 	}
 
-	public java.util.List<java.lang.String> getA() {
+	public java.util.List<java.lang.@javax.validation.constraints.NotNull String> getA() {
 		return a;
 	}
 
-	public void setA(java.util.List<java.lang.String> newA) {
+	public void setA(java.util.List<java.lang.@javax.validation.constraints.NotNull String> newA) {
 		this.a = newA;
 	}
 
-	public java.util.List<java.util.UUID> getB() {
+	public java.util.List<java.util.@javax.validation.constraints.NotNull UUID> getB() {
 		return b;
 	}
 
-	public void setB(java.util.List<java.util.UUID> newB) {
+	public void setB(java.util.List<java.util.@javax.validation.constraints.NotNull UUID> newB) {
 		this.b = newB;
 	}
 
-	public java.util.List<java.lang.Integer> getC() {
+	public java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> getC() {
 		return c;
 	}
 
-	public void setC(java.util.List<java.lang.Integer> newC) {
+	public void setC(java.util.List<java.lang.@javax.validation.constraints.NotNull Integer> newC) {
 		this.c = newC;
 	}
 }

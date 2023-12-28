@@ -241,13 +241,13 @@ public interface ParameterApi {
 	ParameterModel paramQueryMultipleLists(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
-			java.util.Optional<java.util.List<java.lang.String>> a,
+			java.util.Optional<java.util.List<java.lang.@javax.validation.constraints.NotNull String>> a,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
-			java.util.Optional<java.util.List<java.util.UUID>> b,
+			java.util.Optional<java.util.List<java.util.@javax.validation.constraints.NotNull UUID>> b,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
-			java.util.Optional<java.util.List<java.lang.Integer>> c);
+			java.util.Optional<java.util.List<java.lang.@javax.validation.constraints.NotNull Integer>> c);
 
 	@io.micronaut.http.annotation.Get(PATH_PARAM_QUERY_NUMBER)
 	@io.micronaut.http.annotation.Status(io.micronaut.http.HttpStatus.OK)
