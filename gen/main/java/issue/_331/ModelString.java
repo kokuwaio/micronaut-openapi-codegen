@@ -10,7 +10,7 @@ public class ModelString {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withEnum")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> withEnum;
+	private java.util.List<@jakarta.validation.constraints.NotNull StringWithEnum> withEnum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty("withEmail")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -94,7 +94,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withEnum(java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> newWithEnum) {
+	public ModelString withEnum(java.util.List<@jakarta.validation.constraints.NotNull StringWithEnum> newWithEnum) {
 		this.withEnum = newWithEnum;
 		return this;
 	}
@@ -224,11 +224,11 @@ public class ModelString {
 		this.withoutValidation = newWithoutValidation;
 	}
 
-	public java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> getWithEnum() {
+	public java.util.List<@jakarta.validation.constraints.NotNull StringWithEnum> getWithEnum() {
 		return withEnum;
 	}
 
-	public void setWithEnum(java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> newWithEnum) {
+	public void setWithEnum(java.util.List<@jakarta.validation.constraints.NotNull StringWithEnum> newWithEnum) {
 		this.withEnum = newWithEnum;
 	}
 
