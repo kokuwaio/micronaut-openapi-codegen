@@ -59,6 +59,9 @@ public interface DefaultApi {
 			java.util.Optional<java.util.List<java.lang.String>> withoutValidation,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue
+			java.util.Optional<java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum>> withEnum,
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.QueryValue
 			java.util.Optional<java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String>> withEmail,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue

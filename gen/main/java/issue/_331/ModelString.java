@@ -8,6 +8,10 @@ public class ModelString {
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.lang.String> withoutValidation;
 
+	@com.fasterxml.jackson.annotation.JsonProperty("withEnum")
+	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+	private java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> withEnum;
+
 	@com.fasterxml.jackson.annotation.JsonProperty("withEmail")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	private java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String> withEmail;
@@ -40,6 +44,7 @@ public class ModelString {
 		}
 		ModelString other = (ModelString) object;
 		return java.util.Objects.equals(withoutValidation, other.withoutValidation)
+				&& java.util.Objects.equals(withEnum, other.withEnum)
 				&& java.util.Objects.equals(withEmail, other.withEmail)
 				&& java.util.Objects.equals(withPattern, other.withPattern)
 				&& java.util.Objects.equals(withMinimum, other.withMinimum)
@@ -49,7 +54,7 @@ public class ModelString {
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(withoutValidation, withEmail, withPattern, withMinimum, withMaximum, withMinimumAndMaximum);
+		return java.util.Objects.hash(withoutValidation, withEnum, withEmail, withPattern, withMinimum, withMaximum, withMinimumAndMaximum);
 	}
 
 	@Override
@@ -57,6 +62,7 @@ public class ModelString {
 		return new java.lang.StringBuilder()
 				.append("ModelString[")
 				.append("withoutValidation=").append(withoutValidation).append(",")
+				.append("withEnum=").append(withEnum).append(",")
 				.append("withEmail=").append(withEmail).append(",")
 				.append("withPattern=").append(withPattern).append(",")
 				.append("withMinimum=").append(withMinimum).append(",")
@@ -84,6 +90,26 @@ public class ModelString {
 	public ModelString removeWithoutValidationItem(java.lang.String withoutValidationItem) {
 		if (this.withoutValidation != null) {
 			this.withoutValidation.remove(withoutValidationItem);
+		}
+		return this;
+	}
+
+	public ModelString withEnum(java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> newWithEnum) {
+		this.withEnum = newWithEnum;
+		return this;
+	}
+	
+	public ModelString addWithEnumItem(StringWithEnum withEnumItem) {
+		if (this.withEnum == null) {
+			this.withEnum = new java.util.ArrayList<>();
+		}
+		this.withEnum.add(withEnumItem);
+		return this;
+	}
+
+	public ModelString removeWithEnumItem(StringWithEnum withEnumItem) {
+		if (this.withEnum != null) {
+			this.withEnum.remove(withEnumItem);
 		}
 		return this;
 	}
@@ -196,6 +222,14 @@ public class ModelString {
 
 	public void setWithoutValidation(java.util.List<java.lang.String> newWithoutValidation) {
 		this.withoutValidation = newWithoutValidation;
+	}
+
+	public java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> getWithEnum() {
+		return withEnum;
+	}
+
+	public void setWithEnum(java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid StringWithEnum> newWithEnum) {
+		this.withEnum = newWithEnum;
 	}
 
 	public java.util.List<java.lang.@jakarta.validation.constraints.NotNull @jakarta.validation.constraints.Email String> getWithEmail() {
