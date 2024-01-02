@@ -501,6 +501,12 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (dateTimeRelaxed && (parameter.isDate || parameter.isDateTime)) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
+		if (parameter.isArray
+				&& parameter.items.allowableValues != null
+				&& !parameter.items.allowableValues.isEmpty()) {
+			parameter.dataType = parameter.datatypeWithEnum = parameter.dataType.replace("@javax.validation.Valid ",
+					"");
+		}
 		parameter.vendorExtensions.put("x-datatype-without-validation", removeValidation(parameter.dataType));
 	}
 
@@ -520,6 +526,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		if (openApiNullable && !property.required && property.isNullable) {
 			property.getVendorExtensions().put("x-jackson-nullable", true);
+		}
+		if (property.isArray && property.items.allowableValues != null && !property.items.allowableValues.isEmpty()) {
+			property.dataType = property.datatypeWithEnum = property.dataType.replace("@javax.validation.Valid ", "");
 		}
 	}
 
