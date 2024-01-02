@@ -64,7 +64,7 @@ public interface DefaultApiClient {
 			java.util.List<java.lang.String> withoutValidation,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "withEnum")
-			java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringWithEnum> withEnum,
+			java.util.List<@javax.validation.constraints.NotNull StringWithEnum> withEnum,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "withEmail")
 			java.util.List<java.lang.@javax.validation.constraints.NotNull @javax.validation.constraints.Email String> withEmail,

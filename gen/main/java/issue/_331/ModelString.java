@@ -18,7 +18,7 @@ public class ModelString {
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_WITH_ENUM)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-	private java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringWithEnum> withEnum;
+	private java.util.List<@javax.validation.constraints.NotNull StringWithEnum> withEnum;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(JSON_PROPERTY_WITH_EMAIL)
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
@@ -102,7 +102,7 @@ public class ModelString {
 		return this;
 	}
 
-	public ModelString withEnum(java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringWithEnum> newWithEnum) {
+	public ModelString withEnum(java.util.List<@javax.validation.constraints.NotNull StringWithEnum> newWithEnum) {
 		this.withEnum = newWithEnum;
 		return this;
 	}
@@ -232,11 +232,11 @@ public class ModelString {
 		this.withoutValidation = newWithoutValidation;
 	}
 
-	public java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringWithEnum> getWithEnum() {
+	public java.util.List<@javax.validation.constraints.NotNull StringWithEnum> getWithEnum() {
 		return withEnum;
 	}
 
-	public void setWithEnum(java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringWithEnum> newWithEnum) {
+	public void setWithEnum(java.util.List<@javax.validation.constraints.NotNull StringWithEnum> newWithEnum) {
 		this.withEnum = newWithEnum;
 	}
 
