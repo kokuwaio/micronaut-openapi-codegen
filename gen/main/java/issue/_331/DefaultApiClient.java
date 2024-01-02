@@ -7,7 +7,7 @@ public interface DefaultApiClient {
 	java.lang.String PATH_COMPLEX = "/complex?{&array*}{&set*}";
 	java.lang.String PATH_INTEGER = "/integer?{&withoutValidation*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}";
 	java.lang.String PATH_NUMBER = "/number?{&withoutValidation*}{&withMinimum*}{&withMinimumExclusiveFalse*}{&withMinimumExclusiveTrue*}{&withMaximum*}{&withMaximumExclusiveFalse*}{&withMaximumExclusiveTrue*}";
-	java.lang.String PATH_STRING = "/string?{&withoutValidation*}{&withEmail*}{&withPattern*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}";
+	java.lang.String PATH_STRING = "/string?{&withoutValidation*}{&withEnum*}{&withEmail*}{&withPattern*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}";
 
 	@io.micronaut.http.annotation.Get(PATH_COMPLEX)
 	io.micronaut.http.HttpResponse<Object> complex(
@@ -62,6 +62,9 @@ public interface DefaultApiClient {
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "withoutValidation")
 			java.util.List<java.lang.String> withoutValidation,
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.QueryValue(value = "withEnum")
+			java.util.List<@javax.validation.constraints.NotNull @javax.validation.Valid StringWithEnum> withEnum,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "withEmail")
 			java.util.List<java.lang.@javax.validation.constraints.NotNull @javax.validation.constraints.Email String> withEmail,

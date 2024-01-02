@@ -33,6 +33,12 @@ paths:
             type: array
             items:
               $ref: "#/components/schemas/StringWithoutValidation"
+        - name: withEnum
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/StringWithEnum"
         - name: withEmail
           in: query
           schema:
@@ -206,6 +212,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/StringWithoutValidation"
+        withEnum:
+          type: array
+          items:
+            $ref: "#/components/schemas/StringWithEnum"
         withEmail:
           type: array
           items:
@@ -279,6 +289,9 @@ components:
     StringWithoutValidation:
       type: string
       nullable: true
+    StringWithEnum:
+      type: string
+      enum: [A, B]
     StringWithEmail:
       type: string
       format: email
