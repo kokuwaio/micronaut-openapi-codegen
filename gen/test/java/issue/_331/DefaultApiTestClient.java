@@ -53,11 +53,14 @@ public interface DefaultApiTestClient {
 			@io.micronaut.http.annotation.QueryValue(value = "withMaximumExclusiveTrue")
 			java.util.List<java.lang.Double> withMaximumExclusiveTrue);
 
-	@io.micronaut.http.annotation.Get("/string?{&withoutValidation*}{&withEmail*}{&withPattern*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}")
+	@io.micronaut.http.annotation.Get("/string?{&withoutValidation*}{&withEnum*}{&withEmail*}{&withPattern*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}")
 	io.micronaut.http.HttpResponse<?> string(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "withoutValidation")
 			java.util.List<java.lang.String> withoutValidation,
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.QueryValue(value = "withEnum")
+			java.util.List<StringWithEnum> withEnum,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "withEmail")
 			java.util.List<java.lang.String> withEmail,
