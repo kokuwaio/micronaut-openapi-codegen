@@ -93,6 +93,13 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(OptionalFeatures.USE_OPTIONAL, false));
 	}
 
+	@DisplayName("api without removing enum prefix")
+	@Test
+	void apiWithoutRemovingEnumPrefix() {
+		generate(configurator(SPEC_API, "testapi.remove_enum_prefix")
+				.addAdditionalProperty(MicronautCodegen.REMOVE_ENUM_VALUE_PREFIX, false));
+	}
+
 	@DisplayName("security with defaults for server")
 	@Test
 	void securityServer() {
@@ -154,6 +161,13 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 	void modelPojoWithConstants() {
 		generate(configurator(SPEC_MODEL, "testmodel.micronaut_pojo_constants")
 				.addAdditionalProperty(MicronautCodegen.GENERATE_CONSTANTS, true));
+	}
+
+	@DisplayName("model pojo without removing enum prefix")
+	@Test
+	void modelPojoWithoutRemovingEnumPrefix() {
+		generate(configurator(SPEC_MODEL, "testmodel.remove_enum_prefix")
+				.addAdditionalProperty(MicronautCodegen.REMOVE_ENUM_VALUE_PREFIX, true));
 	}
 
 	@DisplayName("model records without JsonNullable")

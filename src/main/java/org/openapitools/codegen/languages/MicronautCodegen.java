@@ -54,6 +54,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String GENERATE_EXAMPLES = "generateExamples";
 	public static final String GENERATE_CONSTANTS = "generateConstants";
 	public static final String SEALED = "sealed";
+	public static final String REMOVE_ENUM_VALUE_PREFIX = "removeEnumValuePrefix";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
@@ -77,6 +78,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean record = false;
 	private boolean pageable = false;
 	private boolean sealed = true;
+	private boolean removeEnumValuePrefix = true;
 
 	public MicronautCodegen() {
 
@@ -103,6 +105,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newString(SOURCE_FOLDER, SOURCE_FOLDER_DESC));
 		cliOptions.add(CliOption.newString("testFolder", "test folder for generated code"));
+		cliOptions.add(CliOption.newBoolean(REMOVE_ENUM_VALUE_PREFIX, "Remove value prefix", removeEnumValuePrefix));
 
 		// there is no documentation template yet
 
@@ -127,6 +130,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(GENERATE_CONSTANTS, generateConstants);
 		additionalProperties.put(SEALED, sealed);
 		additionalProperties.put(RECORD, record);
+		additionalProperties.put(REMOVE_ENUM_VALUE_PREFIX, removeEnumValuePrefix);
 		additionalProperties.put("curly", "{");
 
 		// add custom type mappings
@@ -247,6 +251,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(GENERATE_CONSTANTS)) {
 			generateConstants = convertPropertyToBooleanAndWriteBack(GENERATE_CONSTANTS);
+		}
+		if (additionalProperties.containsKey(REMOVE_ENUM_VALUE_PREFIX)) {
+			removeEnumValuePrefix = convertPropertyToBooleanAndWriteBack(REMOVE_ENUM_VALUE_PREFIX);
 		}
 
 		// we do not generate projects, only api, set source and test folder
