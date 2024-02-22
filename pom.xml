@@ -249,7 +249,7 @@
 						<configuration>
 							<compilerArgument>-Xlint:none</compilerArgument>
 							<skip>${skipTests}</skip>
-							<compilerArgument>-Xlint:all,-unchecked,-rawtypes,-serial</compilerArgument>
+							<compilerArgument>-Xlint:all,-unchecked,-rawtypes,-serial,-processing</compilerArgument>
 						</configuration>
 					</execution>
 				</executions>
