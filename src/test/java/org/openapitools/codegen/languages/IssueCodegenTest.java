@@ -54,6 +54,12 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(CodegenConstants.REMOVE_ENUM_VALUE_PREFIX, "false"));
 	}
 
+	@DisplayName("api parameter with snake_case")
+	@Test
+	void apiParamWithSnakeCase() {
+		generate(configurator("src/test/resources/openapi/issue-366.yaml", "issue._366"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);

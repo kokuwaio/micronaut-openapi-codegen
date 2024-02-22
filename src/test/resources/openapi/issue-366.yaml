@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/366>
+  version: "1"
+paths:
+  /doIt:
+    get:
+      operationId: doIt
+      parameters:
+        - name: my_query_param
+          required: true
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/MyEntity"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MyEntity"
+components:
+  schemas:
+    MyEntity:
+      type: string
