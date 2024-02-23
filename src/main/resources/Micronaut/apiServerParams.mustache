@@ -5,7 +5,7 @@
 {{/useOptional}}{{#useOptional}}			@{{type.Nonnull}}
 {{/useOptional}}{{/required}}{{#isBodyParam}}			@io.micronaut.http.annotation.Body
 {{/isBodyParam}}{{#isFormParam}}{{^isFile}}			@io.micronaut.http.annotation.Part(value = "{{baseName}}")
-{{/isFile}}{{/isFormParam}}{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue{{^isArray}}(value = "{{baseName}}"{{^isContainer}}{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}}{{/isContainer}}){{/isArray}}
+{{/isFile}}{{/isFormParam}}{{#isQueryParam}}			@io.micronaut.http.annotation.QueryValue(value = "{{baseName}}"{{^isContainer}}{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}}{{/isContainer}})
 {{/isQueryParam}}{{#isCookieParam}}			@io.micronaut.http.annotation.CookieValue(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isCookieParam}}{{#isPathParam}}			@io.micronaut.http.annotation.PathVariable(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})
 {{/isPathParam}}{{#isHeaderParam}}			@io.micronaut.http.annotation.Header(value = "{{baseName}}"{{#defaultValue}}, defaultValue = "{{defaultValue}}"{{/defaultValue}})

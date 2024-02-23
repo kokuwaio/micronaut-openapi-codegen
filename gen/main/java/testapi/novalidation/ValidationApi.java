@@ -60,13 +60,13 @@ public interface ValidationApi {
 	@io.micronaut.http.annotation.Get("/validation/list/max")
 	io.micronaut.http.HttpResponse<Object> validationListMax(
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "list")
 			java.util.List<java.lang.Integer> list);
 
 	@io.micronaut.http.annotation.Get("/validation/list/min")
 	io.micronaut.http.HttpResponse<Object> validationListMin(
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "list")
 			java.util.List<java.lang.Integer> list);
 
 	@io.micronaut.http.annotation.Post("/validation/list/model")
@@ -79,7 +79,7 @@ public interface ValidationApi {
 	@io.micronaut.http.annotation.Post("/validation/list/range")
 	io.micronaut.http.HttpResponse<Object> validationListRange(
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "list")
 			java.util.List<java.lang.Integer> list);
 
 	@io.micronaut.http.annotation.Get("/validation/long/max")

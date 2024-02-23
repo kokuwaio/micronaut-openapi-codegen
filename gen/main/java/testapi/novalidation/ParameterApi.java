@@ -179,13 +179,13 @@ public interface ParameterApi {
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	io.micronaut.http.HttpResponse<ParameterModel> paramQueryMultipleLists(
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "a")
 			java.util.Optional<java.util.List<java.lang.String>> a,
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "b")
 			java.util.Optional<java.util.List<java.util.UUID>> b,
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "c")
 			java.util.Optional<java.util.List<java.lang.Integer>> c);
 
 	@io.micronaut.http.annotation.Get("/param/query/number")

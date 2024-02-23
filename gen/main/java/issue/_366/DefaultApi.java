@@ -8,6 +8,6 @@ public interface DefaultApi {
 	@io.micronaut.http.annotation.Produces({ "application/json" })
 	io.micronaut.http.HttpResponse<java.util.List<java.lang.String>> doIt(
 			@io.micronaut.core.annotation.NonNull
-			@io.micronaut.http.annotation.QueryValue
+			@io.micronaut.http.annotation.QueryValue(value = "my_query_param")
 			java.util.List<java.lang.@jakarta.validation.constraints.NotNull String> myQueryParam);
 }
