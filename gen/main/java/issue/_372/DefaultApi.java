@@ -10,19 +10,14 @@ public interface DefaultApi {
 	io.micronaut.http.HttpResponse<Model> doIt(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "string")
-			@jakarta.validation.constraints.Size(min = 3)
-			java.util.Optional<java.lang.String> string,
+			java.util.Optional<java.lang.@jakarta.validation.constraints.Size(min = 3) String> string,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "stringWithDefault")
-			@jakarta.validation.constraints.Size(min = 3)
-			java.util.Optional<java.lang.String> stringWithDefault,
+			java.util.Optional<java.lang.@jakarta.validation.constraints.Size(min = 3) String> stringWithDefault,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "integer")
-			@jakarta.validation.constraints.Min(1)
-			@jakarta.validation.constraints.Max(3)
-			java.util.Optional<java.lang.Integer> integer,
+			java.util.Optional<java.lang.@jakarta.validation.constraints.Min(1) @jakarta.validation.constraints.Max(3) Integer> integer,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			@jakarta.validation.Valid
-			java.util.Optional<Model> model);
+			java.util.Optional<@jakarta.validation.Valid Model> model);
 }

@@ -26,8 +26,7 @@ public interface ParameterApi {
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramBodyOptional(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
-			@jakarta.validation.Valid
-			java.util.Optional<ParameterModelVO> parameterModelVO);
+			java.util.Optional<@jakarta.validation.Valid ParameterModelVO> parameterModelVO);
 
 	@io.micronaut.http.annotation.Post("/param/body/required")
 	@io.micronaut.http.annotation.Consumes({ "application/json" })
