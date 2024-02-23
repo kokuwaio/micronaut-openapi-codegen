@@ -60,6 +60,12 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator("src/test/resources/openapi/issue-366.yaml", "issue._366"));
 	}
 
+	@DisplayName("api with optional and validation annotations")
+	@Test
+	void apiWithParametersWithOptionalAndValidation() {
+		generate(configurator("src/test/resources/openapi/issue-372.yaml", "issue._372"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);
