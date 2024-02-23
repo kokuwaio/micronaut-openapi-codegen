@@ -1,0 +1,17 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/363>
+  version: "1"
+paths: {}
+components:
+  schemas:
+    EnumWithoutPrefix:
+      type: string
+      enum:
+        - foo
+        - bar
+    EnumWithPrefix:
+      type: string
+      enum:
+        - aaa_foo
+        - aaa_bar

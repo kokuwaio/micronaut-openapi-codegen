@@ -40,6 +40,20 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator.addAdditionalProperty("clientId", "test"));
 	}
 
+	@DisplayName("enum with removeEnumValuePrefix=true")
+	@Test
+	void enumWithRemoveEnumValuePrefixTrue() {
+		generate(configurator("src/test/resources/openapi/issue-363.yaml", "issue._363._true")
+				.addAdditionalProperty(CodegenConstants.REMOVE_ENUM_VALUE_PREFIX, "true"));
+	}
+
+	@DisplayName("enum with removeEnumValuePrefix=false")
+	@Test
+	void enumWithRemoveEnumValuePrefixFalse() {
+		generate(configurator("src/test/resources/openapi/issue-363.yaml", "issue._363._false")
+				.addAdditionalProperty(CodegenConstants.REMOVE_ENUM_VALUE_PREFIX, "false"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);

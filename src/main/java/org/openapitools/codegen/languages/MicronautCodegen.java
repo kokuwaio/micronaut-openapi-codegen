@@ -2,6 +2,8 @@ package org.openapitools.codegen.languages;
 
 import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
 import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
+import static org.openapitools.codegen.CodegenConstants.REMOVE_ENUM_VALUE_PREFIX;
+import static org.openapitools.codegen.CodegenConstants.REMOVE_ENUM_VALUE_PREFIX_DESC;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER_DESC;
 
@@ -103,6 +105,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newString(SOURCE_FOLDER, SOURCE_FOLDER_DESC));
 		cliOptions.add(CliOption.newString("testFolder", "test folder for generated code"));
+		cliOptions.add(
+				CliOption.newBoolean(REMOVE_ENUM_VALUE_PREFIX, REMOVE_ENUM_VALUE_PREFIX_DESC, removeEnumValuePrefix));
 
 		// there is no documentation template yet
 
@@ -127,6 +131,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(GENERATE_CONSTANTS, generateConstants);
 		additionalProperties.put(SEALED, sealed);
 		additionalProperties.put(RECORD, record);
+		additionalProperties.put(REMOVE_ENUM_VALUE_PREFIX, removeEnumValuePrefix);
 		additionalProperties.put("curly", "{");
 
 		// add custom type mappings
@@ -247,6 +252,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		}
 		if (additionalProperties.containsKey(GENERATE_CONSTANTS)) {
 			generateConstants = convertPropertyToBooleanAndWriteBack(GENERATE_CONSTANTS);
+		}
+		if (additionalProperties.containsKey(REMOVE_ENUM_VALUE_PREFIX)) {
+			removeEnumValuePrefix = convertPropertyToBooleanAndWriteBack(REMOVE_ENUM_VALUE_PREFIX);
 		}
 
 		// we do not generate projects, only api, set source and test folder
