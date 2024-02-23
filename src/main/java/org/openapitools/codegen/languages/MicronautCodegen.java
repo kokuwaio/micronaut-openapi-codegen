@@ -602,13 +602,27 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (dateTimeRelaxed && (parameter.isDate || parameter.isDateTime)) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
+		parameter.vendorExtensions.put("x-datatype-without-validation", removeValidation(parameter.dataType));
 		if (parameter.isArray
 				&& parameter.items.allowableValues != null
 				&& !parameter.items.allowableValues.isEmpty()) {
-			parameter.dataType = parameter.datatypeWithEnum = parameter.dataType.replace("@jakarta.validation.Valid ",
+			parameter.dataType = parameter.datatypeWithEnum = parameter.dataType.replace(
+					"@jakarta.validation.Valid ",
 					"");
 		}
-		parameter.vendorExtensions.put("x-datatype-without-validation", removeValidation(parameter.dataType));
+		if (useOptional
+				&& !additionalProperties.containsKey(CLIENT_ID)
+				&& !parameter.required
+				&& parameter.defaultValue == null) {
+			var annotations = getBeanValidation(parameter).stream().map(s -> s + " ").collect(Collectors.joining());
+			var type = parameter.dataType;
+			var index = type.lastIndexOf(".");
+			parameter.dataType = parameter.datatypeWithEnum = "java.util.Optional<"
+					+ (index == -1
+							? annotations + type
+							: type.substring(0, index + 1) + annotations + type.substring(index + 1))
+					+ ">";
+		}
 	}
 
 	@Override
@@ -902,6 +916,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	private List<String> getBeanValidation(Schema<?> schema) {
 		var annotations = new ArrayList<String>();
+		if (!useBeanValidation) {
+			return annotations;
+		}
 		if (!ModelUtils.isNullable(schema)) {
 			annotations.add("@jakarta.validation.constraints.NotNull");
 		}
@@ -943,6 +960,53 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				annotations.add("@jakarta.validation.constraints.Max(" + schema.getMaximum().longValue() + ")");
 			}
 		} else if (ModelUtils.isTypeObjectSchema(schema) || schema.getType() == null) {
+			annotations.add("@jakarta.validation.Valid");
+		}
+		return annotations;
+	}
+
+	private List<String> getBeanValidation(CodegenParameter schema) {
+		var annotations = new ArrayList<String>();
+		if (!useBeanValidation) {
+			return annotations;
+		}
+		if (schema.isString) {
+			if (schema.pattern != null && !schema.pattern.isBlank()) {
+				annotations.add("@jakarta.validation.constraints.Pattern("
+						+ "regexp = \"" + schema.pattern.replace("\\", "\\\\") + "\")");
+			}
+			if (schema.isEmail) {
+				annotations.add("@jakarta.validation.constraints.Email");
+			}
+			if (schema.minLength != null && schema.maxLength != null) {
+				annotations.add("@jakarta.validation.constraints.Size("
+						+ "min = " + schema.minLength + ", "
+						+ "max = " + schema.maxLength + ")");
+			} else if (schema.minLength != null) {
+				annotations.add("@jakarta.validation.constraints.Size(min = " + schema.minLength + ")");
+			} else if (schema.maxLength != null) {
+				annotations.add("@jakarta.validation.constraints.Size(max = " + schema.maxLength + ")");
+			}
+
+		} else if (schema.isNumber) {
+			if (schema.minimum != null) {
+				annotations.add("@jakarta.validation.constraints.DecimalMin("
+						+ "value = \"" + schema.minimum + "\", "
+						+ "inclusive = " + !Optional.ofNullable(schema.getExclusiveMinimum()).orElse(false) + ")");
+			}
+			if (schema.maximum != null) {
+				annotations.add("@jakarta.validation.constraints.DecimalMax("
+						+ "value = \"" + schema.maximum + "\", "
+						+ "inclusive = " + !Optional.ofNullable(schema.getExclusiveMaximum()).orElse(false) + ")");
+			}
+		} else if (schema.isInteger) {
+			if (schema.minimum != null) {
+				annotations.add("@jakarta.validation.constraints.Min(" + Long.parseLong(schema.minimum) + ")");
+			}
+			if (schema.maximum != null) {
+				annotations.add("@jakarta.validation.constraints.Max(" + Long.parseLong(schema.maximum) + ")");
+			}
+		} else if (schema.isModel) {
 			annotations.add("@jakarta.validation.Valid");
 		}
 		return annotations;

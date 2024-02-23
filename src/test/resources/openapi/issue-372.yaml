@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/372>
+  version: "1"
+paths:
+  /doIt:
+    get:
+      operationId: doIt
+      parameters:
+        - name: string
+          in: query
+          required: false
+          schema:
+            type: string
+            minLength: 3
+        - name: stringWithDefault
+          in: query
+          required: false
+          schema:
+            type: string
+            minLength: 3
+        - name: integer
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 3
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Model"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+components:
+  schemas:
+    Model:
+      type: object
+      properties:
+        string:
+          type: string
+          minLength: 3
+        integer:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 3
