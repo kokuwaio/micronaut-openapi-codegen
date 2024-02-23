@@ -40,6 +40,12 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator.addAdditionalProperty("clientId", "test"));
 	}
 
+	@DisplayName("model with simple inheritance has problems with deserializaion")
+	@Test
+	void modelDeserializaion() {
+		generate(configurator("src/test/resources/openapi/issue-356.yaml", "issue._356"));
+	}
+
 	@DisplayName("enum with removeEnumValuePrefix=true")
 	@Test
 	void enumWithRemoveEnumValuePrefixTrue() {
