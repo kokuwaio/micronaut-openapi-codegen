@@ -602,13 +602,20 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (dateTimeRelaxed && (parameter.isDate || parameter.isDateTime)) {
 			addSupportingFile(sourceFolder, invokerPackage, "TimeTypeConverterRegistrar");
 		}
+		parameter.vendorExtensions.put("x-datatype-without-validation", removeValidation(parameter.dataType));
 		if (parameter.isArray
 				&& parameter.items.allowableValues != null
 				&& !parameter.items.allowableValues.isEmpty()) {
-			parameter.dataType = parameter.datatypeWithEnum = parameter.dataType.replace("@jakarta.validation.Valid ",
+			parameter.dataType = parameter.datatypeWithEnum = parameter.dataType.replace(
+					"@jakarta.validation.Valid ",
 					"");
 		}
-		parameter.vendorExtensions.put("x-datatype-without-validation", removeValidation(parameter.dataType));
+		if (useOptional
+				&& !additionalProperties.containsKey(CLIENT_ID)
+				&& !parameter.required
+				&& parameter.defaultValue == null) {
+			parameter.dataType = parameter.datatypeWithEnum = "java.util.Optional<" + parameter.dataType + ">";
+		}
 	}
 
 	@Override
@@ -902,6 +909,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	private List<String> getBeanValidation(Schema<?> schema) {
 		var annotations = new ArrayList<String>();
+		if (!useBeanValidation) {
+			return annotations;
+		}
 		if (!ModelUtils.isNullable(schema)) {
 			annotations.add("@jakarta.validation.constraints.NotNull");
 		}
