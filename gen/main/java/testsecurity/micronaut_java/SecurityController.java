@@ -27,7 +27,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Controller
 public class SecurityController {
     /**

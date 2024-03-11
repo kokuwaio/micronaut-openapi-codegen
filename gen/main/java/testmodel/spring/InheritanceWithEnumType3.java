@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  */
 @java.lang.SuppressWarnings("all")
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
 
 
@@ -37,7 +37,7 @@ public class InheritanceWithEnumType3 extends InheritanceWithEnumType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return true;
+    return super.equals(o);
   }
 
   @Override

@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = InheritanceWithEnumType3.class, name = "Inheritance3")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class InheritanceWithEnumType {
 
   private InheritanceWithEnumTypeEnum type;

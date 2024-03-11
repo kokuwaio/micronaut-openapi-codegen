@@ -30,7 +30,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("InheritanceWithoutType2")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class InheritanceWithoutType2 extends InheritanceWithoutType {
     public static final String JSON_PROPERTY_G = "g";
