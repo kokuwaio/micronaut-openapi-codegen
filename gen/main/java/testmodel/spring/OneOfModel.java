@@ -18,6 +18,6 @@ import java.util.*;
 import javax.annotation.Generated;
 
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public interface OneOfModel {
 }

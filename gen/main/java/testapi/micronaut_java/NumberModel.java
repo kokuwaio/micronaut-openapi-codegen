@@ -30,7 +30,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("NumberModel")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class NumberModel {
     public static final String JSON_PROPERTY_BAR = "bar";

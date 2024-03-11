@@ -30,7 +30,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("InheritanceWithStringType1")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class InheritanceWithStringType1 extends InheritanceWithStringType {
     public static final String JSON_PROPERTY_B = "b";

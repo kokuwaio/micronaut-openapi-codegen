@@ -31,7 +31,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("InheritanceWithEnumType2")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
     public static final String JSON_PROPERTY_E = "e";
