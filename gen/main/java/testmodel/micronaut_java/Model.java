@@ -73,7 +73,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("Model")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class Model {
     public static final String JSON_PROPERTY_ID = "id";

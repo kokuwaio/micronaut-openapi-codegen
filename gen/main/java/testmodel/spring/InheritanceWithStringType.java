@@ -31,7 +31,7 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = InheritanceWithStringType2.class, name = "Inheritance2")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class InheritanceWithStringType {
 
   private String type;
