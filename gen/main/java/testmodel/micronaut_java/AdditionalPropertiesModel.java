@@ -32,7 +32,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("AdditionalPropertiesModel")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropertiesModelValue> {
     public static final String JSON_PROPERTY_ID = "id";

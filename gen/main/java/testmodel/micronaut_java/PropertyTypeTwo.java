@@ -29,7 +29,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("PropertyTypeTwo")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class PropertyTypeTwo {
     /**

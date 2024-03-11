@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = OneOfImplementor2.class, name = "Implementation2")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public interface OneOfInterface {
     public String getType();
 }

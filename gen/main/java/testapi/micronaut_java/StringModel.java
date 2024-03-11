@@ -29,7 +29,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("StringModel")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class StringModel {
     public static final String JSON_PROPERTY_FOO = "foo";

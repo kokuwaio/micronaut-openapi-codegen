@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 @java.lang.SuppressWarnings("all")
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class OneOfImplementor1 implements OneOfInterface {
 
   private String property;

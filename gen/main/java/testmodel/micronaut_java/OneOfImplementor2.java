@@ -30,7 +30,7 @@ import javax.annotation.Generated;
 })
 @JsonTypeName("OneOfImplementor2")
 @java.lang.SuppressWarnings("all")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", comments = "Generator version: stable")
 @Introspected
 public class OneOfImplementor2 {
     public static final String JSON_PROPERTY_PROPERTY = "property";

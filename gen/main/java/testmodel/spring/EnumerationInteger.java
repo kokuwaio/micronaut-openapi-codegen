@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 @java.lang.SuppressWarnings("all")
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public enum EnumerationInteger {
   
   NUMBER_MINUS_2147483648(-2147483648),

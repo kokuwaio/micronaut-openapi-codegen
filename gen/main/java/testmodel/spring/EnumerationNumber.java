@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 @java.lang.SuppressWarnings("all")
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public enum EnumerationNumber {
   
   NUMBER_MINUS_1(new BigDecimal("-1")),
