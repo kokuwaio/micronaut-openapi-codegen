@@ -88,12 +88,10 @@
 						<path>
 							<groupId>io.micronaut</groupId>
 							<artifactId>micronaut-inject-java</artifactId>
-							<version>${version.io.micronaut.platform}</version>
 						</path>
 						<path>
 							<groupId>io.micronaut.serde</groupId>
 							<artifactId>micronaut-serde-processor</artifactId>
-							<version>${version.io.micronaut.serde}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
