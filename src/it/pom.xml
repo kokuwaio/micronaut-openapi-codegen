@@ -29,9 +29,7 @@
 
 		<!-- dependencies -->
 
-		<version.io.micronaut.platform>@version.io.micronaut.platform@</version.io.micronaut.platform>
-		<version.io.micronaut.serde>2.8.1</version.io.micronaut.serde>
-		<version.io.micronaut.validation>4.4.0</version.io.micronaut.validation>
+		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
 		<version.org.openapitools.generator>@version.org.openapitools.generator@</version.org.openapitools.generator>
 		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
 
@@ -50,23 +48,9 @@
 
 			<!-- micronaut -->
 			<dependency>
-				<groupId>io.micronaut.serde</groupId>
-				<artifactId>micronaut-serde-bom</artifactId>
-				<version>${version.io.micronaut.serde}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>io.micronaut.validation</groupId>
-				<artifactId>micronaut-validation-bom</artifactId>
-				<version>${version.io.micronaut.validation}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
 				<groupId>io.micronaut.platform</groupId>
 				<artifactId>micronaut-platform</artifactId>
-				<version>${version.io.micronaut.platform}</version>
+				<version>${version.io.micronaut}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
