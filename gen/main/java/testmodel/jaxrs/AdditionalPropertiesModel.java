@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropertiesModelValue>  {
-  private @Valid String id;
+  private String id;
 
   /**
    **/

@@ -66,12 +66,12 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 	// fluent
 {{/-first}}
 
-	public {{classname}} {{name}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
-		this.{{name}} = new{{nameInCamelCase}};
+	public {{classname}} {{name}}({{>modelPropertyType}} new{{nameInPascalCase}}) {
+		this.{{name}} = new{{nameInPascalCase}};
 		return this;
 	}{{#isContainer}}
 	
-	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInCamelCase}}Item({{#isMap}}java.lang.String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
+	public {{classname}} {{#isArray}}add{{/isArray}}{{#isMap}}put{{/isMap}}{{nameInPascalCase}}Item({{#isMap}}java.lang.String key, {{/isMap}}{{{items.datatypeWithEnum}}} {{name}}Item) {
 		{{#isNullable}}
 			{{#vendorExtensions.x-jackson-nullable}}
 		if (this.{{name}} == null || !this.{{name}}.isPresent()) {
@@ -95,7 +95,7 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		return this;
 	}
 
-	public {{classname}} remove{{nameInCamelCase}}Item({{#isMap}}java.lang.String key{{/isMap}}{{^isMap}}{{{items.datatypeWithEnum}}} {{name}}Item{{/isMap}}) {
+	public {{classname}} remove{{nameInPascalCase}}Item({{#isMap}}java.lang.String key{{/isMap}}{{^isMap}}{{{items.datatypeWithEnum}}} {{name}}Item{{/isMap}}) {
 		{{#isNullable}}
 			{{#vendorExtensions.x-jackson-nullable}}
 		if (this.{{name}} != null && this.{{name}}.isPresent()) {
@@ -135,8 +135,8 @@ public {{#discriminator}}abstract {{/discriminator}}class {{classname}}{{^parent
 		return {{name}};
 	}
 
-	public void {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}}) {
-		this.{{name}} = new{{nameInCamelCase}};
+	public void {{setter}}({{>modelPropertyType}} new{{nameInPascalCase}}) {
+		this.{{name}} = new{{nameInPascalCase}};
 	}{{/vars}}{{#vars}}{{#isEnum}}
 
 {{>modelEnum}}{{/isEnum}}{{/vars}}
