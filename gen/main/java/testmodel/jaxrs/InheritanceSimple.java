@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class InheritanceSimple   {
-  private @Valid String foo;
+  private String foo;
 
   /**
    **/
@@ -26,8 +26,7 @@ public class InheritanceSimple   {
 
   
   @JsonProperty("foo")
-  @NotNull
-  public String getFoo() {
+  @NotNull public String getFoo() {
     return foo;
   }
 

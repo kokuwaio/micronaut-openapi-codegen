@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class InheritanceExtended   {
-  private @Valid String foo;
-  private @Valid String bar;
+  private String foo;
+  private String bar;
 
   /**
    **/
@@ -27,8 +27,7 @@ public class InheritanceExtended   {
 
   
   @JsonProperty("foo")
-  @NotNull
-  public String getFoo() {
+  @NotNull public String getFoo() {
     return foo;
   }
 
@@ -46,8 +45,7 @@ public class InheritanceExtended   {
 
   
   @JsonProperty("bar")
-  @NotNull
-  public String getBar() {
+  @NotNull public String getBar() {
     return bar;
   }
 

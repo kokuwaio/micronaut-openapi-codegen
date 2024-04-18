@@ -26,8 +26,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class OneOfInterface   {
-  private @Valid String type;
-  private @Valid BigDecimal property;
+  private String type;
+  private BigDecimal property;
 
   /**
    **/
@@ -56,7 +56,7 @@ public class OneOfInterface   {
 
   
   @JsonProperty("property")
-  public BigDecimal getProperty() {
+  @Valid public BigDecimal getProperty() {
     return property;
   }
 

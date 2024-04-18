@@ -29,37 +29,37 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class Model   {
-  private @Valid Integer id;
-  private @Valid Integer idWithExample;
-  private @Valid Integer idWithDefault = 32;
-  private @Valid String name;
-  private @Valid String nameWithExample;
-  private @Valid String nameWithDefault = "MyDefaultName";
-  private @Valid LocalDate date;
-  private @Valid LocalDate dateWithExample;
-  private @Valid OffsetDateTime dateTime;
-  private @Valid OffsetDateTime dateTimeWithExample;
-  private @Valid BigDecimal number;
-  private @Valid File binary;
-  private @Valid byte[] bytes;
-  private @Valid Object any = null;
+  private Integer id;
+  private Integer idWithExample;
+  private Integer idWithDefault = 32;
+  private String name;
+  private String nameWithExample;
+  private String nameWithDefault = "MyDefaultName";
+  private LocalDate date;
+  private LocalDate dateWithExample;
+  private OffsetDateTime dateTime;
+  private OffsetDateTime dateTimeWithExample;
+  private BigDecimal number;
+  private File binary;
+  private byte[] bytes;
+  private Object any = null;
   private @Valid List<String> array = new ArrayList<>();
-  private @Valid List<String> arrayWithExample;
+  private @Valid List<String> arrayWithExample = new ArrayList<>();
   private @Valid Set<String> set = new LinkedHashSet<>();
-  private @Valid Set<String> setWithExamples;
+  private @Valid Set<String> setWithExamples = new LinkedHashSet<>();
   private @Valid Map<String, String> map = new HashMap<>();
   private @Valid Map<String, String> mapWithExample = new HashMap<>();
-  private @Valid List<String> optionalArray;
-  private @Valid Set<String> optionalSet;
+  private @Valid List<String> optionalArray = new ArrayList<>();
+  private @Valid Set<String> optionalSet = new LinkedHashSet<>();
   private @Valid Map<String, String> optionalMap = new HashMap<>();
-  private @Valid String nullableString;
+  private String nullableString;
   private @Valid List<String> nullableArray;
   private @Valid Set<String> nullableSet;
-  private @Valid String defaultString = "defaultStringValue";
-  private @Valid Integer defaultInteger = 1234;
-  private @Valid Long defaultLong = 5678l;
-  private @Valid String defaultNullable = "defaultNullableValue";
-  private @Valid EnumerationModel referenedModel;
+  private String defaultString = "defaultStringValue";
+  private Integer defaultInteger = 1234;
+  private Long defaultLong = 5678l;
+  private String defaultNullable = "defaultNullableValue";
+  private EnumerationModel referenedModel;
 
   /**
    **/
@@ -124,8 +124,7 @@ public class Model   {
 
   
   @JsonProperty("name")
-  @NotNull
- @Size(max=36)  public String getName() {
+  @NotNull  @Size(max=36)public String getName() {
     return name;
   }
 
@@ -179,7 +178,7 @@ public class Model   {
 
   
   @JsonProperty("date")
-  public LocalDate getDate() {
+  @Valid public LocalDate getDate() {
     return date;
   }
 
@@ -197,7 +196,7 @@ public class Model   {
 
   
   @JsonProperty("dateWithExample")
-  public LocalDate getDateWithExample() {
+  @Valid public LocalDate getDateWithExample() {
     return dateWithExample;
   }
 
@@ -215,7 +214,7 @@ public class Model   {
 
   
   @JsonProperty("date-time")
-  public OffsetDateTime getDateTime() {
+  @Valid public OffsetDateTime getDateTime() {
     return dateTime;
   }
 
@@ -233,7 +232,7 @@ public class Model   {
 
   
   @JsonProperty("date-timeWithExample")
-  public OffsetDateTime getDateTimeWithExample() {
+  @Valid public OffsetDateTime getDateTimeWithExample() {
     return dateTimeWithExample;
   }
 
@@ -251,7 +250,7 @@ public class Model   {
 
   
   @JsonProperty("number")
-  public BigDecimal getNumber() {
+  @Valid public BigDecimal getNumber() {
     return number;
   }
 
@@ -269,7 +268,7 @@ public class Model   {
 
   
   @JsonProperty("binary")
-  public File getBinary() {
+  @Valid public File getBinary() {
     return binary;
   }
 
@@ -323,8 +322,7 @@ public class Model   {
 
   
   @JsonProperty("array")
-  @NotNull
-  public List<String> getArray() {
+  @NotNull public List<String> getArray() {
     return array;
   }
 
@@ -392,8 +390,7 @@ public class Model   {
 
   
   @JsonProperty("set")
-  @NotNull
-  public Set<String> getSet() {
+  @NotNull public Set<String> getSet() {
     return set;
   }
 
@@ -463,8 +460,7 @@ public class Model   {
 
   
   @JsonProperty("map")
-  @NotNull
-  public Map<String, String> getMap() {
+  @NotNull public Map<String, String> getMap() {
     return map;
   }
 
@@ -793,7 +789,7 @@ public class Model   {
 
   
   @JsonProperty("referenedModel")
-  public EnumerationModel getReferenedModel() {
+  @Valid public EnumerationModel getReferenedModel() {
     return referenedModel;
   }
 
