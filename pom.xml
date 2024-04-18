@@ -81,6 +81,14 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<!-- there is a clash between openapi 2.15 and micronaut 2.16 -->
+				<version>2.15.3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
 				<groupId>io.micronaut.platform</groupId>
 				<artifactId>micronaut-platform</artifactId>
 				<version>${version.io.micronaut}</version>
@@ -103,6 +111,12 @@
 			<artifactId>jackson-databind-nullable</artifactId>
 			<version>${version.org.openapitools.jackson.nullable}</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- micronaut -->
