@@ -1,4 +1,4 @@
-public enum {{#nameInCamelCase}}{{{nameInCamelCase}}}{{/nameInCamelCase}}{{^nameInCamelCase}}{{{classname}}}{{/nameInCamelCase}} {
+public enum {{#nameInPascalCase}}{{{nameInPascalCase}}}{{/nameInPascalCase}}{{^nameInPascalCase}}{{{classname}}}{{/nameInPascalCase}} {
 
 {{#allowableValues}}{{#enumVars}}	{{{name}}}({{{value}}}){{^-last}},
 {{/-last}}{{#-last}};{{/-last}}{{/enumVars}}{{/allowableValues}}
@@ -7,16 +7,16 @@ public enum {{#nameInCamelCase}}{{{nameInCamelCase}}}{{/nameInCamelCase}}{{^name
 
 	private final {{dataType}} value;
 
-	private {{#nameInCamelCase}}{{{nameInCamelCase}}}{{/nameInCamelCase}}{{^nameInCamelCase}}{{{classname}}}{{/nameInCamelCase}}({{dataType}} value) {
+	private {{#nameInPascalCase}}{{{nameInPascalCase}}}{{/nameInPascalCase}}{{^nameInPascalCase}}{{{classname}}}{{/nameInPascalCase}}({{dataType}} value) {
 		this.value = value;
 	}
 
 	@com.fasterxml.jackson.annotation.JsonCreator
-	public static {{#nameInCamelCase}}{{{nameInCamelCase}}}{{/nameInCamelCase}}{{^nameInCamelCase}}{{{classname}}}{{/nameInCamelCase}} toEnum({{dataType}} value) {
+	public static {{#nameInPascalCase}}{{{nameInPascalCase}}}{{/nameInPascalCase}}{{^nameInPascalCase}}{{{classname}}}{{/nameInPascalCase}} toEnum({{dataType}} value) {
 		return toOptional(value).orElseThrow(() -> new IllegalArgumentException("Unknown value '" + value + "'."));
 	}
 
-	public static java.util.Optional<{{#nameInCamelCase}}{{{nameInCamelCase}}}{{/nameInCamelCase}}{{^nameInCamelCase}}{{{classname}}}{{/nameInCamelCase}}> toOptional({{dataType}} value) {
+	public static java.util.Optional<{{#nameInPascalCase}}{{{nameInPascalCase}}}{{/nameInPascalCase}}{{^nameInCamelCase}}{{{classname}}}{{/nameInCamelCase}}> toOptional({{dataType}} value) {
 		return java.util.Arrays
 				.stream(values())
 				.filter(e -> e.value.equals(value))

@@ -39,7 +39,6 @@ import org.slf4j.LoggerFactory;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
@@ -657,7 +656,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		var schema = unaliasSchema(p);
 		var target = ModelUtils.isGenerateAliasAsModel() ? p : schema;
 		if (useBeanValidation && ModelUtils.isArraySchema(target)) {
-			var items = unaliasSchema(getSchemaItems((ArraySchema) target));
+			var items = unaliasSchema(ModelUtils.getSchemaItems(target));
 			var itemType = getTypeDeclaration(items);
 			var annotations = getBeanValidation(items).stream().map(n -> n + " ").collect(Collectors.joining());
 			var index = itemType.lastIndexOf(".");
@@ -776,7 +775,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	@Override
 	public String toEnumName(CodegenProperty property) {
-		return property.nameInCamelCase;
+		return property.nameInPascalCase;
 	}
 
 	@Override

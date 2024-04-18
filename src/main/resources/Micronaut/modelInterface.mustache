@@ -26,7 +26,7 @@ public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#interfaces}}{{#-fi
 {{^record}}	{{>modelPropertyType}} {{getter}}();
 
 	@com.fasterxml.jackson.annotation.JsonProperty({{#generateConstants}}JSON_PROPERTY_{{nameInSnakeCase}}{{/generateConstants}}{{^generateConstants}}"{{baseName}}"{{/generateConstants}})
-	void {{setter}}({{>modelPropertyType}} new{{nameInCamelCase}});{{/record}}{{#record}}	{{>modelPropertyType}} {{name}}();{{/record}}{{/vars}}{{#vars}}{{#isEnum}}
+	void {{setter}}({{>modelPropertyType}} new{{nameInPascalCase}});{{/record}}{{#record}}	{{>modelPropertyType}} {{name}}();{{/record}}{{/vars}}{{#vars}}{{#isEnum}}
 
 {{>modelEnum}}{{/isEnum}}{{/vars}}{{/hasVars}}
 }{{/vendorExtensions.x-is-one-of-interface}}{{#vendorExtensions.x-is-one-of-interface}}{{^discriminator}}@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION, visible = true)

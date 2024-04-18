@@ -20,17 +20,17 @@ public class {{classname}}TestExample {
 		{{classname}} exampleInstance = new {{classname}}();
 		{{#allVars}}
 		{{#isEnum}}
-		exampleInstance.set{{nameInCamelCase}}({{classname}}.{{datatypeWithEnum}}.toEnum({{{example}}}));
+		exampleInstance.set{{nameInPascalCase}}({{classname}}.{{datatypeWithEnum}}.toEnum({{{example}}}));
 		{{/isEnum}}
 		{{#isModel}}
 		{{^isPrimitiveType}}
-		exampleInstance.set{{nameInCamelCase}}({{{example}}});
+		exampleInstance.set{{nameInPascalCase}}({{{example}}});
 		{{/isPrimitiveType}}
-		exampleInstance.set{{nameInCamelCase}}({{baseType}}TestExample.build());
+		exampleInstance.set{{nameInPascalCase}}({{baseType}}TestExample.build());
 		{{/isModel}}
 		{{^isEnum}}
 		{{^isModel}}
-		exampleInstance.set{{nameInCamelCase}}({{>testExampleObjectPropertyExample}});
+		exampleInstance.set{{nameInPascalCase}}({{>testExampleObjectPropertyExample}});
 		{{/isModel}}
 		{{/isEnum}}
 		{{/allVars}}
