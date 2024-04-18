@@ -16,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class FirstModel   {
-  private @Valid String type;
-  private @Valid String first;
-  private @Valid SecondLevelModel secondLevel;
+  private String type;
+  private String first;
+  private SecondLevelModel secondLevel;
 
   /**
    **/
@@ -65,7 +65,7 @@ public class FirstModel   {
 
   
   @JsonProperty("secondLevel")
-  public SecondLevelModel getSecondLevel() {
+  @Valid public SecondLevelModel getSecondLevel() {
     return secondLevel;
   }
 

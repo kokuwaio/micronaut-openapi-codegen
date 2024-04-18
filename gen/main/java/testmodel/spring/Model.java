@@ -72,13 +72,13 @@ public class Model {
   private List<String> array = new ArrayList<>();
 
   @Valid
-  private List<String> arrayWithExample;
+  private List<String> arrayWithExample = new ArrayList<>();
 
   @Valid
   private Set<String> set = new LinkedHashSet<>();
 
   @Valid
-  private Set<String> setWithExamples;
+  private Set<String> setWithExamples = new LinkedHashSet<>();
 
   @Valid
   private Map<String, String> map = new HashMap<>();
@@ -87,10 +87,10 @@ public class Model {
   private Map<String, String> mapWithExample = new HashMap<>();
 
   @Valid
-  private List<String> optionalArray;
+  private List<String> optionalArray = new ArrayList<>();
 
   @Valid
-  private Set<String> optionalSet;
+  private Set<String> optionalSet = new LinkedHashSet<>();
 
   @Valid
   private Map<String, String> optionalMap = new HashMap<>();

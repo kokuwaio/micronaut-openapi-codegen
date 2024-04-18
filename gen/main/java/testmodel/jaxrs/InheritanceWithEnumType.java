@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithEnumType   {
-  private @Valid InheritanceWithEnumTypeEnum type;
+  private InheritanceWithEnumTypeEnum type;
 
   /**
    **/
@@ -36,7 +36,7 @@ public class InheritanceWithEnumType   {
 
   
   @JsonProperty("type")
-  public InheritanceWithEnumTypeEnum getType() {
+  @Valid public InheritanceWithEnumTypeEnum getType() {
     return type;
   }
 

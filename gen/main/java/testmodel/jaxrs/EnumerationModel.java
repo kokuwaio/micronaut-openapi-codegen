@@ -17,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class EnumerationModel   {
-  private @Valid EnumerationString string;
-  private @Valid EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
+  private EnumerationString string;
+  private EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
   @java.lang.SuppressWarnings("all")
 public enum EmbeddedEnum {
 
@@ -67,7 +67,7 @@ public enum EmbeddedEnum {
     }
 }
 
-  private @Valid EmbeddedEnum embedded;
+  private EmbeddedEnum embedded;
   @java.lang.SuppressWarnings("all")
 public enum EmbeddedDefaultEnum {
 
@@ -116,7 +116,7 @@ public enum EmbeddedDefaultEnum {
     }
 }
 
-  private @Valid EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
+  private EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
 
   /**
    **/
@@ -127,7 +127,7 @@ public enum EmbeddedDefaultEnum {
 
   
   @JsonProperty("string")
-  public EnumerationString getString() {
+  @Valid public EnumerationString getString() {
     return string;
   }
 
@@ -145,7 +145,7 @@ public enum EmbeddedDefaultEnum {
 
   
   @JsonProperty("string-default")
-  public EnumerationStringDefault getStringDefault() {
+  @Valid public EnumerationStringDefault getStringDefault() {
     return stringDefault;
   }
 
