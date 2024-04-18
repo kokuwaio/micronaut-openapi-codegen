@@ -23,8 +23,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithStringType   {
-  private @Valid String type;
-  private @Valid String a;
+  private String type;
+  private String a;
 
   /**
    **/

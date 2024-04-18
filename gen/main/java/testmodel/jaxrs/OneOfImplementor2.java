@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class OneOfImplementor2   {
-  private @Valid BigDecimal property;
+  private BigDecimal property;
 
   /**
    **/
@@ -27,7 +27,7 @@ public class OneOfImplementor2   {
 
   
   @JsonProperty("property")
-  public BigDecimal getProperty() {
+  @Valid public BigDecimal getProperty() {
     return property;
   }
 

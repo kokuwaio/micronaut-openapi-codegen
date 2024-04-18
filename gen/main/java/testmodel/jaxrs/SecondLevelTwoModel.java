@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class SecondLevelTwoModel   {
-  private @Valid String type;
-  private @Valid String two;
+  private String type;
+  private String two;
 
   /**
    **/

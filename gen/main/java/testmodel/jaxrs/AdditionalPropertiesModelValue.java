@@ -66,7 +66,7 @@ public enum TypeEnum {
     }
 }
 
-  private @Valid TypeEnum type;
+  private TypeEnum type;
 
   /**
    **/
