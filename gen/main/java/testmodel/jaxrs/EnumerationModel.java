@@ -127,7 +127,7 @@ public enum EmbeddedDefaultEnum {
 
   
   @JsonProperty("string")
-  @Valid public EnumerationString getString() {
+  public EnumerationString getString() {
     return string;
   }
 
@@ -145,7 +145,7 @@ public enum EmbeddedDefaultEnum {
 
   
   @JsonProperty("string-default")
-  @Valid public EnumerationStringDefault getStringDefault() {
+  public EnumerationStringDefault getStringDefault() {
     return stringDefault;
   }
 
