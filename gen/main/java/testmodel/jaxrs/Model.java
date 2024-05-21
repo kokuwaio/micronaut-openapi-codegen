@@ -178,7 +178,7 @@ public class Model   {
 
   
   @JsonProperty("date")
-  @Valid public LocalDate getDate() {
+  public LocalDate getDate() {
     return date;
   }
 
@@ -196,7 +196,7 @@ public class Model   {
 
   
   @JsonProperty("dateWithExample")
-  @Valid public LocalDate getDateWithExample() {
+  public LocalDate getDateWithExample() {
     return dateWithExample;
   }
 
@@ -214,7 +214,7 @@ public class Model   {
 
   
   @JsonProperty("date-time")
-  @Valid public OffsetDateTime getDateTime() {
+  public OffsetDateTime getDateTime() {
     return dateTime;
   }
 
@@ -232,7 +232,7 @@ public class Model   {
 
   
   @JsonProperty("date-timeWithExample")
-  @Valid public OffsetDateTime getDateTimeWithExample() {
+  public OffsetDateTime getDateTimeWithExample() {
     return dateTimeWithExample;
   }
 
@@ -268,7 +268,7 @@ public class Model   {
 
   
   @JsonProperty("binary")
-  @Valid public File getBinary() {
+  public File getBinary() {
     return binary;
   }
 
@@ -478,9 +478,9 @@ public class Model   {
     return this;
   }
 
-  public Model removeMapItem(String mapItem) {
-    if (mapItem != null && this.map != null) {
-      this.map.remove(mapItem);
+  public Model removeMapItem(String key) {
+    if (this.map != null) {
+      this.map.remove(key);
     }
 
     return this;
@@ -512,9 +512,9 @@ public class Model   {
     return this;
   }
 
-  public Model removeMapWithExampleItem(String mapWithExampleItem) {
-    if (mapWithExampleItem != null && this.mapWithExample != null) {
-      this.mapWithExample.remove(mapWithExampleItem);
+  public Model removeMapWithExampleItem(String key) {
+    if (this.mapWithExample != null) {
+      this.mapWithExample.remove(key);
     }
 
     return this;
@@ -615,9 +615,9 @@ public class Model   {
     return this;
   }
 
-  public Model removeOptionalMapItem(String optionalMapItem) {
-    if (optionalMapItem != null && this.optionalMap != null) {
-      this.optionalMap.remove(optionalMapItem);
+  public Model removeOptionalMapItem(String key) {
+    if (this.optionalMap != null) {
+      this.optionalMap.remove(key);
     }
 
     return this;
