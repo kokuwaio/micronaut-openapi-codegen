@@ -48,7 +48,7 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
     /**
      * Get f
      * @return f
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_F)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

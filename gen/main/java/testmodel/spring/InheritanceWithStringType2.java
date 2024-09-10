@@ -32,7 +32,7 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
   /**
    * Get c
    * @return c
-  */
+   */
   
   @JsonProperty("c")
   public String getC() {

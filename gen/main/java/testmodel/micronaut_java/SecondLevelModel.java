@@ -56,7 +56,7 @@ public class SecondLevelModel {
     /**
      * Get type
      * @return type
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -78,7 +78,7 @@ public class SecondLevelModel {
     /**
      * Get one
      * @return one
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ONE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -100,7 +100,7 @@ public class SecondLevelModel {
     /**
      * Get two
      * @return two
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TWO)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -48,7 +48,7 @@ public class InheritanceWithStringType1 extends InheritanceWithStringType {
     /**
      * Get b
      * @return b
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_B)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -37,7 +37,7 @@ public class OneOfImplementor1 implements OneOfInterface {
   /**
    * Get property
    * @return property
-  */
+   */
   
   @JsonProperty("property")
   public String getProperty() {
@@ -56,7 +56,7 @@ public class OneOfImplementor1 implements OneOfInterface {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @JsonProperty("type")
   public String getType() {

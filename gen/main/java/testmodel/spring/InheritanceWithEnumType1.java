@@ -34,7 +34,7 @@ public class InheritanceWithEnumType1 extends InheritanceWithEnumType {
   /**
    * Get d
    * @return d
-  */
+   */
   
   @JsonProperty("d")
   public String getD() {

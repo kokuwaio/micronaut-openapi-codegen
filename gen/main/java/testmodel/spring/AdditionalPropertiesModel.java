@@ -36,7 +36,7 @@ public class AdditionalPropertiesModel {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @JsonProperty("id")
   public String getId() {

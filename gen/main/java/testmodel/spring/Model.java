@@ -135,7 +135,7 @@ public class Model {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @JsonProperty("id")
   public Integer getId() {
@@ -154,7 +154,7 @@ public class Model {
   /**
    * Get idWithExample
    * @return idWithExample
-  */
+   */
   
   @JsonProperty("idWithExample")
   public Integer getIdWithExample() {
@@ -173,7 +173,7 @@ public class Model {
   /**
    * Get idWithDefault
    * @return idWithDefault
-  */
+   */
   
   @JsonProperty("idWithDefault")
   public Integer getIdWithDefault() {
@@ -192,7 +192,7 @@ public class Model {
   /**
    * Get name
    * @return name
-  */
+   */
   @NotNull @Size(max = 36) 
   @JsonProperty("name")
   public String getName() {
@@ -211,7 +211,7 @@ public class Model {
   /**
    * Get nameWithExample
    * @return nameWithExample
-  */
+   */
   
   @JsonProperty("nameWithExample")
   public String getNameWithExample() {
@@ -230,7 +230,7 @@ public class Model {
   /**
    * Get nameWithDefault
    * @return nameWithDefault
-  */
+   */
   
   @JsonProperty("nameWithDefault")
   public String getNameWithDefault() {
@@ -249,7 +249,7 @@ public class Model {
   /**
    * Get date
    * @return date
-  */
+   */
   @Valid 
   @JsonProperty("date")
   public LocalDate getDate() {
@@ -268,7 +268,7 @@ public class Model {
   /**
    * Get dateWithExample
    * @return dateWithExample
-  */
+   */
   @Valid 
   @JsonProperty("dateWithExample")
   public LocalDate getDateWithExample() {
@@ -287,7 +287,7 @@ public class Model {
   /**
    * Get dateTime
    * @return dateTime
-  */
+   */
   @Valid 
   @JsonProperty("date-time")
   public OffsetDateTime getDateTime() {
@@ -306,7 +306,7 @@ public class Model {
   /**
    * Get dateTimeWithExample
    * @return dateTimeWithExample
-  */
+   */
   @Valid 
   @JsonProperty("date-timeWithExample")
   public OffsetDateTime getDateTimeWithExample() {
@@ -325,7 +325,7 @@ public class Model {
   /**
    * Get number
    * @return number
-  */
+   */
   @Valid 
   @JsonProperty("number")
   public BigDecimal getNumber() {
@@ -344,7 +344,7 @@ public class Model {
   /**
    * Get binary
    * @return binary
-  */
+   */
   @Valid 
   @JsonProperty("binary")
   public org.springframework.core.io.Resource getBinary() {
@@ -363,7 +363,7 @@ public class Model {
   /**
    * Get bytes
    * @return bytes
-  */
+   */
   
   @JsonProperty("bytes")
   public byte[] getBytes() {
@@ -382,7 +382,7 @@ public class Model {
   /**
    * Get any
    * @return any
-  */
+   */
   
   @JsonProperty("any")
   public JsonNullable<Object> getAny() {
@@ -409,7 +409,7 @@ public class Model {
   /**
    * Get array
    * @return array
-  */
+   */
   @NotNull 
   @JsonProperty("array")
   public List<String> getArray() {
@@ -436,7 +436,7 @@ public class Model {
   /**
    * Get arrayWithExample
    * @return arrayWithExample
-  */
+   */
   
   @JsonProperty("arrayWithExample")
   public List<String> getArrayWithExample() {
@@ -463,7 +463,7 @@ public class Model {
   /**
    * Get set
    * @return set
-  */
+   */
   @NotNull 
   @JsonProperty("set")
   public Set<String> getSet() {
@@ -491,7 +491,7 @@ public class Model {
   /**
    * Get setWithExamples
    * @return setWithExamples
-  */
+   */
   
   @JsonProperty("setWithExamples")
   public Set<String> getSetWithExamples() {
@@ -519,7 +519,7 @@ public class Model {
   /**
    * Get map
    * @return map
-  */
+   */
   @NotNull 
   @JsonProperty("map")
   public Map<String, String> getMap() {
@@ -546,7 +546,7 @@ public class Model {
   /**
    * Get mapWithExample
    * @return mapWithExample
-  */
+   */
   
   @JsonProperty("mapWithExample")
   public Map<String, String> getMapWithExample() {
@@ -573,7 +573,7 @@ public class Model {
   /**
    * Get optionalArray
    * @return optionalArray
-  */
+   */
   
   @JsonProperty("optionalArray")
   public List<String> getOptionalArray() {
@@ -600,7 +600,7 @@ public class Model {
   /**
    * Get optionalSet
    * @return optionalSet
-  */
+   */
   
   @JsonProperty("optionalSet")
   public Set<String> getOptionalSet() {
@@ -628,7 +628,7 @@ public class Model {
   /**
    * Get optionalMap
    * @return optionalMap
-  */
+   */
   
   @JsonProperty("optionalMap")
   public Map<String, String> getOptionalMap() {
@@ -647,7 +647,7 @@ public class Model {
   /**
    * Get nullableString
    * @return nullableString
-  */
+   */
   
   @JsonProperty("nullableString")
   public JsonNullable<String> getNullableString() {
@@ -674,7 +674,7 @@ public class Model {
   /**
    * Get nullableArray
    * @return nullableArray
-  */
+   */
   
   @JsonProperty("nullableArray")
   public JsonNullable<List<String>> getNullableArray() {
@@ -701,7 +701,7 @@ public class Model {
   /**
    * Get nullableSet
    * @return nullableSet
-  */
+   */
   
   @JsonProperty("nullableSet")
   public JsonNullable<Set<String>> getNullableSet() {
@@ -720,7 +720,7 @@ public class Model {
   /**
    * Get defaultString
    * @return defaultString
-  */
+   */
   
   @JsonProperty("defaultString")
   public String getDefaultString() {
@@ -739,7 +739,7 @@ public class Model {
   /**
    * Get defaultInteger
    * @return defaultInteger
-  */
+   */
   
   @JsonProperty("defaultInteger")
   public Integer getDefaultInteger() {
@@ -758,7 +758,7 @@ public class Model {
   /**
    * Get defaultLong
    * @return defaultLong
-  */
+   */
   
   @JsonProperty("defaultLong")
   public Long getDefaultLong() {
@@ -777,7 +777,7 @@ public class Model {
   /**
    * Get defaultNullable
    * @return defaultNullable
-  */
+   */
   
   @JsonProperty("defaultNullable")
   public JsonNullable<String> getDefaultNullable() {
@@ -796,7 +796,7 @@ public class Model {
   /**
    * Get referenedModel
    * @return referenedModel
-  */
+   */
   @Valid 
   @JsonProperty("referenedModel")
   public EnumerationModel getReferenedModel() {

@@ -52,7 +52,7 @@ public class InheritanceExtended {
     /**
      * Get foo
      * @return foo
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FOO)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -74,7 +74,7 @@ public class InheritanceExtended {
     /**
      * Get bar
      * @return bar
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_BAR)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

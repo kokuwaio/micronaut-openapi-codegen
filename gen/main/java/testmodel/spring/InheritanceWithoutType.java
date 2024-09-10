@@ -44,7 +44,7 @@ public class InheritanceWithoutType {
   /**
    * Get e
    * @return e
-  */
+   */
   
   @JsonProperty("e")
   public String getE() {
