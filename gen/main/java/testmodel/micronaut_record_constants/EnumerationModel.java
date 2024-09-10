@@ -29,6 +29,7 @@ public record EnumerationModel(
 	public static final java.lang.String JSON_PROPERTY_EMBEDDED = "embedded";
 	public static final java.lang.String JSON_PROPERTY_EMBEDDED_DEFAULT = "embedded-default";
 
+@io.micronaut.serde.annotation.Serdeable
 public enum Embedded {
 
 	FIRST("first"),
@@ -60,6 +61,7 @@ public enum Embedded {
 		return value;
 	}
 }
+@io.micronaut.serde.annotation.Serdeable
 public enum EmbeddedDefault {
 
 	THREE("three"),

@@ -1,6 +1,7 @@
 package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
+@io.micronaut.serde.annotation.Serdeable
 public enum EnumerationNumber {
 
 	NUMBER_MINUS_1(-1D),

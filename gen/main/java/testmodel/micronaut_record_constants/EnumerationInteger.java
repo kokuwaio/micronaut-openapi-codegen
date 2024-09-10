@@ -1,6 +1,7 @@
 package testmodel.micronaut_record_constants;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
+@io.micronaut.serde.annotation.Serdeable
 public enum EnumerationInteger {
 
 	NUMBER_MINUS_2147483648(-2147483648),

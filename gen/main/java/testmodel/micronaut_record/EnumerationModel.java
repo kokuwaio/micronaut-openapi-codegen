@@ -23,6 +23,7 @@ public record EnumerationModel(
 	@com.fasterxml.jackson.annotation.JsonProperty("embedded-default")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	EmbeddedDefault embeddedDefault) {
+@io.micronaut.serde.annotation.Serdeable
 public enum Embedded {
 
 	FIRST("first"),
@@ -54,6 +55,7 @@ public enum Embedded {
 		return value;
 	}
 }
+@io.micronaut.serde.annotation.Serdeable
 public enum EmbeddedDefault {
 
 	THREE("three"),
