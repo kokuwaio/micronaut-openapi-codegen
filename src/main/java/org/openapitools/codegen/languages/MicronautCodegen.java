@@ -70,7 +70,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean generateAuthentication = false;
 	private boolean generateExamples = false;
 	private boolean generateConstants = false;
-	private boolean useBeanValidation = true;
 	private boolean useGenericResponse = true;
 	private boolean useOptional = true;
 	private boolean serdeable = true;
@@ -85,6 +84,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		supportsAdditionalPropertiesWithComposedSchema = true;
 		useOneOfInterfaces = true;
+		useBeanValidation = true;
 
 		cliOptions.clear();
 		cliOptions.add(CliOption.newBoolean(USE_BEANVALIDATION, "Use bean validation annotations", useBeanValidation));
