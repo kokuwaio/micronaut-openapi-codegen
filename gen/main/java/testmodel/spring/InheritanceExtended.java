@@ -45,7 +45,7 @@ public class InheritanceExtended {
   /**
    * Get foo
    * @return foo
-  */
+   */
   @NotNull 
   @JsonProperty("foo")
   public String getFoo() {
@@ -64,7 +64,7 @@ public class InheritanceExtended {
   /**
    * Get bar
    * @return bar
-  */
+   */
   @NotNull 
   @JsonProperty("bar")
   public String getBar() {

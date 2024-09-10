@@ -46,7 +46,7 @@ public class InheritanceWithStringType {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @JsonProperty("type")
   public String getType() {
@@ -65,7 +65,7 @@ public class InheritanceWithStringType {
   /**
    * Get a
    * @return a
-  */
+   */
   
   @JsonProperty("a")
   public String getA() {

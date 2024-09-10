@@ -55,7 +55,7 @@ public class FirstModel {
     /**
      * Get type
      * @return type
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -77,7 +77,7 @@ public class FirstModel {
     /**
      * Get first
      * @return first
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_FIRST)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -99,7 +99,7 @@ public class FirstModel {
     /**
      * Get secondLevel
      * @return secondLevel
-     **/
+     */
     @Valid
     @Nullable
     @JsonProperty(JSON_PROPERTY_SECOND_LEVEL)

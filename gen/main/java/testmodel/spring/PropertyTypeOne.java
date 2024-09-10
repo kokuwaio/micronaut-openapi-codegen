@@ -67,7 +67,7 @@ public enum TypeEnum {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @JsonProperty("type")
   public TypeEnum getType() {

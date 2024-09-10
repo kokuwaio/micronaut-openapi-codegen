@@ -49,7 +49,7 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
     /**
      * Get e
      * @return e
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_E)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

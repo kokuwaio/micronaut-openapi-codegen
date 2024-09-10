@@ -33,7 +33,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @JsonProperty("type")
   public String getType() {
@@ -52,7 +52,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
   /**
    * Get one
    * @return one
-  */
+   */
   
   @JsonProperty("one")
   public String getOne() {

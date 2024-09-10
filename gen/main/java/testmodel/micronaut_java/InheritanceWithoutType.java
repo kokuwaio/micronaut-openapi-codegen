@@ -59,7 +59,7 @@ public class InheritanceWithoutType {
     /**
      * Get e
      * @return e
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_E)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

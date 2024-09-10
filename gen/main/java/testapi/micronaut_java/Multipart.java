@@ -58,7 +58,7 @@ public class Multipart {
     /**
      * Get orderId
      * @return orderId
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ORDER_ID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -80,7 +80,7 @@ public class Multipart {
     /**
      * Get userId
      * @return userId
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_USER_ID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -102,7 +102,7 @@ public class Multipart {
     /**
      * Get fileName
      * @return fileName
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_FILE_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -124,7 +124,7 @@ public class Multipart {
     /**
      * Get _file
      * @return _file
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_FILE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

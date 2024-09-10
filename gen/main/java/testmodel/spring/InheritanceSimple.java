@@ -42,7 +42,7 @@ public class InheritanceSimple {
   /**
    * Get foo
    * @return foo
-  */
+   */
   @NotNull 
   @JsonProperty("foo")
   public String getFoo() {
