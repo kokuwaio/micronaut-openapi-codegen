@@ -53,6 +53,7 @@ public class PropertyTypeOne implements AdditionalPropertiesModelValue {
 		this.type = newType;
 	}
 
+@io.micronaut.serde.annotation.Serdeable
 public enum Type {
 
 	ONE("one");

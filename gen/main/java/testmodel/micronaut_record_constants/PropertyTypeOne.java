@@ -11,6 +11,7 @@ public record PropertyTypeOne(
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";
 
+@io.micronaut.serde.annotation.Serdeable
 public enum Type {
 
 	ONE("one");

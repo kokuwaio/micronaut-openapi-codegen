@@ -72,10 +72,17 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator("src/test/resources/openapi/issue-372.yaml", "issue._372"));
 	}
 
+	@DisplayName("model with inner and external enum values")
+	@Test
+	void modelWithInnerAndExternalEnumValues() {
+		generate(configurator("src/test/resources/openapi/issue-407.yaml", "issue._407"));
+	}
+
 	@DisplayName("model with prefix")
 	@Test
 	void modelWithPrefix() {
 		generate(configurator("src/test/resources/openapi/issue-414.yaml", "issue._414")
+				.addAdditionalProperty(MicronautCodegen.SERDEABLE, false)
 				.addAdditionalProperty(CodegenConstants.API_NAME_PREFIX, "ApiPrefix")
 				.addAdditionalProperty(CodegenConstants.API_NAME_SUFFIX, "ApiSuffix")
 				.addAdditionalProperty(CodegenConstants.MODEL_NAME_PREFIX, "ModelPrefix")

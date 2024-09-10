@@ -115,6 +115,7 @@ public class EnumerationModel {
 		this.embeddedDefault = newEmbeddedDefault;
 	}
 
+@io.micronaut.serde.annotation.Serdeable
 public enum Embedded {
 
 	FIRST("first"),
@@ -147,6 +148,7 @@ public enum Embedded {
 	}
 }
 
+@io.micronaut.serde.annotation.Serdeable
 public enum EmbeddedDefault {
 
 	THREE("three"),

@@ -8,6 +8,7 @@ public record PropertyTypeOne(
 	@com.fasterxml.jackson.annotation.JsonProperty("type")
 	@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 	Type type) implements AdditionalPropertiesModelValue {
+@io.micronaut.serde.annotation.Serdeable
 public enum Type {
 
 	ONE("one");

@@ -55,6 +55,7 @@ public final class PropertyTypeTwo implements AdditionalPropertiesModelValue {
 		this.type = newType;
 	}
 
+@io.micronaut.serde.annotation.Serdeable
 public enum Type {
 
 	TWO("two");
