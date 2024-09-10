@@ -47,7 +47,7 @@ public class NumberModel {
     /**
      * Get bar
      * @return bar
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_BAR)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

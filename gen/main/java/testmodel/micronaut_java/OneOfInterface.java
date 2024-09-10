@@ -66,7 +66,7 @@ public class OneOfInterface {
     /**
      * Get type
      * @return type
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -88,7 +88,7 @@ public class OneOfInterface {
     /**
      * Get property
      * @return property
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_PROPERTY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

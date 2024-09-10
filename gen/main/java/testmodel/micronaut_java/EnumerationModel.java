@@ -128,7 +128,7 @@ public class EnumerationModel {
     /**
      * Get string
      * @return string
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_STRING)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -150,7 +150,7 @@ public class EnumerationModel {
     /**
      * Get stringDefault
      * @return stringDefault
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_STRING_DEFAULT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -172,7 +172,7 @@ public class EnumerationModel {
     /**
      * Get embedded
      * @return embedded
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_EMBEDDED)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -194,7 +194,7 @@ public class EnumerationModel {
     /**
      * Get embeddedDefault
      * @return embeddedDefault
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_EMBEDDED_DEFAULT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

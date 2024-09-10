@@ -50,7 +50,7 @@ public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropert
     /**
      * Get id
      * @return id
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

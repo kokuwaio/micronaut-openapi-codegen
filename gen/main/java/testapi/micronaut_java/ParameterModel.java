@@ -89,7 +89,7 @@ public class ParameterModel {
     /**
      * Get bool
      * @return bool
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_BOOL)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -111,7 +111,7 @@ public class ParameterModel {
     /**
      * Get string
      * @return string
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_STRING)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -133,7 +133,7 @@ public class ParameterModel {
     /**
      * Get number
      * @return number
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NUMBER)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -155,7 +155,7 @@ public class ParameterModel {
     /**
      * Get integer
      * @return integer
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_INTEGER)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -177,7 +177,7 @@ public class ParameterModel {
     /**
      * Get uuid
      * @return uuid
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_UUID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -199,7 +199,7 @@ public class ParameterModel {
     /**
      * Get date
      * @return date
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DATE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -223,7 +223,7 @@ public class ParameterModel {
     /**
      * Get dateTime
      * @return dateTime
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DATE_TIME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -255,7 +255,7 @@ public class ParameterModel {
     /**
      * Get a
      * @return a
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_A)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -285,7 +285,7 @@ public class ParameterModel {
     /**
      * Get b
      * @return b
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_B)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -315,7 +315,7 @@ public class ParameterModel {
     /**
      * Get c
      * @return c
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_C)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

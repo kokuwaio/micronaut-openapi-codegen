@@ -184,7 +184,7 @@ public class Model {
     /**
      * Get id
      * @return id
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -206,7 +206,7 @@ public class Model {
     /**
      * Get idWithExample
      * @return idWithExample
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ID_WITH_EXAMPLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -228,7 +228,7 @@ public class Model {
     /**
      * Get idWithDefault
      * @return idWithDefault
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ID_WITH_DEFAULT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -250,7 +250,7 @@ public class Model {
     /**
      * Get name
      * @return name
-     **/
+     */
     @NotNull
     @Size(max=36)
     @JsonProperty(JSON_PROPERTY_NAME)
@@ -273,7 +273,7 @@ public class Model {
     /**
      * Get nameWithExample
      * @return nameWithExample
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NAME_WITH_EXAMPLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -295,7 +295,7 @@ public class Model {
     /**
      * Get nameWithDefault
      * @return nameWithDefault
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NAME_WITH_DEFAULT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -317,7 +317,7 @@ public class Model {
     /**
      * Get date
      * @return date
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DATE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -341,7 +341,7 @@ public class Model {
     /**
      * Get dateWithExample
      * @return dateWithExample
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DATE_WITH_EXAMPLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -365,7 +365,7 @@ public class Model {
     /**
      * Get dateTime
      * @return dateTime
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DATE_TIME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -389,7 +389,7 @@ public class Model {
     /**
      * Get dateTimeWithExample
      * @return dateTimeWithExample
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DATE_TIME_WITH_EXAMPLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -413,7 +413,7 @@ public class Model {
     /**
      * Get number
      * @return number
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NUMBER)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -435,7 +435,7 @@ public class Model {
     /**
      * Get binary
      * @return binary
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_BINARY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -457,7 +457,7 @@ public class Model {
     /**
      * Get bytes
      * @return bytes
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_BYTES)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -479,7 +479,7 @@ public class Model {
     /**
      * Get any
      * @return any
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ANY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -506,7 +506,7 @@ public class Model {
     /**
      * Get array
      * @return array
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ARRAY)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -536,7 +536,7 @@ public class Model {
     /**
      * Get arrayWithExample
      * @return arrayWithExample
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ARRAY_WITH_EXAMPLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -563,7 +563,7 @@ public class Model {
     /**
      * Get set
      * @return set
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SET)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -594,7 +594,7 @@ public class Model {
     /**
      * Get setWithExamples
      * @return setWithExamples
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_SET_WITH_EXAMPLES)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -622,7 +622,7 @@ public class Model {
     /**
      * Get map
      * @return map
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_MAP)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -652,7 +652,7 @@ public class Model {
     /**
      * Get mapWithExample
      * @return mapWithExample
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_MAP_WITH_EXAMPLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -682,7 +682,7 @@ public class Model {
     /**
      * Get optionalArray
      * @return optionalArray
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_OPTIONAL_ARRAY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -712,7 +712,7 @@ public class Model {
     /**
      * Get optionalSet
      * @return optionalSet
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_OPTIONAL_SET)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -743,7 +743,7 @@ public class Model {
     /**
      * Get optionalMap
      * @return optionalMap
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_OPTIONAL_MAP)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -765,7 +765,7 @@ public class Model {
     /**
      * Get nullableString
      * @return nullableString
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NULLABLE_STRING)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -795,7 +795,7 @@ public class Model {
     /**
      * Get nullableArray
      * @return nullableArray
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NULLABLE_ARRAY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -825,7 +825,7 @@ public class Model {
     /**
      * Get nullableSet
      * @return nullableSet
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NULLABLE_SET)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -847,7 +847,7 @@ public class Model {
     /**
      * Get defaultString
      * @return defaultString
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DEFAULT_STRING)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -869,7 +869,7 @@ public class Model {
     /**
      * Get defaultInteger
      * @return defaultInteger
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DEFAULT_INTEGER)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -891,7 +891,7 @@ public class Model {
     /**
      * Get defaultLong
      * @return defaultLong
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DEFAULT_LONG)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -913,7 +913,7 @@ public class Model {
     /**
      * Get defaultNullable
      * @return defaultNullable
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_DEFAULT_NULLABLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -935,7 +935,7 @@ public class Model {
     /**
      * Get referenedModel
      * @return referenedModel
-     **/
+     */
     @Valid
     @Nullable
     @JsonProperty(JSON_PROPERTY_REFERENED_MODEL)

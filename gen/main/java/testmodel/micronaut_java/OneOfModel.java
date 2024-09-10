@@ -64,7 +64,7 @@ public class OneOfModel {
     /**
      * Get type
      * @return type
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -86,7 +86,7 @@ public class OneOfModel {
     /**
      * Get first
      * @return first
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_FIRST)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -108,7 +108,7 @@ public class OneOfModel {
     /**
      * Get secondLevel
      * @return secondLevel
-     **/
+     */
     @Valid
     @Nullable
     @JsonProperty(JSON_PROPERTY_SECOND_LEVEL)
@@ -131,7 +131,7 @@ public class OneOfModel {
     /**
      * Get one
      * @return one
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ONE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +153,7 @@ public class OneOfModel {
     /**
      * Get two
      * @return two
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TWO)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

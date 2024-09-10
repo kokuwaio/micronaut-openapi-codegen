@@ -47,7 +47,7 @@ public class InheritanceWithEnumType {
   /**
    * Get type
    * @return type
-  */
+   */
   @Valid 
   @JsonProperty("type")
   public InheritanceWithEnumTypeEnum getType() {

@@ -47,7 +47,7 @@ public class StringModel {
     /**
      * Get foo
      * @return foo
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FOO)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

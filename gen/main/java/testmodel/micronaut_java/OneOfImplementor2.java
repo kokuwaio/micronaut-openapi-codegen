@@ -47,7 +47,7 @@ public class OneOfImplementor2 {
     /**
      * Get property
      * @return property
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_PROPERTY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

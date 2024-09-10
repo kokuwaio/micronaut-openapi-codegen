@@ -112,7 +112,7 @@ public enum EmbeddedDefaultEnum {
   /**
    * Get string
    * @return string
-  */
+   */
   @Valid 
   @JsonProperty("string")
   public EnumerationString getString() {
@@ -131,7 +131,7 @@ public enum EmbeddedDefaultEnum {
   /**
    * Get stringDefault
    * @return stringDefault
-  */
+   */
   @Valid 
   @JsonProperty("string-default")
   public EnumerationStringDefault getStringDefault() {
@@ -150,7 +150,7 @@ public enum EmbeddedDefaultEnum {
   /**
    * Get embedded
    * @return embedded
-  */
+   */
   
   @JsonProperty("embedded")
   public EmbeddedEnum getEmbedded() {
@@ -169,7 +169,7 @@ public enum EmbeddedDefaultEnum {
   /**
    * Get embeddedDefault
    * @return embeddedDefault
-  */
+   */
   
   @JsonProperty("embedded-default")
   public EmbeddedDefaultEnum getEmbeddedDefault() {
