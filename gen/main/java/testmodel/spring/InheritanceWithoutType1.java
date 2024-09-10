@@ -32,7 +32,7 @@ public class InheritanceWithoutType1 extends InheritanceWithoutType {
   /**
    * Get f
    * @return f
-  */
+   */
   
   @JsonProperty("f")
   public String getF() {

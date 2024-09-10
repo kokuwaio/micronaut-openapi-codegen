@@ -37,7 +37,7 @@ public class OneOfImplementor2 implements OneOfInterface {
   /**
    * Get property
    * @return property
-  */
+   */
   @Valid 
   @JsonProperty("property")
   public BigDecimal getProperty() {
@@ -56,7 +56,7 @@ public class OneOfImplementor2 implements OneOfInterface {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @JsonProperty("type")
   public String getType() {

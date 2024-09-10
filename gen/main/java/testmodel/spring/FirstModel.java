@@ -36,7 +36,7 @@ public class FirstModel implements OneOfModel {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @JsonProperty("type")
   public String getType() {
@@ -55,7 +55,7 @@ public class FirstModel implements OneOfModel {
   /**
    * Get first
    * @return first
-  */
+   */
   
   @JsonProperty("first")
   public String getFirst() {
@@ -74,7 +74,7 @@ public class FirstModel implements OneOfModel {
   /**
    * Get secondLevel
    * @return secondLevel
-  */
+   */
   @Valid 
   @JsonProperty("secondLevel")
   public SecondLevelModel getSecondLevel() {
