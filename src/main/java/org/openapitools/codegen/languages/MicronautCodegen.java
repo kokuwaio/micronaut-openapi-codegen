@@ -1,7 +1,14 @@
 package org.openapitools.codegen.languages;
 
+import static org.openapitools.codegen.CodegenConstants.API_NAME_PREFIX;
+import static org.openapitools.codegen.CodegenConstants.API_NAME_PREFIX_DESC;
+import static org.openapitools.codegen.CodegenConstants.API_NAME_SUFFIX;
+import static org.openapitools.codegen.CodegenConstants.API_NAME_SUFFIX_DESC;
 import static org.openapitools.codegen.CodegenConstants.GENERATE_API_TESTS;
+import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_PREFIX;
+import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_PREFIX_DESC;
 import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX;
+import static org.openapitools.codegen.CodegenConstants.MODEL_NAME_SUFFIX_DESC;
 import static org.openapitools.codegen.CodegenConstants.REMOVE_ENUM_VALUE_PREFIX;
 import static org.openapitools.codegen.CodegenConstants.REMOVE_ENUM_VALUE_PREFIX_DESC;
 import static org.openapitools.codegen.CodegenConstants.SOURCE_FOLDER;
@@ -104,6 +111,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(CLIENT_ID, "ClientId to use."));
 		cliOptions.add(CliOption.newString(SOURCE_FOLDER, SOURCE_FOLDER_DESC));
 		cliOptions.add(CliOption.newString("testFolder", "test folder for generated code"));
+		cliOptions.add(CliOption.newString(API_NAME_PREFIX, API_NAME_PREFIX_DESC));
+		cliOptions.add(CliOption.newString(API_NAME_SUFFIX, API_NAME_SUFFIX_DESC));
+		cliOptions.add(CliOption.newString(MODEL_NAME_PREFIX, MODEL_NAME_PREFIX_DESC));
+		cliOptions.add(CliOption.newString(MODEL_NAME_SUFFIX, MODEL_NAME_SUFFIX_DESC));
 		cliOptions.add(
 				CliOption.newBoolean(REMOVE_ENUM_VALUE_PREFIX, REMOVE_ENUM_VALUE_PREFIX_DESC, removeEnumValuePrefix));
 
@@ -197,6 +208,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 	@Override
 	public void processOpts() {
+		super.useCodegenAsMustacheParentContext();
+
 		BiFunction<String, String, String> getOrDefault = (key,
 				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
@@ -210,15 +223,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 
 		// process flags - this class
 
-		if (additionalProperties.containsKey(USE_BEANVALIDATION)) {
-			useBeanValidation = convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION);
-		}
-		if (additionalProperties.containsKey(USE_GENERIC_RESPONSE)) {
-			useGenericResponse = convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE);
-		}
-		if (additionalProperties.containsKey(USE_OPTIONAL)) {
-			useOptional = convertPropertyToBooleanAndWriteBack(USE_OPTIONAL);
-		}
 		if (additionalProperties.containsKey(SERDEABLE)) {
 			serdeable = convertPropertyToBooleanAndWriteBack(SERDEABLE);
 		}
@@ -234,14 +238,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(RECORD)) {
 			record = convertPropertyToBooleanAndWriteBack(RECORD);
 		}
-		if (additionalProperties.containsKey(SUPPORT_ASYNC)) {
-			supportAsync = convertPropertyToBooleanAndWriteBack(SUPPORT_ASYNC);
-		}
 		if (additionalProperties.containsKey(GENERATE_API_TESTS)) {
 			generateApiTests = convertPropertyToBooleanAndWriteBack(GENERATE_API_TESTS);
-		}
-		if (additionalProperties.containsKey(OPENAPI_NULLABLE)) {
-			openApiNullable = convertPropertyToBooleanAndWriteBack(OPENAPI_NULLABLE);
 		}
 		if (additionalProperties.containsKey(GENERATE_AUTHENTICATION)) {
 			generateAuthentication = convertPropertyToBooleanAndWriteBack(GENERATE_AUTHENTICATION);
@@ -252,9 +250,19 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (additionalProperties.containsKey(GENERATE_CONSTANTS)) {
 			generateConstants = convertPropertyToBooleanAndWriteBack(GENERATE_CONSTANTS);
 		}
-		if (additionalProperties.containsKey(REMOVE_ENUM_VALUE_PREFIX)) {
-			removeEnumValuePrefix = convertPropertyToBooleanAndWriteBack(REMOVE_ENUM_VALUE_PREFIX);
-		}
+
+		// generic properties
+
+		convertPropertyToStringAndWriteBack(API_NAME_PREFIX, this::setApiNamePrefix);
+		convertPropertyToStringAndWriteBack(API_NAME_SUFFIX, this::setApiNameSuffix);
+		convertPropertyToStringAndWriteBack(MODEL_NAME_PREFIX, this::setModelNamePrefix);
+		convertPropertyToStringAndWriteBack(MODEL_NAME_SUFFIX, this::setModelNameSuffix);
+		convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION, this::setUseBeanValidation);
+		convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE, this::setUseGenericResponse);
+		convertPropertyToBooleanAndWriteBack(USE_OPTIONAL, this::setUseOptional);
+		convertPropertyToBooleanAndWriteBack(REMOVE_ENUM_VALUE_PREFIX, this::setRemoveEnumValuePrefix);
+		convertPropertyToBooleanAndWriteBack(OPENAPI_NULLABLE, this::setOpenApiNullable);
+		convertPropertyToBooleanAndWriteBack(SUPPORT_ASYNC, this::setSupportAsync);
 
 		// we do not generate projects, only api, set source and test folder
 
@@ -263,7 +271,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		projectTestFolder = getOrDefault.apply("projectTestFolder", "generated-test-sources");
 		sourceFolder = getOrDefault.apply(SOURCE_FOLDER, projectFolder + File.separator + "openapi");
 		testFolder = getOrDefault.apply("testFolder", projectTestFolder + File.separator + "openapi");
-		modelNameSuffix = getOrDefault.apply(MODEL_NAME_SUFFIX, modelNameSuffix);
 
 		// add files to generate
 

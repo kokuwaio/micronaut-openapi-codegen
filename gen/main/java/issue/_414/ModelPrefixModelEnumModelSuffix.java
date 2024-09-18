@@ -1,7 +1,7 @@
 package issue._414;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
-public enum ModelEnumModelSuffix {
+public enum ModelPrefixModelEnumModelSuffix {
 
 	FOO("foo"),
 	BAR("bar");
@@ -11,16 +11,16 @@ public enum ModelEnumModelSuffix {
 
 	private final java.lang.String value;
 
-	private ModelEnumModelSuffix(java.lang.String value) {
+	private ModelPrefixModelEnumModelSuffix(java.lang.String value) {
 		this.value = value;
 	}
 
 	@com.fasterxml.jackson.annotation.JsonCreator
-	public static ModelEnumModelSuffix toEnum(java.lang.String value) {
+	public static ModelPrefixModelEnumModelSuffix toEnum(java.lang.String value) {
 		return toOptional(value).orElseThrow(() -> new IllegalArgumentException("Unknown value '" + value + "'."));
 	}
 
-	public static java.util.Optional<ModelEnumModelSuffix> toOptional(java.lang.String value) {
+	public static java.util.Optional<ModelPrefixModelEnumModelSuffix> toOptional(java.lang.String value) {
 		return java.util.Arrays
 				.stream(values())
 				.filter(e -> e.value.equals(value))
