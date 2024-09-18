@@ -72,6 +72,16 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 		generate(configurator("src/test/resources/openapi/issue-372.yaml", "issue._372"));
 	}
 
+	@DisplayName("model with prefix")
+	@Test
+	void modelWithPrefix() {
+		generate(configurator("src/test/resources/openapi/issue-414.yaml", "issue._414")
+				.addAdditionalProperty(CodegenConstants.API_NAME_PREFIX, "ApiPrefix")
+				.addAdditionalProperty(CodegenConstants.API_NAME_SUFFIX, "ApiSuffix")
+				.addAdditionalProperty(CodegenConstants.MODEL_NAME_PREFIX, "ModelPrefix")
+				.addAdditionalProperty(CodegenConstants.MODEL_NAME_SUFFIX, "ModelSuffix"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);
