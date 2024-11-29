@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public final class FirstModel implements OneOfModel {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("type")

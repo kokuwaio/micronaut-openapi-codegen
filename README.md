@@ -46,6 +46,7 @@ Include in your `pom.xml`:
 * support for One-Of interfaces
 * support for additional properties with composed schemas
 * generate example instances of the model-objects
+* set a base class for all generated pojos, to allow extension with common functionality
 
 ### Config options
 
@@ -63,6 +64,7 @@ Include in your `pom.xml`:
 * generateAuthentication: generate Àuthentication into controller interfaces if response code 401 is present (default `false`)
 * sealed: generate sealed interfaces (default `true`)
 * record: generate records instead of pojos (default `false`)
+* modelBaseClass: set a base class that all generated pojos extend (default is unset)
 
 For examples see [integration tests](src/it).
 

@@ -1,5 +1,6 @@
 package issue._407;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = "petType")
 @com.fasterxml.jackson.annotation.JsonSubTypes({

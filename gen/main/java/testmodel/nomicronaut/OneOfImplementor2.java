@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public final class OneOfImplementor2 implements OneOfInterface {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("property")

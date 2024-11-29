@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public final class InheritanceWithEnumType1 implements InheritanceWithEnumType {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("d")

@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public class AdditionalPropertiesModel {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("id")

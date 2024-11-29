@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public enum InheritanceWithEnumTypeEnum {
 
 	INHERITANCE1("Inheritance1"),

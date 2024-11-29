@@ -1,5 +1,6 @@
 package testmodel.micronaut_pojo_constants;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public final class OneOfImplementor1 implements OneOfInterface {

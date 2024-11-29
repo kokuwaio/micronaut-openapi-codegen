@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public enum EnumerationNumber {
 
 	NUMBER_MINUS_1(-1D),

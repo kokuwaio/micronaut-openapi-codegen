@@ -1,5 +1,6 @@
 package issue._356;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = ParentDefault.class)
 public sealed interface Parent permits Child, ParentDefault {

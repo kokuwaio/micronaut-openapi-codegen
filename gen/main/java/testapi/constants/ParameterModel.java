@@ -1,5 +1,6 @@
 package testapi.constants;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public class ParameterModel {

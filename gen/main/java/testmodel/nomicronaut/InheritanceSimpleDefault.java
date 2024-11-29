@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public final class InheritanceSimpleDefault implements InheritanceSimple {
 
 	@jakarta.validation.constraints.NotNull

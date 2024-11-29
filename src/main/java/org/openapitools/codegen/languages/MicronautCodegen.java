@@ -62,6 +62,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	public static final String GENERATE_EXAMPLES = "generateExamples";
 	public static final String GENERATE_CONSTANTS = "generateConstants";
 	public static final String SEALED = "sealed";
+	public static final String MODEL_BASE_CLASS = "modelBaseClass";
 
 	// '{' or '}' is not allowed according to https://datatracker.ietf.org/doc/html/rfc6570#section-3.2
 	// so the RegExp needs to work around and be very verbose as quantifiers cannot be used.
@@ -84,6 +85,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private boolean record = false;
 	private boolean pageable = false;
 	private boolean sealed = true;
+	private String modelBaseClass = "";
 
 	public MicronautCodegen() {
 
@@ -114,6 +116,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		cliOptions.add(CliOption.newString(API_NAME_PREFIX, API_NAME_PREFIX_DESC));
 		cliOptions.add(CliOption.newString(API_NAME_SUFFIX, API_NAME_SUFFIX_DESC));
 		cliOptions.add(CliOption.newString(MODEL_NAME_PREFIX, MODEL_NAME_PREFIX_DESC));
+		cliOptions.add(CliOption.newString(MODEL_BASE_CLASS, "Base class to be used for all model classes."));
 		cliOptions.add(CliOption.newString(MODEL_NAME_SUFFIX, MODEL_NAME_SUFFIX_DESC));
 		cliOptions.add(
 				CliOption.newBoolean(REMOVE_ENUM_VALUE_PREFIX, REMOVE_ENUM_VALUE_PREFIX_DESC, removeEnumValuePrefix));
@@ -142,6 +145,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		additionalProperties.put(SEALED, sealed);
 		additionalProperties.put(RECORD, record);
 		additionalProperties.put(REMOVE_ENUM_VALUE_PREFIX, removeEnumValuePrefix);
+		additionalProperties.put(MODEL_BASE_CLASS, modelBaseClass);
 		additionalProperties.put("curly", "{");
 
 		// add custom type mappings
@@ -204,14 +208,15 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {}
+	public void postProcess() {
+	}
 
 	@Override
 	public void processOpts() {
 		super.useCodegenAsMustacheParentContext();
 
-		BiFunction<String, String, String> getOrDefault = (key,
-				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
+		BiFunction<String, String, String> getOrDefault =
+				(key, defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
 		// reuse package if other packages are not provided
 
@@ -257,6 +262,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		convertPropertyToStringAndWriteBack(API_NAME_SUFFIX, this::setApiNameSuffix);
 		convertPropertyToStringAndWriteBack(MODEL_NAME_PREFIX, this::setModelNamePrefix);
 		convertPropertyToStringAndWriteBack(MODEL_NAME_SUFFIX, this::setModelNameSuffix);
+		convertPropertyToStringAndWriteBack(MODEL_BASE_CLASS, this::setModelBaseClass);
 		convertPropertyToBooleanAndWriteBack(USE_BEANVALIDATION, this::setUseBeanValidation);
 		convertPropertyToBooleanAndWriteBack(USE_GENERIC_RESPONSE, this::setUseGenericResponse);
 		convertPropertyToBooleanAndWriteBack(USE_OPTIONAL, this::setUseOptional);
@@ -303,6 +309,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		Optional.ofNullable(typeMapping.get("Generated"))
 				.filter(type -> !type.isBlank())
 				.ifPresent(type -> additionalProperties.put("type.Generated", type));
+	}
+
+	private void setModelBaseClass(String modelBaseClass) {
+		this.modelBaseClass = modelBaseClass;
 	}
 
 	@Override
@@ -468,6 +478,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		var allModels = getAllModels(objs);
 		for (CodegenModel model : allModels.values()) {
 
+			if (!modelBaseClass.isEmpty()) {
+				model.getVendorExtensions().put("modelBaseClass", modelBaseClass);
+			}
+
 			// check if composed schemas for additional properties should be handled and apply to the map if so.
 
 			if (supportsAdditionalPropertiesWithComposedSchema && model.getAdditionalProperties() != null) {
@@ -625,8 +639,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			var index = type.lastIndexOf(".");
 			parameter.dataType = parameter.datatypeWithEnum = "java.util.Optional<"
 					+ (index == -1
-							? annotations + type
-							: type.substring(0, index + 1) + annotations + type.substring(index + 1))
+					? annotations + type
+					: type.substring(0, index + 1) + annotations + type.substring(index + 1))
 					+ ">";
 		}
 	}

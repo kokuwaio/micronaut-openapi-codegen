@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public class EnumerationModel {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("string")

@@ -1,5 +1,6 @@
 package issue._407;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public final class Dog implements Pet {

@@ -1,5 +1,6 @@
 package testmodel.micronaut_pojo_constants;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = InheritanceWithoutType.JSON_DISCRIMINATOR)
 @com.fasterxml.jackson.annotation.JsonSubTypes({

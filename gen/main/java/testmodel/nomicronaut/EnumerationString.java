@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public enum EnumerationString {
 
 	ONE("one"),

@@ -1,5 +1,6 @@
 package issue._414;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 public class ModelPrefixModelObjectModelSuffix {
 

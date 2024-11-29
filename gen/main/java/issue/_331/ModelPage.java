@@ -1,5 +1,6 @@
 package issue._331;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public class ModelPage {

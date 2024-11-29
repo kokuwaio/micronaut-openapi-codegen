@@ -1,5 +1,6 @@
 package issue._363._true;
 
+
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public enum EnumWithPrefix {

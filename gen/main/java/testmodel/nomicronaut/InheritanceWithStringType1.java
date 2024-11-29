@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+
 public final class InheritanceWithStringType1 implements InheritanceWithStringType {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("a")
