@@ -63,11 +63,11 @@
 								<resource>
 									<directory>${project.basedir}/../test-api/src</directory>
 									<excludes>
-										<exclude>**/MediaTypeControllerController.java</exclude>
+										<exclude>**/MediaTypeController.java</exclude>
 										<exclude>**/ParameterController.java</exclude>
 										<exclude>**/ResponseController.java</exclude>
 										<exclude>**/*ClientTest.java</exclude>
-										<exclude>**/MediaTypeControllerControllerTest.java</exclude>
+										<exclude>**/MediaTypeController.java</exclude>
 										<exclude>**/ParameterControllerTest.java</exclude>
 										<exclude>**/ValidationControllerTest.java</exclude>
 									</excludes>
