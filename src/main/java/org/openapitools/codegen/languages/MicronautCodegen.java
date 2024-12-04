@@ -311,10 +311,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				.ifPresent(type -> additionalProperties.put("type.Generated", type));
 	}
 
-	private void setModelBaseClass(String modelBaseClass) {
-		this.modelBaseClass = modelBaseClass;
-	}
-
 	@Override
 	public CodegenOperation fromOperation(String path, String httpMethod, Operation source, List<Server> servers) {
 
@@ -838,6 +834,10 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		this.useOptional = useOptional;
 	}
 
+	private void setModelBaseClass(String modelBaseClass) {
+		this.modelBaseClass = modelBaseClass;
+	}
+	
 	// internal
 
 	private void addSupportingFile(String folder, String packageString, String file) {
