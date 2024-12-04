@@ -837,7 +837,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	private void setModelBaseClass(String modelBaseClass) {
 		this.modelBaseClass = modelBaseClass;
 	}
-	
+
 	// internal
 
 	private void addSupportingFile(String folder, String packageString, String file) {

@@ -1,6 +1,5 @@
 package testmodel.nomicronaut;
 
-
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceSimpleDefault.class)
 public sealed interface InheritanceSimple permits InheritanceExtended, InheritanceSimpleDefault {
 

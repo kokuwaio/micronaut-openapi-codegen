@@ -1,6 +1,5 @@
 package issue._315;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public class ServiceScopesEntry {

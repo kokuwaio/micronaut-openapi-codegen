@@ -1,6 +1,5 @@
 package testmodel.micronaut_pojo_unsealed;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public class InheritanceWithStringType2 implements InheritanceWithStringType {

@@ -1,6 +1,5 @@
 package testmodel.nomicronaut;
 
-
 public final class PropertyTypeOne implements AdditionalPropertiesModelValue {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("type")

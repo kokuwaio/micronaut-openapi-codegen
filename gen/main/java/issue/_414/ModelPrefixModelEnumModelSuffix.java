@@ -1,6 +1,5 @@
 package issue._414;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 public enum ModelPrefixModelEnumModelSuffix {
 

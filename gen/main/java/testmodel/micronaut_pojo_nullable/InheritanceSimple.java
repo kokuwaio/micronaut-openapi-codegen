@@ -1,6 +1,5 @@
 package testmodel.micronaut_pojo_nullable;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceSimpleDefault.class)
 public sealed interface InheritanceSimple permits InheritanceExtended, InheritanceSimpleDefault {

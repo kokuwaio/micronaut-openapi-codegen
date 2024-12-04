@@ -1,6 +1,5 @@
 package testmodel.micronaut_record;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
 @com.fasterxml.jackson.annotation.JsonSubTypes({

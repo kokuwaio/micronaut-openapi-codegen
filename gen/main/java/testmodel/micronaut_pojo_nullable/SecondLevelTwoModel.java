@@ -1,6 +1,5 @@
 package testmodel.micronaut_pojo_nullable;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public final class SecondLevelTwoModel implements SecondLevelModel {

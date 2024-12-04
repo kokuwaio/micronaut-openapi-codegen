@@ -1,6 +1,5 @@
 package testmodel.micronaut_pojo;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public final class FirstModel implements OneOfModel {

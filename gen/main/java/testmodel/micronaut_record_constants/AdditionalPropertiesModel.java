@@ -1,6 +1,5 @@
 package testmodel.micronaut_record_constants;
 
-
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
 public record AdditionalPropertiesModel(

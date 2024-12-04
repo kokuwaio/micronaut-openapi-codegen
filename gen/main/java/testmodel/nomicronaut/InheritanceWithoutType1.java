@@ -1,6 +1,5 @@
 package testmodel.nomicronaut;
 
-
 public final class InheritanceWithoutType1 implements InheritanceWithoutType {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("e")

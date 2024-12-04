@@ -1,6 +1,5 @@
 package testapi.types;
 
-
 @io.micronaut.serde.annotation.Serdeable
 public class Multipart {
 
