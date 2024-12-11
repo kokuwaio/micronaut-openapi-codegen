@@ -1,0 +1,21 @@
+openapi: 3.0.1
+info:
+  version: 0.0.1
+  title: EnumTest
+paths: {}
+components:
+  schemas:
+    Parent:
+      type: object
+      properties:
+        id:
+          type: string
+        state:
+          enum: ["on", "off"]
+    Child:
+      allOf:
+        - type: object
+          properties:
+            name:
+              type: string
+        - $ref: "#/components/schemas/Parent"

@@ -126,7 +126,7 @@ public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class
 
 	public void {{setter}}({{>modelPropertyType}} new{{nameInPascalCase}}) {
 		this.{{name}} = new{{nameInPascalCase}};
-	}{{/allVars}}{{#allVars}}{{#isEnum}}
+	}{{/allVars}}{{#vars}}{{#isEnum}}
 
-{{>modelEnum}}{{/isEnum}}{{/allVars}}
+{{>modelEnum}}{{/isEnum}}{{/vars}}
 }

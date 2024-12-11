@@ -89,6 +89,12 @@ public class IssueCodegenTest extends AbstractCodegenTest {
 				.addAdditionalProperty(CodegenConstants.MODEL_NAME_SUFFIX, "ModelSuffix"));
 	}
 
+	@DisplayName("model parent has inner eum, should not created for childs")
+	@Test
+	void modelWithInnerEnum() {
+		generate(configurator("src/test/resources/openapi/issue-432.yaml", "issue._432"));
+	}
+
 	static void generate(CodegenConfigurator configurator) {
 		var gen = new DefaultGenerator();
 		gen.setGenerateMetadata(false);
