@@ -18,6 +18,9 @@ public class SecondLevelTwoModel   {
   private String type;
   private String two;
 
+  public SecondLevelTwoModel() {
+  }
+
   /**
    **/
   public SecondLevelTwoModel type(String type) {

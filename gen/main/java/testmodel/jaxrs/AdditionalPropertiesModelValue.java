@@ -68,6 +68,9 @@ public enum TypeEnum {
 
   private TypeEnum type;
 
+  public AdditionalPropertiesModelValue() {
+  }
+
   /**
    **/
   public AdditionalPropertiesModelValue type(TypeEnum type) {

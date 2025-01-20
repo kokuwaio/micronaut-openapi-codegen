@@ -19,6 +19,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class InheritanceWithEnumType2 extends InheritanceWithEnumType  {
   private String e;
 
+  public InheritanceWithEnumType2() {
+  }
+
   /**
    **/
   public InheritanceWithEnumType2 e(String e) {

@@ -18,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class InheritanceWithoutType1 extends InheritanceWithoutType  {
   private String f;
 
+  public InheritanceWithoutType1() {
+  }
+
   /**
    **/
   public InheritanceWithoutType1 f(String f) {

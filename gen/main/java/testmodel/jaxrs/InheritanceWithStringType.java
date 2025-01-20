@@ -26,6 +26,9 @@ public class InheritanceWithStringType   {
   private String type;
   private String a;
 
+  public InheritanceWithStringType() {
+  }
+
   /**
    **/
   public InheritanceWithStringType type(String type) {

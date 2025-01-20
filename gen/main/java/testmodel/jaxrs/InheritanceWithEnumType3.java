@@ -18,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 public class InheritanceWithEnumType3 extends InheritanceWithEnumType  {
 
+  public InheritanceWithEnumType3() {
+  }
+
 
   @Override
   public boolean equals(Object o) {

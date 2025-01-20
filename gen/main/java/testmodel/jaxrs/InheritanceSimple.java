@@ -17,6 +17,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class InheritanceSimple   {
   private String foo;
 
+  public InheritanceSimple() {
+  }
+
+  @JsonCreator
+  public InheritanceSimple(
+    @JsonProperty(required = true, value = "foo") String foo
+  ) {
+    this.foo = foo;
+  }
+
   /**
    **/
   public InheritanceSimple foo(String foo) {
@@ -25,12 +35,12 @@ public class InheritanceSimple   {
   }
 
   
-  @JsonProperty("foo")
+  @JsonProperty(required = true, value = "foo")
   @NotNull public String getFoo() {
     return foo;
   }
 
-  @JsonProperty("foo")
+  @JsonProperty(required = true, value = "foo")
   public void setFoo(String foo) {
     this.foo = foo;
   }

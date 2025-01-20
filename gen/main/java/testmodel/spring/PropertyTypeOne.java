@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.springframework.lang.Nullable;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -57,7 +58,7 @@ public enum TypeEnum {
     }
   }
 
-  private TypeEnum type;
+  private @Nullable TypeEnum type;
 
   public PropertyTypeOne type(TypeEnum type) {
     this.type = type;

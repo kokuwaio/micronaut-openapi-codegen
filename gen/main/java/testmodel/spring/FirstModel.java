@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import testmodel.spring.SecondLevelModel;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -22,11 +23,11 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class FirstModel implements OneOfModel {
 
-  private String type;
+  private @Nullable String type;
 
-  private String first;
+  private @Nullable String first;
 
-  private SecondLevelModel secondLevel;
+  private @Nullable SecondLevelModel secondLevel;
 
   public FirstModel type(String type) {
     this.type = type;
