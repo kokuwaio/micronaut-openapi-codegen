@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.springframework.lang.Nullable;
 import testmodel.spring.EnumerationString;
 import testmodel.spring.EnumerationStringDefault;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -24,7 +25,7 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class EnumerationModel {
 
-  private EnumerationString string;
+  private @Nullable EnumerationString string;
 
   private EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
 
@@ -64,7 +65,7 @@ public enum EmbeddedEnum {
     }
   }
 
-  private EmbeddedEnum embedded;
+  private @Nullable EmbeddedEnum embedded;
 
   /**
    * Gets or Sets embeddedDefault

@@ -61,6 +61,22 @@ public class Model   {
   private String defaultNullable = "defaultNullableValue";
   private EnumerationModel referenedModel;
 
+  public Model() {
+  }
+
+  @JsonCreator
+  public Model(
+    @JsonProperty(required = true, value = "name") String name,
+    @JsonProperty(required = true, value = "array") List<String> array,
+    @JsonProperty(required = true, value = "set") Set<String> set,
+    @JsonProperty(required = true, value = "map") Map<String, String> map
+  ) {
+    this.name = name;
+    this.array = array;
+    this.set = set;
+    this.map = map;
+  }
+
   /**
    **/
   public Model id(Integer id) {
@@ -123,12 +139,12 @@ public class Model   {
   }
 
   
-  @JsonProperty("name")
+  @JsonProperty(required = true, value = "name")
   @NotNull  @Size(max=36)public String getName() {
     return name;
   }
 
-  @JsonProperty("name")
+  @JsonProperty(required = true, value = "name")
   public void setName(String name) {
     this.name = name;
   }
@@ -321,12 +337,12 @@ public class Model   {
   }
 
   
-  @JsonProperty("array")
+  @JsonProperty(required = true, value = "array")
   @NotNull public List<String> getArray() {
     return array;
   }
 
-  @JsonProperty("array")
+  @JsonProperty(required = true, value = "array")
   public void setArray(List<String> array) {
     this.array = array;
   }
@@ -389,12 +405,12 @@ public class Model   {
   }
 
   
-  @JsonProperty("set")
+  @JsonProperty(required = true, value = "set")
   @NotNull public Set<String> getSet() {
     return set;
   }
 
-  @JsonProperty("set")
+  @JsonProperty(required = true, value = "set")
   @JsonDeserialize(as = LinkedHashSet.class)
   public void setSet(Set<String> set) {
     this.set = set;
@@ -459,12 +475,12 @@ public class Model   {
   }
 
   
-  @JsonProperty("map")
+  @JsonProperty(required = true, value = "map")
   @NotNull public Map<String, String> getMap() {
     return map;
   }
 
-  @JsonProperty("map")
+  @JsonProperty(required = true, value = "map")
   public void setMap(Map<String, String> map) {
     this.map = map;
   }

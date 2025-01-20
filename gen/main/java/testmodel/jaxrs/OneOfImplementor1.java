@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class OneOfImplementor1   {
   private String property;
 
+  public OneOfImplementor1() {
+  }
+
   /**
    **/
   public OneOfImplementor1 property(String property) {

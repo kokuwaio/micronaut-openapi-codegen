@@ -20,6 +20,9 @@ public class FirstModel   {
   private String first;
   private SecondLevelModel secondLevel;
 
+  public FirstModel() {
+  }
+
   /**
    **/
   public FirstModel type(String type) {
