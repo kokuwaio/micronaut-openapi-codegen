@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.math.BigDecimal;
+import org.springframework.lang.Nullable;
 import testmodel.spring.OneOfImplementor1;
 import testmodel.spring.OneOfImplementor2;
 import org.openapitools.jackson.nullable.JsonNullable;

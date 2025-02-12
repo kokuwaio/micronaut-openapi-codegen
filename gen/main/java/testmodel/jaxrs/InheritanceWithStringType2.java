@@ -18,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class InheritanceWithStringType2 extends InheritanceWithStringType  {
   private String c;
 
+  public InheritanceWithStringType2() {
+  }
+
   /**
    **/
   public InheritanceWithStringType2 c(String c) {

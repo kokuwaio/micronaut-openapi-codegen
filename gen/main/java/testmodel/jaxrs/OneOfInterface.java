@@ -29,6 +29,9 @@ public class OneOfInterface   {
   private String type;
   private BigDecimal property;
 
+  public OneOfInterface() {
+  }
+
   /**
    **/
   public OneOfInterface type(String type) {

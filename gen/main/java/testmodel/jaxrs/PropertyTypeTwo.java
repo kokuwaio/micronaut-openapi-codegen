@@ -65,6 +65,9 @@ public enum TypeEnum {
 
   private TypeEnum type;
 
+  public PropertyTypeTwo() {
+  }
+
   /**
    **/
   public PropertyTypeTwo type(TypeEnum type) {

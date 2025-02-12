@@ -18,6 +18,18 @@ public class InheritanceExtended   {
   private String foo;
   private String bar;
 
+  public InheritanceExtended() {
+  }
+
+  @JsonCreator
+  public InheritanceExtended(
+    @JsonProperty(required = true, value = "foo") String foo,
+    @JsonProperty(required = true, value = "bar") String bar
+  ) {
+    this.foo = foo;
+    this.bar = bar;
+  }
+
   /**
    **/
   public InheritanceExtended foo(String foo) {
@@ -26,12 +38,12 @@ public class InheritanceExtended   {
   }
 
   
-  @JsonProperty("foo")
+  @JsonProperty(required = true, value = "foo")
   @NotNull public String getFoo() {
     return foo;
   }
 
-  @JsonProperty("foo")
+  @JsonProperty(required = true, value = "foo")
   public void setFoo(String foo) {
     this.foo = foo;
   }
@@ -44,12 +56,12 @@ public class InheritanceExtended   {
   }
 
   
-  @JsonProperty("bar")
+  @JsonProperty(required = true, value = "bar")
   @NotNull public String getBar() {
     return bar;
   }
 
-  @JsonProperty("bar")
+  @JsonProperty(required = true, value = "bar")
   public void setBar(String bar) {
     this.bar = bar;
   }

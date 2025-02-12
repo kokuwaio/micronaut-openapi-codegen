@@ -18,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class OneOfImplementor2   {
   private BigDecimal property;
 
+  public OneOfImplementor2() {
+  }
+
   /**
    **/
   public OneOfImplementor2 property(BigDecimal property) {

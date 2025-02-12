@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 import testmodel.spring.EnumerationModel;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -36,35 +37,35 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class Model {
 
-  private Integer id;
+  private @Nullable Integer id;
 
-  private Integer idWithExample;
+  private @Nullable Integer idWithExample;
 
   private Integer idWithDefault = 32;
 
   private String name;
 
-  private String nameWithExample;
+  private @Nullable String nameWithExample;
 
   private String nameWithDefault = "MyDefaultName";
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate date;
+  private @Nullable LocalDate date;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate dateWithExample;
+  private @Nullable LocalDate dateWithExample;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime dateTime;
+  private @Nullable OffsetDateTime dateTime;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime dateTimeWithExample;
+  private @Nullable OffsetDateTime dateTimeWithExample;
 
-  private BigDecimal number;
+  private @Nullable BigDecimal number;
 
-  private org.springframework.core.io.Resource binary;
+  private @Nullable org.springframework.core.io.Resource binary;
 
-  private byte[] bytes;
+  private @Nullable byte[] bytes;
 
   private JsonNullable<Object> any = JsonNullable.<Object>undefined();
 
@@ -111,7 +112,7 @@ public class Model {
 
   private JsonNullable<String> defaultNullable = JsonNullable.<String>undefined();
 
-  private EnumerationModel referenedModel;
+  private @Nullable EnumerationModel referenedModel;
 
   public Model() {
     super();

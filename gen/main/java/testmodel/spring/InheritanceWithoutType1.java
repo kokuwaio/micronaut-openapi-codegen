@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import testmodel.spring.InheritanceWithoutType;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -22,7 +23,7 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class InheritanceWithoutType1 extends InheritanceWithoutType {
 
-  private String f;
+  private @Nullable String f;
 
   public InheritanceWithoutType1 f(String f) {
     this.f = f;

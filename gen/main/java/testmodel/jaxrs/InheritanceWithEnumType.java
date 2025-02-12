@@ -27,6 +27,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class InheritanceWithEnumType   {
   private InheritanceWithEnumTypeEnum type;
 
+  public InheritanceWithEnumType() {
+  }
+
   /**
    **/
   public InheritanceWithEnumType type(InheritanceWithEnumTypeEnum type) {

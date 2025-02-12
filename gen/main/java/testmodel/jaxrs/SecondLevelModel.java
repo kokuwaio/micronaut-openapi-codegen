@@ -21,6 +21,9 @@ public class SecondLevelModel   {
   private String one;
   private String two;
 
+  public SecondLevelModel() {
+  }
+
   /**
    **/
   public SecondLevelModel type(String type) {

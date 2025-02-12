@@ -118,6 +118,9 @@ public enum EmbeddedDefaultEnum {
 
   private EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
 
+  public EnumerationModel() {
+  }
+
   /**
    **/
   public EnumerationModel string(EnumerationString string) {
