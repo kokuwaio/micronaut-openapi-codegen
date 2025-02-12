@@ -9,22 +9,3 @@ updates:
     schedule:
       interval: monthly
       day: monday
-  - package-ecosystem: maven
-    directory: /
-    target-branch: 3.x
-    schedule:
-      interval: daily
-    ignore:
-      # this branch is for micronaut 3
-      - dependency-name: io.micronaut:*
-        update-types: [version-update:semver-major]
-      - dependency-name: io.micronaut.security:*
-        update-types: [version-update:semver-major]
-      # spring is used for tests
-      - dependency-name: org.springframework:spring-context
-  - package-ecosystem: github-actions
-    directory: /
-    target-branch: 3.x
-    schedule:
-      interval: monthly
-      day: monday
