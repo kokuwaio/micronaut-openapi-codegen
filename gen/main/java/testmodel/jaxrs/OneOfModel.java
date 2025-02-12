@@ -23,6 +23,9 @@ public class OneOfModel   {
   private String one;
   private String two;
 
+  public OneOfModel() {
+  }
+
   /**
    **/
   public OneOfModel type(String type) {

@@ -20,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class AdditionalPropertiesModel extends HashMap<String, AdditionalPropertiesModelValue>  {
   private String id;
 
+  public AdditionalPropertiesModel() {
+  }
+
   /**
    **/
   public AdditionalPropertiesModel id(String id) {
