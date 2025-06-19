@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/447>
+  version: 0.0.1
+components:
+  schemas:
+    Parent:
+      type: object
+      properties:
+        id:
+          type: string
+    Child:
+      allOf:
+        - type: object
+          properties:
+            name:
+              type: string
+        - $ref: "#/components/schemas/Parent"
+paths:
+  /child:
+    get:
+      summary: 'Returns child'
+      operationId: getChild
+      tags:
+        - child
+      responses:
+        200:
+          description: 'A child'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
