@@ -39,7 +39,7 @@ public class InheritanceWithStringType {
 
   private @Nullable String a;
 
-  public InheritanceWithStringType type(String type) {
+  public InheritanceWithStringType type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -50,15 +50,15 @@ public class InheritanceWithStringType {
    */
   
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 
-  public InheritanceWithStringType a(String a) {
+  public InheritanceWithStringType a(@Nullable String a) {
     this.a = a;
     return this;
   }
@@ -69,11 +69,11 @@ public class InheritanceWithStringType {
    */
   
   @JsonProperty("a")
-  public String getA() {
+  public @Nullable String getA() {
     return a;
   }
 
-  public void setA(String a) {
+  public void setA(@Nullable String a) {
     this.a = a;
   }
 

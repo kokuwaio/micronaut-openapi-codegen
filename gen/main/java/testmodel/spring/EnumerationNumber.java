@@ -30,7 +30,7 @@ public enum EnumerationNumber {
   
   NUMBER_1(new BigDecimal("1"));
 
-  private BigDecimal value;
+  private final BigDecimal value;
 
   EnumerationNumber(BigDecimal value) {
     this.value = value;

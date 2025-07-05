@@ -128,7 +128,7 @@ public class Model {
     this.map = map;
   }
 
-  public Model id(Integer id) {
+  public Model id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -139,15 +139,15 @@ public class Model {
    */
   
   @JsonProperty("id")
-  public Integer getId() {
+  public @Nullable Integer getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
-  public Model idWithExample(Integer idWithExample) {
+  public Model idWithExample(@Nullable Integer idWithExample) {
     this.idWithExample = idWithExample;
     return this;
   }
@@ -158,11 +158,11 @@ public class Model {
    */
   
   @JsonProperty("idWithExample")
-  public Integer getIdWithExample() {
+  public @Nullable Integer getIdWithExample() {
     return idWithExample;
   }
 
-  public void setIdWithExample(Integer idWithExample) {
+  public void setIdWithExample(@Nullable Integer idWithExample) {
     this.idWithExample = idWithExample;
   }
 
@@ -204,7 +204,7 @@ public class Model {
     this.name = name;
   }
 
-  public Model nameWithExample(String nameWithExample) {
+  public Model nameWithExample(@Nullable String nameWithExample) {
     this.nameWithExample = nameWithExample;
     return this;
   }
@@ -215,11 +215,11 @@ public class Model {
    */
   
   @JsonProperty("nameWithExample")
-  public String getNameWithExample() {
+  public @Nullable String getNameWithExample() {
     return nameWithExample;
   }
 
-  public void setNameWithExample(String nameWithExample) {
+  public void setNameWithExample(@Nullable String nameWithExample) {
     this.nameWithExample = nameWithExample;
   }
 
@@ -242,7 +242,7 @@ public class Model {
     this.nameWithDefault = nameWithDefault;
   }
 
-  public Model date(LocalDate date) {
+  public Model date(@Nullable LocalDate date) {
     this.date = date;
     return this;
   }
@@ -253,15 +253,15 @@ public class Model {
    */
   @Valid 
   @JsonProperty("date")
-  public LocalDate getDate() {
+  public @Nullable LocalDate getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(@Nullable LocalDate date) {
     this.date = date;
   }
 
-  public Model dateWithExample(LocalDate dateWithExample) {
+  public Model dateWithExample(@Nullable LocalDate dateWithExample) {
     this.dateWithExample = dateWithExample;
     return this;
   }
@@ -272,15 +272,15 @@ public class Model {
    */
   @Valid 
   @JsonProperty("dateWithExample")
-  public LocalDate getDateWithExample() {
+  public @Nullable LocalDate getDateWithExample() {
     return dateWithExample;
   }
 
-  public void setDateWithExample(LocalDate dateWithExample) {
+  public void setDateWithExample(@Nullable LocalDate dateWithExample) {
     this.dateWithExample = dateWithExample;
   }
 
-  public Model dateTime(OffsetDateTime dateTime) {
+  public Model dateTime(@Nullable OffsetDateTime dateTime) {
     this.dateTime = dateTime;
     return this;
   }
@@ -291,15 +291,15 @@ public class Model {
    */
   @Valid 
   @JsonProperty("date-time")
-  public OffsetDateTime getDateTime() {
+  public @Nullable OffsetDateTime getDateTime() {
     return dateTime;
   }
 
-  public void setDateTime(OffsetDateTime dateTime) {
+  public void setDateTime(@Nullable OffsetDateTime dateTime) {
     this.dateTime = dateTime;
   }
 
-  public Model dateTimeWithExample(OffsetDateTime dateTimeWithExample) {
+  public Model dateTimeWithExample(@Nullable OffsetDateTime dateTimeWithExample) {
     this.dateTimeWithExample = dateTimeWithExample;
     return this;
   }
@@ -310,15 +310,15 @@ public class Model {
    */
   @Valid 
   @JsonProperty("date-timeWithExample")
-  public OffsetDateTime getDateTimeWithExample() {
+  public @Nullable OffsetDateTime getDateTimeWithExample() {
     return dateTimeWithExample;
   }
 
-  public void setDateTimeWithExample(OffsetDateTime dateTimeWithExample) {
+  public void setDateTimeWithExample(@Nullable OffsetDateTime dateTimeWithExample) {
     this.dateTimeWithExample = dateTimeWithExample;
   }
 
-  public Model number(BigDecimal number) {
+  public Model number(@Nullable BigDecimal number) {
     this.number = number;
     return this;
   }
@@ -329,15 +329,15 @@ public class Model {
    */
   @Valid 
   @JsonProperty("number")
-  public BigDecimal getNumber() {
+  public @Nullable BigDecimal getNumber() {
     return number;
   }
 
-  public void setNumber(BigDecimal number) {
+  public void setNumber(@Nullable BigDecimal number) {
     this.number = number;
   }
 
-  public Model binary(org.springframework.core.io.Resource binary) {
+  public Model binary(@Nullable org.springframework.core.io.Resource binary) {
     this.binary = binary;
     return this;
   }
@@ -348,15 +348,15 @@ public class Model {
    */
   @Valid 
   @JsonProperty("binary")
-  public org.springframework.core.io.Resource getBinary() {
+  public @Nullable org.springframework.core.io.Resource getBinary() {
     return binary;
   }
 
-  public void setBinary(org.springframework.core.io.Resource binary) {
+  public void setBinary(@Nullable org.springframework.core.io.Resource binary) {
     this.binary = binary;
   }
 
-  public Model bytes(byte[] bytes) {
+  public Model bytes(@Nullable byte[] bytes) {
     this.bytes = bytes;
     return this;
   }
@@ -367,11 +367,11 @@ public class Model {
    */
   
   @JsonProperty("bytes")
-  public byte[] getBytes() {
+  public @Nullable byte[] getBytes() {
     return bytes;
   }
 
-  public void setBytes(byte[] bytes) {
+  public void setBytes(@Nullable byte[] bytes) {
     this.bytes = bytes;
   }
 
@@ -789,7 +789,7 @@ public class Model {
     this.defaultNullable = defaultNullable;
   }
 
-  public Model referenedModel(EnumerationModel referenedModel) {
+  public Model referenedModel(@Nullable EnumerationModel referenedModel) {
     this.referenedModel = referenedModel;
     return this;
   }
@@ -800,11 +800,11 @@ public class Model {
    */
   @Valid 
   @JsonProperty("referenedModel")
-  public EnumerationModel getReferenedModel() {
+  public @Nullable EnumerationModel getReferenedModel() {
     return referenedModel;
   }
 
-  public void setReferenedModel(EnumerationModel referenedModel) {
+  public void setReferenedModel(@Nullable EnumerationModel referenedModel) {
     this.referenedModel = referenedModel;
   }
 

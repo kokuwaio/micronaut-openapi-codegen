@@ -31,7 +31,7 @@ public class PropertyTypeTwo implements AdditionalPropertiesModelValue {
 public enum TypeEnum {
     TWO("two");
 
-    private String value;
+    private final String value;
 
     TypeEnum(String value) {
       this.value = value;
@@ -60,7 +60,7 @@ public enum TypeEnum {
 
   private @Nullable TypeEnum type;
 
-  public PropertyTypeTwo type(TypeEnum type) {
+  public PropertyTypeTwo type(@Nullable TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -71,11 +71,11 @@ public enum TypeEnum {
    */
   
   @JsonProperty("type")
-  public TypeEnum getType() {
+  public @Nullable TypeEnum getType() {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  public void setType(@Nullable TypeEnum type) {
     this.type = type;
   }
 
