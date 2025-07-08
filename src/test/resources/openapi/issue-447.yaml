@@ -19,14 +19,14 @@ components:
 paths:
   /child:
     get:
-      summary: 'Returns child'
+      summary: Returns child
       operationId: getChild
       tags:
         - child
       responses:
         200:
-          description: 'A child'
+          description: A child
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Child'
+                $ref: "#/components/schemas/Child"
