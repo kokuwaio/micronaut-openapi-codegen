@@ -30,7 +30,7 @@ public class OneOfImplementor2 implements OneOfInterface {
 
   private @Nullable String type;
 
-  public OneOfImplementor2 property(BigDecimal property) {
+  public OneOfImplementor2 property(@Nullable BigDecimal property) {
     this.property = property;
     return this;
   }
@@ -41,15 +41,15 @@ public class OneOfImplementor2 implements OneOfInterface {
    */
   @Valid 
   @JsonProperty("property")
-  public BigDecimal getProperty() {
+  public @Nullable BigDecimal getProperty() {
     return property;
   }
 
-  public void setProperty(BigDecimal property) {
+  public void setProperty(@Nullable BigDecimal property) {
     this.property = property;
   }
 
-  public OneOfImplementor2 type(String type) {
+  public OneOfImplementor2 type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -60,11 +60,11 @@ public class OneOfImplementor2 implements OneOfInterface {
    */
   
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 

@@ -37,7 +37,7 @@ public class InheritanceWithoutType {
 
   private @Nullable String e;
 
-  public InheritanceWithoutType e(String e) {
+  public InheritanceWithoutType e(@Nullable String e) {
     this.e = e;
     return this;
   }
@@ -48,11 +48,11 @@ public class InheritanceWithoutType {
    */
   
   @JsonProperty("e")
-  public String getE() {
+  public @Nullable String getE() {
     return e;
   }
 
-  public void setE(String e) {
+  public void setE(@Nullable String e) {
     this.e = e;
   }
 

@@ -29,7 +29,7 @@ public class FirstModel implements OneOfModel {
 
   private @Nullable SecondLevelModel secondLevel;
 
-  public FirstModel type(String type) {
+  public FirstModel type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -40,15 +40,15 @@ public class FirstModel implements OneOfModel {
    */
   
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 
-  public FirstModel first(String first) {
+  public FirstModel first(@Nullable String first) {
     this.first = first;
     return this;
   }
@@ -59,15 +59,15 @@ public class FirstModel implements OneOfModel {
    */
   
   @JsonProperty("first")
-  public String getFirst() {
+  public @Nullable String getFirst() {
     return first;
   }
 
-  public void setFirst(String first) {
+  public void setFirst(@Nullable String first) {
     this.first = first;
   }
 
-  public FirstModel secondLevel(SecondLevelModel secondLevel) {
+  public FirstModel secondLevel(@Nullable SecondLevelModel secondLevel) {
     this.secondLevel = secondLevel;
     return this;
   }
@@ -78,11 +78,11 @@ public class FirstModel implements OneOfModel {
    */
   @Valid 
   @JsonProperty("secondLevel")
-  public SecondLevelModel getSecondLevel() {
+  public @Nullable SecondLevelModel getSecondLevel() {
     return secondLevel;
   }
 
-  public void setSecondLevel(SecondLevelModel secondLevel) {
+  public void setSecondLevel(@Nullable SecondLevelModel secondLevel) {
     this.secondLevel = secondLevel;
   }
 

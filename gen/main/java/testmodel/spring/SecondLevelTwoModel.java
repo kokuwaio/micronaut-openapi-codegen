@@ -26,7 +26,7 @@ public class SecondLevelTwoModel implements SecondLevelModel {
 
   private @Nullable String two;
 
-  public SecondLevelTwoModel type(String type) {
+  public SecondLevelTwoModel type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -37,15 +37,15 @@ public class SecondLevelTwoModel implements SecondLevelModel {
    */
   
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 
-  public SecondLevelTwoModel two(String two) {
+  public SecondLevelTwoModel two(@Nullable String two) {
     this.two = two;
     return this;
   }
@@ -56,11 +56,11 @@ public class SecondLevelTwoModel implements SecondLevelModel {
    */
   
   @JsonProperty("two")
-  public String getTwo() {
+  public @Nullable String getTwo() {
     return two;
   }
 
-  public void setTwo(String two) {
+  public void setTwo(@Nullable String two) {
     this.two = two;
   }
 

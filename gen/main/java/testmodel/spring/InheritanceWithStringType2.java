@@ -25,7 +25,7 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
 
   private @Nullable String c;
 
-  public InheritanceWithStringType2 c(String c) {
+  public InheritanceWithStringType2 c(@Nullable String c) {
     this.c = c;
     return this;
   }
@@ -36,11 +36,11 @@ public class InheritanceWithStringType2 extends InheritanceWithStringType {
    */
   
   @JsonProperty("c")
-  public String getC() {
+  public @Nullable String getC() {
     return c;
   }
 
-  public void setC(String c) {
+  public void setC(@Nullable String c) {
     this.c = c;
   }
 

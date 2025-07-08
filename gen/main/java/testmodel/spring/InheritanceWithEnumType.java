@@ -40,7 +40,7 @@ public class InheritanceWithEnumType {
 
   private @Nullable InheritanceWithEnumTypeEnum type;
 
-  public InheritanceWithEnumType type(InheritanceWithEnumTypeEnum type) {
+  public InheritanceWithEnumType type(@Nullable InheritanceWithEnumTypeEnum type) {
     this.type = type;
     return this;
   }
@@ -51,11 +51,11 @@ public class InheritanceWithEnumType {
    */
   @Valid 
   @JsonProperty("type")
-  public InheritanceWithEnumTypeEnum getType() {
+  public @Nullable InheritanceWithEnumTypeEnum getType() {
     return type;
   }
 
-  public void setType(InheritanceWithEnumTypeEnum type) {
+  public void setType(@Nullable InheritanceWithEnumTypeEnum type) {
     this.type = type;
   }
 
