@@ -27,7 +27,7 @@ public enum EnumerationString {
   
   TWO("two");
 
-  private String value;
+  private final String value;
 
   EnumerationString(String value) {
     this.value = value;

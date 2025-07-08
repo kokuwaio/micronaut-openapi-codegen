@@ -27,7 +27,7 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
 
   private @Nullable String e;
 
-  public InheritanceWithEnumType2 e(String e) {
+  public InheritanceWithEnumType2 e(@Nullable String e) {
     this.e = e;
     return this;
   }
@@ -38,11 +38,11 @@ public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
    */
   
   @JsonProperty("e")
-  public String getE() {
+  public @Nullable String getE() {
     return e;
   }
 
-  public void setE(String e) {
+  public void setE(@Nullable String e) {
     this.e = e;
   }
 

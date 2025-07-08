@@ -29,7 +29,7 @@ public enum InheritanceWithEnumTypeEnum {
   
   INHERITANCE3("Inheritance3");
 
-  private String value;
+  private final String value;
 
   InheritanceWithEnumTypeEnum(String value) {
     this.value = value;

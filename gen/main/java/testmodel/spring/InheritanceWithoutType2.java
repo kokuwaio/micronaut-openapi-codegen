@@ -25,7 +25,7 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
 
   private @Nullable String g;
 
-  public InheritanceWithoutType2 g(String g) {
+  public InheritanceWithoutType2 g(@Nullable String g) {
     this.g = g;
     return this;
   }
@@ -36,11 +36,11 @@ public class InheritanceWithoutType2 extends InheritanceWithoutType {
    */
   
   @JsonProperty("g")
-  public String getG() {
+  public @Nullable String getG() {
     return g;
   }
 
-  public void setG(String g) {
+  public void setG(@Nullable String g) {
     this.g = g;
   }
 

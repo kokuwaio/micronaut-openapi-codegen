@@ -38,7 +38,7 @@ public enum EmbeddedEnum {
     
     SECOND("second");
 
-    private String value;
+    private final String value;
 
     EmbeddedEnum(String value) {
       this.value = value;
@@ -76,7 +76,7 @@ public enum EmbeddedDefaultEnum {
     
     FOUR("four");
 
-    private String value;
+    private final String value;
 
     EmbeddedDefaultEnum(String value) {
       this.value = value;
@@ -105,7 +105,7 @@ public enum EmbeddedDefaultEnum {
 
   private EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
 
-  public EnumerationModel string(EnumerationString string) {
+  public EnumerationModel string(@Nullable EnumerationString string) {
     this.string = string;
     return this;
   }
@@ -116,11 +116,11 @@ public enum EmbeddedDefaultEnum {
    */
   @Valid 
   @JsonProperty("string")
-  public EnumerationString getString() {
+  public @Nullable EnumerationString getString() {
     return string;
   }
 
-  public void setString(EnumerationString string) {
+  public void setString(@Nullable EnumerationString string) {
     this.string = string;
   }
 
@@ -143,7 +143,7 @@ public enum EmbeddedDefaultEnum {
     this.stringDefault = stringDefault;
   }
 
-  public EnumerationModel embedded(EmbeddedEnum embedded) {
+  public EnumerationModel embedded(@Nullable EmbeddedEnum embedded) {
     this.embedded = embedded;
     return this;
   }
@@ -154,11 +154,11 @@ public enum EmbeddedDefaultEnum {
    */
   
   @JsonProperty("embedded")
-  public EmbeddedEnum getEmbedded() {
+  public @Nullable EmbeddedEnum getEmbedded() {
     return embedded;
   }
 
-  public void setEmbedded(EmbeddedEnum embedded) {
+  public void setEmbedded(@Nullable EmbeddedEnum embedded) {
     this.embedded = embedded;
   }
 

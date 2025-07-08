@@ -33,7 +33,7 @@ public enum EnumerationInteger {
   
   NUMBER_2147483647(2147483647);
 
-  private Integer value;
+  private final Integer value;
 
   EnumerationInteger(Integer value) {
     this.value = value;

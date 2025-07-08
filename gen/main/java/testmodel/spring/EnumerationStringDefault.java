@@ -27,7 +27,7 @@ public enum EnumerationStringDefault {
   
   FOUR("four");
 
-  private String value;
+  private final String value;
 
   EnumerationStringDefault(String value) {
     this.value = value;

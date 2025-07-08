@@ -30,7 +30,7 @@ public class OneOfImplementor1 implements OneOfInterface {
 
   private @Nullable String type;
 
-  public OneOfImplementor1 property(String property) {
+  public OneOfImplementor1 property(@Nullable String property) {
     this.property = property;
     return this;
   }
@@ -41,15 +41,15 @@ public class OneOfImplementor1 implements OneOfInterface {
    */
   
   @JsonProperty("property")
-  public String getProperty() {
+  public @Nullable String getProperty() {
     return property;
   }
 
-  public void setProperty(String property) {
+  public void setProperty(@Nullable String property) {
     this.property = property;
   }
 
-  public OneOfImplementor1 type(String type) {
+  public OneOfImplementor1 type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -60,11 +60,11 @@ public class OneOfImplementor1 implements OneOfInterface {
    */
   
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 

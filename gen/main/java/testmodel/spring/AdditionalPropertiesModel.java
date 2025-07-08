@@ -29,7 +29,7 @@ public class AdditionalPropertiesModel {
 
   private @Nullable String id;
 
-  public AdditionalPropertiesModel id(String id) {
+  public AdditionalPropertiesModel id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -40,11 +40,11 @@ public class AdditionalPropertiesModel {
    */
   
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
     /**
