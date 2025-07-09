@@ -22,6 +22,10 @@
 			<artifactId>micronaut-serde-jackson</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>io.micronaut.test</groupId>
 			<artifactId>micronaut-test-junit5</artifactId>
 			<scope>test</scope>
