@@ -1,5 +1,8 @@
 {{#serdeable}}@io.micronaut.serde.annotation.Serdeable
 {{/serdeable}}
+{{#interfaceModels.size}}
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = {{classname}}.class)
+{{/interfaceModels.size}}
 public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class {{classname}}{{#vendorExtensions.modelBaseClass}} extends {{vendorExtensions.modelBaseClass}}{{/vendorExtensions.modelBaseClass}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
 {{#generateConstants}}{{#vars}}{{#-first}}
 {{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
