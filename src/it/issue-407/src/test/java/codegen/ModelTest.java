@@ -20,6 +20,6 @@ public class ModelTest {
 
 	@Test
 	void readSerializedDogString() {
-		assertEquals(dogObject,  assertDoesNotThrow(() -> mapper.readValue(dogString, Dog.class)));
+		assertEquals(dogObject, assertDoesNotThrow(() -> mapper.readValue(dogString, Dog.class)));
 	}
 }

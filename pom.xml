@@ -2,16 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>io.kokuwa.maven</groupId>
-		<artifactId>maven-parent</artifactId>
-		<version>0.6.18</version>
-		<relativePath />
-	</parent>
-
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>4.4.4-SNAPSHOT</version>
+	<version>4.5.0-SNAPSHOT</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -31,67 +24,47 @@
 
 	<developers>
 		<developer>
-			<id>sschnabe</id>
+			<id>stephan.schnabel</id>
 			<name>Stephan Schnabel</name>
-			<url>https://github.com/sschnabe</url>
-			<email>stephan@grayc.de</email>
-			<organization>GrayC GmbH</organization>
-			<organizationUrl>https://grayc.de</organizationUrl>
+			<url>https://schnabel.org</url>
+			<email>stephan@schnabel.org</email>
 			<timezone>Europe/Berlin</timezone>
-			<roles>
-				<role>Lead Developer</role>
-			</roles>
 		</developer>
 	</developers>
 
 	<scm>
-		<url>https://github.com/kokuwaio/micronaut-openapi-codegen</url>
-		<connection>scm:git:https://github.com/kokuwaio/micronaut-openapi-codegen.git</connection>
-		<developerConnection>scm:git:https://github.com/kokuwaio/micronaut-openapi-codegen.git</developerConnection>
-		<tag>4.3.0</tag>
+		<url>https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen</url>
+		<connection>scm:git:https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen.git</connection>
+		<developerConnection>scm:git:https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen.git</developerConnection>
+		<tag>HEAD</tag>
 	</scm>
 	<issueManagement>
-		<system>github</system>
-		<url>https://github.com/kokuwaio/micronaut-openapi-codegen/issues</url>
+		<system>forgejo</system>
+		<url>https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>github</system>
-		<url>https://github.com/kokuwaio/micronaut-openapi-codegen/actions</url>
+		<system>woodpecker</system>
+		<url>https://ci.kokuwa.io/repos/kokuwaio/micronaut-openapi-codegen</url>
 	</ciManagement>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype.org</id>
+			<url>https://central.sonatype.com/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
-
-		<!-- ===================================================================== -->
-		<!-- ============================== Build ================================ -->
-		<!-- ===================================================================== -->
-
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
-
-		<!-- ===================================================================== -->
-		<!-- ============================= Versions ============================== -->
-		<!-- ===================================================================== -->
-
-		<version.io.micronaut>4.9.1</version.io.micronaut>
-		<version.org.openapitools.generator>7.14.0</version.org.openapitools.generator>
-		<version.org.openapitools.jackson.nullable>0.2.6</version.org.openapitools.jackson.nullable>
-
+		<project.build.outputTimestamp>2025-06-25T14:15:39Z</project.build.outputTimestamp>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.fasterxml.jackson</groupId>
-				<artifactId>jackson-bom</artifactId>
-				<!-- there is a clash between openapi 2.15 and micronaut 2.16 -->
-				<version>2.19.1</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
 				<groupId>io.micronaut.platform</groupId>
 				<artifactId>micronaut-platform</artifactId>
-				<version>${version.io.micronaut}</version>
+				<version>4.9.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -103,13 +76,13 @@
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>openapi-generator</artifactId>
-			<version>${version.org.openapitools.generator}</version>
+			<version>7.14.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
-			<version>${version.org.openapitools.jackson.nullable}</version>
+			<version>0.2.6</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -234,6 +207,125 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.14.0</version>
+					<configuration>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<failOnWarning>true</failOnWarning>
+						<compilerArgument>-Xlint:all,-processing</compilerArgument>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.1.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>3.2.8</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.1.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-invoker-plugin</artifactId>
+					<version>3.9.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.4.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.11.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>3.1.1</version>
+					<configuration>
+						<preparationProfiles>check</preparationProfiles>
+						<releaseProfiles>deploy,release</releaseProfiles>
+						<signTag>true</signTag>
+						<scmReleaseCommitComment>@{prefix} prepare release @{releaseLabel} [CI SKIP]</scmReleaseCommitComment>
+						<tagNameFormat>@{project.version}</tagNameFormat>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.3.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.21.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.3.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>3.6.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tidy-maven-plugin</artifactId>
+					<version>1.4.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.sonatype.central</groupId>
+					<artifactId>central-publishing-maven-plugin</artifactId>
+					<version>0.8.0</version>
+				</plugin>
+				<plugin>
+					<groupId>net.revelc.code.formatter</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>2.27.0</version>
+					<configuration>
+						<configFile>${project.basedir}/src/eclipse/formatter.xml</configFile>
+						<directories>
+							<directory>${project.basedir}/src/main/java</directory>
+							<directory>${project.basedir}/src/test/java</directory>
+							<directory>${project.basedir}/src/it</directory>
+						</directories>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>net.revelc.code</groupId>
+					<artifactId>impsort-maven-plugin</artifactId>
+					<version>1.12.0</version>
+					<configuration>
+						<removeUnused>true</removeUnused>
+						<groups>java.,javax.,jakarta.,org.</groups>
+						<directories>
+							<directory>${project.basedir}/src/main/java</directory>
+							<directory>${project.basedir}/src/test/java</directory>
+							<directory>${project.basedir}/src/it</directory>
+						</directories>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 
 			<!-- run surefire tests -->
@@ -285,10 +377,184 @@
 							<goal>integration-test</goal>
 							<goal>verify</goal>
 						</goals>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
+							<mergeUserSettings>true</mergeUserSettings>
+							<goals>verify</goals>
+							<streamLogs>false</streamLogs>
+							<streamLogsOnFailures>true</streamLogsOnFailures>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<property>
+					<name>!env.CI</name>
+				</property>
+			</activation>
+			<properties>
+				 <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>tidy-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>pom</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>net.revelc.code</groupId>
+						<artifactId>impsort-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>sort</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>net.revelc.code.formatter</groupId>
+						<artifactId>formatter-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>format</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>check</id>
+			<activation>
+				<property>
+					<name>env.CI</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>tidy-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>net.revelc.code</groupId>
+						<artifactId>impsort-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>net.revelc.code.formatter</groupId>
+						<artifactId>formatter-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>validate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>deploy</id>
+			<build>
+				<plugins>
+
+					<!-- add source/javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- sign before upload -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<signer>bc</signer>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>sonatype.org</publishingServerId>
+							<autoPublish>true</autoPublish>
+							<waitUntil>published</waitUntil>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

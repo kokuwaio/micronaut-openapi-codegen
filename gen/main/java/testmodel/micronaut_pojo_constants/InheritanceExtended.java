@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_constants;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceExtended.class)
 public final class InheritanceExtended implements InheritanceSimple {
 
 	public static final java.lang.String JSON_PROPERTY_BAR = "bar";

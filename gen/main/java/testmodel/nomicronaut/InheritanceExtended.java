@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceExtended.class)
 public final class InheritanceExtended implements InheritanceSimple {
 
 	@jakarta.validation.constraints.NotNull

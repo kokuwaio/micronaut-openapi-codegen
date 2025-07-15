@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceWithStringType1.class)
 public final class InheritanceWithStringType1 implements InheritanceWithStringType {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("a")

@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceWithEnumType3.class)
 public final class InheritanceWithEnumType3 implements InheritanceWithEnumType {
 
 	@Override

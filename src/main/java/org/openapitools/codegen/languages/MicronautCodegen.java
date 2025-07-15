@@ -208,15 +208,14 @@ public class MicronautCodegen extends AbstractJavaCodegen
 	}
 
 	@Override
-	public void postProcess() {
-	}
+	public void postProcess() {}
 
 	@Override
 	public void processOpts() {
 		super.useCodegenAsMustacheParentContext();
 
-		BiFunction<String, String, String> getOrDefault =
-				(key, defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
+		BiFunction<String, String, String> getOrDefault = (key,
+				defaultValue) -> (String) additionalProperties.computeIfAbsent(key, k -> defaultValue);
 
 		// reuse package if other packages are not provided
 
@@ -635,8 +634,8 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			var index = type.lastIndexOf(".");
 			parameter.dataType = parameter.datatypeWithEnum = "java.util.Optional<"
 					+ (index == -1
-					? annotations + type
-					: type.substring(0, index + 1) + annotations + type.substring(index + 1))
+							? annotations + type
+							: type.substring(0, index + 1) + annotations + type.substring(index + 1))
 					+ ">";
 		}
 	}

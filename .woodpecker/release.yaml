@@ -1,0 +1,29 @@
+when:
+  instance: ci.kokuwa.io
+  repo: kokuwaio/micronaut-openapi-codegen
+  event: deployment
+  branch: main
+
+steps:
+
+  maven:
+    image: maven:3.9.10-eclipse-temurin-17
+    commands:
+      # setup git with ssk key signing
+      - git config user.email "$GIT_USER_EMAIL"
+      - git config user.name "$GIT_USER_NAME"
+      - git config commit.gpgsign true
+      - git config gpg.format ssh
+      - git config user.signingkey /run/secrets/sign.pub
+      - install -m 400 /dev/null /run/secrets/sign && echo "$GIT_SIGN_KEY" > /run/secrets/sign
+      - install -m 444 /dev/null /run/secrets/sign.pub && echo "$GIT_SIGN_PUB" > /run/secrets/sign.pub
+      # release & perform
+      - mvn release:prepare release:perform --settings=.woodpecker/maven/settings.xml
+    environment:
+      MAVEN_GPG_KEY: {from_secret: woodpecker_gpg_key}
+      GIT_SIGN_KEY: {from_secret: woodpecker_sign_key}
+      GIT_SIGN_PUB: {from_secret: woodpecker_sign_pub}
+      FORGEJO_USERNAME: {from_secret: woodpecker_username}
+      FORGEJO_PASSWORD: {from_secret: woodpecker_password}
+      SONATYPE_ORG_USERNAME: {from_secret: sonatype_org_username}
+      SONATYPE_ORG_PASSWORD: {from_secret: sonatype_org_password}

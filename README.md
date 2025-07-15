@@ -1,10 +1,12 @@
 # Micronaut Codegen
 
-OpenAPI code generator for Micronaut 4. Micronaut 3 is supported by version [3.x](https://github.com/kokuwaio/micronaut-logging/tree/3.x)
+OpenAPI code generator for Micronaut.
 
-[![License](https://img.shields.io/github/license/kokuwaio/micronaut-openapi-codegen.svg?label=License)](https://github.com/kokuwaio/micronaut-openapi-codegen/blob/main/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=Maven%20Central)](https://central.sonatype.com/namespace/io.kokuwa.micronaut)
-[![Build](https://img.shields.io/github/actions/workflow/status/kokuwaio/micronaut-openapi-codegen/build.yaml?branch=main&label=Build)](https://github.com/kokuwaio/micronaut-openapi-codegen/actions/workflows/build.yaml?query=branch%3Amain)
+[![maven](https://img.shields.io/maven-central/v/io.kokuwa.micronaut/micronaut-openapi-codegen.svg?label=maven)](https://central.sonatype.com/artifact/io.kokuwa.micronaut/micronaut-openapi-codegen)
+[![license](https://img.shields.io/badge/license-EUPL%201.2-blue)](https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen/src/branch/main/LICENSE)
+[![issues](https://img.shields.io/gitea/issues/open/kokuwaio/micronaut-openapi-codegen?gitea_url=https%3A%2F%2Fgit.kokuwa.io)](https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen/issues)
+[![prs](https://img.shields.io/gitea/pull-requests/open/kokuwaio/micronaut-openapi-codegen?gitea_url=https%3A%2F%2Fgit.kokuwa.io)](https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen/pulls)
+[![build](https://ci.kokuwa.io/api/badges/kokuwaio/micronaut-openapi-codegen/status.svg)](https://ci.kokuwa.io/repos/kokuwaio/micronaut-openapi-codegen/)
 
 Include in your `pom.xml`:
 

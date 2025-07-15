@@ -1,14 +1,10 @@
 package codegen.model;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import codegen.*;
-
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+
+import codegen.*;
 
 public class ExamplesTest {
 
@@ -16,7 +12,8 @@ public class ExamplesTest {
 	void assertSuccessfulBuild() {
 
 		assertDoesNotThrow(() -> AdditionalPropertiesModelTestExample.build(), "The example should have been built.");
-		assertDoesNotThrow(() -> AdditionalPropertiesModelValueTestExample.build(), "The example should have been built.");
+		assertDoesNotThrow(() -> AdditionalPropertiesModelValueTestExample.build(),
+				"The example should have been built.");
 		assertDoesNotThrow(() -> EnumerationIntegerTestExample.build(), "The example should have been built.");
 		assertDoesNotThrow(() -> EnumerationModelTestExample.build(), "The example should have been built.");
 		assertDoesNotThrow(() -> EnumerationNumberTestExample.build(), "The example should have been built.");

@@ -1,4 +1,0 @@
-# https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners#codeowners-syntax
-* @sschnabe @rpahli @fabian-schlegel @wistefan
-.github/workflows/* @kokuwaio-bot @sschnabe @rpahli @fabian-schlegel @wistefan
-pom.xml @kokuwaio-bot @sschnabe @rpahli @fabian-schlegel @wistefan

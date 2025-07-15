@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_constants;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceWithoutType1.class)
 public final class InheritanceWithoutType1 implements InheritanceWithoutType {
 
 	public static final java.lang.String JSON_PROPERTY_F = "f";

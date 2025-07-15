@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = SecondLevelTwoModel.class)
 public final class SecondLevelTwoModel implements SecondLevelModel {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("type")

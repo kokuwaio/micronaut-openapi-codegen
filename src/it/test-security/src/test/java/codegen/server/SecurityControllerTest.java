@@ -3,10 +3,11 @@ package codegen.server;
 import static codegen.HttpResponseAssertions.assert204;
 import static codegen.HttpResponseAssertions.assert401;
 
+import jakarta.inject.Inject;
+
 import org.junit.jupiter.api.Test;
 
 import codegen.AbstractTest;
-import jakarta.inject.Inject;
 
 public class SecurityControllerTest extends AbstractTest implements SecurityApiTestSpec {
 

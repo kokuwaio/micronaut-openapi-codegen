@@ -2,6 +2,7 @@ package issue._407;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = Dog.class)
 public final class Dog implements Pet {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("bark")

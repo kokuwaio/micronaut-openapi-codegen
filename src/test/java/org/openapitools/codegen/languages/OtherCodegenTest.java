@@ -12,7 +12,7 @@ import org.openapitools.codegen.languages.features.DocumentationProviderFeatures
 import org.openapitools.codegen.languages.features.DocumentationProviderFeatures.AnnotationLibrary;
 import org.openapitools.codegen.languages.features.DocumentationProviderFeatures.DocumentationProvider;
 
-@SuppressWarnings({"removal", "deprecation"})
+@SuppressWarnings({ "removal", "deprecation" })
 public class OtherCodegenTest extends AbstractCodegenTest {
 
 	@DisplayName("api: micronaut")

@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = PropertyTypeTwo.class)
 public final class PropertyTypeTwo implements AdditionalPropertiesModelValue {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("type")

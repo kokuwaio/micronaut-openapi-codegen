@@ -1,46 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>@project.groupId@</groupId>
-	<artifactId>@project.artifactId@-it</artifactId>
+	<groupId>io.kokuwa.micronaut</groupId>
+	<artifactId>micronaut-openapi-codegen-it</artifactId>
 	<version>LOCAL-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
-
-		<!-- ===================================================================== -->
-		<!-- ============================== Build ================================ -->
-		<!-- ===================================================================== -->
-
-		<project.build.sourceEncoding>@project.build.sourceEncoding@</project.build.sourceEncoding>
-		<project.build.propertiesEncoding>@project.build.propertiesEncoding@</project.build.propertiesEncoding>
-
-		<maven.compiler.source>@maven.compiler.source@</maven.compiler.source>
-		<maven.compiler.target>@maven.compiler.target@</maven.compiler.target>
-		<maven.compiler.parameters>true</maven.compiler.parameters>
-		<maven.compiler.showDeprecation>@maven.compiler.showDeprecation@</maven.compiler.showDeprecation>
-		<maven.compiler.showWarnings>@maven.compiler.showWarnings@</maven.compiler.showWarnings>
-		<maven.compiler.failOnWarning>false</maven.compiler.failOnWarning>
-
-		<!-- ===================================================================== -->
-		<!-- ============================= Libaries ============================== -->
-		<!-- ===================================================================== -->
-
-		<!-- dependencies -->
-
-		<version.io.micronaut>@version.io.micronaut@</version.io.micronaut>
-		<version.org.openapitools.generator>@version.org.openapitools.generator@</version.org.openapitools.generator>
-		<version.org.openapitools.jackson.nullable>@version.org.openapitools.jackson.nullable@</version.org.openapitools.jackson.nullable>
-
-		<!-- plugins -->
-
-		<version.org.apache.maven.plugins.compiler>@version.org.apache.maven.plugins.compiler@</version.org.apache.maven.plugins.compiler>
-		<version.org.apache.maven.plugins.resources>@version.org.apache.maven.plugins.resources@</version.org.apache.maven.plugins.resources>
-		<version.org.apache.maven.plugins.surefire>@version.org.apache.maven.plugins.surefire@</version.org.apache.maven.plugins.surefire>
-		<version.org.codehaus.mojo.build-helper>@version.org.codehaus.mojo.build-helper@</version.org.codehaus.mojo.build-helper>
-		<version.org.codehaus.mojo.tidy>@version.org.codehaus.mojo.tidy@</version.org.codehaus.mojo.tidy>
-
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
 
 	<dependencyManagement>
@@ -50,14 +20,14 @@
 			<dependency>
 				<groupId>io.micronaut.platform</groupId>
 				<artifactId>micronaut-platform</artifactId>
-				<version>${version.io.micronaut}</version>
+				<version>4.9.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.openapitools</groupId>
 				<artifactId>jackson-databind-nullable</artifactId>
-				<version>${version.org.openapitools.jackson.nullable}</version>
+				<version>0.2.6</version>
 			</dependency>
 
 		</dependencies>
@@ -84,17 +54,27 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.compiler}</version>
+					<version>3.14.0</version>
+					<configuration>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<compilerArgument>-Xlint:all,-processing</compilerArgument>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.4.2</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.resources}</version>
+					<version>3.3.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.surefire}</version>
+					<version>3.5.3</version>
 					<configuration>
 						<redirectTestOutputToFile>true</redirectTestOutputToFile>
 					</configuration>
@@ -102,17 +82,12 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>${version.org.codehaus.mojo.build-helper}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>tidy-maven-plugin</artifactId>
-					<version>${version.org.codehaus.mojo.tidy}</version>
+					<version>3.6.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.openapitools</groupId>
 					<artifactId>openapi-generator-maven-plugin</artifactId>
-					<version>${version.org.openapitools.generator}</version>
+					<version>7.14.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -194,25 +169,11 @@
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>@project.groupId@</groupId>
-						<artifactId>@project.artifactId@</artifactId>
+						<groupId>io.kokuwa.micronaut</groupId>
+						<artifactId>micronaut-openapi-codegen</artifactId>
 						<version>@project.version@</version>
 					</dependency>
 				</dependencies>
-			</plugin>
-
-			<!-- fail if any pom is dirty -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tidy-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 		</plugins>

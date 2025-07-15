@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_constants;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = PropertyTypeTwo.class)
 public final class PropertyTypeTwo implements AdditionalPropertiesModelValue {
 
 	public static final java.lang.String JSON_PROPERTY_TYPE = "type";

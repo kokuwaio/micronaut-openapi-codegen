@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_constants;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceWithEnumType1.class)
 public final class InheritanceWithEnumType1 implements InheritanceWithEnumType {
 
 	public static final java.lang.String JSON_PROPERTY_D = "d";

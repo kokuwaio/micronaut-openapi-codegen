@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_unsealed;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceExtended.class)
 public class InheritanceExtended implements InheritanceSimple {
 
 	@jakarta.validation.constraints.NotNull

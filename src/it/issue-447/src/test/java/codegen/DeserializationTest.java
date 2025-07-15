@@ -2,8 +2,9 @@ package codegen;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DeserializationTest {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();

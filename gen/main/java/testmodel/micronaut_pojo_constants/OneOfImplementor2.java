@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_constants;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = OneOfImplementor2.class)
 public final class OneOfImplementor2 implements OneOfInterface {
 
 	public static final java.lang.String JSON_PROPERTY_PROPERTY = "property";

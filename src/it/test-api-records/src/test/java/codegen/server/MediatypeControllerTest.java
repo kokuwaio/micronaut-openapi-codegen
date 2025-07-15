@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Optional;
 import java.util.UUID;
 
+import jakarta.inject.Inject;
+
 import org.junit.jupiter.api.Test;
 
 import codegen.Multipart;
@@ -17,7 +19,6 @@ import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.http.client.multipart.MultipartBody;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import jakarta.inject.Inject;
 
 @MicronautTest
 public class MediatypeControllerTest implements MediatypeApiTestSpec {

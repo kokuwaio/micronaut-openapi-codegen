@@ -1,5 +1,6 @@
 package testmodel.nomicronaut;
 
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = OneOfImplementor1.class)
 public final class OneOfImplementor1 implements OneOfInterface {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("property")

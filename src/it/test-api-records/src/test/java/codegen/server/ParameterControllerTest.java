@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+import jakarta.inject.Inject;
+
 import org.junit.jupiter.api.Test;
 
 import codegen.ParameterModel;
@@ -18,7 +20,6 @@ import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.http.uri.UriBuilder;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import jakarta.inject.Inject;
 
 @MicronautTest
 public class ParameterControllerTest implements ParameterApiTestSpec {

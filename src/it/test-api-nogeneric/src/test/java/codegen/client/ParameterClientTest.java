@@ -9,13 +9,14 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+import jakarta.inject.Inject;
+
 import org.junit.jupiter.api.Test;
 
 import codegen.ParameterModel;
 import codegen.server.ParameterApi;
 import codegen.server.ParameterApiTestSpec;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import jakarta.inject.Inject;
 
 @MicronautTest
 public class ParameterClientTest implements ParameterApiTestSpec {

@@ -2,6 +2,7 @@ package issue._318;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = ModelDefaultDto.class)
 public final class ModelDefaultDto implements ModelDto {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("test")

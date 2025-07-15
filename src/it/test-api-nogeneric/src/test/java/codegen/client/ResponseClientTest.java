@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import jakarta.inject.Inject;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +20,6 @@ import codegen.server.ResponseApiTestSpec;
 import codegen.server.ResponseController;
 import io.micronaut.http.exceptions.HttpStatusException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import jakarta.inject.Inject;
 
 @MicronautTest
 public class ResponseClientTest implements ResponseApiTestSpec {

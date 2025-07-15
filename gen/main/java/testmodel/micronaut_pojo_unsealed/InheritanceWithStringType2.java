@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_unsealed;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = InheritanceWithStringType2.class)
 public class InheritanceWithStringType2 implements InheritanceWithStringType {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("a")

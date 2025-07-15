@@ -2,10 +2,10 @@ package codegen.model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
 import codegen.FirstModel;
 import test.BaseClass;
-
-import org.junit.jupiter.api.Test;
 
 public class BaseClassTest {
 

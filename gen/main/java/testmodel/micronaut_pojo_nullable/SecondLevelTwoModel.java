@@ -2,6 +2,7 @@ package testmodel.micronaut_pojo_nullable;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = SecondLevelTwoModel.class)
 public final class SecondLevelTwoModel implements SecondLevelModel {
 
 	@com.fasterxml.jackson.annotation.JsonProperty("type")
