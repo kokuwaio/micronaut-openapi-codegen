@@ -4,7 +4,7 @@
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>4.5.0-SNAPSHOT</version>
+	<version>4.5.0</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -36,7 +36,7 @@
 		<url>https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen</url>
 		<connection>scm:git:https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen.git</connection>
 		<developerConnection>scm:git:https://git.kokuwa.io/kokuwaio/micronaut-openapi-codegen.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>4.5.0</tag>
 	</scm>
 	<issueManagement>
 		<system>forgejo</system>
@@ -54,7 +54,7 @@
 	</distributionManagement>
 
 	<properties>
-		<project.build.outputTimestamp>2025-06-25T14:15:39Z</project.build.outputTimestamp>
+		<project.build.outputTimestamp>2025-07-17T07:13:05Z</project.build.outputTimestamp>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
