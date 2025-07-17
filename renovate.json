@@ -1,4 +1,8 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["kokuwaio/renovate-config"]
+	"extends": ["kokuwaio/renovate-config"],
+	"packageRules": [{
+		"matchPackageNames": ["io.kokuwa.micronaut:micronaut-openapi-codegen-it"],
+		"enabled": false
+	}]
 }
