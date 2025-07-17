@@ -6,9 +6,9 @@ when:
 steps:
 
   maven:
-    image: maven:3.9.10-eclipse-temurin-17
+    image: maven:3.9.11-eclipse-temurin-17
     commands: mvn verify --settings=.woodpecker/maven/settings.xml
 
   git:
-    image: maven:3.9.10-eclipse-temurin-17
+    image: maven:3.9.11-eclipse-temurin-17
     commands: .woodpecker/maven/git-check.sh
