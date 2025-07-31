@@ -64,7 +64,7 @@
 			<dependency>
 				<groupId>io.micronaut.platform</groupId>
 				<artifactId>micronaut-platform</artifactId>
-				<version>4.9.1</version>
+				<version>4.9.2</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
