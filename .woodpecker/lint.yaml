@@ -21,6 +21,6 @@ steps:
     when: [path: [.woodpecker/lint.yaml, "**/*.md", .markdownlint.yaml]]
 
   shellcheck:
-    image: kokuwaio/shellcheck:v0.10.0
+    image: kokuwaio/shellcheck:v0.11.0
     depends_on: []
     when: [path: [.woodpecker/lint.yaml, "**/*.sh"]]
