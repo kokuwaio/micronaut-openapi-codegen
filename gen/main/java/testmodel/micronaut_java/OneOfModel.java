@@ -14,6 +14,7 @@ package testmodel.micronaut_java;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Locale;
 import testmodel.micronaut_java.FirstModel;
 import testmodel.micronaut_java.SecondLevelModel;
 import com.fasterxml.jackson.annotation.*;

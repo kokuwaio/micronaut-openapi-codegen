@@ -14,6 +14,7 @@ package testapi.micronaut_java;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Locale;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
