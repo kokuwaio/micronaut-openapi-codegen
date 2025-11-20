@@ -57,6 +57,10 @@
 					<annotationProcessorPaths>
 						<path>
 							<groupId>io.micronaut</groupId>
+							<artifactId>micronaut-core</artifactId>
+						</path>
+						<path>
+							<groupId>io.micronaut</groupId>
 							<artifactId>micronaut-inject-java</artifactId>
 						</path>
 						<path>

@@ -8,7 +8,7 @@
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
-	<url>https://github.com/kokuwaio/micronaut-openapi-codegen</url>
+	<url>https://git.kokuwa.io/kokuwaio/k3s-maven-plugin</url>
 	<inceptionYear>2019</inceptionYear>
 	<organization>
 		<name>Kokuwa.io</name>
