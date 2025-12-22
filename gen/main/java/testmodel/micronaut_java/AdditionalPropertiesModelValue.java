@@ -14,7 +14,6 @@ package testmodel.micronaut_java;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import testmodel.micronaut_java.PropertyTypeOne;
 import testmodel.micronaut_java.PropertyTypeTwo;
