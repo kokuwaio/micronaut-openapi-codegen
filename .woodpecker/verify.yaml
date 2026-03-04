@@ -1,7 +1,6 @@
 when:
-  instance: ci.kokuwa.io
   event: [manual, pull_request]
-  path: [.woodpecker/verify.yaml, pom.xml, src/**]
+  path: [.woodpecker/verify.yaml, .woodpecker/maven/settings.xml, pom.xml, src/**]
 
 steps:
 
