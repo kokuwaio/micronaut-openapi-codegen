@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets EnumerationNumber
  */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")
 @java.lang.SuppressWarnings("all")
 public enum EnumerationNumber {
   
