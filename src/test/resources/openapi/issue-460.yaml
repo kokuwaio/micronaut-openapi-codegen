@@ -1,0 +1,11 @@
+openapi: 3.0.3
+info:
+  title: Spec for <https://github.com/kokuwaio/micronaut-openapi-codegen/issues/460>
+  version: "1"
+paths: {}
+components:
+  schemas:
+    ListModel:
+      type: array
+      items:
+        type: string

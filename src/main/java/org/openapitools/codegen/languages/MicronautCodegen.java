@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -488,9 +489,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			// oneOf handling
 
 			if (model.oneOf != null && !model.oneOf.isEmpty()) {
-				model.children = model.oneOf.stream().map(allModels::get).collect(Collectors.toList());
+				// Remove null children
+				model.children = model.oneOf.stream().map(allModels::get).filter(Objects::nonNull)
+						.collect(Collectors.toList());
 				model.hasChildren = true;
-				model.interfaceModels.removeAll(model.children);
+				if (model.interfaceModels != null) {
+					model.interfaceModels.removeAll(model.children);
+				}
 				for (var child : model.children) {
 					if (child.interfaceModels == null) {
 						child.interfaceModels = new ArrayList<>();
@@ -502,13 +507,6 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				model.hasVars = false;
 			}
 
-			// model all parents as interfaces
-
-			model.parent = null;
-			model.parentModel = null;
-			model.parentSchema = null;
-			model.parentVars = List.of();
-			model.allParents = List.of();
 			if (model.interfaceModels != null) {
 				for (var interfaceModel : model.interfaceModels) {
 
