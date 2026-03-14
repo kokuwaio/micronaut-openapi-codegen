@@ -3,7 +3,7 @@
 {{#interfaceModels.size}}
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(as = {{classname}}.class)
 {{/interfaceModels.size}}
-public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class {{classname}}{{#vendorExtensions.modelBaseClass}} extends {{vendorExtensions.modelBaseClass}}{{/vendorExtensions.modelBaseClass}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
+public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class {{classname}}{{#vendorExtensions.modelBaseClass}} extends {{vendorExtensions.modelBaseClass}}{{/vendorExtensions.modelBaseClass}}{{^parentModel.hasChildren}}{{#parent}}{{^vendorExtensions.modelBaseClass}} extends {{/vendorExtensions.modelBaseClass}}{{#vendorExtensions.modelBaseClass}}, {{/vendorExtensions.modelBaseClass}}{{{parent}}}{{/parent}}{{/parentModel.hasChildren}}{{#interfaceModels}}{{#-first}} implements{{/-first}} {{classname}}{{^-last}}, {{/-last}}{{/interfaceModels}} {
 {{#generateConstants}}{{#vars}}{{#-first}}
 {{/-first}}	public static final java.lang.String JSON_PROPERTY_{{nameInSnakeCase}} = "{{baseName}}";
 {{/vars}}
@@ -48,7 +48,8 @@ public{{#sealed}}{{#interfaceModels}} final{{/interfaceModels}}{{/sealed}} class
 	@Override
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
-				.append("{{classname}}[")
+				.append("{{classname}}["){{^parentModel.hasChildren}}{{#parent}}
+				.append("super").append(super.toString()){{/parent}}{{/parentModel.hasChildren}}
 		{{#vendorExtensions.additionalPropertiesMap}}		.append("additionalProperties=").append(this.additionalProperties)
 		{{/vendorExtensions.additionalPropertiesMap}}{{#allVars}}		.append("{{name}}{{^isByteArray}}=").append({{name}}{{/isByteArray}}{{#isByteArray}}.length=").append({{name}} == null ? null : {{name}}.length{{/isByteArray}}){{^-last}}.append(","){{/-last}}
 		{{/allVars}}		.append("]")

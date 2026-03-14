@@ -2,7 +2,7 @@ package issue._315;
 
 @jakarta.annotation.Generated("org.openapitools.codegen.languages.MicronautCodegen")
 @io.micronaut.serde.annotation.Serdeable
-public class ServiceScopesEntry {
+public class ServiceScopesEntry extends java.util.ArrayList<Credential> {
 
 	// methods
 
@@ -26,6 +26,7 @@ public class ServiceScopesEntry {
 	public java.lang.String toString() {
 		return new java.lang.StringBuilder()
 				.append("ServiceScopesEntry[")
+				.append("super").append(super.toString())
 				.append("]")
 				.toString();
 	}
