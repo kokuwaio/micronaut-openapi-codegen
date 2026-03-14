@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.kokuwa.micronaut</groupId>
+		<artifactId>micronaut-openapi-codegen-it</artifactId>
+		<version>LOCAL-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>micronaut-openapi-codegen-it-512</artifactId>
+
+	<dependencies>
+
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>io.micronaut.test</groupId>
+			<artifactId>micronaut-test-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- generate sources from openapi spec -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<configuration>
+					<inputSpec>@project.basedir@/src/test/resources/openapi/issue-512.yaml</inputSpec>
+					<generateApis>false</generateApis>
+					<generateSupportingFiles>false</generateSupportingFiles>
+					<configOptions>
+						<serdeable>false</serdeable>
+						<useBeanValidation>false</useBeanValidation>
+						<openApiNullable>false</openApiNullable>
+						<sealed>true</sealed>
+					</configOptions>
+					<typeMappings>
+						<typeMapping>Generated=</typeMapping>
+					</typeMappings>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

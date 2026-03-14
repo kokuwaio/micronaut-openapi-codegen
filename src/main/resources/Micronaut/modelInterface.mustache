@@ -42,7 +42,7 @@ public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#interfaces}}{{#-fi
 	{{/discriminator.mappedModels}}
 })
 {{/discriminator}}
-public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#vendorExtensions.x-implements}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}}{{#sealed}} permits {{#children}}{{name}}{{^-last}}, {{/-last}}{{/children}}{{/sealed}}{{^discriminator}} {}{{/discriminator}}{{#discriminator}} {
+public{{#sealed}} sealed{{/sealed}} interface {{classname}}{{#vendorExtensions.x-implements}}{{#-first}} extends {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}}{{#sealed}} permits {{#children}}{{classname}}{{^-last}}, {{/-last}}{{/children}}{{/sealed}}{{^discriminator}} {}{{/discriminator}}{{#discriminator}} {
 {{#generateConstants}}{{#discriminator}}
 	java.lang.String JSON_DISCRIMINATOR = "{{propertyBaseName}}";
 {{/discriminator}}{{/generateConstants}}
