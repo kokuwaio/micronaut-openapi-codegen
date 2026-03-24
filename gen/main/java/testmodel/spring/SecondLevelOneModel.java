@@ -7,12 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * SecondLevelOneModel
@@ -41,6 +41,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(@Nullable String type) {
     this.type = type;
   }
@@ -60,6 +61,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
     return one;
   }
 
+  @JsonProperty("one")
   public void setOne(@Nullable String one) {
     this.one = one;
   }
@@ -97,10 +99,7 @@ public class SecondLevelOneModel implements SecondLevelModel {
    * (except the first line).
    */
   private String toIndentedString(@Nullable Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

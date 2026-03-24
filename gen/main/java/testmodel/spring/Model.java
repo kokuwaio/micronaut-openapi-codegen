@@ -22,12 +22,12 @@ import testmodel.spring.EnumerationModel;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Model
@@ -143,6 +143,7 @@ public class Model {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable Integer id) {
     this.id = id;
   }
@@ -162,6 +163,7 @@ public class Model {
     return idWithExample;
   }
 
+  @JsonProperty("idWithExample")
   public void setIdWithExample(@Nullable Integer idWithExample) {
     this.idWithExample = idWithExample;
   }
@@ -181,6 +183,7 @@ public class Model {
     return idWithDefault;
   }
 
+  @JsonProperty("idWithDefault")
   public void setIdWithDefault(Integer idWithDefault) {
     this.idWithDefault = idWithDefault;
   }
@@ -200,6 +203,7 @@ public class Model {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
@@ -219,6 +223,7 @@ public class Model {
     return nameWithExample;
   }
 
+  @JsonProperty("nameWithExample")
   public void setNameWithExample(@Nullable String nameWithExample) {
     this.nameWithExample = nameWithExample;
   }
@@ -238,6 +243,7 @@ public class Model {
     return nameWithDefault;
   }
 
+  @JsonProperty("nameWithDefault")
   public void setNameWithDefault(String nameWithDefault) {
     this.nameWithDefault = nameWithDefault;
   }
@@ -257,6 +263,7 @@ public class Model {
     return date;
   }
 
+  @JsonProperty("date")
   public void setDate(@Nullable LocalDate date) {
     this.date = date;
   }
@@ -276,6 +283,7 @@ public class Model {
     return dateWithExample;
   }
 
+  @JsonProperty("dateWithExample")
   public void setDateWithExample(@Nullable LocalDate dateWithExample) {
     this.dateWithExample = dateWithExample;
   }
@@ -295,6 +303,7 @@ public class Model {
     return dateTime;
   }
 
+  @JsonProperty("date-time")
   public void setDateTime(@Nullable OffsetDateTime dateTime) {
     this.dateTime = dateTime;
   }
@@ -314,6 +323,7 @@ public class Model {
     return dateTimeWithExample;
   }
 
+  @JsonProperty("date-timeWithExample")
   public void setDateTimeWithExample(@Nullable OffsetDateTime dateTimeWithExample) {
     this.dateTimeWithExample = dateTimeWithExample;
   }
@@ -333,6 +343,7 @@ public class Model {
     return number;
   }
 
+  @JsonProperty("number")
   public void setNumber(@Nullable BigDecimal number) {
     this.number = number;
   }
@@ -352,6 +363,7 @@ public class Model {
     return binary;
   }
 
+  @JsonProperty("binary")
   public void setBinary(@Nullable org.springframework.core.io.Resource binary) {
     this.binary = binary;
   }
@@ -371,6 +383,7 @@ public class Model {
     return bytes;
   }
 
+  @JsonProperty("bytes")
   public void setBytes(@Nullable byte[] bytes) {
     this.bytes = bytes;
   }
@@ -417,6 +430,7 @@ public class Model {
     return array;
   }
 
+  @JsonProperty("array")
   public void setArray(List<String> array) {
     this.array = array;
   }
@@ -444,6 +458,7 @@ public class Model {
     return arrayWithExample;
   }
 
+  @JsonProperty("arrayWithExample")
   public void setArrayWithExample(List<String> arrayWithExample) {
     this.arrayWithExample = arrayWithExample;
   }
@@ -472,6 +487,7 @@ public class Model {
   }
 
   @JsonDeserialize(as = LinkedHashSet.class)
+  @JsonProperty("set")
   public void setSet(Set<String> set) {
     this.set = set;
   }
@@ -500,6 +516,7 @@ public class Model {
   }
 
   @JsonDeserialize(as = LinkedHashSet.class)
+  @JsonProperty("setWithExamples")
   public void setSetWithExamples(Set<String> setWithExamples) {
     this.setWithExamples = setWithExamples;
   }
@@ -527,6 +544,7 @@ public class Model {
     return map;
   }
 
+  @JsonProperty("map")
   public void setMap(Map<String, String> map) {
     this.map = map;
   }
@@ -554,6 +572,7 @@ public class Model {
     return mapWithExample;
   }
 
+  @JsonProperty("mapWithExample")
   public void setMapWithExample(Map<String, String> mapWithExample) {
     this.mapWithExample = mapWithExample;
   }
@@ -581,6 +600,7 @@ public class Model {
     return optionalArray;
   }
 
+  @JsonProperty("optionalArray")
   public void setOptionalArray(List<String> optionalArray) {
     this.optionalArray = optionalArray;
   }
@@ -609,6 +629,7 @@ public class Model {
   }
 
   @JsonDeserialize(as = LinkedHashSet.class)
+  @JsonProperty("optionalSet")
   public void setOptionalSet(Set<String> optionalSet) {
     this.optionalSet = optionalSet;
   }
@@ -636,6 +657,7 @@ public class Model {
     return optionalMap;
   }
 
+  @JsonProperty("optionalMap")
   public void setOptionalMap(Map<String, String> optionalMap) {
     this.optionalMap = optionalMap;
   }
@@ -728,6 +750,7 @@ public class Model {
     return defaultString;
   }
 
+  @JsonProperty("defaultString")
   public void setDefaultString(String defaultString) {
     this.defaultString = defaultString;
   }
@@ -747,6 +770,7 @@ public class Model {
     return defaultInteger;
   }
 
+  @JsonProperty("defaultInteger")
   public void setDefaultInteger(Integer defaultInteger) {
     this.defaultInteger = defaultInteger;
   }
@@ -766,6 +790,7 @@ public class Model {
     return defaultLong;
   }
 
+  @JsonProperty("defaultLong")
   public void setDefaultLong(Long defaultLong) {
     this.defaultLong = defaultLong;
   }
@@ -804,6 +829,7 @@ public class Model {
     return referenedModel;
   }
 
+  @JsonProperty("referenedModel")
   public void setReferenedModel(@Nullable EnumerationModel referenedModel) {
     this.referenedModel = referenedModel;
   }
@@ -910,10 +936,7 @@ public class Model {
    * (except the first line).
    */
   private String toIndentedString(@Nullable Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

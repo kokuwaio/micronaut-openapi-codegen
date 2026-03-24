@@ -10,12 +10,12 @@ import testmodel.spring.EnumerationString;
 import testmodel.spring.EnumerationStringDefault;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * EnumerationModel
@@ -120,6 +120,7 @@ public enum EmbeddedDefaultEnum {
     return string;
   }
 
+  @JsonProperty("string")
   public void setString(@Nullable EnumerationString string) {
     this.string = string;
   }
@@ -139,6 +140,7 @@ public enum EmbeddedDefaultEnum {
     return stringDefault;
   }
 
+  @JsonProperty("string-default")
   public void setStringDefault(EnumerationStringDefault stringDefault) {
     this.stringDefault = stringDefault;
   }
@@ -158,6 +160,7 @@ public enum EmbeddedDefaultEnum {
     return embedded;
   }
 
+  @JsonProperty("embedded")
   public void setEmbedded(@Nullable EmbeddedEnum embedded) {
     this.embedded = embedded;
   }
@@ -177,6 +180,7 @@ public enum EmbeddedDefaultEnum {
     return embeddedDefault;
   }
 
+  @JsonProperty("embedded-default")
   public void setEmbeddedDefault(EmbeddedDefaultEnum embeddedDefault) {
     this.embeddedDefault = embeddedDefault;
   }
@@ -218,10 +222,7 @@ public enum EmbeddedDefaultEnum {
    * (except the first line).
    */
   private String toIndentedString(@Nullable Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 
