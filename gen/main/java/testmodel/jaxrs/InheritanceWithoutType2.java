@@ -13,7 +13,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 
-@JsonTypeName("InheritanceWithoutType2")
+@JsonTypeName("Inheritance2")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithoutType2 extends InheritanceWithoutType  {

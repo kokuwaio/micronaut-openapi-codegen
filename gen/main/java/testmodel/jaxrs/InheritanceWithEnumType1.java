@@ -14,7 +14,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 
-@JsonTypeName("InheritanceWithEnumType1")
+@JsonTypeName("Inheritance1")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: stable")@java.lang.SuppressWarnings("all")
 
 public class InheritanceWithEnumType1 extends InheritanceWithEnumType  {
