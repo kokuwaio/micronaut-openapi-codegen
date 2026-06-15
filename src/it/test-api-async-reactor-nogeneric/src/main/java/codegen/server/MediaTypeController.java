@@ -1,6 +1,6 @@
 package codegen.server;
 
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 
 import codegen.Multipart;
 import codegen.StringModel;
@@ -8,7 +8,6 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.exceptions.HttpStatusException;
 import io.micronaut.http.multipart.StreamingFileUpload;
 import reactor.core.publisher.Mono;
 
@@ -28,17 +27,12 @@ public class MediaTypeController implements MediatypeApi {
 	@Override
 	public Mono<Multipart> mediatypeConsumesMultipartWithFileUpload(
 			Integer orderId, Integer userId, StreamingFileUpload file) {
-		return Mono.from(file).map(part -> {
-			try {
-				return new Multipart()
-						.orderId(orderId)
-						.userId(userId)
-						.fileName(file.getFilename())
-						.file(part.getBytes());
-			} catch (IOException e) {
-				throw new HttpStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
-			}
-		});
+		var outputStream = new ByteArrayOutputStream();
+		return Mono.from(file.transferTo(outputStream)).then(Mono.fromSupplier(() -> new Multipart()
+				.orderId(orderId)
+				.userId(userId)
+				.fileName(file.getFilename())
+				.file(outputStream.toByteArray())));
 	}
 
 	@Override

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.kokuwa.micronaut</groupId>
 	<artifactId>micronaut-openapi-codegen</artifactId>
-	<version>4.5.2-SNAPSHOT</version>
+	<version>5.0.0-SNAPSHOT</version>
 
 	<name>OpenAPI codegen for Micronaut</name>
 	<description>This is an openapi generator for Micronaut.</description>
@@ -56,7 +56,7 @@
 	<properties>
 		<project.build.outputTimestamp>2026-03-14T14:37:16Z</project.build.outputTimestamp>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.release>17</maven.compiler.release>
+		<maven.compiler.release>25</maven.compiler.release>
 	</properties>
 
 	<dependencyManagement>
@@ -359,8 +359,8 @@
 						</goals>
 						<configuration>
 							<compilerArgument>-Xlint:none</compilerArgument>
+							<showDeprecation>false</showDeprecation>
 							<skip>${skipTests}</skip>
-							<compilerArgument>-Xlint:all,-unchecked,-rawtypes,-serial,-processing</compilerArgument>
 						</configuration>
 					</execution>
 				</executions>

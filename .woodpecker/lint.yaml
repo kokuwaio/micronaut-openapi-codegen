@@ -1,7 +1,7 @@
 when:
   event: [manual, pull_request, push]
   branch: main
-  path: [.woodpecker/lint.yaml, renovate.json, "**/*.sh", "**/*.yaml", "**/*.md"]
+  path: [.woodpecker/lint.yaml, renovate.json, .justfile, "**/*.sh", "**/*.yaml", "**/*.md"]
 
 steps:
 
@@ -9,6 +9,11 @@ steps:
     image: kokuwaio/renovate-config-validator:43
     depends_on: []
     when: [path: [.woodpecker/lint.yaml, renovate.json]]
+
+  just:
+    image: kokuwaio/just:1.52.0
+    depends_on: []
+    when: [path: [.woodpecker/lint.yaml, .justfile]]
 
   yaml:
     image: kokuwaio/yamllint:v1.38.0

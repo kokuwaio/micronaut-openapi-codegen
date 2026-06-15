@@ -30,7 +30,7 @@ public class ResponseController implements ResponseApi {
 	@Override
 	public void voidNotFound(Boolean found) {
 		if (!found) {
-			throw new HttpStatusException(HttpStatus.NOT_FOUND, null);
+			throw new HttpStatusException(HttpStatus.NOT_FOUND, "nope");
 		}
 	}
 

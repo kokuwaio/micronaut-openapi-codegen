@@ -42,7 +42,7 @@ public class MediatypeControllerTest implements MediatypeApiTestSpec {
 				.accept(MediaType.APPLICATION_XML), StringModel.class));
 		assertEquals(MediaType.APPLICATION_XML_TYPE, response.getContentType().get(), "content");
 		assertEquals(expected, response.body(), "body");
-		assertEquals("<StringModel>\n  <foo>" + STRING + "</foo>\n</StringModel>\n",
+		assertEquals("<StringModel><foo>" + STRING + "</foo></StringModel>",
 				response.getBody(String.class).get(), "raw");
 	}
 

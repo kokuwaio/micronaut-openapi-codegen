@@ -9,7 +9,7 @@
 		<version>LOCAL-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>micronaut-openapi-codegen-it-test-api-async-reactor-generic</artifactId>
+	<artifactId>micronaut-openapi-codegen-it-test-api-async-reactor-nogeneric</artifactId>
 
 	<dependencies>
 

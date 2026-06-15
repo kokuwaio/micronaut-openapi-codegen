@@ -1,6 +1,6 @@
 package codegen.server;
 
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 
 import codegen.Multipart;
 import codegen.StringModel;
@@ -27,17 +27,12 @@ public class MediaTypeController implements MediatypeApi {
 	@Override
 	public Mono<HttpResponse<Multipart>> mediatypeConsumesMultipartWithFileUpload(
 			Integer orderId, Integer userId, StreamingFileUpload file) {
-		return Mono.from(file).map(part -> {
-			try {
-				return HttpResponse.ok(new Multipart()
-						.orderId(orderId)
-						.userId(userId)
-						.fileName(file.getFilename())
-						.file(part.getBytes()));
-			} catch (IOException e) {
-				return HttpResponse.status(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
-			}
-		});
+		var outputStream = new ByteArrayOutputStream();
+		return Mono.from(file.transferTo(outputStream)).then(Mono.fromSupplier(() -> HttpResponse.ok(new Multipart()
+				.orderId(orderId)
+				.userId(userId)
+				.fileName(file.getFilename())
+				.file(outputStream.toByteArray()))));
 	}
 
 	@Override
