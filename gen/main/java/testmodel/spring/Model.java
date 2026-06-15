@@ -69,39 +69,28 @@ public class Model {
 
   private JsonNullable<Object> any = JsonNullable.<Object>undefined();
 
-  @Valid
   private List<String> array = new ArrayList<>();
 
-  @Valid
   private List<String> arrayWithExample = new ArrayList<>();
 
-  @Valid
   private Set<String> set = new LinkedHashSet<>();
 
-  @Valid
   private Set<String> setWithExamples = new LinkedHashSet<>();
 
-  @Valid
   private Map<String, String> map = new HashMap<>();
 
-  @Valid
   private Map<String, String> mapWithExample = new HashMap<>();
 
-  @Valid
   private List<String> optionalArray = new ArrayList<>();
 
-  @Valid
   private Set<String> optionalSet = new LinkedHashSet<>();
 
-  @Valid
   private Map<String, String> optionalMap = new HashMap<>();
 
   private JsonNullable<String> nullableString = JsonNullable.<String>undefined();
 
-  @Valid
   private JsonNullable<List<String>> nullableArray = JsonNullable.<List<String>>undefined();
 
-  @Valid
   private JsonNullable<Set<String>> nullableSet = JsonNullable.<Set<String>>undefined();
 
   private String defaultString = "defaultStringValue";
