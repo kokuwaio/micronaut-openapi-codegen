@@ -371,6 +371,9 @@ public class MicronautCodegen extends AbstractJavaCodegen
 			extensions.put("status", HttpStatus.valueOf(responsesCodes.get(0)).name());
 		}
 		operation.responses.forEach(r -> extensions.put("has" + r.code, true));
+		if (allowsAnonymousSecurity(source)) {
+			extensions.put("has401", false);
+		}
 
 		// jwt provider for tests
 
@@ -453,6 +456,13 @@ public class MicronautCodegen extends AbstractJavaCodegen
 				operation.allParams.stream().anyMatch(p -> !p.isFormParam && !p.required));
 
 		return operation;
+	}
+
+	private static boolean allowsAnonymousSecurity(Operation source) {
+		return Optional.ofNullable(source.getSecurity())
+				.stream()
+				.flatMap(List::stream)
+				.anyMatch(Map::isEmpty);
 	}
 
 	@Override

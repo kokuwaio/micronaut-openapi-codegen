@@ -1,0 +1,22 @@
+openapi: 3.0.3
+info:
+  title: Spec for anonymous security tests.
+  version: "1"
+paths:
+  /anonymous-or-authenticated:
+    get:
+      operationId: anonymousOrAuthenticated
+      tags: [security]
+      security:
+        - {}
+        - bearerAuth: []
+      responses:
+        204:
+          description: Ok.
+        401:
+          description: Forbidden.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

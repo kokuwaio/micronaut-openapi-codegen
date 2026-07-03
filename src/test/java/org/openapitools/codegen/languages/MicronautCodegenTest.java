@@ -1,5 +1,9 @@
 package org.openapitools.codegen.languages;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.nio.file.Files;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openapitools.codegen.CodegenConstants;
@@ -127,6 +131,21 @@ public class MicronautCodegenTest extends AbstractCodegenTest {
 		generate(configurator(SPEC_SECURITY, "testsecurity.types")
 				.addAdditionalProperty(MicronautCodegen.GENERATE_AUTHENTICATION, true)
 				.addTypeMapping("Authentication", java.security.Principal.class.getName()));
+	}
+
+	@DisplayName("security with anonymous alternative")
+	@Test
+	void securityWithAnonymousAlternative() throws Exception {
+		var packageName = "testsecurity.anonymous";
+		generate(configurator("src/test/resources/openapi/test-anonymous-security.yaml", packageName)
+				.addAdditionalProperty(MicronautCodegen.GENERATE_AUTHENTICATION, true));
+
+		var packagePath = packageName.replace(".", "/");
+		var clientContent = Files.readString(SOURCE_FOLDER.resolve(packagePath).resolve("SecurityApiClient.java"));
+		assertFalse(clientContent.contains("java.lang.String authorization"));
+
+		var apiContent = Files.readString(SOURCE_FOLDER.resolve(packagePath).resolve("SecurityApi.java"));
+		assertFalse(apiContent.contains("Authentication authentication"));
 	}
 
 	@DisplayName("model pojo with JsonNullable")
