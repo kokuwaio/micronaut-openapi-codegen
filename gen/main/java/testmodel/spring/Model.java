@@ -2,6 +2,7 @@ package testmodel.spring;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -37,70 +38,97 @@ import jakarta.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class Model {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer idWithExample;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Integer idWithDefault = 32;
 
   private String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String nameWithExample;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String nameWithDefault = "MyDefaultName";
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private @Nullable LocalDate date;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private @Nullable LocalDate dateWithExample;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private @Nullable OffsetDateTime dateTime;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private @Nullable OffsetDateTime dateTimeWithExample;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal number;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable org.springframework.core.io.Resource binary;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable byte[] bytes;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> any = JsonNullable.<Object>undefined();
 
   private List<String> array = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> arrayWithExample = new ArrayList<>();
 
   private Set<String> set = new LinkedHashSet<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Set<String> setWithExamples = new LinkedHashSet<>();
 
   private Map<String, String> map = new HashMap<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Map<String, String> mapWithExample = new HashMap<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> optionalArray = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Set<String> optionalSet = new LinkedHashSet<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Map<String, String> optionalMap = new HashMap<>();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> nullableString = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<String>> nullableArray = JsonNullable.<List<String>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Set<String>> nullableSet = JsonNullable.<Set<String>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String defaultString = "defaultStringValue";
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Integer defaultInteger = 1234;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Long defaultLong = 5678l;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> defaultNullable = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable EnumerationModel referenedModel;
 
   public Model() {

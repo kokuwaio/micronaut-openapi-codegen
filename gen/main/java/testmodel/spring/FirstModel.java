@@ -2,6 +2,7 @@ package testmodel.spring;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.lang.Nullable;
@@ -23,10 +24,13 @@ import jakarta.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class FirstModel implements OneOfModel {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String first;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable SecondLevelModel secondLevel;
 
   public FirstModel type(@Nullable String type) {

@@ -2,6 +2,7 @@ package testmodel.spring;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -58,6 +59,7 @@ public enum TypeEnum {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TypeEnum type;
 
   public PropertyTypeTwo type(@Nullable TypeEnum type) {

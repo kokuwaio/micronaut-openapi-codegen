@@ -2,6 +2,7 @@ package testmodel.spring;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -25,8 +26,10 @@ import jakarta.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class EnumerationModel {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable EnumerationString string;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private EnumerationStringDefault stringDefault = EnumerationStringDefault.THREE;
 
   /**
@@ -65,6 +68,7 @@ public enum EmbeddedEnum {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable EmbeddedEnum embedded;
 
   /**
@@ -103,6 +107,7 @@ public enum EmbeddedDefaultEnum {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private EmbeddedDefaultEnum embeddedDefault = EmbeddedDefaultEnum.FOUR;
 
   public EnumerationModel string(@Nullable EnumerationString string) {

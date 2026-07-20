@@ -2,6 +2,7 @@ package testmodel.spring;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -25,6 +26,7 @@ import jakarta.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: stable")
 public class InheritanceWithEnumType2 extends InheritanceWithEnumType {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String e;
 
   public InheritanceWithEnumType2 e(@Nullable String e) {
