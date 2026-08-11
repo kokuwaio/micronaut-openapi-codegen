@@ -16,5 +16,7 @@ public interface SecurityApi {
 			java.util.Optional<java.lang.String> queryParam);
 
 	@io.micronaut.http.annotation.Get("/authenticated/without-param")
-	io.micronaut.http.HttpResponse<Object> authenticatedWithoutParam();
+	io.micronaut.http.HttpResponse<Object> authenticatedWithoutParam(
+			@io.micronaut.core.annotation.NonNull
+			io.micronaut.security.authentication.Authentication authentication);
 }

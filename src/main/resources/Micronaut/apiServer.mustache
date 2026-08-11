@@ -11,5 +11,6 @@ package {{package}};
 	@io.micronaut.http.annotation.Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
 	@io.micronaut.http.annotation.Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
 	{{>returnType}} {{nickname}}({{#hasParams}}
-{{>apiServerParams}}){{/hasParams}}{{^hasParams}}){{/hasParams}};{{/operation}}{{/operations}}
+{{>apiServerParams}}){{/hasParams}}{{^hasParams}}{{#vendorExtensions.has401}}{{#generateAuthentication}}
+{{>apiServerParams}}{{/generateAuthentication}}{{/vendorExtensions.has401}}){{/hasParams}};{{/operation}}{{/operations}}
 }
