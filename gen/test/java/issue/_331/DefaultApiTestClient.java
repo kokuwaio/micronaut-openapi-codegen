@@ -6,13 +6,20 @@ package issue._331;
 public interface DefaultApiTestClient {
 
 	@io.micronaut.http.annotation.Get("/complex?{&array*}{&set*}")
+	@io.micronaut.http.annotation.Produces({ "application/json" })
 	io.micronaut.http.HttpResponse<?> complex(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "array")
 			java.util.List<ModelComplex> array,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "set")
-			java.util.Set<ModelComplex> set);
+			java.util.Set<ModelComplex> set,
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.QueryValue(value = "complexParam")
+			ModelComplex complexParam,
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.Body
+			ModelComplex modelComplex);
 
 	@io.micronaut.http.annotation.Get("/integer?{&withoutValidation*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}")
 	io.micronaut.http.HttpResponse<?> integer(

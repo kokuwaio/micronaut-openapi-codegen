@@ -5,13 +5,20 @@ package issue._331;
 public interface DefaultApi {
 
 	@io.micronaut.http.annotation.Get("/complex")
+	@io.micronaut.http.annotation.Consumes({ "application/json" })
 	io.micronaut.http.HttpResponse<Object> complex(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "array")
 			java.util.Optional<java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex>> array,
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.QueryValue(value = "set")
-			java.util.Optional<java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex>> set);
+			java.util.Optional<java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex>> set,
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.QueryValue(value = "complexParam")
+			java.util.Optional<@jakarta.validation.Valid ModelComplex> complexParam,
+			@io.micronaut.core.annotation.NonNull
+			@io.micronaut.http.annotation.Body
+			java.util.Optional<@jakarta.validation.Valid ModelComplex> modelComplex);
 
 	@io.micronaut.http.annotation.Get("/integer")
 	io.micronaut.http.HttpResponse<Object> integer(
