@@ -44,7 +44,7 @@ public class OtherCodegenTest extends AbstractCodegenTest {
 	@Test
 	void modelSpring() {
 		generate(SpringCodegen.class, SPEC_MODEL, "testmodel.spring", configurator -> configurator
-				.addAdditionalProperty(SpringCodegen.INTERFACE_ONLY, true)
+				.addAdditionalProperty(CodegenConstants.INTERFACE_ONLY, true)
 				.addAdditionalProperty(DocumentationProviderFeatures.DOCUMENTATION_PROVIDER,
 						DocumentationProvider.SOURCE.name())
 				.addAdditionalProperty(DocumentationProviderFeatures.ANNOTATION_LIBRARY,
