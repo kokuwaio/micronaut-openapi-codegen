@@ -57,6 +57,7 @@ public interface ParameterApiClient {
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramBodyOptional(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.Body
+			@jakarta.validation.Valid
 			ParameterModelVO parameterModelVO);
 
 	@io.micronaut.http.annotation.Post(PATH_PARAM_BODY_REQUIRED)
@@ -65,6 +66,7 @@ public interface ParameterApiClient {
 	io.micronaut.http.HttpResponse<ParameterModelVO> paramBodyRequired(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
+			@jakarta.validation.Valid
 			ParameterModelVO parameterModelVO);
 
 	@io.micronaut.http.annotation.Get(PATH_PARAM_COOKIE_OPTIONAL_WITH_DEFAULT)
