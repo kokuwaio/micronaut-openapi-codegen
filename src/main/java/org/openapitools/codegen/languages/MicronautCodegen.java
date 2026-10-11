@@ -672,7 +672,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		if (useBeanValidation && ModelUtils.isArraySchema(target)) {
 			var items = unaliasSchema(ModelUtils.getSchemaItems(target));
 			var itemType = getTypeDeclaration(items);
-			var annotations = getBeanValidation(items).stream().map(n -> n + " ").collect(Collectors.joining());
+			var annotations = getBeanValidationString(items).stream().map(n -> n + " ").collect(Collectors.joining());
 			var index = itemType.lastIndexOf(".");
 			return getSchemaType(target) + "<" + (index == -1 ? annotations + itemType
 					: (itemType.substring(0, index + 1) + annotations + itemType.substring(index + 1))) + ">";
@@ -931,7 +931,7 @@ public class MicronautCodegen extends AbstractJavaCodegen
 		return copy;
 	}
 
-	private List<String> getBeanValidation(Schema<?> schema) {
+	private List<String> getBeanValidationString(Schema<?> schema) {
 		var annotations = new ArrayList<String>();
 		if (!useBeanValidation) {
 			return annotations;
