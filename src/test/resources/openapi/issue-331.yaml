@@ -20,6 +20,15 @@ paths:
             uniqueItems: true
             items:
               $ref: "#/components/schemas/ModelComplex"
+        - name: complexParam
+          in: query
+          schema:
+            $ref: "#/components/schemas/ModelComplex"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelComplex"
       responses:
         204:
           description: OK
