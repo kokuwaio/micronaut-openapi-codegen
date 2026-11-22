@@ -6,7 +6,7 @@ set default-list
 @lint:
     docker run --rm --read-only --volume=$PWD:$PWD:ro --workdir=$PWD kokuwaio/just:1.59.0
     docker run --rm --read-only --volume=$PWD:$PWD:ro --workdir=$PWD kokuwaio/yamllint:v1.38.0
-    docker run --rm             --volume=$PWD:$PWD:rw --workdir=$PWD kokuwaio/markdownlint:0.50.0 --fix
+    docker run --rm             --volume=$PWD:$PWD:rw --workdir=$PWD kokuwaio/markdownlint:0.50.1 --fix
     docker run --rm --read-only --volume=$PWD:$PWD:ro --workdir=$PWD kokuwaio/shellcheck:v0.11.0
     docker run --rm --read-only --volume=$PWD:$PWD:ro --workdir=$PWD kokuwaio/renovate-config-validator:44
     docker run --rm --read-only --volume=$PWD:$PWD:ro --workdir=$PWD woodpeckerci/woodpecker-cli:v3 lint --strict
