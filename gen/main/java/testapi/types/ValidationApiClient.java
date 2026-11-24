@@ -127,6 +127,7 @@ public interface ValidationApiClient {
 	io.micronaut.http.HttpResponse<Object> validationModel(
 			@io.micronaut.core.annotation.NonNull
 			@io.micronaut.http.annotation.Body
+			@jakarta.validation.Valid
 			StringModel stringModel);
 
 	@io.micronaut.http.annotation.Get(PATH_VALIDATION_STRING_MAX)

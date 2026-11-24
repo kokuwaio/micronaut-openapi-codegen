@@ -10,13 +10,22 @@ public interface DefaultApiClient {
 	java.lang.String PATH_STRING = "/string?{&withoutValidation*}{&withEnum*}{&withEmail*}{&withPattern*}{&withMinimum*}{&withMaximum*}{&withMinimumAndMaximum*}";
 
 	@io.micronaut.http.annotation.Get(PATH_COMPLEX)
+	@io.micronaut.http.annotation.Produces({ "application/json" })
 	io.micronaut.http.HttpResponse<Object> complex(
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "array")
 			java.util.List<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> array,
 			@io.micronaut.core.annotation.Nullable
 			@io.micronaut.http.annotation.QueryValue(value = "set")
-			java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> set);
+			java.util.Set<@jakarta.validation.constraints.NotNull @jakarta.validation.Valid ModelComplex> set,
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.QueryValue(value = "complexParam")
+			@jakarta.validation.Valid
+			ModelComplex complexParam,
+			@io.micronaut.core.annotation.Nullable
+			@io.micronaut.http.annotation.Body
+			@jakarta.validation.Valid
+			ModelComplex modelComplex);
 
 	@io.micronaut.http.annotation.Get(PATH_INTEGER)
 	io.micronaut.http.HttpResponse<Object> integer(
